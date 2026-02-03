@@ -217,7 +217,6 @@ export interface CreateCampaignInput {
 export const useCreateCampaign = () => {
   const queryClient = useQueryClient();
   const { toast } = useToast();
-  const navigate = useNavigate();
 
   return useMutation({
     mutationFn: async (input: CreateCampaignInput): Promise<Campaign> => {
@@ -264,9 +263,9 @@ export const useCreateCampaign = () => {
       queryClient.invalidateQueries({ queryKey: ["brand-campaigns"] });
       toast({
         title: "Gig Created! 🎉",
-        description: "Your gig has been saved and is ready to go live."
+        description: "Your gig has been saved. Complete payment to activate."
       });
-      navigate("/dashboard/brand");
+      // Note: Navigation is handled by the caller (CreateCampaign page)
     },
     onError: (error: Error) => {
       toast({

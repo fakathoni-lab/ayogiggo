@@ -15,7 +15,8 @@ import {
   Info,
   Loader2 } from
 "lucide-react";
-import { useCreateCampaign, CampaignType, CampaignStatus } from "@/hooks/useCampaigns";
+import { useCreateCampaign, CampaignType, CampaignStatus, type Campaign } from "@/hooks/useCampaigns";
+import { PaymentModal } from "@/components/payment/PaymentModal";
 
 const categories = [
 "Fashion", "Beauty", "Fitness", "Tech", "Food", "Travel",
@@ -36,6 +37,8 @@ const CreateCampaign = () => {
     endDate: "",
     requirements: ""
   });
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [createdCampaign, setCreatedCampaign] = useState<Campaign | null>(null);
 
   const createCampaign = useCreateCampaign();
 
@@ -60,18 +63,26 @@ const CreateCampaign = () => {
       }).filter((p) => p.amount > 0);
     }
 
-    createCampaign.mutate({
-      title: formData.title,
-      description: formData.description,
-      brief: formData.brief || undefined,
-      category: formData.category,
-      type: campaignType as CampaignType,
-      budget: parseFloat(formData.budget) || 0,
-      prize_breakdown: prizeBreakdownParsed.length > 0 ? prizeBreakdownParsed : undefined,
-      start_date: formData.startDate ? new Date(formData.startDate).toISOString() : new Date().toISOString(),
-      end_date: formData.endDate ? new Date(formData.endDate).toISOString() : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-      status: CampaignStatus.DRAFT
-    });
+    createCampaign.mutate(
+      {
+        title: formData.title,
+        description: formData.description,
+        brief: formData.brief || undefined,
+        category: formData.category,
+        type: campaignType as CampaignType,
+        budget: parseFloat(formData.budget) || 0,
+        prize_breakdown: prizeBreakdownParsed.length > 0 ? prizeBreakdownParsed : undefined,
+        start_date: formData.startDate ? new Date(formData.startDate).toISOString() : new Date().toISOString(),
+        end_date: formData.endDate ? new Date(formData.endDate).toISOString() : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+        status: CampaignStatus.DRAFT
+      },
+      {
+        onSuccess: (data) => {
+          setCreatedCampaign(data);
+          setShowPaymentModal(true);
+        }
+      }
+    );
   };
 
   return (
@@ -206,6 +217,19 @@ const CreateCampaign = () => {
           </div>
         }
       </main>
+
+      {/* Payment Modal */}
+      {createdCampaign && (
+        <PaymentModal
+          isOpen={showPaymentModal}
+          onClose={() => setShowPaymentModal(false)}
+          campaign={createdCampaign}
+          onSuccess={() => {
+            setShowPaymentModal(false);
+            // Navigation handled by payment status page
+          }}
+        />
+      )}
     </div>);
 
 };

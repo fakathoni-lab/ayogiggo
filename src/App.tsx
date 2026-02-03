@@ -32,6 +32,7 @@ const CreatorOnboarding = lazy(() => import("@/pages/onboarding/CreatorOnboardin
 const Welcome = lazy(() => import("@/pages/onboarding/Welcome"));
 const Privacy = lazy(() => import("@/pages/legal/Privacy"));
 const Terms = lazy(() => import("@/pages/legal/Terms"));
+const PaymentStatus = lazy(() => import("@/pages/payment/PaymentStatus"));
 
 // Loading Fallback Component
 const LoadingFallback = () =>
@@ -91,6 +92,7 @@ const App = () =>
                   <Route element={<ProtectedRoute allowedRoles={['brand']} />}>
                     <Route path="/dashboard/brand" element={<BrandDashboard />} />
                     <Route path="/dashboard/brand/campaigns/new" element={<CreateCampaign />} />
+                    <Route path="/payment/status" element={<PaymentStatus />} />
                   </Route>
 
                   {/* Creator Dashboard Routes - Only for Creators */}

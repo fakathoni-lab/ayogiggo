@@ -9,6 +9,7 @@ import EscrowBalanceHeader from "@/components/dashboard/EscrowBalanceHeader";
 import BrandOrderManager from "@/components/dashboard/BrandOrderManager";
 import SubmissionReviewPanel from "@/components/submissions/SubmissionReviewPanel";
 import { useBrandCampaigns, type Campaign } from "@/hooks/useCampaigns";
+import { PaymentModal } from "@/components/payment/PaymentModal";
 import {
   Plus,
   LayoutDashboard,
@@ -22,7 +23,8 @@ import {
   DollarSign,
   Package,
   FolderOpen,
-  FileVideo } from
+  FileVideo,
+  CreditCard } from
 "lucide-react";
 import { differenceInDays } from "date-fns";
 
@@ -71,9 +73,16 @@ const BrandDashboard = () => {
   useTranslation();
   const [activeTab, setActiveTab] = useState("dashboard");
   const [selectedCampaignId, setSelectedCampaignId] = useState<string | null>(null);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [campaignToActivate, setCampaignToActivate] = useState<Campaign | null>(null);
   const currentHeader = headerTitles[activeTab] || { title: "Dashboard" };
 
   const { data: campaigns = [], isLoading, error } = useBrandCampaigns();
+
+  const handleActivateCampaign = (campaign: Campaign) => {
+    setCampaignToActivate(campaign);
+    setShowPaymentModal(true);
+  };
 
   const stats = computeStats(campaigns);
   const recentGigs = campaigns.slice(0, 5);
@@ -284,7 +293,7 @@ const BrandDashboard = () => {
                       key={gig.id}
                       className="p-6 flex items-center justify-between hover:bg-muted/50 transition-colors">
 
-                          <div className="flex items-center gap-4">
+                          <div className="flex items-center gap-4 flex-1">
                             <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center text-primary-foreground font-bold">
                               {gig.title.charAt(0)}
                             </div>
@@ -297,6 +306,8 @@ const BrandDashboard = () => {
                               className={`text-xs px-2 py-1 rounded-full font-medium ${
                               isOpen ?
                               "bg-success/10 text-success" :
+                              gig.status === "draft" ?
+                              "bg-yellow-500/10 text-yellow-500" :
                               "bg-muted text-muted-foreground"}`
                               }>
 
@@ -308,17 +319,30 @@ const BrandDashboard = () => {
                               </div>
                             </div>
                           </div>
-                          <div className="text-right">
-                            <p className="font-semibold text-foreground">
-                              ${(gig.budget || 0).toLocaleString()}
-                            </p>
-                            <p className="text-sm text-muted-foreground">
-                              {daysLeft > 0 ?
-                          `${daysLeft} days left` :
-                          daysLeft === 0 ?
-                          "Ends today" :
-                          "Ended"}
-                            </p>
+                          <div className="flex items-center gap-4">
+                            <div className="text-right">
+                              <p className="font-semibold text-foreground">
+                                ${(gig.budget || 0).toLocaleString()}
+                              </p>
+                              <p className="text-sm text-muted-foreground">
+                                {daysLeft > 0 ?
+                            `${daysLeft} days left` :
+                            daysLeft === 0 ?
+                            "Ends today" :
+                            "Ended"}
+                              </p>
+                            </div>
+                            {gig.status === "draft" && (
+                              <Button
+                                variant="hero"
+                                size="sm"
+                                onClick={() => handleActivateCampaign(gig)}
+                                className="gap-2"
+                              >
+                                <CreditCard className="w-4 h-4" />
+                                Activate
+                              </Button>
+                            )}
                           </div>
                         </div>);
 
@@ -330,6 +354,22 @@ const BrandDashboard = () => {
           }
         </div>
       </main>
+
+      {/* Payment Modal */}
+      {campaignToActivate && (
+        <PaymentModal
+          isOpen={showPaymentModal}
+          onClose={() => {
+            setShowPaymentModal(false);
+            setCampaignToActivate(null);
+          }}
+          campaign={campaignToActivate}
+          onSuccess={() => {
+            setShowPaymentModal(false);
+            setCampaignToActivate(null);
+          }}
+        />
+      )}
     </div>);
 
 };
