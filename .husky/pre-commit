@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Prevent .env files from being committed
+if git diff --cached --name-only | grep -E '^\.env(\.local)?$'; then
+  echo "❌ Error: .env files should not be committed!"
+  echo "   Please add .env and .env.local to .gitignore"
+  exit 1
+fi
+
+npx lint-staged
