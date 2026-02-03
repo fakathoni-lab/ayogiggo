@@ -27,7 +27,7 @@ const CreatorDashboard = lazy(() => import("@/pages/dashboard/CreatorDashboard")
 const CreatorWallet = lazy(() => import("@/pages/dashboard/CreatorWallet"));
 const CreatorAnalytics = lazy(() => import("@/pages/dashboard/CreatorAnalytics"));
 const CreatorSettings = lazy(() => import("@/pages/dashboard/CreatorSettings"));
-const CreateCampaign = lazy(() => import("@/pages/dashboard/CreateCampaign"));
+const CreateCampaign = lazy(() => import("@/pages/dashboard/CreateCampaignWizard"));
 const BrandsLandingPage = lazy(() => import("@/pages/brands/Index"));
 const CreatorsLandingPage = lazy(() => import("@/pages/creators/Index"));
 const PublicProfile = lazy(() => import("@/pages/creator/PublicProfile"));
