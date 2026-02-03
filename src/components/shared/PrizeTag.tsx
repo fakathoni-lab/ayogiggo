@@ -8,11 +8,11 @@ interface PrizeTagProps {
   className?: string;
 }
 
-export const PrizeTag = ({ 
-  amount, 
-  currency = "USD", 
+export const PrizeTag = ({
+  amount,
+  currency = "USD",
   size = "md",
-  className 
+  className
 }: PrizeTagProps) => {
   const formatAmount = (num: number) => {
     if (num >= 1000000) {
@@ -27,13 +27,13 @@ export const PrizeTag = ({
   const sizeClasses = {
     sm: "px-2 py-0.5 text-xs gap-1",
     md: "px-3 py-1 text-sm gap-1.5",
-    lg: "px-4 py-2 text-base gap-2",
+    lg: "px-4 py-2 text-base gap-2"
   };
 
   const iconSizes = {
     sm: "w-3 h-3",
     md: "w-4 h-4",
-    lg: "w-5 h-5",
+    lg: "w-5 h-5"
   };
 
   return (
@@ -44,12 +44,12 @@ export const PrizeTag = ({
         "shadow-lg shadow-orange-500/25",
         sizeClasses[size],
         className
-      )}
-    >
+      )}>
+
       <Trophy className={iconSizes[size]} />
       <span>
         {currency === "USD" ? "$" : currency} {formatAmount(amount)}
       </span>
-    </div>
-  );
+    </div>);
+
 };

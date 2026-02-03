@@ -14,11 +14,11 @@ const RoleContext = createContext<RoleContextType | undefined>(undefined);
 
 const ROLE_STORAGE_KEY = "giggo_active_role";
 
-export const RoleProvider = ({ children }: { children: ReactNode }) => {
+export const RoleProvider = ({ children }: {children: ReactNode;}) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { role: authRole, user } = useAuth(); // Ambil role asli dari database
-  
+
   const [activeRole, setActiveRole] = useState<Role>(() => {
     const stored = localStorage.getItem(ROLE_STORAGE_KEY);
     // Validasi awal: jika stored role tidak valid, default ke 'creators'
@@ -67,8 +67,8 @@ export const RoleProvider = ({ children }: { children: ReactNode }) => {
   return (
     <RoleContext.Provider value={{ activeRole, setActiveRole, toggleRole }}>
       {children}
-    </RoleContext.Provider>
-  );
+    </RoleContext.Provider>);
+
 };
 
 export const useRole = (): RoleContextType => {

@@ -29,8 +29,8 @@ const Welcome = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    );
+      </div>);
+
   }
 
   return (
@@ -72,8 +72,8 @@ const Welcome = () => {
           <Button
             size="xl"
             className="w-full bg-white text-primary hover:bg-white/90 shadow-xl gap-3 group"
-            onClick={() => navigate("/onboarding/creator")}
-          >
+            onClick={() => navigate("/onboarding/creator")}>
+
             <Sparkles className="w-5 h-5" />
             I'm a Creator
             <ArrowRight className="w-5 h-5 ml-auto transition-transform group-hover:translate-x-1" />
@@ -83,8 +83,8 @@ const Welcome = () => {
             size="xl"
             variant="outline"
             className="w-full border-white/30 text-white hover:bg-white/10 hover:border-white/50 gap-3 group"
-            onClick={() => navigate("/onboarding/brand")}
-          >
+            onClick={() => navigate("/onboarding/brand")}>
+
             <Building2 className="w-5 h-5" />
             I'm a Brand
             <ArrowRight className="w-5 h-5 ml-auto transition-transform group-hover:translate-x-1" />
@@ -97,8 +97,8 @@ const Welcome = () => {
             Already have an account?{" "}
             <button
               onClick={() => navigate("/auth")}
-              className="text-white font-medium hover:underline"
-            >
+              className="text-white font-medium hover:underline">
+
               Sign in
             </button>
           </p>
@@ -108,19 +108,19 @@ const Welcome = () => {
         <div className="mt-12 animate-fade-in" style={{ animationDelay: "0.7s" }}>
           <p className="text-white/50 text-xs mb-4">TRUSTED BY TOP BRANDS</p>
           <div className="flex items-center justify-center gap-8 opacity-60">
-            {["Nike", "Adidas", "Spotify", "Netflix"].map((brand) => (
-              <div
-                key={brand}
-                className="text-white font-display font-bold text-lg"
-              >
+            {["Nike", "Adidas", "Spotify", "Netflix"].map((brand) =>
+            <div
+              key={brand}
+              className="text-white font-display font-bold text-lg">
+
                 {brand}
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Welcome;

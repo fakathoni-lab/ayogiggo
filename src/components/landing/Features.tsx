@@ -7,8 +7,8 @@ import {
   DollarSign,
   BarChart3,
   ShieldCheck,
-  LucideIcon,
-} from "lucide-react";
+  LucideIcon } from
+"lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
 
@@ -28,55 +28,55 @@ const Features = () => {
 
   // Data Feature with "Cosmic" styling and specific spotlight colors
   const features: FeatureItem[] = [
-    {
-      icon: Megaphone,
-      titleKey: "features.launchGigs.title",
-      descriptionKey: "features.launchGigs.description",
-      gradient: "from-cyan-500/20 to-blue-500/20",
-      iconColor: "text-cyan-400",
-      spotlightColor: "rgba(34, 211, 238, 0.15)", // Cyan
-    },
-    {
-      icon: Video,
-      titleKey: "features.collectEntries.title",
-      descriptionKey: "features.collectEntries.description",
-      gradient: "from-purple-500/20 to-pink-500/20",
-      iconColor: "text-purple-400",
-      spotlightColor: "rgba(192, 132, 252, 0.15)", // Purple
-    },
-    {
-      icon: Trophy,
-      titleKey: "features.challengeSystem.title",
-      descriptionKey: "features.challengeSystem.description",
-      gradient: "from-amber-500/20 to-orange-500/20",
-      iconColor: "text-amber-400",
-      spotlightColor: "rgba(251, 191, 36, 0.15)", // Amber
-    },
-    {
-      icon: DollarSign,
-      titleKey: "features.easyPayouts.title",
-      descriptionKey: "features.easyPayouts.description",
-      gradient: "from-emerald-500/20 to-green-500/20",
-      iconColor: "text-emerald-400",
-      spotlightColor: "rgba(52, 211, 153, 0.15)", // Emerald
-    },
-    {
-      icon: BarChart3,
-      titleKey: "features.analyticsHub.title",
-      descriptionKey: "features.analyticsHub.description",
-      gradient: "from-blue-500/20 to-indigo-500/20",
-      iconColor: "text-blue-400",
-      spotlightColor: "rgba(96, 165, 250, 0.15)", // Blue
-    },
-    {
-      icon: ShieldCheck,
-      titleKey: "features.verifiedProfiles.title",
-      descriptionKey: "features.verifiedProfiles.description",
-      gradient: "from-rose-500/20 to-red-500/20",
-      iconColor: "text-rose-400",
-      spotlightColor: "rgba(251, 113, 133, 0.15)", // Rose
-    },
-  ];
+  {
+    icon: Megaphone,
+    titleKey: "features.launchGigs.title",
+    descriptionKey: "features.launchGigs.description",
+    gradient: "from-cyan-500/20 to-blue-500/20",
+    iconColor: "text-cyan-400",
+    spotlightColor: "rgba(34, 211, 238, 0.15)" // Cyan
+  },
+  {
+    icon: Video,
+    titleKey: "features.collectEntries.title",
+    descriptionKey: "features.collectEntries.description",
+    gradient: "from-purple-500/20 to-pink-500/20",
+    iconColor: "text-purple-400",
+    spotlightColor: "rgba(192, 132, 252, 0.15)" // Purple
+  },
+  {
+    icon: Trophy,
+    titleKey: "features.challengeSystem.title",
+    descriptionKey: "features.challengeSystem.description",
+    gradient: "from-amber-500/20 to-orange-500/20",
+    iconColor: "text-amber-400",
+    spotlightColor: "rgba(251, 191, 36, 0.15)" // Amber
+  },
+  {
+    icon: DollarSign,
+    titleKey: "features.easyPayouts.title",
+    descriptionKey: "features.easyPayouts.description",
+    gradient: "from-emerald-500/20 to-green-500/20",
+    iconColor: "text-emerald-400",
+    spotlightColor: "rgba(52, 211, 153, 0.15)" // Emerald
+  },
+  {
+    icon: BarChart3,
+    titleKey: "features.analyticsHub.title",
+    descriptionKey: "features.analyticsHub.description",
+    gradient: "from-blue-500/20 to-indigo-500/20",
+    iconColor: "text-blue-400",
+    spotlightColor: "rgba(96, 165, 250, 0.15)" // Blue
+  },
+  {
+    icon: ShieldCheck,
+    titleKey: "features.verifiedProfiles.title",
+    descriptionKey: "features.verifiedProfiles.description",
+    gradient: "from-rose-500/20 to-red-500/20",
+    iconColor: "text-rose-400",
+    spotlightColor: "rgba(251, 113, 133, 0.15)" // Rose
+  }];
+
 
   return (
     <section className="py-24 md:py-32 bg-[#0F172A] relative overflow-hidden">
@@ -90,55 +90,55 @@ const Features = () => {
         
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tight drop-shadow-sm"
-          >
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tight drop-shadow-sm">
+
             {t("features.title")}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 animate-gradient-x">
               {t("features.titleHighlight")}
             </span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-slate-400 text-lg md:text-xl leading-relaxed"
-          >
+            className="text-slate-400 text-lg md:text-xl leading-relaxed">
+
             {t("features.subtitle")}
           </motion.p>
         </div>
 
         {/* Feature Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {features.map((feature, index) => (
-            <FeatureCard 
-              key={index} 
-              feature={feature} 
-              index={index} 
-              prefersReducedMotion={prefersReducedMotion} 
-            />
-          ))}
+          {features.map((feature, index) =>
+          <FeatureCard
+            key={index}
+            feature={feature}
+            index={index}
+            prefersReducedMotion={prefersReducedMotion} />
+
+          )}
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 // --- Sub Component: Feature Card with Optimized Spotlight Effect ---
-const FeatureCard = ({ 
-  feature, 
-  index, 
-  prefersReducedMotion 
-}: { 
-  feature: FeatureItem; 
-  index: number; 
-  prefersReducedMotion: boolean;
-}) => {
+const FeatureCard = ({
+  feature,
+  index,
+  prefersReducedMotion
+
+
+
+
+}: {feature: FeatureItem;index: number;prefersReducedMotion: boolean;}) => {
   const { t } = useTranslation();
   // Using MotionValues for high-performance mouse tracking (no re-renders)
   const mouseX = useMotionValue(0);
@@ -169,8 +169,8 @@ const FeatureCard = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="group relative rounded-3xl border border-white/5 bg-[#1E293B]/40 backdrop-blur-sm overflow-hidden hover:border-white/10 transition-colors duration-300"
-    >
+      className="group relative rounded-3xl border border-white/5 bg-[#1E293B]/40 backdrop-blur-sm overflow-hidden hover:border-white/10 transition-colors duration-300">
+
       {/* Dynamic Spotlight Gradient Overlay */}
       <motion.div
         className="pointer-events-none absolute -inset-px transition duration-300 opacity-0 group-hover:opacity-100"
@@ -181,9 +181,9 @@ const FeatureCard = ({
               ${feature.spotlightColor},
               transparent 40%
             )
-          `,
-        }}
-      />
+          `
+        }} />
+
       
       {/* Noise Texture for Premium Feel */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] mix-blend-overlay pointer-events-none" />
@@ -206,8 +206,8 @@ const FeatureCard = ({
           {t(feature.descriptionKey)}
         </p>
       </div>
-    </motion.div>
-  );
+    </motion.div>);
+
 };
 
 export default Features;

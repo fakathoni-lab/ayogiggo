@@ -6,32 +6,32 @@ import LogoMonogram from "@/components/shared/LogoMonogram";
 import {
   Tooltip,
   TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  TooltipTrigger } from
+"@/components/ui/tooltip";
 
 const Footer = React.forwardRef<HTMLElement>((_, ref) => {
   const { t } = useTranslation();
 
   // Using forwardRef for Tooltip compatibility
-  const ComingSoonLink = React.forwardRef<HTMLSpanElement, { children: React.ReactNode }>(
-    ({ children }, tooltipRef) => (
-      <span ref={tooltipRef} className="text-slate-500 cursor-not-allowed">
+  const ComingSoonLink = React.forwardRef<HTMLSpanElement, {children: React.ReactNode;}>(
+    ({ children }, tooltipRef) =>
+    <span ref={tooltipRef} className="text-slate-500 cursor-not-allowed">
         {children}
       </span>
-    )
+
   );
   ComingSoonLink.displayName = "ComingSoonLink";
 
-  const ComingSoonWithTooltip = ({ children }: { children: React.ReactNode }) => (
-    <Tooltip>
+  const ComingSoonWithTooltip = ({ children }: {children: React.ReactNode;}) =>
+  <Tooltip>
       <TooltipTrigger asChild>
         <ComingSoonLink>{children}</ComingSoonLink>
       </TooltipTrigger>
       <TooltipContent>
         <p>Coming Soon</p>
       </TooltipContent>
-    </Tooltip>
-  );
+    </Tooltip>;
+
 
   return (
     <footer ref={ref} className="bg-[#0F172A] text-white py-16 border-t border-white/10">
@@ -136,8 +136,8 @@ const Footer = React.forwardRef<HTMLElement>((_, ref) => {
           <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
+
 });
 
 Footer.displayName = "Footer";

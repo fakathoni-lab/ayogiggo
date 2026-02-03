@@ -16,14 +16,14 @@ interface ConfettiCelebrationProps {
 }
 
 const colors = [
-  "hsl(var(--primary))",
-  "hsl(var(--accent))",
-  "#FFD700",
-  "#FF6B6B",
-  "#4ECDC4",
-  "#A78BFA",
-  "#F472B6",
-];
+"hsl(var(--primary))",
+"hsl(var(--accent))",
+"#FFD700",
+"#FF6B6B",
+"#4ECDC4",
+"#A78BFA",
+"#F472B6"];
+
 
 export const ConfettiCelebration = ({ show, duration = 3000 }: ConfettiCelebrationProps) => {
   const [pieces, setPieces] = useState<ConfettiPiece[]>([]);
@@ -44,7 +44,7 @@ export const ConfettiCelebration = ({ show, duration = 3000 }: ConfettiCelebrati
         delay: Math.random() * 0.5,
         duration: 2 + Math.random() * 2,
         color: colors[Math.floor(Math.random() * colors.length)],
-        size: 8 + Math.random() * 8,
+        size: 8 + Math.random() * 8
       }));
       setPieces(newPieces);
 
@@ -61,23 +61,23 @@ export const ConfettiCelebration = ({ show, duration = 3000 }: ConfettiCelebrati
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-      {pieces.map((piece) => (
-        <div
-          key={piece.id}
-          className="absolute animate-confetti"
-          style={{
-            left: `${piece.x}%`,
-            top: "-20px",
-            width: piece.size,
-            height: piece.size,
-            backgroundColor: piece.color,
-            animationDelay: `${piece.delay}s`,
-            animationDuration: `${piece.duration}s`,
-            transform: `rotate(${Math.random() * 360}deg)`,
-            borderRadius: Math.random() > 0.5 ? "50%" : "0",
-          }}
-        />
-      ))}
-    </div>
-  );
+      {pieces.map((piece) =>
+      <div
+        key={piece.id}
+        className="absolute animate-confetti"
+        style={{
+          left: `${piece.x}%`,
+          top: "-20px",
+          width: piece.size,
+          height: piece.size,
+          backgroundColor: piece.color,
+          animationDelay: `${piece.delay}s`,
+          animationDuration: `${piece.duration}s`,
+          transform: `rotate(${Math.random() * 360}deg)`,
+          borderRadius: Math.random() > 0.5 ? "50%" : "0"
+        }} />
+
+      )}
+    </div>);
+
 };

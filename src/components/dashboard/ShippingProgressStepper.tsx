@@ -14,96 +14,96 @@ interface ShippingProgressStepperProps {
 interface Step {
   id: string;
   label: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{className?: string;}>;
   status: "completed" | "current" | "upcoming" | "locked";
 }
 
 const ShippingProgressStepper = ({
   applicationStatus,
   shippingStatus,
-  hasPhysicalProduct,
+  hasPhysicalProduct
 }: ShippingProgressStepperProps) => {
   const getSteps = (): Step[] => {
     if (!hasPhysicalProduct) {
       // Digital product flow - simpler
       return [
-        {
-          id: "applied",
-          label: "Applied",
-          icon: Circle,
-          status: applicationStatus === "applied" ? "current" : "completed",
-        },
-        {
-          id: "hired",
-          label: "Hired",
-          icon: CheckCircle,
-          status:
-            applicationStatus === "hired" || applicationStatus === "completed"
-              ? applicationStatus === "hired"
-                ? "current"
-                : "completed"
-              : "upcoming",
-        },
-        {
-          id: "submit",
-          label: "Submit Entry",
-          icon: Video,
-          status:
-            applicationStatus === "completed"
-              ? "completed"
-              : applicationStatus === "hired"
-              ? "current"
-              : "upcoming",
-        },
-      ];
-    }
-
-    // Physical product flow - with shipping
-    const steps: Step[] = [
       {
         id: "applied",
         label: "Applied",
         icon: Circle,
-        status: applicationStatus === "applied" ? "current" : "completed",
+        status: applicationStatus === "applied" ? "current" : "completed"
       },
       {
         id: "hired",
         label: "Hired",
         icon: CheckCircle,
         status:
-          applicationStatus === "hired" || applicationStatus === "completed"
-            ? "completed"
-            : applicationStatus === "applied"
-            ? "upcoming"
-            : "completed",
-      },
-      {
-        id: "shipped",
-        label: "Product Shipped",
-        icon: Truck,
-        status: getShippingStepStatus(shippingStatus, "shipped"),
-      },
-      {
-        id: "delivered",
-        label: "Product Received",
-        icon: Home,
-        status: getShippingStepStatus(shippingStatus, "delivered"),
+        applicationStatus === "hired" || applicationStatus === "completed" ?
+        applicationStatus === "hired" ?
+        "current" :
+        "completed" :
+        "upcoming"
       },
       {
         id: "submit",
         label: "Submit Entry",
         icon: Video,
-        status: getSubmitStepStatus(applicationStatus, shippingStatus),
-      },
-    ];
+        status:
+        applicationStatus === "completed" ?
+        "completed" :
+        applicationStatus === "hired" ?
+        "current" :
+        "upcoming"
+      }];
+
+    }
+
+    // Physical product flow - with shipping
+    const steps: Step[] = [
+    {
+      id: "applied",
+      label: "Applied",
+      icon: Circle,
+      status: applicationStatus === "applied" ? "current" : "completed"
+    },
+    {
+      id: "hired",
+      label: "Hired",
+      icon: CheckCircle,
+      status:
+      applicationStatus === "hired" || applicationStatus === "completed" ?
+      "completed" :
+      applicationStatus === "applied" ?
+      "upcoming" :
+      "completed"
+    },
+    {
+      id: "shipped",
+      label: "Product Shipped",
+      icon: Truck,
+      status: getShippingStepStatus(shippingStatus, "shipped")
+    },
+    {
+      id: "delivered",
+      label: "Product Received",
+      icon: Home,
+      status: getShippingStepStatus(shippingStatus, "delivered")
+    },
+    {
+      id: "submit",
+      label: "Submit Entry",
+      icon: Video,
+      status: getSubmitStepStatus(applicationStatus, shippingStatus)
+    }];
+
 
     return steps;
   };
 
   function getShippingStepStatus(
-    shippingStatus: ShippingStatus | null,
-    step: "shipped" | "delivered"
-  ): Step["status"] {
+  shippingStatus: ShippingStatus | null,
+  step: "shipped" | "delivered")
+  : Step["status"] {
     if (!shippingStatus || shippingStatus === "needs_address" || shippingStatus === "processing") {
       return step === "shipped" ? "current" : "locked";
     }
@@ -117,9 +117,9 @@ const ShippingProgressStepper = ({
   }
 
   function getSubmitStepStatus(
-    appStatus: ApplicationStatus,
-    shipStatus: ShippingStatus | null
-  ): Step["status"] {
+  appStatus: ApplicationStatus,
+  shipStatus: ShippingStatus | null)
+  : Step["status"] {
     if (appStatus === "completed") return "completed";
     if (shipStatus === "delivered") return "current";
     return "locked";
@@ -133,25 +133,25 @@ const ShippingProgressStepper = ({
         return {
           circle: "bg-success text-success-foreground border-success",
           line: "bg-success",
-          text: "text-foreground",
+          text: "text-foreground"
         };
       case "current":
         return {
           circle: "bg-primary text-primary-foreground border-primary animate-pulse",
           line: "bg-border",
-          text: "text-foreground font-medium",
+          text: "text-foreground font-medium"
         };
       case "locked":
         return {
           circle: "bg-muted text-muted-foreground border-border opacity-50",
           line: "bg-border",
-          text: "text-muted-foreground opacity-50",
+          text: "text-muted-foreground opacity-50"
         };
       default:
         return {
           circle: "bg-muted text-muted-foreground border-border",
           line: "bg-border",
-          text: "text-muted-foreground",
+          text: "text-muted-foreground"
         };
     }
   };
@@ -172,37 +172,37 @@ const ShippingProgressStepper = ({
                   className={cn(
                     "w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all",
                     styles.circle
-                  )}
-                >
+                  )}>
+
                   <Icon className="w-5 h-5" />
                 </div>
                 <span
                   className={cn(
                     "text-xs mt-2 text-center max-w-[80px] leading-tight",
                     styles.text
-                  )}
-                >
+                  )}>
+
                   {step.label}
                 </span>
               </div>
 
               {/* Connector Line */}
-              {!isLast && (
-                <div
-                  className={cn(
-                    "flex-1 h-1 mx-2 rounded-full transition-all",
-                    step.status === "completed" ? "bg-success" : "bg-border"
-                  )}
-                />
-              )}
-            </div>
-          );
+              {!isLast &&
+              <div
+                className={cn(
+                  "flex-1 h-1 mx-2 rounded-full transition-all",
+                  step.status === "completed" ? "bg-success" : "bg-border"
+                )} />
+
+              }
+            </div>);
+
         })}
       </div>
 
       {/* Status Message */}
-      {hasPhysicalProduct && shippingStatus !== "delivered" && applicationStatus === "hired" && (
-        <div className="mt-4 p-3 bg-warning/10 border border-warning/20 rounded-lg">
+      {hasPhysicalProduct && shippingStatus !== "delivered" && applicationStatus === "hired" &&
+      <div className="mt-4 p-3 bg-warning/10 border border-warning/20 rounded-lg">
           <p className="text-sm text-warning flex items-center gap-2">
             <Package className="w-4 h-4" />
             {shippingStatus === "needs_address" && "Menunggu brand mengirim produk"}
@@ -214,9 +214,9 @@ const ShippingProgressStepper = ({
             Anda baru bisa submit entry setelah menerima produk
           </p>
         </div>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 };
 
 export default ShippingProgressStepper;

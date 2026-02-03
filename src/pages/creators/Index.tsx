@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  ArrowRight, 
-  UserPlus, 
-  Search, 
-  Video, 
+import {
+  ArrowRight,
+  UserPlus,
+  Search,
+  Video,
   Wallet,
   Play,
   Star,
@@ -13,8 +13,8 @@ import {
   DollarSign,
   Zap,
   Shield,
-  Clock
-} from "lucide-react";
+  Clock } from
+"lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -39,66 +39,66 @@ const staggerItem = {
 
 // Sample success stories
 const successStories = [
-  { 
-    id: 1, 
-    name: "Sarah Chen", 
-    handle: "@sarahcreates",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
-    earned: "$12,500",
-    gigs: 24,
-    quote: "Giggo changed my life. I went from 0 brand deals to working with Nike and Adidas.",
-    niche: "Fashion"
-  },
-  { 
-    id: 2, 
-    name: "Marcus Johnson", 
-    handle: "@marcusfitness",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
-    earned: "$8,200",
-    gigs: 18,
-    quote: "The best platform for fitness creators. Weekly payouts and amazing brand opportunities.",
-    niche: "Fitness"
-  },
-  { 
-    id: 3, 
-    name: "Ayu Putri", 
-    handle: "@ayubeauty",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
-    earned: "$15,800",
-    gigs: 32,
-    quote: "I quit my job to do this full-time. Giggo makes it so easy to find paid gigs.",
-    niche: "Beauty"
-  },
-];
+{
+  id: 1,
+  name: "Sarah Chen",
+  handle: "@sarahcreates",
+  avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+  earned: "$12,500",
+  gigs: 24,
+  quote: "Giggo changed my life. I went from 0 brand deals to working with Nike and Adidas.",
+  niche: "Fashion"
+},
+{
+  id: 2,
+  name: "Marcus Johnson",
+  handle: "@marcusfitness",
+  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+  earned: "$8,200",
+  gigs: 18,
+  quote: "The best platform for fitness creators. Weekly payouts and amazing brand opportunities.",
+  niche: "Fitness"
+},
+{
+  id: 3,
+  name: "Ayu Putri",
+  handle: "@ayubeauty",
+  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
+  earned: "$15,800",
+  gigs: 32,
+  quote: "I quit my job to do this full-time. Giggo makes it so easy to find paid gigs.",
+  niche: "Beauty"
+}];
+
 
 // Sample portfolio videos
 const portfolioVideos = [
-  { id: 1, thumbnail: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=533&fit=crop", creator: "Maya", views: "2.4M" },
-  { id: 2, thumbnail: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&h=533&fit=crop", creator: "Jake", views: "1.8M" },
-  { id: 3, thumbnail: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&h=533&fit=crop", creator: "Luna", views: "3.1M" },
-  { id: 4, thumbnail: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=533&fit=crop", creator: "Zara", views: "890K" },
-  { id: 5, thumbnail: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=533&fit=crop", creator: "Leo", views: "1.2M" },
-  { id: 6, thumbnail: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&h=533&fit=crop", creator: "Bella", views: "2.7M" },
-  { id: 7, thumbnail: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=300&h=533&fit=crop", creator: "Nina", views: "1.5M" },
-  { id: 8, thumbnail: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=300&h=533&fit=crop", creator: "Alex", views: "980K" },
-];
+{ id: 1, thumbnail: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=533&fit=crop", creator: "Maya", views: "2.4M" },
+{ id: 2, thumbnail: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&h=533&fit=crop", creator: "Jake", views: "1.8M" },
+{ id: 3, thumbnail: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&h=533&fit=crop", creator: "Luna", views: "3.1M" },
+{ id: 4, thumbnail: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=533&fit=crop", creator: "Zara", views: "890K" },
+{ id: 5, thumbnail: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=533&fit=crop", creator: "Leo", views: "1.2M" },
+{ id: 6, thumbnail: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&h=533&fit=crop", creator: "Bella", views: "2.7M" },
+{ id: 7, thumbnail: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=300&h=533&fit=crop", creator: "Nina", views: "1.5M" },
+{ id: 8, thumbnail: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=300&h=533&fit=crop", creator: "Alex", views: "980K" }];
+
 
 const CreatorsLandingPage = () => {
   const { t } = useTranslation();
 
   const workflowSteps = [
-    { icon: UserPlus, titleKey: "creatorsPage.workflow.step1.title", descKey: "creatorsPage.workflow.step1.description" },
-    { icon: Search, titleKey: "creatorsPage.workflow.step2.title", descKey: "creatorsPage.workflow.step2.description" },
-    { icon: Video, titleKey: "creatorsPage.workflow.step3.title", descKey: "creatorsPage.workflow.step3.description" },
-    { icon: Wallet, titleKey: "creatorsPage.workflow.step4.title", descKey: "creatorsPage.workflow.step4.description" },
-  ];
+  { icon: UserPlus, titleKey: "creatorsPage.workflow.step1.title", descKey: "creatorsPage.workflow.step1.description" },
+  { icon: Search, titleKey: "creatorsPage.workflow.step2.title", descKey: "creatorsPage.workflow.step2.description" },
+  { icon: Video, titleKey: "creatorsPage.workflow.step3.title", descKey: "creatorsPage.workflow.step3.description" },
+  { icon: Wallet, titleKey: "creatorsPage.workflow.step4.title", descKey: "creatorsPage.workflow.step4.description" }];
+
 
   const benefits = [
-    { icon: DollarSign, titleKey: "creatorsPage.benefits.earnings.title", descKey: "creatorsPage.benefits.earnings.description" },
-    { icon: Zap, titleKey: "creatorsPage.benefits.fast.title", descKey: "creatorsPage.benefits.fast.description" },
-    { icon: Shield, titleKey: "creatorsPage.benefits.secure.title", descKey: "creatorsPage.benefits.secure.description" },
-    { icon: Clock, titleKey: "creatorsPage.benefits.flexible.title", descKey: "creatorsPage.benefits.flexible.description" },
-  ];
+  { icon: DollarSign, titleKey: "creatorsPage.benefits.earnings.title", descKey: "creatorsPage.benefits.earnings.description" },
+  { icon: Zap, titleKey: "creatorsPage.benefits.fast.title", descKey: "creatorsPage.benefits.fast.description" },
+  { icon: Shield, titleKey: "creatorsPage.benefits.secure.title", descKey: "creatorsPage.benefits.secure.description" },
+  { icon: Clock, titleKey: "creatorsPage.benefits.flexible.title", descKey: "creatorsPage.benefits.flexible.description" }];
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -114,8 +114,8 @@ const CreatorsLandingPage = () => {
             <motion.div
               initial="hidden"
               animate="visible"
-              variants={fadeUp}
-            >
+              variants={fadeUp}>
+
               <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm font-medium">
                 {t('creatorsPage.hero.badge')}
               </Badge>
@@ -167,8 +167,8 @@ const CreatorsLandingPage = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="hidden lg:block"
-            >
+              className="hidden lg:block">
+
               <div className="relative">
                 {/* Main Card */}
                 <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-8 relative">
@@ -177,13 +177,13 @@ const CreatorsLandingPage = () => {
                   
                   {/* Mini Chart */}
                   <div className="flex items-end gap-2 h-24 mb-6">
-                    {[40, 65, 45, 80, 60, 90, 75, 95, 85, 100, 90, 110].map((height, i) => (
-                      <div 
-                        key={i}
-                        className="flex-1 bg-gradient-to-t from-primary/50 to-primary rounded-t-sm"
-                        style={{ height: `${height}%` }}
-                      />
-                    ))}
+                    {[40, 65, 45, 80, 60, 90, 75, 95, 85, 100, 90, 110].map((height, i) =>
+                    <div
+                      key={i}
+                      className="flex-1 bg-gradient-to-t from-primary/50 to-primary rounded-t-sm"
+                      style={{ height: `${height}%` }} />
+
+                    )}
                   </div>
                   
                   <div className="flex items-center gap-2 text-green-500">
@@ -223,8 +223,8 @@ const CreatorsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <h2 className="font-display text-4xl md:text-5xl mb-4">
               {t('creatorsPage.benefits.title')}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
@@ -241,21 +241,21 @@ const CreatorsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                variants={staggerItem}
-                className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all text-center"
-              >
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            {benefits.map((benefit, index) =>
+            <motion.div
+              key={index}
+              variants={staggerItem}
+              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all text-center">
+
                 <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto">
                   <benefit.icon className="w-7 h-7 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">{t(benefit.titleKey)}</h3>
                 <p className="text-sm text-muted-foreground">{t(benefit.descKey)}</p>
               </motion.div>
-            ))}
+            )}
           </motion.div>
         </div>
       </section>
@@ -268,8 +268,8 @@ const CreatorsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <h2 className="font-display text-4xl md:text-5xl mb-4">
               {t('creatorsPage.stories.title')}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
@@ -284,20 +284,20 @@ const CreatorsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {successStories.map((story) => (
-              <motion.div
-                key={story.id}
-                variants={staggerItem}
-                className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all"
-              >
+            className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            {successStories.map((story) =>
+            <motion.div
+              key={story.id}
+              variants={staggerItem}
+              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all">
+
                 <div className="flex items-center gap-4 mb-6">
-                  <img 
-                    src={story.avatar} 
-                    alt={story.name}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-primary/30"
-                  />
+                  <img
+                  src={story.avatar}
+                  alt={story.name}
+                  className="w-14 h-14 rounded-full object-cover border-2 border-primary/30" />
+
                   <div>
                     <div className="font-bold text-foreground">{story.name}</div>
                     <div className="text-sm text-muted-foreground">{story.handle}</div>
@@ -318,7 +318,7 @@ const CreatorsLandingPage = () => {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            )}
           </motion.div>
         </div>
       </section>
@@ -330,8 +330,8 @@ const CreatorsLandingPage = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}
-          >
+            variants={fadeUp}>
+
             <h2 className="font-display text-4xl md:text-5xl mb-4">
               {t('creatorsPage.portfolio.title')}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
@@ -348,16 +348,16 @@ const CreatorsLandingPage = () => {
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-muted/80 to-transparent z-10 pointer-events-none" />
           
           <div className="flex animate-scroll gap-6">
-            {[...portfolioVideos, ...portfolioVideos].map((video, i) => (
-              <div 
-                key={i}
-                className="flex-shrink-0 w-[180px] md:w-[200px] aspect-[9/16] rounded-2xl overflow-hidden bg-muted relative group cursor-pointer"
-              >
-                <img 
-                  src={video.thumbnail} 
-                  alt={video.creator}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+            {[...portfolioVideos, ...portfolioVideos].map((video, i) =>
+            <div
+              key={i}
+              className="flex-shrink-0 w-[180px] md:w-[200px] aspect-[9/16] rounded-2xl overflow-hidden bg-muted relative group cursor-pointer">
+
+                <img
+                src={video.thumbnail}
+                alt={video.creator}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                   <div className="flex items-center gap-2 w-full">
                     <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
@@ -370,7 +370,7 @@ const CreatorsLandingPage = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -383,8 +383,8 @@ const CreatorsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <h2 className="font-display text-4xl md:text-5xl mb-4">
               {t('creatorsPage.workflow.title')}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
@@ -398,10 +398,10 @@ const CreatorsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto"
-          >
-            {workflowSteps.map((step, index) => (
-              <motion.div key={index} variants={staggerItem} className="flex items-center">
+            className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto">
+
+            {workflowSteps.map((step, index) =>
+            <motion.div key={index} variants={staggerItem} className="flex items-center">
                 <div className="text-center">
                   <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto relative">
                     <step.icon className="w-10 h-10 text-primary" />
@@ -413,11 +413,11 @@ const CreatorsLandingPage = () => {
                   <p className="text-sm text-muted-foreground max-w-[150px]">{t(step.descKey)}</p>
                 </div>
                 
-                {index < workflowSteps.length - 1 && (
-                  <div className="hidden md:block w-16 h-0.5 bg-border mx-4 flex-shrink-0" />
-                )}
+                {index < workflowSteps.length - 1 &&
+              <div className="hidden md:block w-16 h-0.5 bg-border mx-4 flex-shrink-0" />
+              }
               </motion.div>
-            ))}
+            )}
           </motion.div>
         </div>
       </section>
@@ -429,8 +429,8 @@ const CreatorsLandingPage = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}
-          >
+            variants={fadeUp}>
+
             <div className="gradient-primary rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
               <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
               <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
@@ -453,8 +453,8 @@ const CreatorsLandingPage = () => {
           </motion.div>
         </div>
       </section>
-    </div>
-  );
+    </div>);
+
 };
 
 export default CreatorsLandingPage;

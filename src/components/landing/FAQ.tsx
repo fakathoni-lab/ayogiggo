@@ -3,8 +3,8 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+  AccordionTrigger } from
+"@/components/ui/accordion";
 
 const FAQ = () => {
   const { t } = useTranslation();
@@ -26,12 +26,12 @@ const FAQ = () => {
 
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
-            {faqKeys.map((key, index) => (
-              <AccordionItem 
-                key={key} 
-                value={`item-${index}`}
-                className="bg-slate-900/50 backdrop-blur-sm rounded-2xl px-6 border border-white/10 shadow-sm data-[state=open]:shadow-md transition-shadow"
-              >
+            {faqKeys.map((key, index) =>
+            <AccordionItem
+              key={key}
+              value={`item-${index}`}
+              className="bg-slate-900/50 backdrop-blur-sm rounded-2xl px-6 border border-white/10 shadow-sm data-[state=open]:shadow-md transition-shadow">
+
                 <AccordionTrigger className="text-left font-semibold text-white hover:text-primary py-6 hover:no-underline">
                   {t(`faq.${key}.question`)}
                 </AccordionTrigger>
@@ -39,12 +39,12 @@ const FAQ = () => {
                   {t(`faq.${key}.answer`)}
                 </AccordionContent>
               </AccordionItem>
-            ))}
+            )}
           </Accordion>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default FAQ;

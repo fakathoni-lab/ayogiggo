@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export enum CampaignType {
   CONTEST = "contest",
   DEAL = "deal",
-  ALL = "all"
+  ALL = "all",
 }
 
 export enum CampaignStatus {
@@ -15,14 +15,14 @@ export enum CampaignStatus {
   LIVE = "live",
   JUDGING = "judging",
   COMPLETED = "completed",
-  CANCELLED = "cancelled"
+  CANCELLED = "cancelled",
 }
 
 export enum SortOption {
   FOR_YOU = "for-you",
   TRENDING = "trending",
   NEW = "new",
-  ENDING_SOON = "ending-soon"
+  ENDING_SOON = "ending-soon",
 }
 
 // Public campaign type - excludes ALL sensitive fields
@@ -49,11 +49,11 @@ export interface Campaign extends PublicCampaign {
   budget: number;
   submission_count: number;
   view_count: number;
-  prize_breakdown: { rank: number; amount: number; label: string }[] | null;
+  prize_breakdown: {rank: number;amount: number;label: string;}[] | null;
   required_hashtags: string[] | null;
   platform_requirements: string[] | null;
   rules: string[] | null;
-  assets: { name: string; type: string; size: string }[] | null;
+  assets: {name: string;type: string;size: string;}[] | null;
   brand_profiles?: {
     company_name: string;
     company_logo: string | null;
@@ -72,9 +72,9 @@ export const usePublicCampaigns = (filters?: CampaignFilters) => {
   return useQuery({
     queryKey: ["public-campaigns", filters],
     queryFn: async (): Promise<PublicCampaign[]> => {
-      let query = supabase
-        .from("public_campaigns")
-        .select("*");
+      let query = supabase.
+      from("public_campaigns").
+      select("*");
 
       // Filter: Category
       if (filters?.category && filters.category !== "all") {
@@ -112,8 +112,8 @@ export const usePublicCampaigns = (filters?: CampaignFilters) => {
         throw error;
       }
 
-      return (data as unknown as PublicCampaign[]) || [];
-    },
+      return data as unknown as PublicCampaign[] || [];
+    }
   });
 };
 
@@ -122,22 +122,22 @@ export const useBrandCampaigns = () => {
   return useQuery({
     queryKey: ["brand-campaigns"],
     queryFn: async (): Promise<Campaign[]> => {
-      const { data, error } = await supabase
-        .from("campaigns")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const { data, error } = await supabase.
+      from("campaigns").
+      select("*").
+      order("created_at", { ascending: false });
 
       if (error) {
         console.error("Error fetching brand campaigns:", error);
         throw error;
       }
 
-      return (data || []).map(campaign => ({
+      return (data || []).map((campaign) => ({
         ...campaign,
         brand_name: null,
-        brand_logo: null,
+        brand_logo: null
       })) as unknown as Campaign[];
-    },
+    }
   });
 };
 
@@ -148,11 +148,11 @@ export const usePublicCampaign = (id: string | undefined) => {
     queryFn: async (): Promise<PublicCampaign | null> => {
       if (!id) return null;
 
-      const { data, error } = await supabase
-        .from("public_campaigns")
-        .select("*")
-        .eq("id", id)
-        .maybeSingle();
+      const { data, error } = await supabase.
+      from("public_campaigns").
+      select("*").
+      eq("id", id).
+      maybeSingle();
 
       if (error) {
         console.error("Error fetching public campaign:", error);
@@ -161,7 +161,7 @@ export const usePublicCampaign = (id: string | undefined) => {
 
       return data as unknown as PublicCampaign | null;
     },
-    enabled: !!id,
+    enabled: !!id
   });
 };
 
@@ -172,11 +172,11 @@ export const useBrandCampaign = (id: string | undefined) => {
     queryFn: async (): Promise<Campaign | null> => {
       if (!id) return null;
 
-      const { data, error } = await supabase
-        .from("campaigns")
-        .select("*")
-        .eq("id", id)
-        .maybeSingle();
+      const { data, error } = await supabase.
+      from("campaigns").
+      select("*").
+      eq("id", id).
+      maybeSingle();
 
       if (error) {
         console.error("Error fetching brand campaign:", error);
@@ -184,14 +184,14 @@ export const useBrandCampaign = (id: string | undefined) => {
       }
 
       if (!data) return null;
-      
+
       return {
         ...data,
         brand_name: null,
-        brand_logo: null,
+        brand_logo: null
       } as unknown as Campaign;
     },
-    enabled: !!id,
+    enabled: !!id
   });
 };
 
@@ -203,7 +203,7 @@ export interface CreateCampaignInput {
   category: string;
   type: CampaignType;
   budget: number;
-  prize_breakdown?: { rank: number; amount: number; label: string }[];
+  prize_breakdown?: {rank: number;amount: number;label: string;}[];
   start_date: string;
   end_date: string;
   required_hashtags?: string[];
@@ -222,32 +222,32 @@ export const useCreateCampaign = () => {
   return useMutation({
     mutationFn: async (input: CreateCampaignInput): Promise<Campaign> => {
       const { data: { user } } = await supabase.auth.getUser();
-      
+
       if (!user) {
         throw new Error("You must be logged in to create a campaign");
       }
 
-      const { data, error } = await supabase
-        .from("campaigns")
-        .insert([{
-          brand_id: user.id,
-          title: input.title,
-          description: input.description,
-          brief: input.brief || null,
-          category: input.category,
-          type: input.type as "contest" | "deal",
-          budget: input.budget,
-          prize_breakdown: input.prize_breakdown || [],
-          start_date: input.start_date,
-          end_date: input.end_date,
-          required_hashtags: input.required_hashtags || [],
-          platform_requirements: input.platform_requirements || [],
-          rules: input.rules || [],
-          cover_image: input.cover_image || null,
-          status: (input.status || CampaignStatus.DRAFT) as "draft" | "live" | "judging" | "completed" | "cancelled",
-        }])
-        .select()
-        .single();
+      const { data, error } = await supabase.
+      from("campaigns").
+      insert([{
+        brand_id: user.id,
+        title: input.title,
+        description: input.description,
+        brief: input.brief || null,
+        category: input.category,
+        type: input.type as "contest" | "deal",
+        budget: input.budget,
+        prize_breakdown: input.prize_breakdown || [],
+        start_date: input.start_date,
+        end_date: input.end_date,
+        required_hashtags: input.required_hashtags || [],
+        platform_requirements: input.platform_requirements || [],
+        rules: input.rules || [],
+        cover_image: input.cover_image || null,
+        status: (input.status || CampaignStatus.DRAFT) as "draft" | "live" | "judging" | "completed" | "cancelled"
+      }]).
+      select().
+      single();
 
       if (error) {
         console.error("Error creating campaign:", error);
@@ -257,14 +257,14 @@ export const useCreateCampaign = () => {
       return {
         ...data,
         brand_name: null,
-        brand_logo: null,
+        brand_logo: null
       } as unknown as Campaign;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["brand-campaigns"] });
       toast({
         title: "Gig Created! 🎉",
-        description: "Your gig has been saved and is ready to go live.",
+        description: "Your gig has been saved and is ready to go live."
       });
       navigate("/dashboard/brand");
     },
@@ -272,8 +272,8 @@ export const useCreateCampaign = () => {
       toast({
         title: "Failed to create gig",
         description: error.message || "Something went wrong. Please try again.",
-        variant: "destructive",
+        variant: "destructive"
       });
-    },
+    }
   });
 };

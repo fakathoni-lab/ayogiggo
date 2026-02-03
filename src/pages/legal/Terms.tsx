@@ -80,8 +80,8 @@ const Terms = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Terms;

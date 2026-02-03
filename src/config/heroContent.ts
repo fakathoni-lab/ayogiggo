@@ -49,19 +49,19 @@ export const heroContentConfig: HeroContentConfig = {
       textKey: "hero.creators.cta",
       defaultText: "Start Earning",
       link: "/auth?mode=register&role=creator",
-      icon: ArrowRight,
+      icon: ArrowRight
     },
     secondaryCta: {
       textKey: "hero.creators.secondaryCta",
       defaultText: "Browse Gigs",
       link: "/campaigns",
-      icon: Play,
+      icon: Play
     },
     stats: [
-      { icon: CheckCircle2, textKey: "hero.creators.stat1", defaultText: "Verified Brands" },
-      { icon: Shield, textKey: "hero.creators.stat2", defaultText: "Secure Escrow" },
-      { icon: Users, textKey: "hero.creators.stat3", defaultText: "10k+ Creators" },
-    ],
+    { icon: CheckCircle2, textKey: "hero.creators.stat1", defaultText: "Verified Brands" },
+    { icon: Shield, textKey: "hero.creators.stat2", defaultText: "Secure Escrow" },
+    { icon: Users, textKey: "hero.creators.stat3", defaultText: "10k+ Creators" }]
+
   },
   brands: {
     badgeKey: "hero.brands.badge",
@@ -76,20 +76,20 @@ export const heroContentConfig: HeroContentConfig = {
       textKey: "hero.brands.cta",
       defaultText: "Start Hiring",
       link: "/auth?mode=register&role=brand",
-      icon: ArrowRight,
+      icon: ArrowRight
     },
     secondaryCta: {
       textKey: "hero.brands.secondaryCta",
       defaultText: "View Creators",
       link: "/creators",
-      icon: Users,
+      icon: Users
     },
     stats: [
-      { icon: Zap, textKey: "hero.brands.stat1", defaultText: "Pre-vetted Creators" },
-      { icon: CheckCircle2, textKey: "hero.brands.stat2", defaultText: "Full Usage Rights" },
-      { icon: TrendingUp, textKey: "hero.brands.stat3", defaultText: "7-Day Delivery" },
-    ],
-  },
+    { icon: Zap, textKey: "hero.brands.stat1", defaultText: "Pre-vetted Creators" },
+    { icon: CheckCircle2, textKey: "hero.brands.stat2", defaultText: "Full Usage Rights" },
+    { icon: TrendingUp, textKey: "hero.brands.stat3", defaultText: "7-Day Delivery" }]
+
+  }
 };
 
 /**
@@ -102,13 +102,13 @@ export const heroVideoCards = {
     title: "Zara Summer Campaign",
     price: "$1,200",
     type: "Video Reel",
-    category: "Fashion",
+    category: "Fashion"
   },
   fitness: {
     videoSrc: "https://cdn.coverr.co/videos/coverr-man-doing-crossfit-exercises-5120/1080p.mp4",
     title: "Gymshark Challenge",
-    price: "$850",
-  },
+    price: "$850"
+  }
 };
 
 /**
@@ -117,37 +117,36 @@ export const heroVideoCards = {
 export const heroStatsCard = {
   creators: {
     label: "Total Payouts",
-    value: "$2.4M+",
+    value: "$2.4M+"
   },
   brands: {
     label: "Active Creators",
-    value: "10,000+",
-  },
+    value: "10,000+"
+  }
 };
 
 /**
  * Floating notification configuration for social proof.
  */
 export const heroFloatingNotifications = [
-  {
-    type: "earning" as const,
-    user: "@sarah.style",
-    highlight: "$1,200",
-    className: "absolute -top-4 -right-8 z-30 hidden lg:flex",
-    delay: "0.5s",
-  },
-  {
-    type: "approved" as const,
-    user: "Nike",
-    highlight: "new campaign",
-    className: "absolute top-1/3 -left-12 z-30 hidden lg:flex",
-    delay: "1.5s",
-  },
-  {
-    type: "joined" as const,
-    user: "@jake.fit",
-    highlight: "Gymshark gig",
-    className: "absolute -bottom-8 right-4 z-30 hidden lg:flex",
-    delay: "2.5s",
-  },
-];
+{
+  type: "earning" as const,
+  user: "@sarah.style",
+  highlight: "$1,200",
+  className: "absolute -top-4 -right-8 z-30 hidden lg:flex",
+  delay: "0.5s"
+},
+{
+  type: "approved" as const,
+  user: "Nike",
+  highlight: "new campaign",
+  className: "absolute top-1/3 -left-12 z-30 hidden lg:flex",
+  delay: "1.5s"
+},
+{
+  type: "joined" as const,
+  user: "@jake.fit",
+  highlight: "Gymshark gig",
+  className: "absolute -bottom-8 right-4 z-30 hidden lg:flex",
+  delay: "2.5s"
+}];

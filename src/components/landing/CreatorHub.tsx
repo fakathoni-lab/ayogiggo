@@ -4,21 +4,21 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  CheckCircle, 
-  Star, 
-  Zap, 
+import {
+  CheckCircle,
+  Star,
+  Zap,
   Users,
   Play,
-  Pause
-} from "lucide-react";
+  Pause } from
+"lucide-react";
 import { cn } from "@/lib/utils";
 import LazyVideo, { LazyVideoHandle } from "@/components/shared/LazyVideo";
 import {
   featuredCreator,
   spotlightCreators,
-  liveActivity,
-} from "@/fixtures";
+  liveActivity } from
+"@/fixtures";
 
 const CreatorHub = () => {
   const { t } = useTranslation();
@@ -37,10 +37,10 @@ const CreatorHub = () => {
       if (video) {
         if (video.paused) {
           video.play();
-          setIsPlaying(prev => ({ ...prev, [id]: true }));
+          setIsPlaying((prev) => ({ ...prev, [id]: true }));
         } else {
           video.pause();
-          setIsPlaying(prev => ({ ...prev, [id]: false }));
+          setIsPlaying((prev) => ({ ...prev, [id]: false }));
         }
       }
     }
@@ -90,34 +90,34 @@ const CreatorHub = () => {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
-          >
+            transition={{ duration: 0.6 }}>
+
           <Card className="md:col-span-2 lg:row-span-2 overflow-hidden group cursor-pointer hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 border-white/10 bg-slate-900/50 backdrop-blur-sm h-full">
             <div className="relative h-full min-h-[400px] lg:min-h-[500px]">
               {/* Cover Video */}
               <LazyVideo
-                ref={el => videoRefs.current[featuredCreator.id] = el}
-                src={featuredCreator.coverVideo}
-                poster={featuredCreator.coverPoster}
-                className="transition-transform duration-700 group-hover:scale-105"
-              />
+                  ref={(el) => videoRefs.current[featuredCreator.id] = el}
+                  src={featuredCreator.coverVideo}
+                  poster={featuredCreator.coverPoster}
+                  className="transition-transform duration-700 group-hover:scale-105" />
+
               
               {/* Gradient Overlay for Readability */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
               
               {/* Play/Pause Button */}
               <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => togglePlay(featuredCreator.id)}
-                aria-label={isPlaying[featuredCreator.id] ? 'Pause video' : 'Play video'}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-16 h-16 rounded-full bg-background/20 backdrop-blur-sm border border-white/20 text-white hover:bg-background/40 hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
-              >
-                {isPlaying[featuredCreator.id] ? (
-                  <Pause className="w-7 h-7" />
-                ) : (
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => togglePlay(featuredCreator.id)}
+                  aria-label={isPlaying[featuredCreator.id] ? 'Pause video' : 'Play video'}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-16 h-16 rounded-full bg-background/20 backdrop-blur-sm border border-white/20 text-white hover:bg-background/40 hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100">
+
+                {isPlaying[featuredCreator.id] ?
+                  <Pause className="w-7 h-7" /> :
+
                   <Play className="w-7 h-7 ml-1" />
-                )}
+                  }
               </Button>
               
               {/* Status Badge */}
@@ -141,10 +141,10 @@ const CreatorHub = () => {
                 {/* Creator Info */}
                 <div className="flex items-center gap-4">
                   <img
-                    src={featuredCreator.avatar}
-                    alt={featuredCreator.name}
-                    className="w-16 h-16 rounded-full border-2 border-white object-cover"
-                  />
+                      src={featuredCreator.avatar}
+                      alt={featuredCreator.name}
+                      className="w-16 h-16 rounded-full border-2 border-white object-cover" />
+
                   <div>
                     <div className="flex items-center gap-2">
                       <h3 className="text-xl font-bold text-white">{featuredCreator.name}</h3>
@@ -156,17 +156,17 @@ const CreatorHub = () => {
                 
                 {/* Badges */}
                 <div className="flex flex-wrap gap-2">
-                  {featuredCreator.badges.map((badge) => (
-                    <Badge 
-                      key={badge} 
-                      variant="outline" 
-                      className="border-white/30 text-white text-xs"
-                    >
+                  {featuredCreator.badges.map((badge) =>
+                    <Badge
+                      key={badge}
+                      variant="outline"
+                      className="border-white/30 text-white text-xs">
+
                       {badge === "Verified" && <CheckCircle className="w-3 h-3 mr-1" />}
                       {badge === "Top Rated" && <Star className="w-3 h-3 mr-1 fill-amber-400 text-amber-400" />}
                       {getBadgeLabel(badge)}
                     </Badge>
-                  ))}
+                    )}
                   <Badge variant="outline" className="border-white/30 text-white text-xs">
                     {featuredCreator.niche}
                   </Badge>
@@ -197,25 +197,25 @@ const CreatorHub = () => {
           </motion.div>
 
           {/* Spotlight Video Cards - Two smaller video cards */}
-          {spotlightCreators.map((creator, index) => (
-            <motion.div
-              key={creator.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
-            >
-            <Card 
-              className="overflow-hidden group cursor-pointer hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 border-white/10 bg-slate-900/50 backdrop-blur-sm h-full"
-            >
+          {spotlightCreators.map((creator, index) =>
+          <motion.div
+            key={creator.id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}>
+
+            <Card
+              className="overflow-hidden group cursor-pointer hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 border-white/10 bg-slate-900/50 backdrop-blur-sm h-full">
+
               <div className="relative h-full min-h-[220px]">
                 {/* Cover Video */}
                 <LazyVideo
-                  ref={el => videoRefs.current[creator.id] = el}
+                  ref={(el) => videoRefs.current[creator.id] = el}
                   src={creator.coverVideo}
                   poster={creator.coverPoster}
-                  className="transition-transform duration-500 group-hover:scale-105"
-                />
+                  className="transition-transform duration-500 group-hover:scale-105" />
+
                 
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
@@ -226,13 +226,13 @@ const CreatorHub = () => {
                   size="icon"
                   onClick={() => togglePlay(creator.id)}
                   aria-label={isPlaying[creator.id] ? 'Pause video' : 'Play video'}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm border border-white/20 text-white hover:bg-background/40 hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
-                >
-                  {isPlaying[creator.id] ? (
-                    <Pause className="w-5 h-5" />
-                  ) : (
-                    <Play className="w-5 h-5 ml-0.5" />
-                  )}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm border border-white/20 text-white hover:bg-background/40 hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100">
+
+                  {isPlaying[creator.id] ?
+                  <Pause className="w-5 h-5" /> :
+
+                  <Play className="w-5 h-5 ml-0.5" />
+                  }
                 </Button>
                 
                 {/* Platform Badge */}
@@ -248,8 +248,8 @@ const CreatorHub = () => {
                     <img
                       src={creator.avatar}
                       alt={creator.name}
-                      className="w-10 h-10 rounded-full object-cover ring-2 ring-white/50"
-                    />
+                      className="w-10 h-10 rounded-full object-cover ring-2 ring-white/50" />
+
                     <div>
                       <h4 className="font-semibold text-white text-sm">{creator.name}</h4>
                       <p className="text-xs text-white/70">{creator.handle}</p>
@@ -262,7 +262,7 @@ const CreatorHub = () => {
               </div>
             </Card>
             </motion.div>
-          ))}
+          )}
 
           {/* Live Activity Ticker */}
           <motion.div
@@ -270,8 +270,8 @@ const CreatorHub = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="md:col-span-2 lg:col-span-2"
-          >
+            className="md:col-span-2 lg:col-span-2">
+
           <Card className="overflow-hidden border-white/10 bg-gradient-to-br from-primary/10 to-accent/5 h-full backdrop-blur-sm">
             <CardContent className="p-5">
               <div className="flex items-center gap-2 mb-4">
@@ -284,16 +284,16 @@ const CreatorHub = () => {
               </div>
               
               <div className="space-y-3">
-                {liveActivity.map((activity, index) => (
-                  <div 
+                {liveActivity.map((activity, index) =>
+                  <div
                     key={index}
                     className={cn(
                       "flex items-center justify-between p-3 rounded-lg bg-slate-900/80 backdrop-blur-sm",
                       "animate-fade-in",
                       index === 0 && "ring-1 ring-primary/20"
                     )}
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
+                    style={{ animationDelay: `${index * 100}ms` }}>
+
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                         <Users className="w-4 h-4 text-primary" />
@@ -310,7 +310,7 @@ const CreatorHub = () => {
                     </div>
                     <span className="text-xs text-slate-400 whitespace-nowrap">{activity.time}</span>
                   </div>
-                ))}
+                  )}
               </div>
               
               {/* Summary Stats */}
@@ -333,8 +333,8 @@ const CreatorHub = () => {
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default CreatorHub;

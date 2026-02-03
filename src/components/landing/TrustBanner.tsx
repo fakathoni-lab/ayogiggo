@@ -7,37 +7,37 @@ import {
   StripeLogo,
   SpotifyLogo,
   MetaLogo,
-  TwitterXLogo,
-} from "./BrandLogos";
+  TwitterXLogo } from
+"./BrandLogos";
 
 const TrustBanner = () => {
   const { t } = useTranslation();
 
   const brands = [
-    { name: "TikTok", Logo: TikTokLogo },
-    { name: "Instagram", Logo: InstagramLogo },
-    { name: "YouTube", Logo: YouTubeLogo },
-    { name: "Shopify", Logo: ShopifyLogo },
-    { name: "Stripe", Logo: StripeLogo },
-    { name: "Spotify", Logo: SpotifyLogo },
-    { name: "Meta", Logo: MetaLogo },
-    { name: "X", Logo: TwitterXLogo },
-  ];
+  { name: "TikTok", Logo: TikTokLogo },
+  { name: "Instagram", Logo: InstagramLogo },
+  { name: "YouTube", Logo: YouTubeLogo },
+  { name: "Shopify", Logo: ShopifyLogo },
+  { name: "Stripe", Logo: StripeLogo },
+  { name: "Spotify", Logo: SpotifyLogo },
+  { name: "Meta", Logo: MetaLogo },
+  { name: "X", Logo: TwitterXLogo }];
 
-  const BrandList = () => (
-    <>
-      {brands.map((brand, index) => (
-        <div
-          key={`brand-${index}`}
-          className="flex-shrink-0 mx-8 flex items-center justify-center group cursor-pointer"
-        >
+
+  const BrandList = () =>
+  <>
+      {brands.map((brand, index) =>
+    <div
+      key={`brand-${index}`}
+      className="flex-shrink-0 mx-8 flex items-center justify-center group cursor-pointer">
+
           <div className="h-12 px-6 flex items-center justify-center text-slate-500 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-80 group-hover:text-white transition-all duration-300">
             <brand.Logo />
           </div>
         </div>
-      ))}
-    </>
-  );
+    )}
+    </>;
+
 
   return (
     <section className="py-16 bg-transparent overflow-hidden">
@@ -62,8 +62,8 @@ const TrustBanner = () => {
           <BrandList />
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default TrustBanner;

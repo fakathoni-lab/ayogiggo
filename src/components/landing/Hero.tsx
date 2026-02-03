@@ -12,8 +12,8 @@ import {
   heroVideoCards,
   heroStatsCard,
   heroFloatingNotifications,
-  type HeroRole,
-} from "@/config/heroContent";
+  type HeroRole } from
+"@/config/heroContent";
 
 interface HeroProps {
   activeRole?: HeroRole;
@@ -33,17 +33,17 @@ const Hero = ({ activeRole = "creators" }: HeroProps) => {
     primaryCta: {
       text: t(config.primaryCta.textKey, config.primaryCta.defaultText),
       link: config.primaryCta.link,
-      icon: config.primaryCta.icon,
+      icon: config.primaryCta.icon
     },
     secondaryCta: {
       text: t(config.secondaryCta.textKey, config.secondaryCta.defaultText),
       link: config.secondaryCta.link,
-      icon: config.secondaryCta.icon,
+      icon: config.secondaryCta.icon
     },
     stats: config.stats.map((stat) => ({
       icon: stat.icon,
-      text: t(stat.textKey, stat.defaultText),
-    })),
+      text: t(stat.textKey, stat.defaultText)
+    }))
   };
 
   const statsCardData = heroStatsCard[activeRole];
@@ -70,8 +70,8 @@ const Hero = ({ activeRole = "creators" }: HeroProps) => {
                 initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
                 animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
                 exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -20 }}
-                transition={getReducedMotionTransition(prefersReducedMotion)}
-              >
+                transition={getReducedMotionTransition(prefersReducedMotion)}>
+
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-8 hover:bg-white/10 transition-colors cursor-default">
                   <span className="relative flex h-2 w-2">
@@ -102,8 +102,8 @@ const Hero = ({ activeRole = "creators" }: HeroProps) => {
                   <Button
                     size="xl"
                     className="h-14 px-8 text-lg rounded-full shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-all"
-                    asChild
-                  >
+                    asChild>
+
                     <Link to={content.primaryCta.link}>
                       {content.primaryCta.text}
                       <content.primaryCta.icon className="ml-2 w-5 h-5" />
@@ -113,8 +113,8 @@ const Hero = ({ activeRole = "creators" }: HeroProps) => {
                     variant="outline"
                     size="xl"
                     className="h-14 px-8 text-lg rounded-full border-2 border-white/20 text-white hover:bg-white/10"
-                    asChild
-                  >
+                    asChild>
+
                     <Link to={content.secondaryCta.link}>
                       <content.secondaryCta.icon className="mr-2 w-5 h-5" />
                       {content.secondaryCta.text}
@@ -124,12 +124,12 @@ const Hero = ({ activeRole = "creators" }: HeroProps) => {
 
                 {/* Stats */}
                 <div className="flex items-center justify-center lg:justify-start gap-6 md:gap-8 text-sm font-medium text-slate-400 flex-wrap">
-                  {content.stats.map((stat, index) => (
-                    <div key={index} className="flex items-center gap-2">
+                  {content.stats.map((stat, index) =>
+                  <div key={index} className="flex items-center gap-2">
                       <stat.icon className="w-5 h-5 text-primary" aria-hidden="true" />
                       <span>{stat.text}</span>
                     </div>
-                  ))}
+                  )}
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -138,10 +138,10 @@ const Hero = ({ activeRole = "creators" }: HeroProps) => {
           {/* Right Column: Video Grid */}
           <div className="flex-1 w-full max-w-[600px] lg:max-w-full relative animate-float">
             <div className={
-              `relative z-10 bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-[32px] p-6 shadow-2xl ` +
-              (activeRole === 'creators'
-                ? 'bg-gradient-to-r from-accent-primary/8 to-primary/0'
-                : 'bg-gradient-to-r from-accent-primary/4 to-accent-hover/0')
+            `relative z-10 bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-[32px] p-6 shadow-2xl ` + (
+            activeRole === 'creators' ?
+            'bg-gradient-to-r from-accent-primary/8 to-primary/0' :
+            'bg-gradient-to-r from-accent-primary/4 to-accent-hover/0')
             }>
               {/* Header Mockup */}
               <div className="flex items-center justify-between mb-6">
@@ -169,8 +169,8 @@ const Hero = ({ activeRole = "creators" }: HeroProps) => {
                     muted
                     loop
                     playsInline
-                    className="absolute inset-0 w-full h-full"
-                  />
+                    className="absolute inset-0 w-full h-full" />
+
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-4 left-4 text-white z-10">
                     <p className="font-bold text-lg">{heroVideoCards.fashion.title}</p>
@@ -191,8 +191,8 @@ const Hero = ({ activeRole = "creators" }: HeroProps) => {
                     muted
                     loop
                     playsInline
-                    className="absolute inset-0 w-full h-full"
-                  />
+                    className="absolute inset-0 w-full h-full" />
+
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-3 text-white z-10">
                     <p className="font-bold text-sm">{heroVideoCards.fitness.title}</p>
@@ -204,11 +204,11 @@ const Hero = ({ activeRole = "creators" }: HeroProps) => {
                 <div className="relative rounded-2xl bg-slate-900/50 border border-white/10 p-4 flex flex-col justify-between group hover:border-primary/50 transition-colors hidden md:block">
                   <div>
                     <div className="h-8 w-8 rounded-full bg-accent-primary/20 flex items-center justify-center mb-2">
-                      {activeRole === "creators" ? (
-                        <DollarSign className="w-5 h-5 text-primary" />
-                      ) : (
-                        <TrendingUp className="w-5 h-5 text-primary" />
-                      )}
+                      {activeRole === "creators" ?
+                      <DollarSign className="w-5 h-5 text-primary" /> :
+
+                      <TrendingUp className="w-5 h-5 text-primary" />
+                      }
                     </div>
                     <p className="text-xs text-slate-400">{statsCardData.label}</p>
                     <p className="text-2xl font-bold font-display text-white">{statsCardData.value}</p>
@@ -221,16 +221,16 @@ const Hero = ({ activeRole = "creators" }: HeroProps) => {
             </div>
 
             {/* Floating Notifications */}
-            {heroFloatingNotifications.map((notification, index) => (
-              <FloatingNotification
-                key={index}
-                type={notification.type}
-                user={notification.user}
-                highlight={notification.highlight}
-                className={notification.className}
-                delay={notification.delay}
-              />
-            ))}
+            {heroFloatingNotifications.map((notification, index) =>
+            <FloatingNotification
+              key={index}
+              type={notification.type}
+              user={notification.user}
+              highlight={notification.highlight}
+              className={notification.className}
+              delay={notification.delay} />
+
+            )}
 
             {/* Decoration Blobs */}
             <div className="absolute -z-10 top-10 -right-10 w-32 h-32 bg-signal-yellow/20 rounded-full blur-2xl" />
@@ -238,8 +238,8 @@ const Hero = ({ activeRole = "creators" }: HeroProps) => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default Hero;

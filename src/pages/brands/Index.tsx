@@ -1,18 +1,18 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  ArrowRight, 
-  FileText, 
-  Package, 
-  Video, 
-  Rocket, 
-  CheckCircle, 
-  Truck, 
-  DollarSign, 
+import {
+  ArrowRight,
+  FileText,
+  Package,
+  Video,
+  Rocket,
+  CheckCircle,
+  Truck,
+  DollarSign,
   Users,
-  Play
-} from "lucide-react";
+  Play } from
+"lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -24,8 +24,8 @@ import {
   SpotifyLogo,
   MetaLogo,
   TwitterXLogo,
-  AmazonLogo
-} from "@/components/landing/BrandLogos";
+  AmazonLogo } from
+"@/components/landing/BrandLogos";
 
 // Animation variants
 const fadeUp = {
@@ -48,37 +48,37 @@ const staggerItem = {
 
 // Sample video data for marquee
 const showcaseVideos = [
-  { id: 1, thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=533&fit=crop", brand: "Fashion Co" },
-  { id: 2, thumbnail: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=533&fit=crop", brand: "Beauty Brand" },
-  { id: 3, thumbnail: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&h=533&fit=crop", brand: "Tech Startup" },
-  { id: 4, thumbnail: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&h=533&fit=crop", brand: "Lifestyle" },
-  { id: 5, thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=533&fit=crop", brand: "Fitness Pro" },
-  { id: 6, thumbnail: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&h=533&fit=crop", brand: "Skincare" },
-  { id: 7, thumbnail: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=300&h=533&fit=crop", brand: "Food & Bev" },
-  { id: 8, thumbnail: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=533&fit=crop", brand: "Travel" },
-];
+{ id: 1, thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=533&fit=crop", brand: "Fashion Co" },
+{ id: 2, thumbnail: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=533&fit=crop", brand: "Beauty Brand" },
+{ id: 3, thumbnail: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&h=533&fit=crop", brand: "Tech Startup" },
+{ id: 4, thumbnail: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&h=533&fit=crop", brand: "Lifestyle" },
+{ id: 5, thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=533&fit=crop", brand: "Fitness Pro" },
+{ id: 6, thumbnail: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&h=533&fit=crop", brand: "Skincare" },
+{ id: 7, thumbnail: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=300&h=533&fit=crop", brand: "Food & Bev" },
+{ id: 8, thumbnail: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=533&fit=crop", brand: "Travel" }];
+
 
 const BrandsLandingPage = () => {
   const { t } = useTranslation();
 
   const workflowSteps = [
-    { icon: FileText, titleKey: "brandsPage.workflow.step1.title", descKey: "brandsPage.workflow.step1.description" },
-    { icon: Package, titleKey: "brandsPage.workflow.step2.title", descKey: "brandsPage.workflow.step2.description" },
-    { icon: Video, titleKey: "brandsPage.workflow.step3.title", descKey: "brandsPage.workflow.step3.description" },
-    { icon: Rocket, titleKey: "brandsPage.workflow.step4.title", descKey: "brandsPage.workflow.step4.description" },
-  ];
+  { icon: FileText, titleKey: "brandsPage.workflow.step1.title", descKey: "brandsPage.workflow.step1.description" },
+  { icon: Package, titleKey: "brandsPage.workflow.step2.title", descKey: "brandsPage.workflow.step2.description" },
+  { icon: Video, titleKey: "brandsPage.workflow.step3.title", descKey: "brandsPage.workflow.step3.description" },
+  { icon: Rocket, titleKey: "brandsPage.workflow.step4.title", descKey: "brandsPage.workflow.step4.description" }];
+
 
   const trustLogos = [
-    { name: "TikTok", Logo: TikTokLogo },
-    { name: "Instagram", Logo: InstagramLogo },
-    { name: "YouTube", Logo: YouTubeLogo },
-    { name: "Shopify", Logo: ShopifyLogo },
-    { name: "Stripe", Logo: StripeLogo },
-    { name: "Spotify", Logo: SpotifyLogo },
-    { name: "Meta", Logo: MetaLogo },
-    { name: "Twitter", Logo: TwitterXLogo },
-    { name: "Amazon", Logo: AmazonLogo },
-  ];
+  { name: "TikTok", Logo: TikTokLogo },
+  { name: "Instagram", Logo: InstagramLogo },
+  { name: "YouTube", Logo: YouTubeLogo },
+  { name: "Shopify", Logo: ShopifyLogo },
+  { name: "Stripe", Logo: StripeLogo },
+  { name: "Spotify", Logo: SpotifyLogo },
+  { name: "Meta", Logo: MetaLogo },
+  { name: "Twitter", Logo: TwitterXLogo },
+  { name: "Amazon", Logo: AmazonLogo }];
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -92,8 +92,8 @@ const BrandsLandingPage = () => {
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={fadeUp}
-          >
+            variants={fadeUp}>
+
             <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm font-medium">
               {t('brandsPage.hero.badge')}
             </Badge>
@@ -122,15 +122,15 @@ const BrandsLandingPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mt-20"
-          >
+            className="mt-20">
+
             <p className="text-sm text-muted-foreground mb-6">{t('brandsPage.hero.trustedBy')}</p>
             <div className="flex justify-center items-center gap-8 md:gap-12 flex-wrap opacity-50 grayscale">
-              {trustLogos.slice(0, 6).map(({ name, Logo }) => (
-                <div key={name} className="hover:opacity-100 hover:grayscale-0 transition-all duration-300">
+              {trustLogos.slice(0, 6).map(({ name, Logo }) =>
+              <div key={name} className="hover:opacity-100 hover:grayscale-0 transition-all duration-300">
                   <Logo />
                 </div>
-              ))}
+              )}
             </div>
           </motion.div>
         </div>
@@ -144,8 +144,8 @@ const BrandsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <h2 className="font-display text-4xl md:text-5xl mb-4">
               {t('brandsPage.benefits.sectionTitle')}
             </h2>
@@ -156,13 +156,13 @@ const BrandsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]"
-          >
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]">
+
             {/* Card 1: 10x Cheaper - Large (2x2) */}
             <motion.div
               variants={staggerItem}
-              className="lg:col-span-2 lg:row-span-2 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all flex flex-col justify-between"
-            >
+              className="lg:col-span-2 lg:row-span-2 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all flex flex-col justify-between">
+
               <div>
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
                   <DollarSign className="w-7 h-7 text-primary" />
@@ -196,8 +196,8 @@ const BrandsLandingPage = () => {
             {/* Card 2: Full Usage Rights - Small */}
             <motion.div
               variants={staggerItem}
-              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all flex flex-col justify-center"
-            >
+              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all flex flex-col justify-center">
+
               <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mb-4">
                 <CheckCircle className="w-6 h-6 text-green-500" />
               </div>
@@ -208,8 +208,8 @@ const BrandsLandingPage = () => {
             {/* Card 3: Shipping Handled - Small */}
             <motion.div
               variants={staggerItem}
-              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all flex flex-col justify-center"
-            >
+              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all flex flex-col justify-center">
+
               <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4">
                 <Truck className="w-6 h-6 text-blue-500" />
               </div>
@@ -220,26 +220,26 @@ const BrandsLandingPage = () => {
             {/* Card 4: Pre-vetted Creators - Medium (2 cols) */}
             <motion.div
               variants={staggerItem}
-              className="lg:col-span-2 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all flex flex-col justify-center"
-            >
+              className="lg:col-span-2 bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all flex flex-col justify-center">
+
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center">
                   <Users className="w-6 h-6 text-purple-500" />
                 </div>
                 {/* Avatar Stack */}
                 <div className="flex -space-x-3">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <div 
-                      key={i} 
-                      className="w-10 h-10 rounded-full border-2 border-background bg-gradient-to-br from-primary/50 to-accent/50 overflow-hidden"
-                    >
-                      <img 
-                        src={`https://i.pravatar.cc/80?img=${i + 10}`} 
-                        alt="" 
-                        className="w-full h-full object-cover"
-                      />
+                  {[1, 2, 3, 4, 5].map((i) =>
+                  <div
+                    key={i}
+                    className="w-10 h-10 rounded-full border-2 border-background bg-gradient-to-br from-primary/50 to-accent/50 overflow-hidden">
+
+                      <img
+                      src={`https://i.pravatar.cc/80?img=${i + 10}`}
+                      alt=""
+                      className="w-full h-full object-cover" />
+
                     </div>
-                  ))}
+                  )}
                   <div className="w-10 h-10 rounded-full border-2 border-background bg-primary flex items-center justify-center text-xs font-bold text-primary-foreground">
                     12K+
                   </div>
@@ -260,8 +260,8 @@ const BrandsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <h2 className="font-display text-4xl md:text-5xl mb-4">
               {t('brandsPage.workflow.title')}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
@@ -275,10 +275,10 @@ const BrandsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto"
-          >
-            {workflowSteps.map((step, index) => (
-              <motion.div key={index} variants={staggerItem} className="flex items-center">
+            className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto">
+
+            {workflowSteps.map((step, index) =>
+            <motion.div key={index} variants={staggerItem} className="flex items-center">
                 <div className="text-center">
                   <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto relative">
                     <step.icon className="w-10 h-10 text-primary" />
@@ -291,11 +291,11 @@ const BrandsLandingPage = () => {
                 </div>
                 
                 {/* Connector Line */}
-                {index < workflowSteps.length - 1 && (
-                  <div className="hidden md:block w-16 h-0.5 bg-border mx-4 flex-shrink-0" />
-                )}
+                {index < workflowSteps.length - 1 &&
+              <div className="hidden md:block w-16 h-0.5 bg-border mx-4 flex-shrink-0" />
+              }
               </motion.div>
-            ))}
+            )}
           </motion.div>
         </div>
       </section>
@@ -307,8 +307,8 @@ const BrandsLandingPage = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}
-          >
+            variants={fadeUp}>
+
             <h2 className="font-display text-4xl md:text-5xl mb-4">
               {t('brandsPage.showcase.title')}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
@@ -326,16 +326,16 @@ const BrandsLandingPage = () => {
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-muted/80 to-transparent z-10 pointer-events-none" />
           
           <div className="flex animate-scroll gap-6">
-            {[...showcaseVideos, ...showcaseVideos].map((video, i) => (
-              <div 
-                key={i}
-                className="flex-shrink-0 w-[180px] md:w-[200px] aspect-[9/16] rounded-2xl overflow-hidden bg-muted relative group cursor-pointer"
-              >
-                <img 
-                  src={video.thumbnail} 
-                  alt={video.brand}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+            {[...showcaseVideos, ...showcaseVideos].map((video, i) =>
+            <div
+              key={i}
+              className="flex-shrink-0 w-[180px] md:w-[200px] aspect-[9/16] rounded-2xl overflow-hidden bg-muted relative group cursor-pointer">
+
+                <img
+                src={video.thumbnail}
+                alt={video.brand}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                   <div className="flex items-center gap-2">
@@ -346,7 +346,7 @@ const BrandsLandingPage = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -358,8 +358,8 @@ const BrandsLandingPage = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}
-          >
+            variants={fadeUp}>
+
             <div className="gradient-primary rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
               {/* Background Decorations */}
               <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
@@ -383,8 +383,8 @@ const BrandsLandingPage = () => {
           </motion.div>
         </div>
       </section>
-    </div>
-  );
+    </div>);
+
 };
 
 export default BrandsLandingPage;

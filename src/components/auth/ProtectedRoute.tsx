@@ -28,8 +28,8 @@ const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
           <Loader2 className="w-10 h-10 animate-spin text-primary mx-auto" />
           <p className="text-muted-foreground text-sm">Loading...</p>
         </div>
-      </div>
-    );
+      </div>);
+
   }
 
   // 1. Not authenticated → Redirect to login
@@ -46,9 +46,9 @@ const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
 
   // Check if current path is an onboarding path
   const isOnboardingPath = location.pathname.startsWith('/onboarding');
-  const isRoleMatchedOnboarding = 
-    (role === 'brand' && location.pathname === '/onboarding/brand') ||
-    (role === 'creator' && location.pathname === '/onboarding/creator');
+  const isRoleMatchedOnboarding =
+  role === 'brand' && location.pathname === '/onboarding/brand' ||
+  role === 'creator' && location.pathname === '/onboarding/creator';
   const isWelcomePath = location.pathname === '/onboarding';
 
   // 3. Handle onboarding routing

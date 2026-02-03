@@ -17,8 +17,8 @@ interface UseLazyVideoReturn {
  * whether the video should be loaded.
  */
 export const useLazyVideo = (
-  options: UseLazyVideoOptions = {}
-): UseLazyVideoReturn => {
+options: UseLazyVideoOptions = {})
+: UseLazyVideoReturn => {
   const { rootMargin = "200px 0px", threshold = 0 } = options;
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -49,7 +49,7 @@ export const useLazyVideo = (
       },
       {
         rootMargin,
-        threshold,
+        threshold
       }
     );
 

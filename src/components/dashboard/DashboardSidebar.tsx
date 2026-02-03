@@ -26,7 +26,7 @@ const DashboardSidebar = ({
   onTabChange,
   userName,
   userInitial,
-  onLogout,
+  onLogout
 }: DashboardSidebarProps) => {
   const navigate = useNavigate();
   const hubLabel = variant === "brand" ? "Brand Hub" : "Creator Hub";
@@ -48,20 +48,20 @@ const DashboardSidebar = ({
 
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-1">
-        {navItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => handleNavClick(item)}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-              activeTab === item.id
-                ? "bg-primary text-primary-foreground"
-                : "text-muted-foreground hover:bg-muted hover:text-foreground"
-            }`}
-          >
+        {navItems.map((item) =>
+        <button
+          key={item.id}
+          onClick={() => handleNavClick(item)}
+          className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+          activeTab === item.id ?
+          "bg-primary text-primary-foreground" :
+          "text-muted-foreground hover:bg-muted hover:text-foreground"}`
+          }>
+
             <item.icon className="w-5 h-5" />
             <span className="font-medium">{item.label}</span>
           </button>
-        ))}
+        )}
       </nav>
 
       {/* User */}
@@ -74,19 +74,19 @@ const DashboardSidebar = ({
             <p className="font-medium text-foreground text-sm">{userName}</p>
             <p className="text-xs text-muted-foreground">{hubLabel}</p>
           </div>
-          {onLogout && (
-            <button
-              onClick={onLogout}
-              className="text-muted-foreground hover:text-foreground"
-              aria-label="Logout"
-            >
+          {onLogout &&
+          <button
+            onClick={onLogout}
+            className="text-muted-foreground hover:text-foreground"
+            aria-label="Logout">
+
               <LogOut className="w-5 h-5" />
             </button>
-          )}
+          }
         </div>
       </div>
-    </aside>
-  );
+    </aside>);
+
 };
 
 export default DashboardSidebar;

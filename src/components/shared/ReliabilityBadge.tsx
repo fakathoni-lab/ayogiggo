@@ -6,8 +6,8 @@ import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  TooltipTrigger } from
+"@/components/ui/tooltip";
 
 interface ReliabilityBadgeProps {
   score: number; // 0-100
@@ -20,7 +20,7 @@ export const ReliabilityBadge = ({
   score,
   className,
   showLabel = true,
-  size = "md",
+  size = "md"
 }: ReliabilityBadgeProps) => {
   const { t } = useTranslation();
 
@@ -37,13 +37,13 @@ export const ReliabilityBadge = ({
   const sizeClasses = {
     sm: "text-xs px-2 py-0.5",
     md: "text-sm px-2.5 py-1",
-    lg: "text-base px-3 py-1.5",
+    lg: "text-base px-3 py-1.5"
   };
 
   const iconSizes = {
     sm: "w-3 h-3",
     md: "w-4 h-4",
-    lg: "w-5 h-5",
+    lg: "w-5 h-5"
   };
 
   return (
@@ -58,15 +58,15 @@ export const ReliabilityBadge = ({
               tier.color,
               sizeClasses[size],
               className
-            )}
-          >
+            )}>
+
             <Shield className={cn(iconSizes[size], "shrink-0")} />
             <span className="font-bold">{score}%</span>
-            {showLabel && (
-              <span className="hidden sm:inline">
+            {showLabel &&
+            <span className="hidden sm:inline">
                 {t("reliability.onTime", "On-Time")}
               </span>
-            )}
+            }
           </Badge>
         </TooltipTrigger>
         <TooltipContent side="bottom" className="max-w-xs">
@@ -92,8 +92,8 @@ export const ReliabilityBadge = ({
           </div>
         </TooltipContent>
       </Tooltip>
-    </TooltipProvider>
-  );
+    </TooltipProvider>);
+
 };
 
 export default ReliabilityBadge;

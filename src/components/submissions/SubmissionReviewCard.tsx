@@ -12,18 +12,18 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+  AlertDialogTitle } from
+"@/components/ui/alert-dialog";
 import { FeedbackForm } from "./FeedbackForm";
-import { 
-  ExternalLink, 
-  Trophy, 
-  Check, 
-  X, 
+import {
+  ExternalLink,
+  Trophy,
+  Check,
+  X,
   RotateCcw,
   Loader2,
-  MessageSquare
-} from "lucide-react";
+  MessageSquare } from
+"lucide-react";
 import { useReviewSubmission, type SubmissionWithCreator } from "@/hooks/useSubmissions";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
@@ -37,29 +37,29 @@ interface SubmissionReviewCardProps {
 export const SubmissionReviewCard = ({
   submission,
   onWinnerSelected,
-  isContestEnded = false,
+  isContestEnded = false
 }: SubmissionReviewCardProps) => {
   const { t } = useTranslation();
   const [showWinnerConfirm, setShowWinnerConfirm] = useState(false);
   const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
   const [feedback, setFeedback] = useState("");
-  
+
   const handleFeedbackChange = useCallback((newFeedback: string) => {
     setFeedback(newFeedback);
   }, []);
-  
+
   const reviewSubmission = useReviewSubmission();
 
-  const creatorName = submission.profiles?.full_name || 
-    submission.profiles?.username || 
-    "Kreator";
+  const creatorName = submission.profiles?.full_name ||
+  submission.profiles?.username ||
+  "Kreator";
   const creatorInitial = creatorName.charAt(0).toUpperCase();
   const creatorAvatar = submission.profiles?.avatar_url;
 
   const handleApprove = () => {
     reviewSubmission.mutate({
       id: submission.id,
-      action: "approve",
+      action: "approve"
     });
   };
 
@@ -67,24 +67,24 @@ export const SubmissionReviewCard = ({
     reviewSubmission.mutate({
       id: submission.id,
       action: "decline",
-      decline_reason: "Konten tidak sesuai dengan brief",
+      decline_reason: "Konten tidak sesuai dengan brief"
     });
   };
 
   const handleRequestRedo = () => {
     if (!feedback.trim()) return;
-    
+
     reviewSubmission.mutate(
       {
         id: submission.id,
         action: "request_redo",
-        feedback: feedback.trim(),
+        feedback: feedback.trim()
       },
       {
         onSuccess: () => {
           setShowFeedbackDialog(false);
           setFeedback("");
-        },
+        }
       }
     );
   };
@@ -93,13 +93,13 @@ export const SubmissionReviewCard = ({
     reviewSubmission.mutate(
       {
         id: submission.id,
-        action: "approve",
+        action: "approve"
       },
       {
         onSuccess: () => {
           setShowWinnerConfirm(false);
           onWinnerSelected?.();
-        },
+        }
       }
     );
   };
@@ -131,33 +131,33 @@ export const SubmissionReviewCard = ({
                 <h4 className="font-semibold text-foreground truncate">
                   {creatorName}
                 </h4>
-                {isWinner && (
-                  <Trophy className="w-4 h-4 text-amber-500" />
-                )}
+                {isWinner &&
+                <Trophy className="w-4 h-4 text-amber-500" />
+                }
               </div>
 
               <div className="flex items-center gap-2 mb-2">
-                <StatusBadge 
-                  status={submission.status === "approved" ? "approved" : 
-                          submission.status === "declined" ? "declined" : 
-                          submission.status === "redo_requested" ? "redo_requested" : 
-                          "pending"} 
-                />
+                <StatusBadge
+                  status={submission.status === "approved" ? "approved" :
+                  submission.status === "declined" ? "declined" :
+                  submission.status === "redo_requested" ? "redo_requested" :
+                  "pending"} />
+
                 <span className="text-xs text-muted-foreground">
                   {format(new Date(submission.submitted_at), "dd MMM yyyy, HH:mm")}
                 </span>
               </div>
 
               {/* Caption */}
-              {submission.caption && (
-                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+              {submission.caption &&
+              <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
                   {submission.caption}
                 </p>
-              )}
+              }
 
               {/* Brand feedback if redo requested */}
-              {submission.status === "redo_requested" && submission.brand_feedback && (
-                <div className="bg-warning/10 text-warning border border-warning/20 rounded-lg p-3 mb-3">
+              {submission.status === "redo_requested" && submission.brand_feedback &&
+              <div className="bg-warning/10 text-warning border border-warning/20 rounded-lg p-3 mb-3">
                   <div className="flex items-start gap-2">
                     <MessageSquare className="w-4 h-4 mt-0.5 shrink-0" />
                     <div>
@@ -166,76 +166,76 @@ export const SubmissionReviewCard = ({
                     </div>
                   </div>
                 </div>
-              )}
+              }
 
               {/* Content Link */}
-              {submission.platform_url && (
-                <a
-                  href={submission.platform_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
-                >
+              {submission.platform_url &&
+              <a
+                href={submission.platform_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline">
+
                   <ExternalLink className="w-4 h-4" />
                   {t("submissions.review.viewContent")}
                 </a>
-              )}
+              }
             </div>
 
             {/* Actions */}
             <div className="flex flex-col gap-2">
-              {canReview && (
-                <>
+              {canReview &&
+              <>
                   <Button
-                    size="sm"
-                    variant="success"
-                    onClick={handleApprove}
-                    disabled={reviewSubmission.isPending}
-                  >
-                    {reviewSubmission.isPending ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <Check className="w-4 h-4" />
-                    )}
+                  size="sm"
+                  variant="success"
+                  onClick={handleApprove}
+                  disabled={reviewSubmission.isPending}>
+
+                    {reviewSubmission.isPending ?
+                  <Loader2 className="w-4 h-4 animate-spin" /> :
+
+                  <Check className="w-4 h-4" />
+                  }
                     {t("submissions.review.approve")}
                   </Button>
                   
-                  {!maxRedoReached && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => setShowFeedbackDialog(true)}
-                      disabled={reviewSubmission.isPending}
-                    >
+                  {!maxRedoReached &&
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => setShowFeedbackDialog(true)}
+                  disabled={reviewSubmission.isPending}>
+
                       <RotateCcw className="w-4 h-4" />
                       {t("submissions.review.requestRedo")}
                     </Button>
-                  )}
+                }
                   
                   <Button
-                    size="sm"
-                    variant="destructive"
-                    onClick={handleDecline}
-                    disabled={reviewSubmission.isPending}
-                  >
+                  size="sm"
+                  variant="destructive"
+                  onClick={handleDecline}
+                  disabled={reviewSubmission.isPending}>
+
                     <X className="w-4 h-4" />
                     {t("submissions.review.reject")}
                   </Button>
                 </>
-              )}
+              }
 
-              {submission.status === "approved" && !isContestEnded && (
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="border-warning text-warning hover:bg-warning/10"
-                  onClick={() => setShowWinnerConfirm(true)}
-                  disabled={reviewSubmission.isPending}
-                >
+              {submission.status === "approved" && !isContestEnded &&
+              <Button
+                size="sm"
+                variant="outline"
+                className="border-warning text-warning hover:bg-warning/10"
+                onClick={() => setShowWinnerConfirm(true)}
+                disabled={reviewSubmission.isPending}>
+
                   <Trophy className="w-4 h-4" />
                   {t("submissions.review.markWinner")}
                 </Button>
-              )}
+              }
             </div>
           </div>
         </CardContent>
@@ -258,8 +258,8 @@ export const SubmissionReviewCard = ({
             </AlertDialogCancel>
             <AlertDialogAction
               onClick={handleMarkWinner}
-              className="bg-warning hover:bg-warning/90 text-warning-foreground"
-            >
+              className="bg-warning hover:bg-warning/90 text-warning-foreground">
+
               <Trophy className="w-4 h-4 mr-2" />
               {t("submissions.review.winnerConfirm.confirm")}
             </AlertDialogAction>
@@ -287,20 +287,20 @@ export const SubmissionReviewCard = ({
             </AlertDialogCancel>
             <AlertDialogAction
               onClick={handleRequestRedo}
-              disabled={!feedback.trim() || reviewSubmission.isPending}
-            >
-              {reviewSubmission.isPending ? (
-                <Loader2 className="w-4 h-4 animate-spin mr-2" />
-              ) : (
-                <RotateCcw className="w-4 h-4 mr-2" />
-              )}
+              disabled={!feedback.trim() || reviewSubmission.isPending}>
+
+              {reviewSubmission.isPending ?
+              <Loader2 className="w-4 h-4 animate-spin mr-2" /> :
+
+              <RotateCcw className="w-4 h-4 mr-2" />
+              }
               {t("feedback.sendFeedback", "Send Feedback")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>
-  );
+    </>);
+
 };
 
 export default SubmissionReviewCard;

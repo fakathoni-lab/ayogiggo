@@ -24,8 +24,8 @@ import {
   CheckCircle,
   ExternalLink,
   Bookmark,
-  Send,
-} from "lucide-react";
+  Send } from
+"lucide-react";
 import { cn } from "@/lib/utils";
 
 const CampaignDetail = () => {
@@ -48,8 +48,8 @@ const CampaignDetail = () => {
           <Skeleton className="h-4 w-1/2" />
           <Skeleton className="h-64 w-full" />
         </div>
-      </div>
-    );
+      </div>);
+
   }
 
   if (error || !campaign) {
@@ -60,8 +60,8 @@ const CampaignDetail = () => {
           <p className="text-muted-foreground mb-4">The gig you're looking for doesn't exist or has been removed.</p>
           <Button onClick={() => navigate("/campaigns")}>Browse Gigs</Button>
         </div>
-      </div>
-    );
+      </div>);
+
   }
 
   // Note: Using public view - sensitive fields (budget, brief, prize_breakdown, etc.) are not available
@@ -69,11 +69,11 @@ const CampaignDetail = () => {
   const brandName = campaign.brand_name || "Brand";
   const brandLogo = campaign.brand_logo || "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=100&h=100&fit=crop";
   const coverImage = campaign.cover_image || "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop";
-  
+
   // These fields are not available in public view for competitive privacy
-  const prizeBreakdown: { rank: number; amount: number; label: string }[] = [];
+  const prizeBreakdown: {rank: number;amount: number;label: string;}[] = [];
   const rules: string[] = [];
-  const assets: { name: string; type: string; size: string }[] = [];
+  const assets: {name: string;type: string;size: string;}[] = [];
 
   // Map status for display
   const displayStatus = campaign.status === "live" ? "open" : campaign.status === "completed" ? "closed" : "draft";
@@ -87,8 +87,8 @@ const CampaignDetail = () => {
           <img
             src={coverImage}
             alt={campaign.title}
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" />
+
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
         </div>
 
@@ -97,8 +97,8 @@ const CampaignDetail = () => {
           variant="ghost"
           size="icon"
           className="absolute top-4 left-4 bg-background/50 backdrop-blur-lg hover:bg-background/80"
-          onClick={() => navigate(-1)}
-        >
+          onClick={() => navigate(-1)}>
+
           <ArrowLeft className="w-5 h-5" />
         </Button>
 
@@ -108,15 +108,15 @@ const CampaignDetail = () => {
             variant="ghost"
             size="icon"
             className="bg-background/50 backdrop-blur-lg hover:bg-background/80"
-            onClick={() => setIsBookmarked(!isBookmarked)}
-          >
+            onClick={() => setIsBookmarked(!isBookmarked)}>
+
             <Bookmark className={cn("w-5 h-5", isBookmarked && "fill-primary text-primary")} />
           </Button>
           <Button
             variant="ghost"
             size="icon"
-            className="bg-background/50 backdrop-blur-lg hover:bg-background/80"
-          >
+            className="bg-background/50 backdrop-blur-lg hover:bg-background/80">
+
             <Share2 className="w-5 h-5" />
           </Button>
         </div>
@@ -177,10 +177,10 @@ const CampaignDetail = () => {
                     // These would come from the full campaign data when hired
                     hook: undefined,
                     keySellingPoints: undefined,
-                    callToAction: undefined,
+                    callToAction: undefined
                   } as BriefData}
-                  isLocked={false}
-                />
+                  isLocked={false} />
+
                 
                 {/* Locked full brief notice */}
                 <Card className="mt-4 border-dashed">
@@ -192,8 +192,8 @@ const CampaignDetail = () => {
                 </Card>
 
                 {/* Assets */}
-                {assets.length > 0 && (
-                  <Card className="mt-6">
+                {assets.length > 0 &&
+                <Card className="mt-6">
                     <CardHeader>
                       <CardTitle className="text-lg flex items-center gap-2">
                         <Download className="w-5 h-5" />
@@ -201,11 +201,11 @@ const CampaignDetail = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                      {assets.map((asset, index) => (
-                        <button
-                          key={index}
-                          className="w-full flex items-center gap-3 p-3 rounded-lg bg-accent hover:bg-accent/80 transition-colors text-left"
-                        >
+                      {assets.map((asset, index) =>
+                    <button
+                      key={index}
+                      className="w-full flex items-center gap-3 p-3 rounded-lg bg-accent hover:bg-accent/80 transition-colors text-left">
+
                           <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                             <FileText className="w-5 h-5 text-primary" />
                           </div>
@@ -217,57 +217,57 @@ const CampaignDetail = () => {
                           </div>
                           <Download className="w-5 h-5 text-muted-foreground" />
                         </button>
-                      ))}
+                    )}
                     </CardContent>
                   </Card>
-                )}
+                }
               </TabsContent>
 
               <TabsContent value="rules" className="mt-6">
                 <Card>
                   <CardContent className="pt-6">
-                    {rules.length > 0 ? (
-                      <ul className="space-y-4">
-                        {rules.map((rule, index) => (
-                          <li key={index} className="flex items-start gap-3">
+                    {rules.length > 0 ?
+                    <ul className="space-y-4">
+                        {rules.map((rule, index) =>
+                      <li key={index} className="flex items-start gap-3">
                             <CheckCircle className="w-5 h-5 text-success shrink-0 mt-0.5" />
                             <span className="text-foreground">{rule}</span>
                           </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-muted-foreground text-center py-8">
+                      )}
+                      </ul> :
+
+                    <p className="text-muted-foreground text-center py-8">
                         No specific rules for this gig.
                       </p>
-                    )}
+                    }
                   </CardContent>
                 </Card>
               </TabsContent>
 
               <TabsContent value="prizes" className="mt-6">
-                {prizeBreakdown.length > 0 ? (
-                  <div className="grid gap-4">
-                    {prizeBreakdown.map((prize) => (
-                      <Card
-                        key={prize.rank}
-                        className={cn(
-                          "transition-all",
-                          prize.rank === 1 && "border-amber-500/50 bg-amber-500/5"
-                        )}
-                      >
+                {prizeBreakdown.length > 0 ?
+                <div className="grid gap-4">
+                    {prizeBreakdown.map((prize) =>
+                  <Card
+                    key={prize.rank}
+                    className={cn(
+                      "transition-all",
+                      prize.rank === 1 && "border-amber-500/50 bg-amber-500/5"
+                    )}>
+
                         <CardContent className="py-4 flex items-center gap-4">
                           <div
-                            className={cn(
-                              "w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg",
-                              prize.rank === 1
-                                ? "bg-amber-500 text-white"
-                                : prize.rank === 2
-                                ? "bg-gray-400 text-white"
-                                : prize.rank === 3
-                                ? "bg-orange-600 text-white"
-                                : "bg-muted text-muted-foreground"
-                            )}
-                          >
+                        className={cn(
+                          "w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg",
+                          prize.rank === 1 ?
+                          "bg-amber-500 text-white" :
+                          prize.rank === 2 ?
+                          "bg-gray-400 text-white" :
+                          prize.rank === 3 ?
+                          "bg-orange-600 text-white" :
+                          "bg-muted text-muted-foreground"
+                        )}>
+
                             {prize.rank}
                           </div>
                           <div className="flex-1">
@@ -278,15 +278,15 @@ const CampaignDetail = () => {
                           </p>
                         </CardContent>
                       </Card>
-                    ))}
-                  </div>
-                ) : (
-                  <Card>
+                  )}
+                  </div> :
+
+                <Card>
                     <CardContent className="py-8 text-center">
                       <p className="text-muted-foreground">Payout breakdown not available.</p>
                     </CardContent>
                   </Card>
-                )}
+                }
               </TabsContent>
 
               <TabsContent value="leaderboard" className="mt-6">
@@ -308,8 +308,8 @@ const CampaignDetail = () => {
                   <img
                     src={brandLogo}
                     alt={brandName}
-                    className="w-16 h-16 rounded-xl bg-white object-contain p-2"
-                  />
+                    className="w-16 h-16 rounded-xl bg-white object-contain p-2" />
+
                   <div>
                     <div className="flex items-center gap-2">
                       <h3 className="font-semibold text-foreground">
@@ -341,8 +341,8 @@ const CampaignDetail = () => {
                   <Button
                     size="lg"
                     className="w-full bg-background text-primary hover:bg-background/90"
-                    onClick={() => user ? setShowSubmissionDialog(true) : navigate("/auth")}
-                  >
+                    onClick={() => user ? setShowSubmissionDialog(true) : navigate("/auth")}>
+
                     <Send className="w-4 h-4" />
                     {t("campaigns.detail.joinGig")}
                   </Button>
@@ -359,8 +359,8 @@ const CampaignDetail = () => {
           size="xl"
           variant="hero"
           className="w-full"
-          onClick={() => user ? setShowSubmissionDialog(true) : navigate("/auth")}
-        >
+          onClick={() => user ? setShowSubmissionDialog(true) : navigate("/auth")}>
+
           <Send className="w-5 h-5" />
           {t("campaigns.detail.joinGig")}
         </Button>
@@ -371,12 +371,12 @@ const CampaignDetail = () => {
         open={showSubmissionDialog}
         onOpenChange={setShowSubmissionDialog}
         campaignId={campaign.id}
-        campaignTitle={campaign.title}
-      />
+        campaignTitle={campaign.title} />
+
 
       <BottomNavigation />
-    </div>
-  );
+    </div>);
+
 };
 
 export default CampaignDetail;

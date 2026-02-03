@@ -22,7 +22,7 @@ class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
     error: null,
-    errorInfo: null,
+    errorInfo: null
   };
 
   public static getDerivedStateFromError(error: Error): Partial<State> {
@@ -66,33 +66,33 @@ class ErrorBoundary extends Component<Props, State> {
             </div>
 
             {/* Error Details (Development only) */}
-            {import.meta.env.DEV && this.state.error && (
-              <div className="bg-muted rounded-lg p-4 text-left">
+            {import.meta.env.DEV && this.state.error &&
+            <div className="bg-muted rounded-lg p-4 text-left">
                 <p className="text-sm font-mono text-destructive break-all">
                   {this.state.error.message}
                 </p>
-                {this.state.errorInfo && (
-                  <pre className="mt-2 text-xs text-muted-foreground overflow-auto max-h-32">
+                {this.state.errorInfo &&
+              <pre className="mt-2 text-xs text-muted-foreground overflow-auto max-h-32">
                     {this.state.errorInfo.componentStack}
                   </pre>
-                )}
+              }
               </div>
-            )}
+            }
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Button
                 onClick={this.handleReset}
-                className="w-full sm:w-auto"
-              >
+                className="w-full sm:w-auto">
+
                 <RefreshCw className="w-4 h-4 mr-2" />
                 Refresh Page
               </Button>
               <Button
                 variant="outline"
                 asChild
-                className="w-full sm:w-auto"
-              >
+                className="w-full sm:w-auto">
+
                 <Link to="/">
                   <Home className="w-4 h-4 mr-2" />
                   Go Home
@@ -100,8 +100,8 @@ class ErrorBoundary extends Component<Props, State> {
               </Button>
             </div>
           </div>
-        </div>
-      );
+        </div>);
+
     }
 
     return this.props.children;

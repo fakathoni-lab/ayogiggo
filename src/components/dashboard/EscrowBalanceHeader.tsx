@@ -9,8 +9,8 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  DialogTrigger } from
+"@/components/ui/dialog";
 import { useWallet, useTopUpWallet } from "@/hooks/useWallet";
 import { Wallet, Plus, TrendingUp, Shield } from "lucide-react";
 
@@ -19,7 +19,7 @@ const formatCurrency = (amount: number) => {
     style: "currency",
     currency: "IDR",
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 0
   }).format(amount);
 };
 
@@ -37,7 +37,7 @@ const EscrowBalanceHeader = () => {
       onSuccess: () => {
         setTopUpDialogOpen(false);
         setTopUpAmount("");
-      },
+      }
     });
   };
 
@@ -46,8 +46,8 @@ const EscrowBalanceHeader = () => {
       <div className="flex items-center gap-4">
         <Skeleton className="h-10 w-40" />
         <Skeleton className="h-10 w-24" />
-      </div>
-    );
+      </div>);
+
   }
 
   return (
@@ -62,11 +62,11 @@ const EscrowBalanceHeader = () => {
         <span className="font-semibold text-foreground">
           {formatCurrency(wallet?.balance || 0)}
         </span>
-        {wallet && (wallet.pending_balance || 0) > 0 && (
+        {wallet && (wallet.pending_balance || 0) > 0 &&
           <span className="text-xs text-warning">
             (+{formatCurrency(wallet.pending_balance)} held)
           </span>
-          )}
+          }
         </div>
         <TrendingUp className="w-4 h-4 text-success" />
       </div>
@@ -104,8 +104,8 @@ const EscrowBalanceHeader = () => {
                 type="number"
                 placeholder="Contoh: 5000000"
                 value={topUpAmount}
-                onChange={(e) => setTopUpAmount(e.target.value)}
-              />
+                onChange={(e) => setTopUpAmount(e.target.value)} />
+
               <p className="text-xs text-muted-foreground">
                 Minimum top up: Rp 100.000
               </p>
@@ -113,17 +113,17 @@ const EscrowBalanceHeader = () => {
 
             {/* Quick Amount Buttons */}
             <div className="grid grid-cols-3 gap-2">
-              {[1000000, 5000000, 10000000].map((amount) => (
-                <Button
-                  key={amount}
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setTopUpAmount(amount.toString())}
-                  className="text-xs"
-                >
+              {[1000000, 5000000, 10000000].map((amount) =>
+              <Button
+                key={amount}
+                variant="outline"
+                size="sm"
+                onClick={() => setTopUpAmount(amount.toString())}
+                className="text-xs">
+
                   {formatCurrency(amount)}
                 </Button>
-              ))}
+              )}
             </div>
 
             <div className="pt-2 space-y-2">
@@ -131,8 +131,8 @@ const EscrowBalanceHeader = () => {
                 variant="hero"
                 className="w-full"
                 onClick={handleTopUp}
-                disabled={topUpWallet.isPending || !topUpAmount || parseFloat(topUpAmount) < 100000}
-              >
+                disabled={topUpWallet.isPending || !topUpAmount || parseFloat(topUpAmount) < 100000}>
+
                 {topUpWallet.isPending ? "Memproses..." : "Konfirmasi Top Up"}
               </Button>
               <p className="text-xs text-center text-muted-foreground">
@@ -142,8 +142,8 @@ const EscrowBalanceHeader = () => {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
-  );
+    </div>);
+
 };
 
 export default EscrowBalanceHeader;

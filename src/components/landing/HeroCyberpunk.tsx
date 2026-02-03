@@ -5,21 +5,21 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const HeroCyberpunk = () => {
   const prefersReducedMotion = useReducedMotion();
-  
+
   const fadeUp = {
     initial: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 24 },
-    animate: prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 },
+    animate: prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }
   };
 
-  const stagger = (delay: number) => prefersReducedMotion 
-    ? { duration: 0.01 } 
-    : { duration: 0.5, ease: "easeOut" as const, delay };
+  const stagger = (delay: number) => prefersReducedMotion ?
+  { duration: 0.01 } :
+  { duration: 0.5, ease: "easeOut" as const, delay };
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden hero-cyberpunk-bg">
       {/* ═══════════════════════════════════════════════════════════
-          BACKGROUND VISUAL ELEMENTS
-          ═══════════════════════════════════════════════════════════ */}
+            BACKGROUND VISUAL ELEMENTS
+            ═══════════════════════════════════════════════════════════ */}
       
       {/* Cyan glow orb - left */}
       <div className="absolute top-[20%] left-[-5%] w-[400px] h-[400px] glow-orb-cyan pointer-events-none" />
@@ -31,8 +31,8 @@ const HeroCyberpunk = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-[#00E5FF]/5 to-transparent pointer-events-none" />
 
       {/* ═══════════════════════════════════════════════════════════
-          NETWORK LINES - Abstract Data Architecture
-          ═══════════════════════════════════════════════════════════ */}
+            NETWORK LINES - Abstract Data Architecture
+            ═══════════════════════════════════════════════════════════ */}
       
       {/* Horizontal cyan lines - left side */}
       <div className="absolute left-0 top-[25%] w-[35%] h-px glow-line-cyan animate-network-pulse opacity-40" />
@@ -54,20 +54,20 @@ const HeroCyberpunk = () => {
       <div className="absolute top-[35%] right-[40%] w-1 h-1 rounded-full bg-[#2FF3E0]/50 animate-float-particle" style={{ animationDelay: '-4s' }} />
 
       {/* Grid pattern overlay - very subtle */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
           backgroundImage: `
             linear-gradient(rgba(47, 243, 224, 0.3) 1px, transparent 1px),
             linear-gradient(90deg, rgba(47, 243, 224, 0.3) 1px, transparent 1px)
           `,
-          backgroundSize: '60px 60px',
-        }}
-      />
+          backgroundSize: '60px 60px'
+        }} />
+
 
       {/* ═══════════════════════════════════════════════════════════
-          MAIN CONTENT
-          ═══════════════════════════════════════════════════════════ */}
+            MAIN CONTENT
+            ═══════════════════════════════════════════════════════════ */}
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 lg:py-0">
         <div className="max-w-3xl">
@@ -75,8 +75,8 @@ const HeroCyberpunk = () => {
           {/* Badge */}
           <motion.div
             {...fadeUp}
-            transition={stagger(0.1)}
-          >
+            transition={stagger(0.1)}>
+
             <div className="inline-flex items-center gap-2.5 glass-pill rounded-full px-4 py-2 mb-8">
               <Sparkles className="w-4 h-4 text-[#2FF3E0]" />
               <span className="text-sm font-medium text-white/90">
@@ -90,8 +90,8 @@ const HeroCyberpunk = () => {
           <motion.h1
             className="hero-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-6"
             {...fadeUp}
-            transition={stagger(0.2)}
-          >
+            transition={stagger(0.2)}>
+
             Connect Creators
             <br />
             with Brands
@@ -105,8 +105,8 @@ const HeroCyberpunk = () => {
           <motion.p
             className="text-base sm:text-lg md:text-xl text-white/75 mb-10 leading-relaxed max-w-xl"
             {...fadeUp}
-            transition={stagger(0.3)}
-          >
+            transition={stagger(0.3)}>
+
             Browse gigs, submit your best content, and get paid securely — all in one platform.
           </motion.p>
 
@@ -114,22 +114,22 @@ const HeroCyberpunk = () => {
           <motion.div
             className="flex flex-col sm:flex-row items-start gap-4"
             {...fadeUp}
-            transition={stagger(0.4)}
-          >
+            transition={stagger(0.4)}>
+
             {/* Primary CTA */}
-            <Link 
+            <Link
               to="/auth?mode=register&role=brand"
-              className="btn-hero-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-white font-medium text-base"
-            >
+              className="btn-hero-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-white font-medium text-base">
+
               Start Hiring
               <ArrowRight className="w-4 h-4" />
             </Link>
 
             {/* Secondary CTA */}
-            <Link 
+            <Link
               to="/campaigns"
-              className="glass-button inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-white font-medium text-base"
-            >
+              className="glass-button inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-white font-medium text-base">
+
               <Search className="w-4 h-4" />
               Explore Gigs Now
             </Link>
@@ -139,8 +139,8 @@ const HeroCyberpunk = () => {
           <motion.div
             className="mt-12 flex items-center gap-6 text-sm text-white/50"
             {...fadeUp}
-            transition={stagger(0.5)}
-          >
+            transition={stagger(0.5)}>
+
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-[#22C55E]" />
               <span>500+ Active Campaigns</span>
@@ -155,15 +155,15 @@ const HeroCyberpunk = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════
-          DECORATIVE GLASS CARD - Right side (Desktop only)
-          ═══════════════════════════════════════════════════════════ */}
+            DECORATIVE GLASS CARD - Right side (Desktop only)
+            ═══════════════════════════════════════════════════════════ */}
       
       <motion.div
         className="hidden lg:block absolute right-[8%] top-1/2 -translate-y-1/2 w-[340px]"
         initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 40 }}
         animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
-        transition={stagger(0.6)}
-      >
+        transition={stagger(0.6)}>
+
         <div className="glass-card rounded-2xl p-6">
           {/* Card header */}
           <div className="flex items-center justify-between mb-5">
@@ -232,8 +232,8 @@ const HeroCyberpunk = () => {
         {/* Floating accent behind card */}
         <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] glow-orb-cyan opacity-30" />
       </motion.div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default HeroCyberpunk;

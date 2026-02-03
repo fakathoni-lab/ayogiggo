@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { fetchLivePayouts, LivePayout } from "@/lib/supabaseFunctions";
 
 const SAMPLE_DATA: string[] = [
-  "User123 withdrew Rp 500.000 just now",
-  "Luna withdrew Rp 2.000.000 just now",
-  "AyuPutri withdrew Rp 750.000 just now",
-  "Maya withdrew Rp 1.500.000 just now",
-  "Rizky withdrew Rp 1.250.000 just now",
-  "Sinta withdrew Rp 800.000 just now",
-];
+"User123 withdrew Rp 500.000 just now",
+"Luna withdrew Rp 2.000.000 just now",
+"AyuPutri withdrew Rp 750.000 just now",
+"Maya withdrew Rp 1.500.000 just now",
+"Rizky withdrew Rp 1.250.000 just now",
+"Sinta withdrew Rp 800.000 just now"];
+
 
 const LivePayoutsTicker = () => {
   const [items, setItems] = useState<string[]>(SAMPLE_DATA);
@@ -61,34 +61,34 @@ const LivePayoutsTicker = () => {
             <div className="animate-marquee flex whitespace-nowrap">
               {/* First set of items */}
               <div className="flex gap-8">
-                {items.map((item, index) => (
-                  <span
-                    key={`first-${index}`}
-                    className="inline-flex items-center gap-2 text-sm text-muted-foreground"
-                  >
+                {items.map((item, index) =>
+                <span
+                  key={`first-${index}`}
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+
                     <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
                     {item}
                   </span>
-                ))}
+                )}
               </div>
               {/* Duplicate for seamless loop */}
               <div className="flex gap-8 pl-8">
-                {items.map((item, index) => (
-                  <span
-                    key={`second-${index}`}
-                    className="inline-flex items-center gap-2 text-sm text-muted-foreground"
-                  >
+                {items.map((item, index) =>
+                <span
+                  key={`second-${index}`}
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+
                     <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
                     {item}
                   </span>
-                ))}
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default LivePayoutsTicker;

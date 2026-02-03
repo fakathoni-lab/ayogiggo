@@ -16,24 +16,24 @@ export type {
   CampaignFixture,
   BrandFixture,
   PaymentFixture,
-  SubmissionFixture,
-} from "./types";
+  SubmissionFixture } from
+"./types";
 
 // Re-export creator fixtures
 export {
   featuredCreator,
   spotlightCreators,
-  creators,
-} from "./creators.fixtures";
+  creators } from
+"./creators.fixtures";
 
 // Re-export leaderboard fixtures
 export {
   mockLeaderboard,
-  expandedLeaderboard,
-} from "./leaderboard.fixtures";
+  expandedLeaderboard } from
+"./leaderboard.fixtures";
 
 // Re-export activity fixtures
 export {
   liveActivity,
-  expandedActivityFeed,
-} from "./activity.fixtures";
+  expandedActivityFeed } from
+"./activity.fixtures";

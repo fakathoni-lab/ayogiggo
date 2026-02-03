@@ -6,8 +6,8 @@ import {
   MousePointer2,
   Lock,
   Lightbulb,
-  Target,
-} from "lucide-react";
+  Target } from
+"lucide-react";
 import { cn } from "@/lib/utils";
 
 export interface BriefData {
@@ -26,7 +26,7 @@ interface StructuredBriefProps {
 export const StructuredBrief = ({
   brief,
   isLocked = false,
-  className,
+  className
 }: StructuredBriefProps) => {
   const { t } = useTranslation();
 
@@ -41,15 +41,15 @@ export const StructuredBrief = ({
             {t("brief.lockedMessage", "Apply to this gig to view the full brief")}
           </p>
         </CardContent>
-      </Card>
-    );
+      </Card>);
+
   }
 
   return (
     <div className={cn("space-y-4", className)}>
       {/* Hook Section */}
-      {brief.hook && (
-        <Card className="border-primary/20 bg-primary/5">
+      {brief.hook &&
+      <Card className="border-primary/20 bg-primary/5">
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
               <div className="w-10 h-10 shrink-0 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -66,11 +66,11 @@ export const StructuredBrief = ({
             </div>
           </CardContent>
         </Card>
-      )}
+      }
 
       {/* Key Selling Points Section */}
-      {brief.keySellingPoints && brief.keySellingPoints.length > 0 && (
-        <Card>
+      {brief.keySellingPoints && brief.keySellingPoints.length > 0 &&
+      <Card>
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
               <div className="w-10 h-10 shrink-0 rounded-xl bg-warning/10 flex items-center justify-center">
@@ -81,25 +81,25 @@ export const StructuredBrief = ({
                   {t("brief.keySellingPoints", "Key Selling Points")}
                 </h4>
                 <ul className="space-y-2">
-                  {brief.keySellingPoints.map((point, index) => (
-                    <li
-                      key={index}
-                      className="flex items-start gap-2 text-foreground"
-                    >
+                  {brief.keySellingPoints.map((point, index) =>
+                <li
+                  key={index}
+                  className="flex items-start gap-2 text-foreground">
+
                       <Lightbulb className="w-4 h-4 text-warning shrink-0 mt-0.5" />
                       <span>{point}</span>
                     </li>
-                  ))}
+                )}
                 </ul>
               </div>
             </div>
           </CardContent>
         </Card>
-      )}
+      }
 
       {/* Call to Action Section */}
-      {brief.callToAction && (
-        <Card className="border-success/20 bg-success/5">
+      {brief.callToAction &&
+      <Card className="border-success/20 bg-success/5">
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
               <div className="w-10 h-10 shrink-0 rounded-xl bg-success/10 flex items-center justify-center">
@@ -116,11 +116,11 @@ export const StructuredBrief = ({
             </div>
           </CardContent>
         </Card>
-      )}
+      }
 
       {/* Description fallback if no structured data */}
-      {!brief.hook && !brief.keySellingPoints?.length && !brief.callToAction && brief.description && (
-        <Card>
+      {!brief.hook && !brief.keySellingPoints?.length && !brief.callToAction && brief.description &&
+      <Card>
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
               <div className="w-10 h-10 shrink-0 rounded-xl bg-muted flex items-center justify-center">
@@ -137,9 +137,9 @@ export const StructuredBrief = ({
             </div>
           </CardContent>
         </Card>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 };
 
 export default StructuredBrief;

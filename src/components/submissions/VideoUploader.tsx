@@ -18,20 +18,20 @@ export const VideoUploader = ({
   onRemove,
   existingUrl,
   className,
-  disabled = false,
+  disabled = false
 }: VideoUploaderProps) => {
   const { uploadVideo, deleteVideo, isUploading, progress, error, validateFile } = useVideoUpload();
   const [previewUrl, setPreviewUrl] = useState<string | null>(existingUrl || null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
-  
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleFileSelect = useCallback(async (file: File) => {
     setValidationError(null);
-    
+
     // Validate before creating preview
     const validation = validateFile(file);
     if (!validation.valid) {
@@ -45,7 +45,7 @@ export const VideoUploader = ({
 
     // Upload to storage
     const uploadedUrl = await uploadVideo(file);
-    
+
     if (uploadedUrl) {
       // Replace local preview with uploaded URL
       URL.revokeObjectURL(localUrl);
@@ -70,7 +70,7 @@ export const VideoUploader = ({
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(false);
-    
+
     const file = e.dataTransfer.files?.[0];
     if (file) {
       handleFileSelect(file);
@@ -124,31 +124,31 @@ export const VideoUploader = ({
         accept="video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm"
         onChange={handleInputChange}
         className="hidden"
-        disabled={disabled || isUploading}
-      />
+        disabled={disabled || isUploading} />
+
 
       {/* Upload Zone or Preview */}
-      {!previewUrl ? (
-        <div
-          onClick={() => !disabled && !isUploading && fileInputRef.current?.click()}
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          className={cn(
-            "relative flex flex-col items-center justify-center gap-4 p-8",
-            "border-2 border-dashed rounded-xl transition-all cursor-pointer",
-            "min-h-[240px]",
-            isDragOver
-              ? "border-primary bg-primary/5"
-              : "border-border hover:border-primary/50 hover:bg-accent/50",
-            displayError && "border-destructive",
-            (disabled || isUploading) && "opacity-50 cursor-not-allowed"
-          )}
-        >
+      {!previewUrl ?
+      <div
+        onClick={() => !disabled && !isUploading && fileInputRef.current?.click()}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        className={cn(
+          "relative flex flex-col items-center justify-center gap-4 p-8",
+          "border-2 border-dashed rounded-xl transition-all cursor-pointer",
+          "min-h-[240px]",
+          isDragOver ?
+          "border-primary bg-primary/5" :
+          "border-border hover:border-primary/50 hover:bg-accent/50",
+          displayError && "border-destructive",
+          (disabled || isUploading) && "opacity-50 cursor-not-allowed"
+        )}>
+
           <div className={cn(
-            "w-16 h-16 rounded-full flex items-center justify-center",
-            "bg-primary/10 text-primary"
-          )}>
+          "w-16 h-16 rounded-full flex items-center justify-center",
+          "bg-primary/10 text-primary"
+        )}>
             <Upload className="w-8 h-8" />
           </div>
           
@@ -164,56 +164,56 @@ export const VideoUploader = ({
           <Button variant="outline" size="sm" disabled={disabled || isUploading}>
             Choose File
           </Button>
-        </div>
-      ) : (
-        <div className="relative rounded-xl overflow-hidden bg-black">
+        </div> :
+
+      <div className="relative rounded-xl overflow-hidden bg-black">
           {/* Video Preview */}
           <video
-            ref={videoRef}
-            src={previewUrl}
-            className="w-full aspect-[9/16] max-h-[400px] object-contain"
-            onEnded={() => setIsPlaying(false)}
-            playsInline
-          />
+          ref={videoRef}
+          src={previewUrl}
+          className="w-full aspect-[9/16] max-h-[400px] object-contain"
+          onEnded={() => setIsPlaying(false)}
+          playsInline />
+
 
           {/* Overlay Controls */}
           <div className="absolute inset-0 flex items-center justify-center">
-            {!isUploading && (
-              <button
-                onClick={togglePlayback}
-                className={cn(
-                  "w-16 h-16 rounded-full flex items-center justify-center",
-                  "bg-black/50 text-white backdrop-blur-sm",
-                  "transition-all hover:bg-black/70 hover:scale-110"
-                )}
-              >
-                {isPlaying ? (
-                  <Pause className="w-8 h-8" />
-                ) : (
-                  <Play className="w-8 h-8 ml-1" />
-                )}
+            {!isUploading &&
+          <button
+            onClick={togglePlayback}
+            className={cn(
+              "w-16 h-16 rounded-full flex items-center justify-center",
+              "bg-black/50 text-white backdrop-blur-sm",
+              "transition-all hover:bg-black/70 hover:scale-110"
+            )}>
+
+                {isPlaying ?
+            <Pause className="w-8 h-8" /> :
+
+            <Play className="w-8 h-8 ml-1" />
+            }
               </button>
-            )}
+          }
           </div>
 
           {/* Remove Button */}
-          {!isUploading && (
-            <button
-              onClick={handleRemove}
-              className={cn(
-                "absolute top-3 right-3 p-2 rounded-full",
-                "bg-black/50 text-white backdrop-blur-sm",
-                "transition-all hover:bg-destructive"
-              )}
-            >
+          {!isUploading &&
+        <button
+          onClick={handleRemove}
+          className={cn(
+            "absolute top-3 right-3 p-2 rounded-full",
+            "bg-black/50 text-white backdrop-blur-sm",
+            "transition-all hover:bg-destructive"
+          )}>
+
               <X className="w-4 h-4" />
             </button>
-          )}
+        }
 
           {/* Upload Status Badge */}
           <div className="absolute bottom-3 left-3 right-3">
-            {isUploading && progress && (
-              <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3">
+            {isUploading && progress &&
+          <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <Loader2 className="w-4 h-4 animate-spin text-primary" />
                   <span className="text-sm text-white">
@@ -225,32 +225,32 @@ export const VideoUploader = ({
                 </div>
                 <Progress value={progress.percentage} className="h-1" />
               </div>
-            )}
+          }
 
-            {!isUploading && previewUrl && !previewUrl.startsWith("blob:") && (
-              <div className="inline-flex items-center gap-2 bg-success/20 text-success px-3 py-1.5 rounded-full text-sm">
+            {!isUploading && previewUrl && !previewUrl.startsWith("blob:") &&
+          <div className="inline-flex items-center gap-2 bg-success/20 text-success px-3 py-1.5 rounded-full text-sm">
                 <CheckCircle2 className="w-4 h-4" />
                 Upload complete
               </div>
-            )}
+          }
           </div>
         </div>
-      )}
+      }
 
       {/* Error Display */}
-      {displayError && (
-        <div className="flex items-center gap-2 mt-3 text-destructive text-sm">
+      {displayError &&
+      <div className="flex items-center gap-2 mt-3 text-destructive text-sm">
           <AlertCircle className="w-4 h-4 flex-shrink-0" />
           <span>{displayError}</span>
         </div>
-      )}
+      }
 
       {/* File Requirements */}
-      {!previewUrl && (
-        <p className="text-xs text-muted-foreground mt-3 text-center">
+      {!previewUrl &&
+      <p className="text-xs text-muted-foreground mt-3 text-center">
           For best results, upload vertical video (9:16 aspect ratio)
         </p>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 };

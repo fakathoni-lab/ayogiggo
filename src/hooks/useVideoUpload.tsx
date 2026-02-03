@@ -20,7 +20,7 @@ interface UseVideoUploadReturn {
   isUploading: boolean;
   progress: UploadProgress | null;
   error: string | null;
-  validateFile: (file: File) => { valid: boolean; error?: string };
+  validateFile: (file: File) => {valid: boolean;error?: string;};
 }
 
 export const useVideoUpload = (): UseVideoUploadReturn => {
@@ -30,14 +30,14 @@ export const useVideoUpload = (): UseVideoUploadReturn => {
   const [progress, setProgress] = useState<UploadProgress | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const validateFile = useCallback((file: File): { valid: boolean; error?: string } => {
+  const validateFile = useCallback((file: File): {valid: boolean;error?: string;} => {
     // Check file type
     if (!ALLOWED_TYPES.includes(file.type)) {
       const ext = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
       if (!ALLOWED_EXTENSIONS.includes(ext)) {
         return {
           valid: false,
-          error: `Invalid file type. Allowed formats: ${ALLOWED_EXTENSIONS.join(", ")}`,
+          error: `Invalid file type. Allowed formats: ${ALLOWED_EXTENSIONS.join(", ")}`
         };
       }
     }
@@ -46,7 +46,7 @@ export const useVideoUpload = (): UseVideoUploadReturn => {
     if (file.size > MAX_FILE_SIZE) {
       return {
         valid: false,
-        error: `File too large. Maximum size is 100MB. Your file is ${(file.size / (1024 * 1024)).toFixed(1)}MB`,
+        error: `File too large. Maximum size is 100MB. Your file is ${(file.size / (1024 * 1024)).toFixed(1)}MB`
       };
     }
 
@@ -59,7 +59,7 @@ export const useVideoUpload = (): UseVideoUploadReturn => {
       toast({
         title: "Error",
         description: "You must be logged in to upload videos",
-        variant: "destructive",
+        variant: "destructive"
       });
       return null;
     }
@@ -70,7 +70,7 @@ export const useVideoUpload = (): UseVideoUploadReturn => {
       toast({
         title: "Invalid file",
         description: validation.error,
-        variant: "destructive",
+        variant: "destructive"
       });
       return null;
     }
@@ -94,13 +94,13 @@ export const useVideoUpload = (): UseVideoUploadReturn => {
 
       return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
-        
+
         xhr.upload.addEventListener("progress", (event) => {
           if (event.lengthComputable) {
             setProgress({
               loaded: event.loaded,
               total: event.total,
-              percentage: Math.round((event.loaded / event.total) * 100),
+              percentage: Math.round(event.loaded / event.total * 100)
             });
           }
         });
@@ -108,18 +108,18 @@ export const useVideoUpload = (): UseVideoUploadReturn => {
         xhr.addEventListener("load", async () => {
           if (xhr.status >= 200 && xhr.status < 300) {
             // Get public URL
-            const { data: urlData } = supabase.storage
-              .from(BUCKET_NAME)
-              .getPublicUrl(filePath);
+            const { data: urlData } = supabase.storage.
+            from(BUCKET_NAME).
+            getPublicUrl(filePath);
 
             setIsUploading(false);
             setProgress(null);
-            
+
             toast({
               title: "Upload complete",
-              description: "Your video has been uploaded successfully!",
+              description: "Your video has been uploaded successfully!"
             });
-            
+
             resolve(urlData.publicUrl);
           } else {
             const errorMsg = "Upload failed. Please try again.";
@@ -155,7 +155,7 @@ export const useVideoUpload = (): UseVideoUploadReturn => {
       toast({
         title: "Upload failed",
         description: errorMsg,
-        variant: "destructive",
+        variant: "destructive"
       });
       return null;
     }
@@ -167,15 +167,15 @@ export const useVideoUpload = (): UseVideoUploadReturn => {
       const pathParts = path.split(`${BUCKET_NAME}/`);
       const filePath = pathParts.length > 1 ? pathParts[1] : path;
 
-      const { error: deleteError } = await supabase.storage
-        .from(BUCKET_NAME)
-        .remove([filePath]);
+      const { error: deleteError } = await supabase.storage.
+      from(BUCKET_NAME).
+      remove([filePath]);
 
       if (deleteError) throw deleteError;
 
       toast({
         title: "Video deleted",
-        description: "Your video has been removed.",
+        description: "Your video has been removed."
       });
       return true;
     } catch (err) {
@@ -183,7 +183,7 @@ export const useVideoUpload = (): UseVideoUploadReturn => {
       toast({
         title: "Delete failed",
         description: errorMsg,
-        variant: "destructive",
+        variant: "destructive"
       });
       return false;
     }
@@ -195,6 +195,6 @@ export const useVideoUpload = (): UseVideoUploadReturn => {
     isUploading,
     progress,
     error,
-    validateFile,
+    validateFile
   };
 };

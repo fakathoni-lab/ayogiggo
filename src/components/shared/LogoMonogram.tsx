@@ -12,7 +12,7 @@ interface LogoMonogramProps {
 const sizeConfig = {
   sm: "text-xl",
   md: "text-2xl",
-  lg: "text-3xl",
+  lg: "text-3xl"
 };
 
 const LogoMonogram = React.forwardRef<HTMLDivElement, LogoMonogramProps>(
@@ -30,15 +30,15 @@ const LogoMonogram = React.forwardRef<HTMLDivElement, LogoMonogramProps>(
           <Link to="/">
             <span className={logoClasses}>Giggo</span>
           </Link>
-        </div>
-      );
+        </div>);
+
     }
 
     return (
       <span ref={ref} className={logoClasses}>
         Giggo
-      </span>
-    );
+      </span>);
+
   }
 );
 

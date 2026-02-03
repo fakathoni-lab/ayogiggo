@@ -21,64 +21,64 @@ import {
   ShoppingCart,
   Megaphone,
   Globe,
-  Loader2,
-} from "lucide-react";
+  Loader2 } from
+"lucide-react";
 import { cn } from "@/lib/utils";
 
 const steps = [
-  { title: "Company Info" },
-  { title: "Target Audience" },
-  { title: "Goals" },
-  { title: "Complete" },
-];
+{ title: "Company Info" },
+{ title: "Target Audience" },
+{ title: "Goals" },
+{ title: "Complete" }];
+
 
 const industries = [
-  { value: "tech", label: "Technology" },
-  { value: "fashion", label: "Fashion & Apparel" },
-  { value: "beauty", label: "Beauty & Cosmetics" },
-  { value: "food", label: "Food & Beverage" },
-  { value: "health", label: "Health & Wellness" },
-  { value: "entertainment", label: "Entertainment" },
-  { value: "finance", label: "Finance" },
-  { value: "travel", label: "Travel & Hospitality" },
-  { value: "ecommerce", label: "E-commerce" },
-  { value: "other", label: "Other" },
-];
+{ value: "tech", label: "Technology" },
+{ value: "fashion", label: "Fashion & Apparel" },
+{ value: "beauty", label: "Beauty & Cosmetics" },
+{ value: "food", label: "Food & Beverage" },
+{ value: "health", label: "Health & Wellness" },
+{ value: "entertainment", label: "Entertainment" },
+{ value: "finance", label: "Finance" },
+{ value: "travel", label: "Travel & Hospitality" },
+{ value: "ecommerce", label: "E-commerce" },
+{ value: "other", label: "Other" }];
+
 
 const ageRanges = [
-  { value: "13-17", label: "13-17" },
-  { value: "18-24", label: "18-24" },
-  { value: "25-34", label: "25-34" },
-  { value: "35-44", label: "35-44" },
-  { value: "45-54", label: "45-54" },
-  { value: "55+", label: "55+" },
-];
+{ value: "13-17", label: "13-17" },
+{ value: "18-24", label: "18-24" },
+{ value: "25-34", label: "25-34" },
+{ value: "35-44", label: "35-44" },
+{ value: "45-54", label: "45-54" },
+{ value: "55+", label: "55+" }];
+
 
 const regions = [
-  { value: "us", label: "United States" },
-  { value: "uk", label: "United Kingdom" },
-  { value: "eu", label: "Europe" },
-  { value: "asia", label: "Asia Pacific" },
-  { value: "latam", label: "Latin America" },
-  { value: "global", label: "Global" },
-];
+{ value: "us", label: "United States" },
+{ value: "uk", label: "United Kingdom" },
+{ value: "eu", label: "Europe" },
+{ value: "asia", label: "Asia Pacific" },
+{ value: "latam", label: "Latin America" },
+{ value: "global", label: "Global" }];
+
 
 const goals = [
-  { value: "awareness", label: "Brand Awareness", icon: <Megaphone className="w-5 h-5" />, description: "Increase visibility and recognition" },
-  { value: "engagement", label: "Engagement", icon: <Users className="w-5 h-5" />, description: "Build community and interaction" },
-  { value: "traffic", label: "Website Traffic", icon: <Globe className="w-5 h-5" />, description: "Drive visitors to your site" },
-  { value: "sales", label: "Sales & Conversions", icon: <ShoppingCart className="w-5 h-5" />, description: "Generate revenue and leads" },
-  { value: "ugc", label: "UGC Content", icon: <Target className="w-5 h-5" />, description: "Collect authentic entries" },
-  { value: "growth", label: "Social Growth", icon: <TrendingUp className="w-5 h-5" />, description: "Grow your social following" },
-];
+{ value: "awareness", label: "Brand Awareness", icon: <Megaphone className="w-5 h-5" />, description: "Increase visibility and recognition" },
+{ value: "engagement", label: "Engagement", icon: <Users className="w-5 h-5" />, description: "Build community and interaction" },
+{ value: "traffic", label: "Website Traffic", icon: <Globe className="w-5 h-5" />, description: "Drive visitors to your site" },
+{ value: "sales", label: "Sales & Conversions", icon: <ShoppingCart className="w-5 h-5" />, description: "Generate revenue and leads" },
+{ value: "ugc", label: "UGC Content", icon: <Target className="w-5 h-5" />, description: "Collect authentic entries" },
+{ value: "growth", label: "Social Growth", icon: <TrendingUp className="w-5 h-5" />, description: "Grow your social following" }];
+
 
 const budgetRanges = [
-  { value: "under-1k", label: "Under $1k" },
-  { value: "1k-5k", label: "$1k - $5k" },
-  { value: "5k-10k", label: "$5k - $10k" },
-  { value: "10k-25k", label: "$10k - $25k" },
-  { value: "25k-plus", label: "$25k+" },
-];
+{ value: "under-1k", label: "Under $1k" },
+{ value: "1k-5k", label: "$1k - $5k" },
+{ value: "5k-10k", label: "$5k - $10k" },
+{ value: "10k-25k", label: "$10k - $25k" },
+{ value: "25k-plus", label: "$25k+" }];
+
 
 const BrandOnboarding = () => {
   const navigate = useNavigate();
@@ -114,12 +114,12 @@ const BrandOnboarding = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       if (!user) return;
-      
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("full_name, website")
-        .eq("user_id", user.id)
-        .maybeSingle();
+
+      const { data, error } = await supabase.
+      from("profiles").
+      select("full_name, website").
+      eq("user_id", user.id).
+      maybeSingle();
 
       if (error) {
         console.error("Error fetching profile:", error);
@@ -150,32 +150,32 @@ const BrandOnboarding = () => {
     setIsSaving(true);
     try {
       // Update base profile
-      const { error: profileError } = await supabase
-        .from("profiles")
-        .update({
-          full_name: companyName,
-          website: website,
-        })
-        .eq("user_id", user.id);
+      const { error: profileError } = await supabase.
+      from("profiles").
+      update({
+        full_name: companyName,
+        website: website
+      }).
+      eq("user_id", user.id);
 
       if (profileError) throw profileError;
 
       // Create brand profile
-      const { error: brandError } = await supabase
-        .from("brand_profiles")
-        .upsert(
-          {
-            user_id: user.id,
-            company_name: companyName,
-            company_logo: logo, // This is now a URL from storage
-            industry: selectedIndustry[0] || null,
-            target_age_ranges: selectedAgeRanges,
-            target_regions: selectedRegions,
-            goals: selectedGoals,
-            monthly_budget: selectedBudget[0] || null,
-          },
-          { onConflict: 'user_id' }
-        );
+      const { error: brandError } = await supabase.
+      from("brand_profiles").
+      upsert(
+        {
+          user_id: user.id,
+          company_name: companyName,
+          company_logo: logo, // This is now a URL from storage
+          industry: selectedIndustry[0] || null,
+          target_age_ranges: selectedAgeRanges,
+          target_regions: selectedRegions,
+          goals: selectedGoals,
+          monthly_budget: selectedBudget[0] || null
+        },
+        { onConflict: 'user_id' }
+      );
 
       if (brandError) throw brandError;
 
@@ -209,16 +209,16 @@ const BrandOnboarding = () => {
 
       // 2. Upload to 'public_assets' bucket
       // Note: Ensure you have created a bucket named 'public_assets' in Supabase
-      const { error: uploadError } = await supabase.storage
-        .from('public_assets')
-        .upload(filePath, file);
+      const { error: uploadError } = await supabase.storage.
+      from('public_assets').
+      upload(filePath, file);
 
       if (uploadError) throw uploadError;
 
       // 3. Get Public URL
-      const { data } = supabase.storage
-        .from('public_assets')
-        .getPublicUrl(filePath);
+      const { data } = supabase.storage.
+      from('public_assets').
+      getPublicUrl(filePath);
 
       // 4. Set state
       setLogo(data.publicUrl);
@@ -238,9 +238,9 @@ const BrandOnboarding = () => {
       case 0:
         return companyName.trim().length > 0 && !isUploading; // Prevent next if uploading
       case 1:
-        return true; 
+        return true;
       case 2:
-        return true; 
+        return true;
       default:
         return true;
     }
@@ -259,8 +259,8 @@ const BrandOnboarding = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    );
+      </div>);
+
   }
 
   const renderStep = () => {
@@ -287,37 +287,37 @@ const BrandOnboarding = () => {
                   className={cn(
                     "w-28 h-28 rounded-2xl flex items-center justify-center transition-all",
                     "border-2 border-dashed relative overflow-hidden",
-                    logo
-                      ? "border-transparent"
-                      : "border-muted-foreground/30 hover:border-primary"
-                  )}
-                >
-                  {isUploading ? (
-                    <Loader2 className="w-8 h-8 text-primary animate-spin" />
-                  ) : logo ? (
-                    <img
-                      src={logo}
-                      alt="Logo"
-                      className="w-full h-full rounded-2xl object-contain bg-white p-2"
-                    />
-                  ) : (
-                    <Building2 className="w-10 h-10 text-muted-foreground" />
-                  )}
+                    logo ?
+                    "border-transparent" :
+                    "border-muted-foreground/30 hover:border-primary"
+                  )}>
+
+                  {isUploading ?
+                  <Loader2 className="w-8 h-8 text-primary animate-spin" /> :
+                  logo ?
+                  <img
+                    src={logo}
+                    alt="Logo"
+                    className="w-full h-full rounded-2xl object-contain bg-white p-2" /> :
+
+
+                  <Building2 className="w-10 h-10 text-muted-foreground" />
+                  }
                 </div>
                 
-                {!isUploading && (
-                  <div className="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                {!isUploading &&
+                <div className="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                     <Upload className="w-4 h-4 text-primary-foreground" />
                   </div>
-                )}
+                }
                 
                 <input
                   type="file"
                   accept="image/*"
                   className="hidden"
                   onChange={handleLogoUpload}
-                  disabled={isUploading}
-                />
+                  disabled={isUploading} />
+
               </label>
             </div>
 
@@ -329,8 +329,8 @@ const BrandOnboarding = () => {
                 <Input
                   placeholder="Acme Inc."
                   value={companyName}
-                  onChange={(e) => setCompanyName(e.target.value)}
-                />
+                  onChange={(e) => setCompanyName(e.target.value)} />
+
               </div>
               <div>
                 <label className="text-sm font-medium text-foreground block mb-2">
@@ -339,8 +339,8 @@ const BrandOnboarding = () => {
                 <Input
                   placeholder="https://example.com"
                   value={website}
-                  onChange={(e) => setWebsite(e.target.value)}
-                />
+                  onChange={(e) => setWebsite(e.target.value)} />
+
               </div>
               <div>
                 <label className="text-sm font-medium text-foreground block mb-2">
@@ -350,8 +350,8 @@ const BrandOnboarding = () => {
                   placeholder="Describe your brand and what makes it unique..."
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  rows={3}
-                />
+                  rows={3} />
+
               </div>
               <div>
                 <label className="text-sm font-medium text-foreground block mb-3">
@@ -361,8 +361,8 @@ const BrandOnboarding = () => {
                   categories={industries}
                   selected={selectedIndustry}
                   onChange={setSelectedIndustry}
-                  multiple={false}
-                />
+                  multiple={false} />
+
               </div>
               <div>
                 <label className="text-sm font-medium text-foreground block mb-3">
@@ -372,12 +372,12 @@ const BrandOnboarding = () => {
                   categories={budgetRanges}
                   selected={selectedBudget}
                   onChange={setSelectedBudget}
-                  multiple={false}
-                />
+                  multiple={false} />
+
               </div>
             </div>
-          </div>
-        );
+          </div>);
+
 
       case 1:
         return (
@@ -399,8 +399,8 @@ const BrandOnboarding = () => {
                 <CategoryChipGroup
                   categories={ageRanges}
                   selected={selectedAgeRanges}
-                  onChange={setSelectedAgeRanges}
-                />
+                  onChange={setSelectedAgeRanges} />
+
               </div>
 
               <div>
@@ -410,12 +410,12 @@ const BrandOnboarding = () => {
                 <CategoryChipGroup
                   categories={regions}
                   selected={selectedRegions}
-                  onChange={setSelectedRegions}
-                />
+                  onChange={setSelectedRegions} />
+
               </div>
             </div>
-          </div>
-        );
+          </div>);
+
 
       case 2:
         return (
@@ -444,32 +444,32 @@ const BrandOnboarding = () => {
                     }}
                     className={cn(
                       "flex items-center gap-4 p-4 rounded-xl border transition-all text-left",
-                      isSelected
-                        ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/50"
-                    )}
-                  >
+                      isSelected ?
+                      "border-primary bg-primary/5" :
+                      "border-border hover:border-primary/50"
+                    )}>
+
                     <div
                       className={cn(
                         "w-12 h-12 rounded-xl flex items-center justify-center",
                         isSelected ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
-                      )}
-                    >
+                      )}>
+
                       {goal.icon}
                     </div>
                     <div className="flex-1">
                       <h4 className="font-semibold text-foreground">{goal.label}</h4>
                       <p className="text-sm text-muted-foreground">{goal.description}</p>
                     </div>
-                    {isSelected && (
-                      <Check className="w-5 h-5 text-primary" />
-                    )}
-                  </button>
-                );
+                    {isSelected &&
+                    <Check className="w-5 h-5 text-primary" />
+                    }
+                  </button>);
+
               })}
             </div>
-          </div>
-        );
+          </div>);
+
 
       case 3:
         return (
@@ -489,14 +489,14 @@ const BrandOnboarding = () => {
               <Button
                 size="xl"
                 className="w-full gap-2"
-                onClick={() => navigate("/dashboard/brand/campaigns/new")}
-              >
+                onClick={() => navigate("/dashboard/brand/campaigns/new")}>
+
                 <Target className="w-5 h-5" />
                 Create Your First Gig
               </Button>
             </div>
-          </div>
-        );
+          </div>);
+
     }
   };
 
@@ -522,55 +522,55 @@ const BrandOnboarding = () => {
       </main>
 
       {/* Footer */}
-      {currentStep < steps.length - 1 && (
-        <footer className="sticky bottom-0 bg-background/95 backdrop-blur-lg border-t border-border px-4 py-4">
+      {currentStep < steps.length - 1 &&
+      <footer className="sticky bottom-0 bg-background/95 backdrop-blur-lg border-t border-border px-4 py-4">
           <div className="max-w-lg mx-auto flex gap-3">
-            {currentStep > 0 && (
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={handleBack}
-                className="gap-2"
-              >
+            {currentStep > 0 &&
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={handleBack}
+            className="gap-2">
+
                 <ArrowLeft className="w-4 h-4" />
                 Back
               </Button>
-            )}
+          }
             <Button
-              size="lg"
-              className="flex-1 gap-2"
-              onClick={handleNext}
-              disabled={!isStepValid() || isSaving}
-            >
-              {isSaving ? (
-                <>
+            size="lg"
+            className="flex-1 gap-2"
+            onClick={handleNext}
+            disabled={!isStepValid() || isSaving}>
+
+              {isSaving ?
+            <>
                   <Loader2 className="w-4 h-4 animate-spin" />
                   Saving...
-                </>
-              ) : (
-                <>
+                </> :
+
+            <>
                   {currentStep === steps.length - 2 ? "Complete Setup" : "Continue"}
                   <ArrowRight className="w-4 h-4" />
                 </>
-              )}
+            }
             </Button>
           </div>
-          {currentStep > 0 && currentStep < steps.length - 1 && (
-            <div className="max-w-lg mx-auto text-center pt-2">
+          {currentStep > 0 && currentStep < steps.length - 1 &&
+        <div className="max-w-lg mx-auto text-center pt-2">
               <button
-                type="button"
-                onClick={handleSkip}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                disabled={isSaving}
-              >
+            type="button"
+            onClick={handleSkip}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            disabled={isSaving}>
+
                 Skip for now
               </button>
             </div>
-          )}
+        }
         </footer>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 };
 
 export default BrandOnboarding;

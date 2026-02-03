@@ -10,10 +10,10 @@ import { ConfettiCelebration } from "@/components/shared/ConfettiCelebration";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  Camera, 
+import {
+  ArrowLeft,
+  ArrowRight,
+  Camera,
   Upload,
   Sparkles,
   Check,
@@ -31,24 +31,24 @@ import {
 import { cn } from "@/lib/utils";
 
 const steps = [
-  { title: "Personal Info" },
-  { title: "Connect Social" },
-  { title: "Your Niche" },
-  { title: "Portfolio" },
-  { title: "Complete" },
-];
+{ title: "Personal Info" },
+{ title: "Connect Social" },
+{ title: "Your Niche" },
+{ title: "Portfolio" },
+{ title: "Complete" }];
+
 
 const categories = [
-  { value: "lifestyle", label: "Lifestyle", icon: <Sparkles className="w-4 h-4" /> },
-  { value: "music", label: "Music", icon: <Music className="w-4 h-4" /> },
-  { value: "gaming", label: "Gaming", icon: <Gamepad2 className="w-4 h-4" /> },
-  { value: "food", label: "Food & Drink", icon: <Utensils className="w-4 h-4" /> },
-  { value: "fitness", label: "Fitness", icon: <Dumbbell className="w-4 h-4" /> },
-  { value: "beauty", label: "Beauty", icon: <Palette className="w-4 h-4" /> },
-  { value: "education", label: "Education", icon: <BookOpen className="w-4 h-4" /> },
-  { value: "travel", label: "Travel", icon: <Plane className="w-4 h-4" /> },
-  { value: "fashion", label: "Fashion", icon: <ShoppingBag className="w-4 h-4" /> },
-];
+{ value: "lifestyle", label: "Lifestyle", icon: <Sparkles className="w-4 h-4" /> },
+{ value: "music", label: "Music", icon: <Music className="w-4 h-4" /> },
+{ value: "gaming", label: "Gaming", icon: <Gamepad2 className="w-4 h-4" /> },
+{ value: "food", label: "Food & Drink", icon: <Utensils className="w-4 h-4" /> },
+{ value: "fitness", label: "Fitness", icon: <Dumbbell className="w-4 h-4" /> },
+{ value: "beauty", label: "Beauty", icon: <Palette className="w-4 h-4" /> },
+{ value: "education", label: "Education", icon: <BookOpen className="w-4 h-4" /> },
+{ value: "travel", label: "Travel", icon: <Plane className="w-4 h-4" /> },
+{ value: "fashion", label: "Fashion", icon: <ShoppingBag className="w-4 h-4" /> }];
+
 
 interface SocialConnection {
   platform: "tiktok" | "instagram" | "youtube" | "twitter";
@@ -64,7 +64,7 @@ const CreatorOnboarding = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [isUploading, setIsUploading] = useState(false); // New state for upload status
-  
+
   // Form state
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -73,11 +73,11 @@ const CreatorOnboarding = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [portfolioItems, setPortfolioItems] = useState<string[]>([]);
   const [socialConnections, setSocialConnections] = useState<SocialConnection[]>([
-    { platform: "tiktok", connected: false },
-    { platform: "instagram", connected: false },
-    { platform: "youtube", connected: false },
-    { platform: "twitter", connected: false },
-  ]);
+  { platform: "tiktok", connected: false },
+  { platform: "instagram", connected: false },
+  { platform: "youtube", connected: false },
+  { platform: "twitter", connected: false }]
+  );
 
   // Redirect if not authenticated or wrong role
   useEffect(() => {
@@ -94,12 +94,12 @@ const CreatorOnboarding = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       if (!user) return;
-      
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("full_name, username, bio, avatar_url")
-        .eq("user_id", user.id)
-        .maybeSingle();
+
+      const { data, error } = await supabase.
+      from("profiles").
+      select("full_name, username, bio, avatar_url").
+      eq("user_id", user.id).
+      maybeSingle();
 
       if (error) {
         console.error("Error fetching profile:", error);
@@ -126,16 +126,16 @@ const CreatorOnboarding = () => {
     const filePath = `${folder}/${fileName}`;
 
     // Upload file
-    const { error: uploadError } = await supabase.storage
-      .from('public_assets') // Pastikan bucket 'public_assets' ada & public
-      .upload(filePath, file);
+    const { error: uploadError } = await supabase.storage.
+    from('public_assets') // Pastikan bucket 'public_assets' ada & public
+    .upload(filePath, file);
 
     if (uploadError) throw uploadError;
 
     // Get public URL
-    const { data } = supabase.storage
-      .from('public_assets')
-      .getPublicUrl(filePath);
+    const { data } = supabase.storage.
+    from('public_assets').
+    getPublicUrl(filePath);
 
     return data.publicUrl;
   };
@@ -156,30 +156,30 @@ const CreatorOnboarding = () => {
     setIsSaving(true);
     try {
       // Update base profile
-      const { error: profileError } = await supabase
-        .from("profiles")
-        .update({
-          full_name: name,
-          username: username,
-          bio: bio,
-          avatar_url: profileImage,
-        })
-        .eq("user_id", user.id);
+      const { error: profileError } = await supabase.
+      from("profiles").
+      update({
+        full_name: name,
+        username: username,
+        bio: bio,
+        avatar_url: profileImage
+      }).
+      eq("user_id", user.id);
 
       if (profileError) throw profileError;
 
       // Create creator profile
-      const { error: creatorError } = await supabase
-        .from("creator_profiles")
-        .upsert(
-          {
-            user_id: user.id,
-            categories: selectedCategories,
-            portfolio_items: portfolioItems,
-            social_connections: JSON.stringify(socialConnections.filter(s => s.connected)),
-          },
-          { onConflict: 'user_id' }
-        );
+      const { error: creatorError } = await supabase.
+      from("creator_profiles").
+      upsert(
+        {
+          user_id: user.id,
+          categories: selectedCategories,
+          portfolio_items: portfolioItems,
+          social_connections: JSON.stringify(socialConnections.filter((s) => s.connected))
+        },
+        { onConflict: 'user_id' }
+      );
 
       if (creatorError) throw creatorError;
 
@@ -206,21 +206,21 @@ const CreatorOnboarding = () => {
 
   const handleDisconnectSocial = (platform: SocialConnection["platform"]) => {
     setSocialConnections((prev) =>
-      prev.map((s) =>
-        s.platform === platform
-          ? { ...s, connected: false, username: undefined, followers: undefined }
-          : s
-      )
+    prev.map((s) =>
+    s.platform === platform ?
+    { ...s, connected: false, username: undefined, followers: undefined } :
+    s
+    )
     );
   };
 
   const handleManualHandleChange = (platform: SocialConnection["platform"], handle: string) => {
     setSocialConnections((prev) =>
-      prev.map((s) =>
-        s.platform === platform
-          ? { ...s, username: handle, connected: handle.length > 0 }
-          : s
-      )
+    prev.map((s) =>
+    s.platform === platform ?
+    { ...s, username: handle, connected: handle.length > 0 } :
+    s
+    )
     );
   };
 
@@ -296,8 +296,8 @@ const CreatorOnboarding = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    );
+      </div>);
+
   }
 
   const renderStep = () => {
@@ -324,37 +324,37 @@ const CreatorOnboarding = () => {
                   className={cn(
                     "w-28 h-28 rounded-full flex items-center justify-center transition-all bg-muted overflow-hidden",
                     "border-2 border-dashed",
-                    profileImage
-                      ? "border-transparent"
-                      : "border-muted-foreground/30 hover:border-primary"
-                  )}
-                >
-                  {isUploading ? (
-                    <Loader2 className="w-8 h-8 text-primary animate-spin" />
-                  ) : profileImage ? (
-                    <img
-                      src={profileImage}
-                      alt="Profile"
-                      className="w-full h-full rounded-full object-cover"
-                    />
-                  ) : (
-                    <Camera className="w-8 h-8 text-muted-foreground" />
-                  )}
+                    profileImage ?
+                    "border-transparent" :
+                    "border-muted-foreground/30 hover:border-primary"
+                  )}>
+
+                  {isUploading ?
+                  <Loader2 className="w-8 h-8 text-primary animate-spin" /> :
+                  profileImage ?
+                  <img
+                    src={profileImage}
+                    alt="Profile"
+                    className="w-full h-full rounded-full object-cover" /> :
+
+
+                  <Camera className="w-8 h-8 text-muted-foreground" />
+                  }
                 </div>
                 
-                {!isUploading && (
-                  <div className="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                {!isUploading &&
+                <div className="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                     <Camera className="w-4 h-4 text-primary-foreground" />
                   </div>
-                )}
+                }
                 
                 <input
                   type="file"
                   accept="image/*"
                   className="hidden"
                   onChange={handleImageUpload}
-                  disabled={isUploading}
-                />
+                  disabled={isUploading} />
+
               </label>
             </div>
 
@@ -366,8 +366,8 @@ const CreatorOnboarding = () => {
                 <Input
                   placeholder="John Doe"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
+                  onChange={(e) => setName(e.target.value)} />
+
               </div>
               <div>
                 <label className="text-sm font-medium text-foreground block mb-2">
@@ -381,8 +381,8 @@ const CreatorOnboarding = () => {
                     className="pl-8"
                     placeholder="johndoe"
                     value={username}
-                    onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))}
-                  />
+                    onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))} />
+
                 </div>
               </div>
               <div>
@@ -393,12 +393,12 @@ const CreatorOnboarding = () => {
                   placeholder="Tell brands about yourself..."
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
-                  rows={3}
-                />
+                  rows={3} />
+
               </div>
             </div>
-          </div>
-        );
+          </div>);
+
 
       case 1:
         return (
@@ -413,34 +413,34 @@ const CreatorOnboarding = () => {
             </div>
 
             <div className="space-y-4">
-              {socialConnections.map((connection) => (
-                <div key={connection.platform} className="space-y-2">
+              {socialConnections.map((connection) =>
+              <div key={connection.platform} className="space-y-2">
                   <SocialConnectCard
-                    platform={connection.platform}
-                    isConnected={connection.connected} // Removed random follower check logic for clarity
-                    username={connection.username}
-                    followers={connection.followers}
-                    onConnect={() => handleConnectSocial(connection.platform)}
-                    onDisconnect={() => handleDisconnectSocial(connection.platform)}
-                  />
-                  {!connection.connected && (
-                    <div className="pl-4">
+                  platform={connection.platform}
+                  isConnected={connection.connected} // Removed random follower check logic for clarity
+                  username={connection.username}
+                  followers={connection.followers}
+                  onConnect={() => handleConnectSocial(connection.platform)}
+                  onDisconnect={() => handleDisconnectSocial(connection.platform)} />
+
+                  {!connection.connected &&
+                <div className="pl-4">
                       <Input
-                        placeholder={`@your_${connection.platform}_handle`}
-                        className="text-sm"
-                        value={connection.username || ""}
-                        onChange={(e) => handleManualHandleChange(connection.platform, e.target.value)}
-                      />
+                    placeholder={`@your_${connection.platform}_handle`}
+                    className="text-sm"
+                    value={connection.username || ""}
+                    onChange={(e) => handleManualHandleChange(connection.platform, e.target.value)} />
+
                       <p className="text-xs text-muted-foreground mt-1">
                         Can't connect? Enter your handle manually
                       </p>
                     </div>
-                  )}
+                }
                 </div>
-              ))}
+              )}
             </div>
-          </div>
-        );
+          </div>);
+
 
       case 2:
         return (
@@ -458,16 +458,16 @@ const CreatorOnboarding = () => {
               categories={categories}
               selected={selectedCategories}
               onChange={setSelectedCategories}
-              className="justify-center"
-            />
+              className="justify-center" />
 
-            {selectedCategories.length > 0 && (
-              <p className="text-center text-sm text-muted-foreground">
+
+            {selectedCategories.length > 0 &&
+            <p className="text-center text-sm text-muted-foreground">
                 {selectedCategories.length} categories selected
               </p>
-            )}
-          </div>
-        );
+            }
+          </div>);
+
 
       case 3:
         return (
@@ -482,52 +482,52 @@ const CreatorOnboarding = () => {
             </div>
 
             <div className="grid grid-cols-3 gap-3">
-              {portfolioItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="aspect-square rounded-xl bg-muted overflow-hidden relative group"
-                >
+              {portfolioItems.map((item, index) =>
+              <div
+                key={index}
+                className="aspect-square rounded-xl bg-muted overflow-hidden relative group">
+
                   <img
-                    src={item}
-                    alt={`Portfolio ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
+                  src={item}
+                  alt={`Portfolio ${index + 1}`}
+                  className="w-full h-full object-cover" />
+
                   {/* Delete Button */}
                   <button
-                    onClick={() => handleRemovePortfolioItem(index)}
-                    className="absolute top-1 right-1 bg-black/50 hover:bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-all"
-                  >
+                  onClick={() => handleRemovePortfolioItem(index)}
+                  className="absolute top-1 right-1 bg-black/50 hover:bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-all">
+
                     <X className="w-3 h-3" />
                   </button>
                 </div>
-              ))}
+              )}
               
               {/* Upload Button */}
-              {portfolioItems.length < 6 && (
-                <label className={cn(
-                  "aspect-square rounded-xl border-2 border-dashed border-muted-foreground/30 flex flex-col items-center justify-center gap-2 hover:border-primary hover:bg-accent transition-all cursor-pointer",
-                  isUploading && "pointer-events-none opacity-50"
-                )}>
-                  {isUploading ? (
-                    <Loader2 className="w-6 h-6 animate-spin text-primary" />
-                  ) : (
-                    <>
+              {portfolioItems.length < 6 &&
+              <label className={cn(
+                "aspect-square rounded-xl border-2 border-dashed border-muted-foreground/30 flex flex-col items-center justify-center gap-2 hover:border-primary hover:bg-accent transition-all cursor-pointer",
+                isUploading && "pointer-events-none opacity-50"
+              )}>
+                  {isUploading ?
+                <Loader2 className="w-6 h-6 animate-spin text-primary" /> :
+
+                <>
                       <Upload className="w-6 h-6 text-muted-foreground" />
                       <span className="text-xs text-muted-foreground">Upload</span>
                     </>
-                  )}
-                  <input 
-                    type="file" 
-                    accept="image/*" 
-                    className="hidden" 
-                    onChange={handlePortfolioUpload} 
-                    disabled={isUploading}
-                  />
+                }
+                  <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handlePortfolioUpload}
+                  disabled={isUploading} />
+
                 </label>
-              )}
+              }
             </div>
-          </div>
-        );
+          </div>);
+
 
       case 4:
         return (
@@ -547,14 +547,14 @@ const CreatorOnboarding = () => {
               <Button
                 size="xl"
                 className="w-full gap-2"
-                onClick={() => navigate("/campaigns")}
-              >
+                onClick={() => navigate("/campaigns")}>
+
                 <Sparkles className="w-5 h-5" />
                 Explore Gigs
               </Button>
             </div>
-          </div>
-        );
+          </div>);
+
     }
   };
 
@@ -580,56 +580,56 @@ const CreatorOnboarding = () => {
       </main>
 
       {/* Footer */}
-      {currentStep < steps.length - 1 && (
-        <footer className="sticky bottom-0 bg-background/95 backdrop-blur-lg border-t border-border px-4 py-4">
+      {currentStep < steps.length - 1 &&
+      <footer className="sticky bottom-0 bg-background/95 backdrop-blur-lg border-t border-border px-4 py-4">
           <div className="max-w-lg mx-auto flex gap-3">
-            {currentStep > 0 && (
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={handleBack}
-                className="gap-2"
-                disabled={isSaving || isUploading}
-              >
+            {currentStep > 0 &&
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={handleBack}
+            className="gap-2"
+            disabled={isSaving || isUploading}>
+
                 <ArrowLeft className="w-4 h-4" />
                 Back
               </Button>
-            )}
+          }
             <Button
-              size="lg"
-              className="flex-1 gap-2"
-              onClick={handleNext}
-              disabled={!isStepValid() || isSaving}
-            >
-              {isSaving ? (
-                <>
+            size="lg"
+            className="flex-1 gap-2"
+            onClick={handleNext}
+            disabled={!isStepValid() || isSaving}>
+
+              {isSaving ?
+            <>
                   <Loader2 className="w-4 h-4 animate-spin" />
                   Saving...
-                </>
-              ) : (
-                <>
+                </> :
+
+            <>
                   {currentStep === steps.length - 2 ? "Complete Setup" : "Continue"}
                   <ArrowRight className="w-4 h-4" />
                 </>
-              )}
+            }
             </Button>
           </div>
-          {currentStep > 0 && currentStep < steps.length - 1 && (
-            <div className="max-w-lg mx-auto text-center pt-2">
+          {currentStep > 0 && currentStep < steps.length - 1 &&
+        <div className="max-w-lg mx-auto text-center pt-2">
               <button
-                type="button"
-                onClick={handleSkip}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                disabled={isSaving || isUploading}
-              >
+            type="button"
+            onClick={handleSkip}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            disabled={isSaving || isUploading}>
+
                 Skip for now
               </button>
             </div>
-          )}
+        }
         </footer>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 };
 
 export default CreatorOnboarding;

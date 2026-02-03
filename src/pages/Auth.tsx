@@ -29,11 +29,11 @@ const Auth = () => {
   const [selectedRole, setSelectedRole] = useState<UserRole>(initialRole);
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errors, setErrors] = useState<{ name?: string; email?: string; password?: string }>({});
+  const [errors, setErrors] = useState<{name?: string;email?: string;password?: string;}>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: "",
+    password: ""
   });
 
   // Redirect if already logged in
@@ -53,8 +53,8 @@ const Auth = () => {
   }, [user, role, hasCompletedOnboarding, authLoading, navigate]);
 
   const validateForm = () => {
-    const newErrors: { name?: string; email?: string; password?: string } = {};
-    
+    const newErrors: {name?: string;email?: string;password?: string;} = {};
+
     if (mode === "register") {
       const nameResult = nameSchema.safeParse(formData.name);
       if (!nameResult.success) {
@@ -78,7 +78,7 @@ const Auth = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     setIsSubmitting(true);
@@ -86,7 +86,7 @@ const Auth = () => {
     try {
       if (mode === "register") {
         const { error } = await signUp(formData.email, formData.password, formData.name, selectedRole);
-        
+
         if (error) {
           // Enhanced error handling for security policies
           if (error.message.includes("been exposed") || error.message.includes("data breach") || error.message.includes("leaked")) {
@@ -105,7 +105,7 @@ const Auth = () => {
         // Navigation will be handled by useEffect
       } else {
         const { error } = await signIn(formData.email, formData.password);
-        
+
         if (error) {
           if (error.message.includes("Invalid login credentials")) {
             toast.error("Invalid email or password");
@@ -127,8 +127,8 @@ const Auth = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    );
+      </div>);
+
   }
 
   return (
@@ -144,8 +144,8 @@ const Auth = () => {
           {/* Back Link */}
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
-          >
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8">
+
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
@@ -160,26 +160,26 @@ const Auth = () => {
             {mode === "login" ? "Welcome Back!" : "Create Account"}
           </h1>
           <p className="text-muted-foreground mb-8">
-            {mode === "login"
-              ? "Log in to continue to your hub."
-              : "Join Giggo and start earning from your content."}
+            {mode === "login" ?
+            "Log in to continue to your hub." :
+            "Join Giggo and start earning from your content."}
           </p>
 
           {/* Role Selector (Register only) */}
-          {mode === "register" && (
-            <div className="grid grid-cols-2 gap-3 mb-6">
+          {mode === "register" &&
+          <div className="grid grid-cols-2 gap-3 mb-6">
               <button
-                type="button"
-                onClick={() => setSelectedRole("creator")}
-                className={`flex items-center gap-3 p-4 rounded-xl border-2 transition-all ${
-                  selectedRole === "creator"
-                    ? "border-primary bg-primary/5"
-                    : "border-border hover:border-primary/50"
-                }`}
-              >
+              type="button"
+              onClick={() => setSelectedRole("creator")}
+              className={`flex items-center gap-3 p-4 rounded-xl border-2 transition-all ${
+              selectedRole === "creator" ?
+              "border-primary bg-primary/5" :
+              "border-border hover:border-primary/50"}`
+              }>
+
                 <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                  selectedRole === "creator" ? "gradient-primary" : "bg-muted"
-                }`}>
+              selectedRole === "creator" ? "gradient-primary" : "bg-muted"}`
+              }>
                   <Video className={`w-5 h-5 ${selectedRole === "creator" ? "text-primary-foreground" : "text-muted-foreground"}`} />
                 </div>
                 <div className="text-left">
@@ -189,17 +189,17 @@ const Auth = () => {
               </button>
 
               <button
-                type="button"
-                onClick={() => setSelectedRole("brand")}
-                className={`flex items-center gap-3 p-4 rounded-xl border-2 transition-all ${
-                  selectedRole === "brand"
-                    ? "border-primary bg-primary/5"
-                    : "border-border hover:border-primary/50"
-                }`}
-              >
+              type="button"
+              onClick={() => setSelectedRole("brand")}
+              className={`flex items-center gap-3 p-4 rounded-xl border-2 transition-all ${
+              selectedRole === "brand" ?
+              "border-primary bg-primary/5" :
+              "border-border hover:border-primary/50"}`
+              }>
+
                 <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                  selectedRole === "brand" ? "gradient-primary" : "bg-muted"
-                }`}>
+              selectedRole === "brand" ? "gradient-primary" : "bg-muted"}`
+              }>
                   <Building2 className={`w-5 h-5 ${selectedRole === "brand" ? "text-primary-foreground" : "text-muted-foreground"}`} />
                 </div>
                 <div className="text-left">
@@ -208,32 +208,32 @@ const Auth = () => {
                 </div>
               </button>
             </div>
-          )}
+          }
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
-            {mode === "register" && (
-              <div>
+            {mode === "register" &&
+            <div>
                 <Label htmlFor="name" className="text-foreground">
                   {selectedRole === "brand" ? "Company Name" : "Full Name"}
                 </Label>
                 <div className="relative mt-1.5">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <Input
-                    id="name"
-                    type="text"
-                    placeholder={selectedRole === "brand" ? "Your company name" : "Your full name"}
-                    className={`pl-10 ${errors.name ? "border-destructive" : ""}`}
-                    value={formData.name}
-                    onChange={(e) => {
-                      setFormData({ ...formData, name: e.target.value });
-                      if (errors.name) setErrors({ ...errors, name: undefined });
-                    }}
-                  />
+                  id="name"
+                  type="text"
+                  placeholder={selectedRole === "brand" ? "Your company name" : "Your full name"}
+                  className={`pl-10 ${errors.name ? "border-destructive" : ""}`}
+                  value={formData.name}
+                  onChange={(e) => {
+                    setFormData({ ...formData, name: e.target.value });
+                    if (errors.name) setErrors({ ...errors, name: undefined });
+                  }} />
+
                 </div>
                 {errors.name && <p className="text-sm text-destructive mt-1">{errors.name}</p>}
               </div>
-            )}
+            }
 
             <div>
               <Label htmlFor="email" className="text-foreground">Email</Label>
@@ -248,8 +248,8 @@ const Auth = () => {
                   onChange={(e) => {
                     setFormData({ ...formData, email: e.target.value });
                     if (errors.email) setErrors({ ...errors, email: undefined });
-                  }}
-                />
+                  }} />
+
               </div>
               {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
             </div>
@@ -267,82 +267,82 @@ const Auth = () => {
                   onChange={(e) => {
                     setFormData({ ...formData, password: e.target.value });
                     if (errors.password) setErrors({ ...errors, password: undefined });
-                  }}
-                />
+                  }} />
+
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
               {errors.password && <p className="text-sm text-destructive mt-1">{errors.password}</p>}
             </div>
 
-            {mode === "login" && (
-              <div className="text-right">
-                <button 
-                  type="button" 
-                  className="text-sm text-primary hover:underline"
-                  onClick={async () => {
-                    if (!formData.email) {
-                      toast.error("Please enter your email first");
-                      return;
-                    }
-                    
-                    const { error } = await supabase.auth.resetPasswordForEmail(
-                      formData.email,
-                      { redirectTo: `${window.location.origin}/auth?mode=reset` }
-                    );
-                    
-                    if (error) {
-                      toast.error(error.message);
-                    } else {
-                      toast.success("Password reset link sent to your email");
-                    }
-                  }}
-                >
+            {mode === "login" &&
+            <div className="text-right">
+                <button
+                type="button"
+                className="text-sm text-primary hover:underline"
+                onClick={async () => {
+                  if (!formData.email) {
+                    toast.error("Please enter your email first");
+                    return;
+                  }
+
+                  const { error } = await supabase.auth.resetPasswordForEmail(
+                    formData.email,
+                    { redirectTo: `${window.location.origin}/auth?mode=reset` }
+                  );
+
+                  if (error) {
+                    toast.error(error.message);
+                  } else {
+                    toast.success("Password reset link sent to your email");
+                  }
+                }}>
+
                   Forgot password?
                 </button>
               </div>
-            )}
+            }
 
             <Button type="submit" variant="hero" className="w-full" size="lg" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <>
+              {isSubmitting ?
+              <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   {mode === "login" ? "Signing in..." : "Creating account..."}
-                </>
-              ) : (
-                mode === "login" ? "Log In" : "Create Account"
-              )}
+                </> :
+
+              mode === "login" ? "Log In" : "Create Account"
+              }
             </Button>
           </form>
 
           {/* Toggle Mode */}
           <p className="text-center text-muted-foreground mt-8">
-            {mode === "login" ? (
-              <>
+            {mode === "login" ?
+            <>
                 Don't have an account?{" "}
                 <button
-                  onClick={() => setMode("register")}
-                  className="text-primary font-semibold hover:underline"
-                >
+                onClick={() => setMode("register")}
+                className="text-primary font-semibold hover:underline">
+
                   Sign Up
                 </button>
-              </>
-            ) : (
-              <>
+              </> :
+
+            <>
                 Already have an account?{" "}
                 <button
-                  onClick={() => setMode("login")}
-                  className="text-primary font-semibold hover:underline"
-                >
+                onClick={() => setMode("login")}
+                className="text-primary font-semibold hover:underline">
+
                   Log In
                 </button>
               </>
-            )}
+            }
           </p>
         </div>
       </div>
@@ -359,19 +359,19 @@ const Auth = () => {
             <LogoMonogram size="lg" variant="light" asLink={false} />
           </div>
           <h2 className="font-display text-4xl font-bold mb-4">
-            {selectedRole === "brand"
-              ? "Launch Gigs That Go Viral"
-              : "Turn Your Content Into Income"}
+            {selectedRole === "brand" ?
+            "Launch Gigs That Go Viral" :
+            "Turn Your Content Into Income"}
           </h2>
           <p className="text-white/80 text-lg">
-            {selectedRole === "brand"
-              ? "Create challenges that connect your brand with authentic content creators."
-              : "Join gigs from top brands and get paid doing what you love."}
+            {selectedRole === "brand" ?
+            "Create challenges that connect your brand with authentic content creators." :
+            "Join gigs from top brands and get paid doing what you love."}
           </p>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Auth;

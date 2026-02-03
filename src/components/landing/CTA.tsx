@@ -7,7 +7,7 @@ import { useRole } from "@/contexts/RoleContext";
 const CTA = () => {
   const { t } = useTranslation();
   const { activeRole } = useRole();
-  
+
   const isBrand = activeRole === "brands";
 
   return (
@@ -37,22 +37,22 @@ const CTA = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button 
-                size="xl" 
+              <Button
+                size="xl"
                 className="bg-white text-primary hover:bg-white/90 shadow-lg"
-                asChild
-              >
+                asChild>
+
                 <Link to={`/auth?mode=register&role=${isBrand ? "brand" : "creator"}`}>
                   {isBrand ? t('cta.brandPrimary', { defaultValue: t('cta.primary') }) : t('cta.primary')}
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="xl"
                 className="border-white/30 text-white hover:bg-white/10 hover:text-white"
-                asChild
-              >
+                asChild>
+
                 <Link to="/campaigns">
                   {t('cta.secondary')}
                 </Link>
@@ -61,8 +61,8 @@ const CTA = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default CTA;

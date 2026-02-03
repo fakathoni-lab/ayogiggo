@@ -15,8 +15,8 @@ interface AuthContextType {
   role: AppRole | null;
   isLoading: boolean;
   hasCompletedOnboarding: boolean;
-  signUp: (email: string, password: string, name: string, role: AppRole) => Promise<{ error: Error | null }>;
-  signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
+  signUp: (email: string, password: string, name: string, role: AppRole) => Promise<{error: Error | null;}>;
+  signIn: (email: string, password: string) => Promise<{error: Error | null;}>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
 }
@@ -36,7 +36,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 // PROVIDER COMPONENT
 // ============================================================================
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider = ({ children }: {children: ReactNode;}) => {
   // State Management
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
@@ -53,17 +53,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
    * Returns structured result instead of just updating state
    */
   const checkProfileCompletion = async (
-    userId: string, 
-    userRole: AppRole
-  ): Promise<ProfileCheckResult> => {
+  userId: string,
+  userRole: AppRole)
+  : Promise<ProfileCheckResult> => {
     try {
       const tableName = userRole === 'brand' ? 'brand_profiles' : 'creator_profiles';
-      
-      const { data, error } = await supabase
-        .from(tableName)
-        .select('id')
-        .eq('user_id', userId)
-        .maybeSingle(); // Use maybeSingle() instead of single() to avoid errors when no rows exist
+
+      const { data, error } = await supabase.
+      from(tableName).
+      select('id').
+      eq('user_id', userId).
+      maybeSingle(); // Use maybeSingle() instead of single() to avoid errors when no rows exist
 
       if (error) {
         console.error(`Error checking ${userRole} profile:`, error);
@@ -73,8 +73,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return { hasProfile: !!data };
     } catch (error) {
       console.error('Unexpected error in checkProfileCompletion:', error);
-      return { 
-        hasProfile: false, 
+      return {
+        hasProfile: false,
         error: error instanceof Error ? error : new Error('Unknown error occurred')
       };
     }
@@ -87,11 +87,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const fetchUserData = async (userId: string): Promise<void> => {
     try {
       // Fetch role from database
-      const { data: roleData, error: roleError } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', userId)
-        .maybeSingle();
+      const { data: roleData, error: roleError } = await supabase.
+      from('user_roles').
+      select('role').
+      eq('user_id', userId).
+      maybeSingle();
 
       if (roleError) {
         console.error('Error fetching user role:', roleError);
@@ -161,7 +161,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       try {
         // Get current session
         const { data: { session }, error } = await supabase.auth.getSession();
-        
+
         if (error) {
           console.error('Error getting session:', error);
           if (mounted) {
@@ -174,7 +174,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         setSession(session);
         setUser(session?.user ?? null);
-        
+
         if (session?.user) {
           await fetchUserData(session.user.id);
         }
@@ -201,7 +201,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         setSession(session);
         setUser(session?.user ?? null);
-        
+
         if (session?.user) {
           // Show loading during auth transitions
           setIsLoading(true);
@@ -230,11 +230,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
    * Sign up a new user with email, password, name, and role
    */
   const signUp = async (
-    email: string, 
-    password: string, 
-    name: string, 
-    selectedRole: AppRole
-  ): Promise<{ error: Error | null }> => {
+  email: string,
+  password: string,
+  name: string,
+  selectedRole: AppRole)
+  : Promise<{error: Error | null;}> => {
     try {
       // Validate inputs
       if (!email || !password || !name || !selectedRole) {
@@ -246,7 +246,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       const redirectUrl = `${window.location.origin}/`;
-      
+
       // Sign up user
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -266,18 +266,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       // Create user role entry
-      const { error: roleError } = await supabase
-        .from('user_roles')
-        .insert({ 
-          user_id: data.user.id, 
-          role: selectedRole 
-        });
+      const { error: roleError } = await supabase.
+      from('user_roles').
+      insert({
+        user_id: data.user.id,
+        role: selectedRole
+      });
 
       if (roleError) {
         console.error('Error creating user role:', roleError);
         return { error: roleError };
       }
-      
+
       // Update local state for immediate UI responsiveness
       setRole(selectedRole);
       setHasCompletedOnboarding(false); // New users haven't completed onboarding
@@ -285,7 +285,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return { error: null };
     } catch (error) {
       console.error('Signup error:', error);
-      return { 
+      return {
         error: error instanceof Error ? error : new Error('An unexpected error occurred during sign up')
       };
     }
@@ -295,9 +295,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
    * Sign in an existing user
    */
   const signIn = async (
-    email: string, 
-    password: string
-  ): Promise<{ error: Error | null }> => {
+  email: string,
+  password: string)
+  : Promise<{error: Error | null;}> => {
     try {
       // Validate inputs
       if (!email || !password) {
@@ -306,7 +306,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       const { error } = await supabase.auth.signInWithPassword({
         email,
-        password,
+        password
       });
 
       if (error) {
@@ -317,7 +317,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return { error: null };
     } catch (error) {
       console.error('Signin error:', error);
-      return { 
+      return {
         error: error instanceof Error ? error : new Error('An unexpected error occurred during sign in')
       };
     }
@@ -331,12 +331,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       // Pre-emptively clear local state for immediate UI feedback
       resetAuthState();
-      
+
       // Clear any cached role from localStorage
       localStorage.removeItem('giggo_active_role');
-      
+
       const { error } = await supabase.auth.signOut({ scope: 'global' });
-      
+
       if (error) {
         throw error;
       }
@@ -362,14 +362,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     signUp,
     signIn,
     signOut,
-    refreshProfile,
+    refreshProfile
   };
 
   return (
     <AuthContext.Provider value={contextValue}>
       {children}
-    </AuthContext.Provider>
-  );
+    </AuthContext.Provider>);
+
 };
 
 // ============================================================================
@@ -382,10 +382,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
  */
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
-  
+
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
-  
+
   return context;
 };

@@ -7,27 +7,27 @@ import type { Database } from "@/integrations/supabase/types";
 
 type ShippingStatus = Database["public"]["Enums"]["shipping_status"];
 
-const shippingStatusConfig: Record<ShippingStatus, { label: string; className: string }> = {
+const shippingStatusConfig: Record<ShippingStatus, {label: string;className: string;}> = {
   needs_address: {
     label: "Needs Address",
-    className: "bg-warning/10 text-warning border-warning/20",
+    className: "bg-warning/10 text-warning border-warning/20"
   },
   processing: {
     label: "Processing",
-    className: "bg-muted text-muted-foreground border-border",
+    className: "bg-muted text-muted-foreground border-border"
   },
   shipped: {
     label: "Shipped",
-    className: "bg-info/10 text-info border-info/20",
+    className: "bg-info/10 text-info border-info/20"
   },
   delivered: {
     label: "Delivered",
-    className: "bg-success/10 text-success border-success/20",
+    className: "bg-success/10 text-success border-success/20"
   },
   issue: {
     label: "Issue",
-    className: "bg-destructive/10 text-destructive border-destructive/20",
-  },
+    className: "bg-destructive/10 text-destructive border-destructive/20"
+  }
 };
 
 interface OrderCardProps {
@@ -37,9 +37,9 @@ interface OrderCardProps {
 }
 
 export const OrderCard = ({ application, onShipClick, variant = "physical" }: OrderCardProps) => {
-  const statusConfig = application.shipping_status 
-    ? shippingStatusConfig[application.shipping_status] 
-    : null;
+  const statusConfig = application.shipping_status ?
+  shippingStatusConfig[application.shipping_status] :
+  null;
 
   return (
     <div className="glass-medium rounded-2xl border border-border p-4 space-y-4">
@@ -72,19 +72,19 @@ export const OrderCard = ({ application, onShipClick, variant = "physical" }: Or
         
         <div className="flex justify-between items-center">
           <span className="text-muted-foreground">Status</span>
-          {statusConfig ? (
-            <Badge variant="outline" className={statusConfig.className}>
+          {statusConfig ?
+          <Badge variant="outline" className={statusConfig.className}>
               {statusConfig.label}
-            </Badge>
-          ) : (
-            <Badge variant="outline" className="bg-muted/50 text-muted-foreground">
+            </Badge> :
+
+          <Badge variant="outline" className="bg-muted/50 text-muted-foreground">
               Digital Only
             </Badge>
-          )}
+          }
         </div>
 
-        {variant === "physical" && application.tracking_number && (
-          <>
+        {variant === "physical" && application.tracking_number &&
+        <>
             <div className="flex justify-between items-start gap-2">
               <span className="text-muted-foreground shrink-0">Courier</span>
               <span className="font-medium text-foreground text-right">
@@ -98,48 +98,48 @@ export const OrderCard = ({ application, onShipClick, variant = "physical" }: Or
               </span>
             </div>
           </>
-        )}
+        }
 
-        {variant === "digital" && application.hired_at && (
-          <div className="flex justify-between items-center">
+        {variant === "digital" && application.hired_at &&
+        <div className="flex justify-between items-center">
             <span className="text-muted-foreground">Hired</span>
             <span className="font-medium text-foreground">
               {new Date(application.hired_at).toLocaleDateString()}
             </span>
           </div>
-        )}
+        }
       </div>
 
       {/* Full-Width Action Button */}
-      {variant === "physical" && application.shipping_status === "needs_address" && (
-        <div className="flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-warning/10 text-warning text-sm">
+      {variant === "physical" && application.shipping_status === "needs_address" &&
+      <div className="flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-warning/10 text-warning text-sm">
           <MapPin className="w-4 h-4" />
           Awaiting Creator Address
         </div>
-      )}
+      }
 
-      {variant === "physical" && application.shipping_status === "processing" && (
-        <Button 
-          className="w-full min-h-[44px]" 
-          onClick={onShipClick}
-        >
+      {variant === "physical" && application.shipping_status === "processing" &&
+      <Button
+        className="w-full min-h-[44px]"
+        onClick={onShipClick}>
+
           <Truck className="w-4 h-4 mr-2" />
           Mark as Shipped
         </Button>
-      )}
+      }
 
-      {variant === "physical" && application.shipping_status === "shipped" && (
-        <div className="flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-info/10 text-info text-sm">
+      {variant === "physical" && application.shipping_status === "shipped" &&
+      <div className="flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-info/10 text-info text-sm">
           <Truck className="w-4 h-4" />
           In Transit
         </div>
-      )}
+      }
 
-      {variant === "physical" && application.shipping_status === "delivered" && (
-        <div className="flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-success/10 text-success text-sm font-medium">
+      {variant === "physical" && application.shipping_status === "delivered" &&
+      <div className="flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-success/10 text-success text-sm font-medium">
           ✓ Delivered
         </div>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 };

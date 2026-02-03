@@ -15,11 +15,11 @@ interface SubmissionReviewPanelProps {
 
 export const SubmissionReviewPanel = ({
   campaignId,
-  campaignStatus,
+  campaignStatus
 }: SubmissionReviewPanelProps) => {
   const { t } = useTranslation();
   const [showWinnerAlert, setShowWinnerAlert] = useState(false);
-  
+
   const { data: submissions = [], isLoading, error } = useCampaignSubmissions(campaignId);
 
   const isContestEnded = campaignStatus === "completed" || campaignStatus === "judging";
@@ -31,8 +31,8 @@ export const SubmissionReviewPanel = ({
   if (isLoading) {
     return (
       <div className="space-y-4">
-        {Array.from({ length: 3 }).map((_, i) => (
-          <Card key={i}>
+        {Array.from({ length: 3 }).map((_, i) =>
+        <Card key={i}>
             <CardContent className="p-4">
               <div className="flex items-start gap-4">
                 <Skeleton className="w-12 h-12 rounded-full" />
@@ -44,9 +44,9 @@ export const SubmissionReviewPanel = ({
               </div>
             </CardContent>
           </Card>
-        ))}
-      </div>
-    );
+        )}
+      </div>);
+
   }
 
   if (error) {
@@ -57,30 +57,30 @@ export const SubmissionReviewPanel = ({
         <AlertDescription>
           Gagal memuat entri. Silakan coba lagi.
         </AlertDescription>
-      </Alert>
-    );
+      </Alert>);
+
   }
 
   if (submissions.length === 0) {
     return (
       <EmptyState
         type="entries"
-        actionLabel="Tunggu Entri"
-      />
-    );
+        actionLabel="Tunggu Entri" />);
+
+
   }
 
   // Group submissions by status
-  const pendingSubmissions = submissions.filter(s => s.status === "submitted");
-  const redoSubmissions = submissions.filter(s => s.status === "redo_requested");
-  const approvedSubmissions = submissions.filter(s => s.status === "approved");
-  const declinedSubmissions = submissions.filter(s => s.status === "declined");
+  const pendingSubmissions = submissions.filter((s) => s.status === "submitted");
+  const redoSubmissions = submissions.filter((s) => s.status === "redo_requested");
+  const approvedSubmissions = submissions.filter((s) => s.status === "approved");
+  const declinedSubmissions = submissions.filter((s) => s.status === "declined");
 
   return (
     <div className="space-y-6">
       {/* Winner Alert */}
-      {showWinnerAlert && (
-        <Alert className="border-amber-500/50 bg-amber-500/10">
+      {showWinnerAlert &&
+      <Alert className="border-amber-500/50 bg-amber-500/10">
           <Trophy className="h-4 w-4 text-amber-500" />
           <AlertTitle className="text-amber-600">
             {t("submissions.review.challengeCompleted.title")}
@@ -89,7 +89,7 @@ export const SubmissionReviewPanel = ({
             {t("submissions.review.challengeCompleted.message")}
           </AlertDescription>
         </Alert>
-      )}
+      }
 
       {/* Summary Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -120,8 +120,8 @@ export const SubmissionReviewPanel = ({
       </div>
 
       {/* Pending Submissions */}
-      {pendingSubmissions.length > 0 && (
-        <Card>
+      {pendingSubmissions.length > 0 &&
+      <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <span className="w-2 h-2 bg-warning rounded-full" />
@@ -129,21 +129,21 @@ export const SubmissionReviewPanel = ({
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {pendingSubmissions.map((submission) => (
-              <SubmissionReviewCard
-                key={submission.id}
-                submission={submission}
-                onWinnerSelected={handleWinnerSelected}
-                isContestEnded={isContestEnded}
-              />
-            ))}
+            {pendingSubmissions.map((submission) =>
+          <SubmissionReviewCard
+            key={submission.id}
+            submission={submission}
+            onWinnerSelected={handleWinnerSelected}
+            isContestEnded={isContestEnded} />
+
+          )}
           </CardContent>
         </Card>
-      )}
+      }
 
       {/* Redo Requested */}
-      {redoSubmissions.length > 0 && (
-        <Card>
+      {redoSubmissions.length > 0 &&
+      <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <span className="w-2 h-2 bg-orange-500 rounded-full" />
@@ -151,21 +151,21 @@ export const SubmissionReviewPanel = ({
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {redoSubmissions.map((submission) => (
-              <SubmissionReviewCard
-                key={submission.id}
-                submission={submission}
-                onWinnerSelected={handleWinnerSelected}
-                isContestEnded={isContestEnded}
-              />
-            ))}
+            {redoSubmissions.map((submission) =>
+          <SubmissionReviewCard
+            key={submission.id}
+            submission={submission}
+            onWinnerSelected={handleWinnerSelected}
+            isContestEnded={isContestEnded} />
+
+          )}
           </CardContent>
         </Card>
-      )}
+      }
 
       {/* Approved Submissions */}
-      {approvedSubmissions.length > 0 && (
-        <Card>
+      {approvedSubmissions.length > 0 &&
+      <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <CheckCircle className="w-5 h-5 text-success" />
@@ -173,44 +173,44 @@ export const SubmissionReviewPanel = ({
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {approvedSubmissions.map((submission) => (
-              <SubmissionReviewCard
-                key={submission.id}
-                submission={submission}
-                onWinnerSelected={handleWinnerSelected}
-                isContestEnded={isContestEnded}
-              />
-            ))}
+            {approvedSubmissions.map((submission) =>
+          <SubmissionReviewCard
+            key={submission.id}
+            submission={submission}
+            onWinnerSelected={handleWinnerSelected}
+            isContestEnded={isContestEnded} />
+
+          )}
           </CardContent>
         </Card>
-      )}
+      }
 
       {/* Declined Submissions */}
-      {declinedSubmissions.length > 0 && (
-        <Card className="opacity-75">
+      {declinedSubmissions.length > 0 &&
+      <Card className="opacity-75">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg text-muted-foreground">
               Ditolak ({declinedSubmissions.length})
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {declinedSubmissions.map((submission) => (
-              <SubmissionReviewCard
-                key={submission.id}
-                submission={submission}
-                isContestEnded={isContestEnded}
-              />
-            ))}
+            {declinedSubmissions.map((submission) =>
+          <SubmissionReviewCard
+            key={submission.id}
+            submission={submission}
+            isContestEnded={isContestEnded} />
+
+          )}
           </CardContent>
         </Card>
-      )}
+      }
 
       {/* Footer Disclaimer */}
       <p className="text-xs text-muted-foreground text-center py-4 border-t border-border">
         Pembayaran hadiah diverifikasi dan diproses manual oleh tim Giggo.
       </p>
-    </div>
-  );
+    </div>);
+
 };
 
 export default SubmissionReviewPanel;

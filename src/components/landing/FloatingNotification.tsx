@@ -9,42 +9,42 @@ interface FloatingNotificationProps {
   delay?: string;
 }
 
-const FloatingNotification = ({ 
-  type, 
-  user, 
-  highlight, 
+const FloatingNotification = ({
+  type,
+  user,
+  highlight,
   className,
-  delay = "0s" 
+  delay = "0s"
 }: FloatingNotificationProps) => {
   const icons = {
     earning: DollarSign,
     approved: CheckCircle,
-    joined: Sparkles,
+    joined: Sparkles
   };
 
   const iconColors = {
     earning: "text-success bg-success/20",
     approved: "text-primary bg-primary/20",
-    joined: "text-accent bg-accent/20",
+    joined: "text-accent bg-accent/20"
   };
 
   const highlightColors = {
     earning: "text-success",
     approved: "text-primary",
-    joined: "text-accent",
+    joined: "text-accent"
   };
 
   const Icon = icons[type];
 
   return (
-    <div 
+    <div
       className={cn(
         "bg-background/95 backdrop-blur-md rounded-xl px-4 py-3 shadow-xl border border-border/50",
         "flex items-center gap-3 animate-float",
         className
       )}
-      style={{ animationDelay: delay }}
-    >
+      style={{ animationDelay: delay }}>
+
       <div className={cn(
         "w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0",
         iconColors[type]
@@ -62,8 +62,8 @@ const FloatingNotification = ({
           </span>
         </p>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default FloatingNotification;

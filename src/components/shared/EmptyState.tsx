@@ -14,36 +14,36 @@ interface EmptyStateProps {
   className?: string;
 }
 
-const defaultStates: Record<Exclude<EmptyStateType, "custom">, { 
-  icon: LucideIcon; 
-  title: string; 
-  description: string 
+const defaultStates: Record<Exclude<EmptyStateType, "custom">, {
+  icon: LucideIcon;
+  title: string;
+  description: string;
 }> = {
   gigs: {
     icon: Trophy,
     title: "No gigs yet",
-    description: "Start exploring gigs and find the perfect opportunity for you.",
+    description: "Start exploring gigs and find the perfect opportunity for you."
   },
   entries: {
     icon: Video,
     title: "No entries yet",
-    description: "Join a gig and submit your first entry to start earning.",
+    description: "Join a gig and submit your first entry to start earning."
   },
   earnings: {
     icon: Trophy,
     title: "No earnings yet",
-    description: "Win challenges to start earning payouts and build your portfolio.",
+    description: "Win challenges to start earning payouts and build your portfolio."
   },
   search: {
     icon: Search,
     title: "No results found",
-    description: "Try adjusting your search or filters to find what you're looking for.",
+    description: "Try adjusting your search or filters to find what you're looking for."
   },
   orders: {
     icon: Package,
     title: "No orders to manage",
-    description: "When you hire creators for physical product campaigns, their shipping details will appear here.",
-  },
+    description: "When you hire creators for physical product campaigns, their shipping details will appear here."
+  }
 };
 
 export const EmptyState = ({
@@ -53,7 +53,7 @@ export const EmptyState = ({
   icon: CustomIcon,
   actionLabel,
   onAction,
-  className,
+  className
 }: EmptyStateProps) => {
   const config = type !== "custom" ? defaultStates[type] : null;
   const Icon = CustomIcon || config?.icon || FileQuestion;
@@ -67,11 +67,11 @@ export const EmptyState = ({
       </div>
       <h3 className="text-lg font-semibold text-foreground mb-2">{displayTitle}</h3>
       <p className="text-muted-foreground text-sm max-w-sm mb-6">{displayDescription}</p>
-      {actionLabel && onAction && (
-        <Button onClick={onAction} variant="default">
+      {actionLabel && onAction &&
+      <Button onClick={onAction} variant="default">
           {actionLabel}
         </Button>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 };

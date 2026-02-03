@@ -8,17 +8,17 @@ const HowItWorks = () => {
 
   const steps = {
     brands: [
-      { step: "01", titleKey: "howItWorks.brand.step1.title", descriptionKey: "howItWorks.brand.step1.description" },
-      { step: "02", titleKey: "howItWorks.brand.step2.title", descriptionKey: "howItWorks.brand.step2.description" },
-      { step: "03", titleKey: "howItWorks.brand.step3.title", descriptionKey: "howItWorks.brand.step3.description" },
-      { step: "04", titleKey: "howItWorks.brand.step4.title", descriptionKey: "howItWorks.brand.step4.description" },
-    ],
+    { step: "01", titleKey: "howItWorks.brand.step1.title", descriptionKey: "howItWorks.brand.step1.description" },
+    { step: "02", titleKey: "howItWorks.brand.step2.title", descriptionKey: "howItWorks.brand.step2.description" },
+    { step: "03", titleKey: "howItWorks.brand.step3.title", descriptionKey: "howItWorks.brand.step3.description" },
+    { step: "04", titleKey: "howItWorks.brand.step4.title", descriptionKey: "howItWorks.brand.step4.description" }],
+
     creators: [
-      { step: "01", titleKey: "howItWorks.creator.step1.title", descriptionKey: "howItWorks.creator.step1.description" },
-      { step: "02", titleKey: "howItWorks.creator.step2.title", descriptionKey: "howItWorks.creator.step2.description" },
-      { step: "03", titleKey: "howItWorks.creator.step3.title", descriptionKey: "howItWorks.creator.step3.description" },
-      { step: "04", titleKey: "howItWorks.creator.step4.title", descriptionKey: "howItWorks.creator.step4.description" },
-    ],
+    { step: "01", titleKey: "howItWorks.creator.step1.title", descriptionKey: "howItWorks.creator.step1.description" },
+    { step: "02", titleKey: "howItWorks.creator.step2.title", descriptionKey: "howItWorks.creator.step2.description" },
+    { step: "03", titleKey: "howItWorks.creator.step3.title", descriptionKey: "howItWorks.creator.step3.description" },
+    { step: "04", titleKey: "howItWorks.creator.step4.title", descriptionKey: "howItWorks.creator.step4.description" }]
+
   };
 
   const currentSteps = steps[activeRole];
@@ -46,8 +46,8 @@ const HowItWorks = () => {
               </span>
             </div>
             <div className="space-y-6">
-              {currentSteps.map((item, index) => (
-                <div key={item.step} className="flex gap-4">
+              {currentSteps.map((item, index) =>
+              <div key={item.step} className="flex gap-4">
                   <div className="flex-shrink-0">
                     <div className={`w-12 h-12 ${isBrand ? 'gradient-primary' : 'gradient-dark'} rounded-xl flex items-center justify-center ${isBrand ? 'text-primary-foreground' : 'text-secondary-foreground'} font-display font-bold`}>
                       {item.step}
@@ -61,19 +61,19 @@ const HowItWorks = () => {
                       {t(item.descriptionKey)}
                     </p>
                   </div>
-                  {index < currentSteps.length - 1 && (
-                    <div className="flex-shrink-0 self-center hidden sm:block">
+                  {index < currentSteps.length - 1 &&
+                <div className="flex-shrink-0 self-center hidden sm:block">
                       <ArrowRight className="w-5 h-5 text-muted-foreground/50" />
                     </div>
-                  )}
+                }
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default HowItWorks;

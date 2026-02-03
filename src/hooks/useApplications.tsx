@@ -52,10 +52,10 @@ export const useBrandHiredApplications = () => {
       if (!user) throw new Error("Not authenticated");
 
       // First get brand's campaigns
-      const { data: campaigns, error: campaignError } = await supabase
-        .from("campaigns")
-        .select("id, title, product_type")
-        .eq("brand_id", user.id);
+      const { data: campaigns, error: campaignError } = await supabase.
+      from("campaigns").
+      select("id, title, product_type").
+      eq("brand_id", user.id);
 
       if (campaignError) throw campaignError;
       if (!campaigns || campaigns.length === 0) return [];
@@ -63,22 +63,22 @@ export const useBrandHiredApplications = () => {
       const campaignIds = campaigns.map((c) => c.id);
 
       // Then get applications for those campaigns with 'hired' status
-      const { data: applications, error: appError } = await supabase
-        .from("applications")
-        .select("*")
-        .in("campaign_id", campaignIds)
-        .eq("status", "hired")
-        .order("hired_at", { ascending: false });
+      const { data: applications, error: appError } = await supabase.
+      from("applications").
+      select("*").
+      in("campaign_id", campaignIds).
+      eq("status", "hired").
+      order("hired_at", { ascending: false });
 
       if (appError) throw appError;
 
       // Fetch creator profiles separately
       const creatorIds = [...new Set(applications?.map((a) => a.creator_id) || [])];
-      
-      const { data: profiles } = await supabase
-        .from("profiles")
-        .select("user_id, full_name, avatar_url, username")
-        .in("user_id", creatorIds);
+
+      const { data: profiles } = await supabase.
+      from("profiles").
+      select("user_id, full_name, avatar_url, username").
+      in("user_id", creatorIds);
 
       const profileMap = new Map(profiles?.map((p) => [p.user_id, p]) || []);
       const campaignMap = new Map(campaigns.map((c) => [c.id, c]));
@@ -87,10 +87,10 @@ export const useBrandHiredApplications = () => {
       return (applications || []).map((app) => ({
         ...app,
         campaigns: campaignMap.get(app.campaign_id) || null,
-        profiles: profileMap.get(app.creator_id) || null,
+        profiles: profileMap.get(app.creator_id) || null
       })) as Application[];
     },
-    enabled: !!user,
+    enabled: !!user
   });
 };
 
@@ -103,22 +103,22 @@ export const useUpdateShipping = () => {
     mutationFn: async ({
       applicationId,
       courierName,
-      trackingNumber,
-    }: {
-      applicationId: string;
-      courierName: string;
-      trackingNumber: string;
-    }) => {
-      const { data, error } = await supabase
-        .from("applications")
-        .update({
-          shipping_status: "shipped",
-          courier_name: courierName,
-          tracking_number: trackingNumber,
-        })
-        .eq("id", applicationId)
-        .select()
-        .maybeSingle();
+      trackingNumber
+
+
+
+
+    }: {applicationId: string;courierName: string;trackingNumber: string;}) => {
+      const { data, error } = await supabase.
+      from("applications").
+      update({
+        shipping_status: "shipped",
+        courier_name: courierName,
+        tracking_number: trackingNumber
+      }).
+      eq("id", applicationId).
+      select().
+      maybeSingle();
 
       if (!data) throw new Error("Failed to update shipping");
 
@@ -129,16 +129,16 @@ export const useUpdateShipping = () => {
       queryClient.invalidateQueries({ queryKey: ["brand-hired-applications", user?.id] });
       toast({
         title: "Shipment Updated",
-        description: "The item has been marked as shipped.",
+        description: "The item has been marked as shipped."
       });
     },
     onError: (error: Error) => {
       toast({
         title: "Error",
         description: error.message,
-        variant: "destructive",
+        variant: "destructive"
       });
-    },
+    }
   });
 };
 
@@ -150,19 +150,19 @@ export const useUpdateShippingStatus = () => {
   return useMutation({
     mutationFn: async ({
       applicationId,
-      shippingStatus,
-    }: {
-      applicationId: string;
-      shippingStatus: ShippingStatus;
-    }) => {
-      const { data, error } = await supabase
-        .from("applications")
-        .update({
-          shipping_status: shippingStatus,
-        })
-        .eq("id", applicationId)
-        .select()
-        .maybeSingle();
+      shippingStatus
+
+
+
+    }: {applicationId: string;shippingStatus: ShippingStatus;}) => {
+      const { data, error } = await supabase.
+      from("applications").
+      update({
+        shipping_status: shippingStatus
+      }).
+      eq("id", applicationId).
+      select().
+      maybeSingle();
 
       if (!data) throw new Error("Failed to update shipping status");
 
@@ -173,16 +173,16 @@ export const useUpdateShippingStatus = () => {
       queryClient.invalidateQueries({ queryKey: ["brand-hired-applications", user?.id] });
       toast({
         title: "Status Updated",
-        description: "Shipping status has been updated.",
+        description: "Shipping status has been updated."
       });
     },
     onError: (error: Error) => {
       toast({
         title: "Error",
         description: error.message,
-        variant: "destructive",
+        variant: "destructive"
       });
-    },
+    }
   });
 };
 
@@ -195,29 +195,29 @@ export const useCreatorApplications = () => {
     queryFn: async () => {
       if (!user) throw new Error("Not authenticated");
 
-      const { data, error } = await supabase
-        .from("applications")
-        .select("*")
-        .eq("creator_id", user.id)
-        .order("created_at", { ascending: false });
+      const { data, error } = await supabase.
+      from("applications").
+      select("*").
+      eq("creator_id", user.id).
+      order("created_at", { ascending: false });
 
       if (error) throw error;
 
       // Fetch campaign details
       const campaignIds = [...new Set(data?.map((a) => a.campaign_id) || [])];
-      
-      const { data: campaigns } = await supabase
-        .from("public_campaigns")
-        .select("id, title, end_date")
-        .in("id", campaignIds);
+
+      const { data: campaigns } = await supabase.
+      from("public_campaigns").
+      select("id, title, end_date").
+      in("id", campaignIds);
 
       const campaignMap = new Map(campaigns?.map((c) => [c.id, c]) || []);
 
       return (data || []).map((app) => ({
         ...app,
-        campaigns: campaignMap.get(app.campaign_id) || null,
+        campaigns: campaignMap.get(app.campaign_id) || null
       })) as Application[];
     },
-    enabled: !!user,
+    enabled: !!user
   });
 };

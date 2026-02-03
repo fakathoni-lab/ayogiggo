@@ -32,8 +32,8 @@ const Navbar = ({ activeRole = "creators", setActiveRole }: NavbarProps) => {
             <RoleToggle
               activeRole={activeRole}
               onRoleChange={handleRoleChange}
-              layoutId="desktopRoleToggle"
-            />
+              layoutId="desktopRoleToggle" />
+
           </div>
 
           {/* Right: Actions (Desktop) */}
@@ -41,8 +41,8 @@ const Navbar = ({ activeRole = "creators", setActiveRole }: NavbarProps) => {
             <LanguageSwitcher />
             <Button
               className="bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-lg"
-              asChild
-            >
+              asChild>
+
               <Link to="/auth">
                 {t("common.login")}
                 <ArrowUpRight className="ml-1 w-4 h-4" />
@@ -57,51 +57,51 @@ const Navbar = ({ activeRole = "creators", setActiveRole }: NavbarProps) => {
               className="p-2 text-white"
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={isOpen}
-            >
+              aria-expanded={isOpen}>
+
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t border-white/10 animate-slide-up">
+        {isOpen &&
+        <div className="md:hidden py-4 border-t border-white/10 animate-slide-up">
             <div className="flex flex-col gap-4">
               {/* Mobile Segmented Control */}
               <RoleToggle
-                activeRole={activeRole}
-                onRoleChange={handleRoleChange}
-                layoutId="mobileRoleToggle"
-                compact
-                centered
-              />
+              activeRole={activeRole}
+              onRoleChange={handleRoleChange}
+              layoutId="mobileRoleToggle"
+              compact
+              centered />
+
 
               {/* Mobile Links */}
               <Link
-                to="/campaigns"
-                className="text-white/80 hover:text-white transition-colors py-3 min-h-[44px] text-center flex items-center justify-center"
-                onClick={() => setIsOpen(false)}
-              >
+              to="/campaigns"
+              className="text-white/80 hover:text-white transition-colors py-3 min-h-[44px] text-center flex items-center justify-center"
+              onClick={() => setIsOpen(false)}>
+
                 {t("nav.gigs")}
               </Link>
 
               {/* Mobile CTA */}
               <div className="flex flex-col gap-2 pt-4 border-t border-white/10">
                 <Button
-                  className="bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-lg w-full"
-                  asChild
-                >
+                className="bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-lg w-full"
+                asChild>
+
                   <Link to="/auth" onClick={() => setIsOpen(false)}>
                     {t("common.login")}
                     <ArrowUpRight className="ml-1 w-4 h-4" />
                   </Link>
                 </Button>
                 <Button
-                  variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 rounded-lg w-full"
-                  asChild
-                >
+                variant="outline"
+                className="border-white/30 text-white hover:bg-white/10 rounded-lg w-full"
+                asChild>
+
                   <Link to={`/auth?mode=register&role=${activeRole === "brands" ? "brand" : "creator"}`} onClick={() => setIsOpen(false)}>
                     {t("common.getStarted")}
                   </Link>
@@ -109,10 +109,10 @@ const Navbar = ({ activeRole = "creators", setActiveRole }: NavbarProps) => {
               </div>
             </div>
           </div>
-        )}
+        }
       </div>
-    </nav>
-  );
+    </nav>);
+
 };
 
 export default Navbar;

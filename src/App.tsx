@@ -34,27 +34,27 @@ const Privacy = lazy(() => import("@/pages/legal/Privacy"));
 const Terms = lazy(() => import("@/pages/legal/Terms"));
 
 // Loading Fallback Component
-const LoadingFallback = () => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
+const LoadingFallback = () =>
+<div className="min-h-screen flex items-center justify-center bg-background">
     <div className="text-center space-y-4">
       <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto" />
       <p className="text-muted-foreground">Loading...</p>
     </div>
-  </div>
-);
+  </div>;
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 1,
       staleTime: 30000,
-      refetchOnWindowFocus: false,
-    },
-  },
+      refetchOnWindowFocus: false
+    }
+  }
 });
 
-const App = () => (
-  <ErrorBoundary>
+const App = () =>
+<ErrorBoundary>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
@@ -108,7 +108,7 @@ const App = () => (
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
-  </ErrorBoundary>
-);
+  </ErrorBoundary>;
+
 
 export default App;

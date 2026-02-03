@@ -52,9 +52,9 @@ export const useCreatorSubmissions = () => {
     queryFn: async () => {
       if (!user?.id) throw new Error("User not authenticated");
 
-      const { data, error } = await supabase
-        .from("submissions")
-        .select(`
+      const { data, error } = await supabase.
+      from("submissions").
+      select(`
           *,
           campaigns (
             id,
@@ -63,14 +63,14 @@ export const useCreatorSubmissions = () => {
             status,
             end_date
           )
-        `)
-        .eq("creator_id", user.id)
-        .order("submitted_at", { ascending: false });
+        `).
+      eq("creator_id", user.id).
+      order("submitted_at", { ascending: false });
 
       if (error) throw error;
       return data as unknown as SubmissionWithCampaign[];
     },
-    enabled: !!user?.id,
+    enabled: !!user?.id
   });
 };
 
@@ -82,9 +82,9 @@ export const useCampaignSubmissions = (campaignId: string | undefined) => {
       if (!campaignId) return [];
 
       // ✅ OPTIMIZED: Single Query with Join instead of multiple requests
-      const { data, error } = await supabase
-        .from("submissions")
-        .select(`
+      const { data, error } = await supabase.
+      from("submissions").
+      select(`
           *,
           profiles (
             user_id,
@@ -92,16 +92,16 @@ export const useCampaignSubmissions = (campaignId: string | undefined) => {
             username,
             avatar_url
           )
-        `)
-        .eq("campaign_id", campaignId)
-        .order("submitted_at", { ascending: false });
+        `).
+      eq("campaign_id", campaignId).
+      order("submitted_at", { ascending: false });
 
       if (error) throw error;
-      
+
       // Supabase returns the joined data automatically structure
       return data as unknown as SubmissionWithCreator[];
     },
-    enabled: !!campaignId,
+    enabled: !!campaignId
   });
 };
 
@@ -120,20 +120,20 @@ export const useCreateSubmission = () => {
       platform_url?: string;
     }) => {
       if (!user?.id) throw new Error("User not authenticated");
-      
-      const { data, error } = await supabase
-        .from("submissions")
-        .insert({
-          campaign_id: submission.campaign_id,
-          video_url: submission.video_url,
-          caption: submission.caption,
-          hashtags: submission.hashtags,
-          platform_url: submission.platform_url,
-          creator_id: user.id,
-          status: "submitted" as SubmissionStatus,
-        })
-        .select()
-        .maybeSingle();
+
+      const { data, error } = await supabase.
+      from("submissions").
+      insert({
+        campaign_id: submission.campaign_id,
+        video_url: submission.video_url,
+        caption: submission.caption,
+        hashtags: submission.hashtags,
+        platform_url: submission.platform_url,
+        creator_id: user.id,
+        status: "submitted" as SubmissionStatus
+      }).
+      select().
+      maybeSingle();
 
       if (!data) throw new Error("Failed to create submission");
 
@@ -144,16 +144,16 @@ export const useCreateSubmission = () => {
       queryClient.invalidateQueries({ queryKey: ["submissions"] });
       toast({
         title: "Submission created",
-        description: "Your entry has been submitted successfully!",
+        description: "Your entry has been submitted successfully!"
       });
     },
     onError: (error: Error) => {
       toast({
         title: "Error",
         description: error.message,
-        variant: "destructive",
+        variant: "destructive"
       });
-    },
+    }
   });
 };
 
@@ -168,27 +168,27 @@ export const useUpdateSubmission = () => {
       video_url,
       caption,
       hashtags,
-      platform_url,
-    }: {
-      id: string;
-      video_url?: string;
-      caption?: string;
-      hashtags?: string[];
-      platform_url?: string;
-    }) => {
-      const { data, error } = await supabase
-        .from("submissions")
-        .update({
-          video_url,
-          caption,
-          hashtags,
-          platform_url,
-          status: "submitted" as SubmissionStatus,
-          submitted_at: new Date().toISOString(),
-        })
-        .eq("id", id)
-        .select()
-        .maybeSingle();
+      platform_url
+
+
+
+
+
+
+    }: {id: string;video_url?: string;caption?: string;hashtags?: string[];platform_url?: string;}) => {
+      const { data, error } = await supabase.
+      from("submissions").
+      update({
+        video_url,
+        caption,
+        hashtags,
+        platform_url,
+        status: "submitted" as SubmissionStatus,
+        submitted_at: new Date().toISOString()
+      }).
+      eq("id", id).
+      select().
+      maybeSingle();
 
       if (!data) throw new Error("Failed to update submission");
 
@@ -199,16 +199,16 @@ export const useUpdateSubmission = () => {
       queryClient.invalidateQueries({ queryKey: ["submissions"] });
       toast({
         title: "Submission updated",
-        description: "Your revised entry has been submitted!",
+        description: "Your revised entry has been submitted!"
       });
     },
     onError: (error: Error) => {
       toast({
         title: "Error",
         description: error.message,
-        variant: "destructive",
+        variant: "destructive"
       });
-    },
+    }
   });
 };
 
@@ -222,26 +222,26 @@ export const useReviewSubmission = () => {
       id,
       action,
       feedback,
-      decline_reason,
-    }: {
-      id: string;
-      action: "approve" | "decline" | "request_redo";
-      feedback?: string;
-      decline_reason?: string;
-    }) => {
+      decline_reason
+
+
+
+
+
+    }: {id: string;action: "approve" | "decline" | "request_redo";feedback?: string;decline_reason?: string;}) => {
       // First get current submission to check redo count
-      const { data: currentSubmission, error: fetchError } = await supabase
-        .from("submissions")
-        .select("redo_count")
-        .eq("id", id)
-        .maybeSingle();
+      const { data: currentSubmission, error: fetchError } = await supabase.
+      from("submissions").
+      select("redo_count").
+      eq("id", id).
+      maybeSingle();
 
       if (!currentSubmission) throw new Error("Submission not found");
 
       if (fetchError) throw fetchError;
 
       const updateData: Partial<Submission> = {
-        reviewed_at: new Date().toISOString(),
+        reviewed_at: new Date().toISOString()
       };
 
       switch (action) {
@@ -263,12 +263,12 @@ export const useReviewSubmission = () => {
           break;
       }
 
-      const { data, error } = await supabase
-        .from("submissions")
-        .update(updateData)
-        .eq("id", id)
-        .select()
-        .maybeSingle();
+      const { data, error } = await supabase.
+      from("submissions").
+      update(updateData).
+      eq("id", id).
+      select().
+      maybeSingle();
 
       if (!data) throw new Error("Failed to update submission review");
 
@@ -277,25 +277,25 @@ export const useReviewSubmission = () => {
     },
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ["submissions"] });
-      
+
       const messages = {
         approve: "Submission approved!",
         decline: "Submission declined.",
-        request_redo: "Redo requested. Creator will be notified.",
+        request_redo: "Redo requested. Creator will be notified."
       };
-      
+
       toast({
         title: "Review submitted",
-        description: messages[variables.action],
+        description: messages[variables.action]
       });
     },
     onError: (error: Error) => {
       toast({
         title: "Error",
         description: error.message,
-        variant: "destructive",
+        variant: "destructive"
       });
-    },
+    }
   });
 };
 
@@ -306,9 +306,9 @@ export const useSubmission = (id: string | undefined) => {
     queryFn: async () => {
       if (!id) throw new Error("Submission ID is required");
 
-      const { data, error } = await supabase
-        .from("submissions")
-        .select(`
+      const { data, error } = await supabase.
+      from("submissions").
+      select(`
           *,
           campaigns (
             id,
@@ -317,15 +317,15 @@ export const useSubmission = (id: string | undefined) => {
             status,
             end_date
           )
-        `)
-        .eq("id", id)
-        .maybeSingle();
+        `).
+      eq("id", id).
+      maybeSingle();
 
       if (!data) throw new Error("Submission not found");
 
       if (error) throw error;
       return data as SubmissionWithCampaign;
     },
-    enabled: !!id,
+    enabled: !!id
   });
 };

@@ -7,8 +7,8 @@
 
 import {
   test as base,
-  expect,
-} from "lovable-agent-playwright-config/fixture";
+  expect } from
+"lovable-agent-playwright-config/fixture";
 
 // ============================================================================
 // FIXTURE TYPES
@@ -79,17 +79,19 @@ export const test = base.extend<TestContext>({
    */
   testData: async ({}, use) => {
     const helpers = {
+
+
+
+
+
+
+
+
       // Future: Add database seeding helpers
       // async seedCreator() { ... }
       // async seedCampaign() { ... }
       // async seedSubmission() { ... }
-    };
-    await use(helpers);
-  },
-});
-
-// ============================================================================
+    };await use(helpers);} }); // ============================================================================
 // EXPORTS
 // ============================================================================
-
 export { expect };

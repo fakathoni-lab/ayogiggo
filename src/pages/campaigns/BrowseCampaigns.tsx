@@ -18,13 +18,13 @@ const BrowseCampaigns = () => {
     search: searchQuery,
     category: selectedCategory,
     type: selectedType === "all" ? CampaignType.ALL : selectedType,
-    sortBy: activeTab,
+    sortBy: activeTab
   });
 
   // Transform public campaigns data (no sensitive fields available)
   const transformedCampaigns = useMemo(() => {
     if (!campaigns) return [];
-    
+
     return campaigns.map((campaign) => ({
       id: campaign.id,
       title: campaign.title,
@@ -39,7 +39,7 @@ const BrowseCampaigns = () => {
       // These fields are not in public view for competitive privacy
       prizePool: undefined,
       submissionCount: undefined,
-      viewCount: undefined,
+      viewCount: undefined
     }));
   }, [campaigns]);
 
@@ -64,8 +64,8 @@ const BrowseCampaigns = () => {
             selectedCategory={selectedCategory}
             onCategoryChange={setSelectedCategory}
             selectedType={selectedType}
-            onTypeChange={(type) => setSelectedType(type as CampaignType | "all")}
-          />
+            onTypeChange={(type) => setSelectedType(type as CampaignType | "all")} />
+
         </div>
       </header>
 
@@ -75,29 +75,29 @@ const BrowseCampaigns = () => {
           <TabsList className="w-full justify-start bg-transparent gap-2 p-0 h-auto overflow-x-auto scrollbar-hide flex-nowrap">
             <TabsTrigger
               value="for-you"
-              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full px-4 gap-1.5 shrink-0"
-            >
+              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full px-4 gap-1.5 shrink-0">
+
               <Sparkles className="w-4 h-4" />
               <span className="whitespace-nowrap">For You</span>
             </TabsTrigger>
             <TabsTrigger
               value="trending"
-              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full px-4 gap-1.5 shrink-0"
-            >
+              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full px-4 gap-1.5 shrink-0">
+
               <TrendingUp className="w-4 h-4" />
               <span className="whitespace-nowrap">Trending</span>
             </TabsTrigger>
             <TabsTrigger
               value="new"
-              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full px-4 gap-1.5 shrink-0"
-            >
+              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full px-4 gap-1.5 shrink-0">
+
               <Flame className="w-4 h-4" />
               <span className="whitespace-nowrap">New</span>
             </TabsTrigger>
             <TabsTrigger
               value="ending-soon"
-              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full px-4 gap-1.5 shrink-0"
-            >
+              className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full px-4 gap-1.5 shrink-0">
+
               <Clock className="w-4 h-4" />
               <span className="whitespace-nowrap">Ending Soon</span>
             </TabsTrigger>
@@ -107,42 +107,42 @@ const BrowseCampaigns = () => {
 
       {/* Campaign Grid */}
       <main className="container mx-auto px-4">
-        {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="space-y-4">
+        {isLoading ?
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, i) =>
+          <div key={i} className="space-y-4">
                 <Skeleton className="aspect-video w-full rounded-xl" />
                 <Skeleton className="h-4 w-3/4" />
                 <Skeleton className="h-4 w-1/2" />
               </div>
-            ))}
-          </div>
-        ) : error ? (
-          <EmptyState
-            type="custom"
-            title="Something went wrong"
-            description="Failed to load campaigns. Please try again."
-            actionLabel="Try Again"
-            onAction={() => window.location.reload()}
-          />
-        ) : transformedCampaigns.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {transformedCampaigns.map((campaign) => (
-              <CampaignCard key={campaign.id} campaign={campaign} />
-            ))}
-          </div>
-        ) : (
-          <EmptyState
-            type="search"
-            actionLabel="Clear Filters"
-            onAction={clearFilters}
-          />
-        )}
+          )}
+          </div> :
+        error ?
+        <EmptyState
+          type="custom"
+          title="Something went wrong"
+          description="Failed to load campaigns. Please try again."
+          actionLabel="Try Again"
+          onAction={() => window.location.reload()} /> :
+
+        transformedCampaigns.length > 0 ?
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {transformedCampaigns.map((campaign) =>
+          <CampaignCard key={campaign.id} campaign={campaign} />
+          )}
+          </div> :
+
+        <EmptyState
+          type="search"
+          actionLabel="Clear Filters"
+          onAction={clearFilters} />
+
+        }
       </main>
 
       <BottomNavigation />
-    </div>
-  );
+    </div>);
+
 };
 
 export default BrowseCampaigns;

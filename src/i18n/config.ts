@@ -7,24 +7,24 @@ import id from './locales/id.json';
 
 const resources = {
   en: { translation: en },
-  id: { translation: id },
+  id: { translation: id }
 };
 
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources,
-    fallbackLng: 'en',
-    supportedLngs: ['en', 'id'],
-    interpolation: {
-      escapeValue: false,
-    },
-    detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'giggo-language',
-    },
-  });
+i18n.
+use(LanguageDetector).
+use(initReactI18next).
+init({
+  resources,
+  fallbackLng: 'en',
+  supportedLngs: ['en', 'id'],
+  interpolation: {
+    escapeValue: false
+  },
+  detection: {
+    order: ['localStorage', 'navigator'],
+    caches: ['localStorage'],
+    lookupLocalStorage: 'giggo-language'
+  }
+});
 
 export default i18n;

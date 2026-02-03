@@ -9,16 +9,16 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  DialogTrigger } from
+"@/components/ui/dialog";
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+  TableRow } from
+"@/components/ui/table";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import { useWallet, useTransactions, useRequestPayout, type Transaction } from "@/hooks/useWallet";
@@ -35,19 +35,19 @@ import {
   CheckCircle,
   XCircle,
   Banknote,
-  TrendingUp,
-} from "lucide-react";
+  TrendingUp } from
+"lucide-react";
 import { format } from "date-fns";
 import { id as localeId } from "date-fns/locale";
 
 const navItems = [
-  { id: "dashboard", icon: LayoutDashboard, label: "Dashboard", path: "/dashboard/creator" },
-  { id: "discover", icon: Compass, label: "Discover Gigs" },
-  { id: "entries", icon: Video, label: "My Entries" },
-  { id: "leaderboard", icon: Trophy, label: "Leaderboard" },
-  { id: "wallet", icon: Wallet, label: "My Wallet" },
-  { id: "settings", icon: Settings, label: "Settings" },
-];
+{ id: "dashboard", icon: LayoutDashboard, label: "Dashboard", path: "/dashboard/creator" },
+{ id: "discover", icon: Compass, label: "Discover Gigs" },
+{ id: "entries", icon: Video, label: "My Entries" },
+{ id: "leaderboard", icon: Trophy, label: "Leaderboard" },
+{ id: "wallet", icon: Wallet, label: "My Wallet" },
+{ id: "settings", icon: Settings, label: "Settings" }];
+
 
 const getTransactionIcon = (type: Transaction["type"]) => {
   switch (type) {
@@ -68,20 +68,20 @@ const getStatusBadge = (status: Transaction["status"]) => {
       return (
         <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-success/10 text-success">
           <CheckCircle className="w-3 h-3" /> Berhasil
-        </span>
-      );
+        </span>);
+
     case "pending":
       return (
         <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-warning/10 text-warning">
           <Clock className="w-3 h-3" /> Pending
-        </span>
-      );
+        </span>);
+
     case "failed":
       return (
         <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-destructive/10 text-destructive">
           <XCircle className="w-3 h-3" /> Gagal
-        </span>
-      );
+        </span>);
+
   }
 };
 
@@ -109,7 +109,7 @@ const formatCurrency = (amount: number) => {
     style: "currency",
     currency: "IDR",
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 0
   }).format(amount);
 };
 
@@ -141,7 +141,7 @@ const CreatorWallet = () => {
           setPayoutAmount("");
           setBankName("");
           setAccountNumber("");
-        },
+        }
       }
     );
   };
@@ -154,26 +154,26 @@ const CreatorWallet = () => {
         activeTab={activeTab}
         onTabChange={setActiveTab}
         userName="Creator"
-        userInitial="C"
-      />
+        userInitial="C" />
+
 
       <main className="flex-1 overflow-auto">
         <DashboardHeader
           title="Dompet Saya 💰"
-          subtitle="Kelola penghasilan dan penarikan dana"
-        />
+          subtitle="Kelola penghasilan dan penarikan dana" />
+
 
         <div className="p-4 md:p-8">
           {/* Balance Cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
-            {walletLoading ? (
-              <>
+            {walletLoading ?
+            <>
                 <Skeleton className="h-36 rounded-2xl" />
                 <Skeleton className="h-36 rounded-2xl" />
                 <Skeleton className="h-36 rounded-2xl" />
-              </>
-            ) : (
-              <>
+              </> :
+
+            <>
                 {/* Available Balance */}
                 <div className="bg-card rounded-2xl p-6 border border-border">
                   <div className="flex items-center justify-between mb-4">
@@ -215,10 +215,10 @@ const CreatorWallet = () => {
                   <Dialog open={payoutDialogOpen} onOpenChange={setPayoutDialogOpen}>
                     <DialogTrigger asChild>
                       <Button
-                        variant="hero"
-                        className="w-full"
-                        disabled={!wallet?.balance || wallet.balance <= 0}
-                      >
+                      variant="hero"
+                      className="w-full"
+                      disabled={!wallet?.balance || wallet.balance <= 0}>
+
                         <ArrowUpRight className="w-4 h-4" />
                         Tarik Dana
                       </Button>
@@ -234,13 +234,13 @@ const CreatorWallet = () => {
                         <div className="space-y-2">
                           <Label htmlFor="amount">Jumlah Penarikan</Label>
                           <Input
-                            id="amount"
-                            type="number"
-                            placeholder="Contoh: 500000"
-                            value={payoutAmount}
-                            onChange={(e) => setPayoutAmount(e.target.value)}
-                            max={wallet?.balance || 0}
-                          />
+                          id="amount"
+                          type="number"
+                          placeholder="Contoh: 500000"
+                          value={payoutAmount}
+                          onChange={(e) => setPayoutAmount(e.target.value)}
+                          max={wallet?.balance || 0} />
+
                           <p className="text-xs text-muted-foreground">
                             Maksimal: {formatCurrency(wallet?.balance || 0)}
                           </p>
@@ -248,27 +248,27 @@ const CreatorWallet = () => {
                         <div className="space-y-2">
                           <Label htmlFor="bank">Nama Bank</Label>
                           <Input
-                            id="bank"
-                            placeholder="Contoh: BCA, Mandiri, BNI"
-                            value={bankName}
-                            onChange={(e) => setBankName(e.target.value)}
-                          />
+                          id="bank"
+                          placeholder="Contoh: BCA, Mandiri, BNI"
+                          value={bankName}
+                          onChange={(e) => setBankName(e.target.value)} />
+
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="account">Nomor Rekening</Label>
                           <Input
-                            id="account"
-                            placeholder="Masukkan nomor rekening"
-                            value={accountNumber}
-                            onChange={(e) => setAccountNumber(e.target.value)}
-                          />
+                          id="account"
+                          placeholder="Masukkan nomor rekening"
+                          value={accountNumber}
+                          onChange={(e) => setAccountNumber(e.target.value)} />
+
                         </div>
                         <Button
-                          variant="hero"
-                          className="w-full"
-                          onClick={handleRequestPayout}
-                          disabled={requestPayout.isPending}
-                        >
+                        variant="hero"
+                        className="w-full"
+                        onClick={handleRequestPayout}
+                        disabled={requestPayout.isPending}>
+
                           {requestPayout.isPending ? "Memproses..." : "Ajukan Penarikan"}
                         </Button>
                       </div>
@@ -276,7 +276,7 @@ const CreatorWallet = () => {
                   </Dialog>
                 </div>
               </>
-            )}
+            }
           </div>
 
           {/* Transaction History */}
@@ -287,14 +287,14 @@ const CreatorWallet = () => {
               </h2>
             </div>
 
-            {transactionsLoading ? (
-              <div className="p-6 space-y-4">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Skeleton key={i} className="h-16 w-full" />
-                ))}
-              </div>
-            ) : transactions.length === 0 ? (
-              <div className="p-12 text-center">
+            {transactionsLoading ?
+            <div className="p-6 space-y-4">
+                {Array.from({ length: 5 }).map((_, i) =>
+              <Skeleton key={i} className="h-16 w-full" />
+              )}
+              </div> :
+            transactions.length === 0 ?
+            <div className="p-12 text-center">
                 <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
                   <Wallet className="w-8 h-8 text-muted-foreground" />
                 </div>
@@ -302,9 +302,9 @@ const CreatorWallet = () => {
                 <p className="text-muted-foreground">
                   Transaksi akan muncul di sini setelah Anda mendapatkan pendapatan
                 </p>
-              </div>
-            ) : (
-              <>
+              </div> :
+
+            <>
                 {/* Desktop Table */}
                 <div className="hidden md:block">
                   <Table>
@@ -318,8 +318,8 @@ const CreatorWallet = () => {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {transactions.map((tx) => (
-                        <TableRow key={tx.id}>
+                      {transactions.map((tx) =>
+                    <TableRow key={tx.id}>
                           <TableCell>
                             {format(new Date(tx.created_at), "dd MMM yyyy", { locale: localeId })}
                           </TableCell>
@@ -334,25 +334,25 @@ const CreatorWallet = () => {
                           </TableCell>
                           <TableCell>{getStatusBadge(tx.status)}</TableCell>
                           <TableCell
-                            className={`text-right font-semibold ${
-                              tx.type === "earning" || tx.type === "deposit"
-                                ? "text-success"
-                                : "text-destructive"
-                            }`}
-                          >
+                        className={`text-right font-semibold ${
+                        tx.type === "earning" || tx.type === "deposit" ?
+                        "text-success" :
+                        "text-destructive"}`
+                        }>
+
                             {tx.type === "earning" || tx.type === "deposit" ? "+" : "-"}
                             {formatCurrency(tx.amount)}
                           </TableCell>
                         </TableRow>
-                      ))}
+                    )}
                     </TableBody>
                   </Table>
                 </div>
 
                 {/* Mobile Cards */}
                 <div className="md:hidden divide-y divide-border">
-                  {transactions.map((tx) => (
-                    <div key={tx.id} className="p-4 space-y-2">
+                  {transactions.map((tx) =>
+                <div key={tx.id} className="p-4 space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="flex items-center gap-2 text-sm">
                           {getTransactionIcon(tx.type)}
@@ -366,26 +366,26 @@ const CreatorWallet = () => {
                           {format(new Date(tx.created_at), "dd MMM yyyy", { locale: localeId })}
                         </span>
                         <span
-                          className={`font-semibold ${
-                            tx.type === "earning" || tx.type === "deposit"
-                              ? "text-success"
-                              : "text-destructive"
-                          }`}
-                        >
+                      className={`font-semibold ${
+                      tx.type === "earning" || tx.type === "deposit" ?
+                      "text-success" :
+                      "text-destructive"}`
+                      }>
+
                           {tx.type === "earning" || tx.type === "deposit" ? "+" : "-"}
                           {formatCurrency(tx.amount)}
                         </span>
                       </div>
                     </div>
-                  ))}
+                )}
                 </div>
               </>
-            )}
+            }
           </div>
         </div>
       </main>
-    </div>
-  );
+    </div>);
+
 };
 
 export default CreatorWallet;

@@ -42,25 +42,25 @@ export const CampaignCard = ({ campaign, className }: CampaignCardProps) => {
         "border-border/50",
         className
       )}
-      onClick={() => navigate(`/campaigns/${campaign.id}`)}
-    >
+      onClick={() => navigate(`/campaigns/${campaign.id}`)}>
+
       {/* Cover Image */}
       <div className="relative aspect-video overflow-hidden">
         <img
           src={campaign.coverImage}
           alt={campaign.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+
         
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         
         {/* Payout tag - only show if prizePool is available */}
-        {campaign.prizePool !== undefined && campaign.prizePool > 0 && (
-          <div className="absolute top-3 right-3">
+        {campaign.prizePool !== undefined && campaign.prizePool > 0 &&
+        <div className="absolute top-3 right-3">
             <PrizeTag amount={campaign.prizePool} size="sm" />
           </div>
-        )}
+        }
         
         {/* Status badge */}
         <div className="absolute top-3 left-3">
@@ -72,8 +72,8 @@ export const CampaignCard = ({ campaign, className }: CampaignCardProps) => {
           <img
             src={campaign.brandLogo}
             alt={campaign.brandName}
-            className="w-8 h-8 rounded-lg bg-white object-contain p-1"
-          />
+            className="w-8 h-8 rounded-lg bg-white object-contain p-1" />
+
           <span className="text-white text-sm font-medium truncate">
             {campaign.brandName}
           </span>
@@ -97,30 +97,30 @@ export const CampaignCard = ({ campaign, className }: CampaignCardProps) => {
 
         <div className="flex items-center justify-between pt-2 border-t border-border/50">
           {/* Show metrics only if available, otherwise show "View Details" */}
-          {(campaign.submissionCount !== undefined || campaign.viewCount !== undefined) ? (
-            <div className="flex items-center gap-3 text-muted-foreground text-sm">
-              {campaign.submissionCount !== undefined && (
-                <div className="flex items-center gap-1">
+          {campaign.submissionCount !== undefined || campaign.viewCount !== undefined ?
+          <div className="flex items-center gap-3 text-muted-foreground text-sm">
+              {campaign.submissionCount !== undefined &&
+            <div className="flex items-center gap-1">
                   <Users className="w-4 h-4" />
                   <span>{campaign.submissionCount}</span>
                 </div>
-              )}
-              {campaign.viewCount !== undefined && (
-                <div className="flex items-center gap-1">
+            }
+              {campaign.viewCount !== undefined &&
+            <div className="flex items-center gap-1">
                   <Eye className="w-4 h-4" />
                   <span>{campaign.viewCount.toLocaleString()}</span>
                 </div>
-              )}
-            </div>
-          ) : (
-            <span className="text-sm text-primary font-medium">View Details →</span>
-          )}
+            }
+            </div> :
+
+          <span className="text-sm text-primary font-medium">View Details →</span>
+          }
           
-          {campaign.status === "live" && (
-            <CountdownTimer endDate={campaign.endDate} compact showIcon />
-          )}
+          {campaign.status === "live" &&
+          <CountdownTimer endDate={campaign.endDate} compact showIcon />
+          }
         </div>
       </div>
-    </Card>
-  );
+    </Card>);
+
 };
