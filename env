@@ -1,0 +1,7 @@
+# Supabase Configuration (Optional - if using EasySite built-in DB, these are not needed)
+VITE_SUPABASE_URL=https://placeholder.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=placeholder-anon-key
+
+# Add your actual Supabase credentials here if you want to use Supabase instead of EasySite DB
+# VITE_SUPABASE_URL=your-supabase-url
+# VITE_SUPABASE_PUBLISHABLE_KEY=your-supabase-anon-key

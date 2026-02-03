@@ -54,10 +54,10 @@ const LazyVideo = forwardRef<LazyVideoHandle, LazyVideoProps>(
         videoRef.current.play().catch(() => {
 
 
-          // Autoplay was prevented, ignore
-        });}}, [shouldLoad, autoPlay]);
 
-    const handleVideoLoaded = () => {
+
+          // Autoplay was prevented, ignore
+        });}}, [shouldLoad, autoPlay]);const handleVideoLoaded = () => {
       setIsVideoLoaded(true);
     };
 

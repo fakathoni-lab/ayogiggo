@@ -443,7 +443,7 @@ const CreatorsLandingPage = () => {
                   {t('creatorsPage.cta.subtitle')}
                 </p>
                 <Link to="/auth?mode=register&role=creator">
-                  <Button size="xl" className="bg-white text-primary hover:bg-white/90 rounded-full h-14 px-10 text-lg font-bold">
+                  <Button size="xl" className="bg-white text-primary hover:bg-white/90 rounded-full h-14 px-10 text-lg font-bold bg-black text-white">
                     {t('creatorsPage.cta.button')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>

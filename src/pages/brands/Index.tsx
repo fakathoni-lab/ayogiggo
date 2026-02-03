@@ -373,7 +373,7 @@ const BrandsLandingPage = () => {
                   {t('brandsPage.cta.subtitle')}
                 </p>
                 <Link to="/auth?mode=register&role=brand">
-                  <Button size="xl" className="bg-white text-primary hover:bg-white/90 rounded-full h-14 px-10 text-lg font-bold">
+                  <Button size="xl" className="bg-white text-primary hover:bg-white/90 rounded-full h-14 px-10 text-lg font-bold bg-white text-[#0f172a]">
                     {t('brandsPage.cta.button')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
