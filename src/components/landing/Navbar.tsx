@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import LogoMonogram from "@/components/shared/LogoMonogram";
 import RoleToggle from "@/components/shared/RoleToggle";
+import { NotificationBell } from "@/components/notifications/NotificationBell";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 interface NavbarProps {
   activeRole?: "creators" | "brands";
@@ -15,6 +17,7 @@ interface NavbarProps {
 const Navbar = ({ activeRole = "creators", setActiveRole }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
+  const { user } = useAuth();
 
   const handleRoleChange = (role: "creators" | "brands") => {
     setActiveRole?.(role);
@@ -38,6 +41,7 @@ const Navbar = ({ activeRole = "creators", setActiveRole }: NavbarProps) => {
 
           {/* Right: Actions (Desktop) */}
           <div className="hidden md:flex items-center gap-3">
+            {user && <NotificationBell />}
             <LanguageSwitcher />
             <Button
               className="bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-lg"
@@ -52,6 +56,7 @@ const Navbar = ({ activeRole = "creators", setActiveRole }: NavbarProps) => {
 
           {/* Mobile: Toggle + Menu */}
           <div className="md:hidden flex items-center gap-2">
+            {user && <NotificationBell />}
             <LanguageSwitcher />
             <button
               className="p-2 text-white"

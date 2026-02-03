@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { RoleProvider } from "@/contexts/RoleContext";
+import { NotificationProvider } from "@/contexts/NotificationContext";
 import ErrorBoundary from "@/components/shared/ErrorBoundary";
 import { Suspense, lazy } from "react";
 import { Loader2 } from "lucide-react";
@@ -63,7 +64,8 @@ const App = () =>
         <BrowserRouter>
           <AuthProvider>
             <RoleProvider>
-              <Suspense fallback={<LoadingFallback />}>
+              <NotificationProvider>
+                <Suspense fallback={<LoadingFallback />}>
                 <Routes>
                   {/* Public Routes (with Navbar & Footer) */}
                   <Route element={<IndexLayout />}>
@@ -105,6 +107,7 @@ const App = () =>
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
+              </NotificationProvider>
             </RoleProvider>
           </AuthProvider>
         </BrowserRouter>
