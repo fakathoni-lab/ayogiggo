@@ -16,6 +16,7 @@ import {
 "@/components/ui/alert-dialog";
 import { FeedbackForm } from "./FeedbackForm";
 import { ConfettiCelebration } from "@/components/shared/ConfettiCelebration";
+import { ProVideoReviewInterface } from "./ProVideoReviewInterface";
 import {
   ExternalLink,
   Trophy,
@@ -25,12 +26,17 @@ import {
   Loader2,
   MessageSquare,
   DollarSign,
-  AlertCircle } from
+  AlertCircle,
+  Video,
+  ChevronDown,
+  ChevronUp } from
 "lucide-react";
 import { useReviewSubmission, type SubmissionWithCreator } from "@/hooks/useSubmissions";
 import { useApproveSubmission } from "@/hooks/useApproveSubmission";
+import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface SubmissionReviewCardProps {
   submission: SubmissionWithCreator;
@@ -46,11 +52,13 @@ export const SubmissionReviewCard = ({
   campaignPrize = 0
 }: SubmissionReviewCardProps) => {
   const { t } = useTranslation();
+  const { user } = useAuth();
   const [showWinnerConfirm, setShowWinnerConfirm] = useState(false);
   const [showApprovalConfirm, setShowApprovalConfirm] = useState(false);
   const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [feedback, setFeedback] = useState("");
+  const [showVideoReview, setShowVideoReview] = useState(false);
 
   const handleFeedbackChange = useCallback((newFeedback: string) => {
     setFeedback(newFeedback);
@@ -193,6 +201,24 @@ export const SubmissionReviewCard = ({
                 </div>
               }
 
+              {/* Video Review Toggle */}
+              {submission.video_url && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowVideoReview(!showVideoReview)}
+                  className="mb-3 border-cyan-500/30 text-cyan-500 hover:bg-cyan-500/10"
+                >
+                  <Video className="w-4 h-4 mr-2" />
+                  {showVideoReview ? "Hide" : "Review"} Video with Comments
+                  {showVideoReview ? (
+                    <ChevronUp className="w-4 h-4 ml-2" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 ml-2" />
+                  )}
+                </Button>
+              )}
+
               {/* Content Link */}
               {submission.platform_url &&
               <a
@@ -267,6 +293,30 @@ export const SubmissionReviewCard = ({
             </div>
           </div>
         </CardContent>
+
+        {/* Pro Video Review Interface - Expanded */}
+        <AnimatePresence>
+          {showVideoReview && submission.video_url && user?.id && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <CardContent className="pt-0 pb-4">
+                <div className="border-t border-border pt-4">
+                  <ProVideoReviewInterface
+                    submissionId={submission.id}
+                    videoUrl={submission.video_url}
+                    currentUserId={user.id}
+                    submissionStatus={submission.status}
+                  />
+                </div>
+              </CardContent>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Card>
 
       {/* Approval & Escrow Release Confirmation Dialog */}
