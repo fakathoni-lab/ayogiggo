@@ -14,12 +14,12 @@ const createDummyClient = () => {
   return createClient<Database>('https://placeholder.supabase.co', 'placeholder-key');
 };
 
-export const supabase = (SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY) 
-  ? createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-      auth: {
-        storage: localStorage,
-        persistSession: true,
-        autoRefreshToken: true
-      }
-    })
-  : createDummyClient();
+export const supabase = SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY ?
+createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+  auth: {
+    storage: localStorage,
+    persistSession: true,
+    autoRefreshToken: true
+  }
+}) :
+createDummyClient();

@@ -56,10 +56,10 @@ const LazyVideo = forwardRef<LazyVideoHandle, LazyVideoProps>(
 
 
 
+
+
           // Autoplay was prevented, ignore
-        });}}, [shouldLoad, autoPlay]);const handleVideoLoaded = () => {
-      setIsVideoLoaded(true);
-    };
+        });}}, [shouldLoad, autoPlay]);const handleVideoLoaded = () => {setIsVideoLoaded(true);};
 
     return (
       <div ref={containerRef} className={cn("relative", className)}>
