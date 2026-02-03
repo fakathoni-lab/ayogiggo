@@ -45,8 +45,9 @@ const navItems = [
 { id: "discover", icon: Compass, label: "Discover Gigs" },
 { id: "entries", icon: Video, label: "My Entries" },
 { id: "leaderboard", icon: Trophy, label: "Leaderboard" },
-{ id: "wallet", icon: Wallet, label: "My Wallet" },
-{ id: "settings", icon: Settings, label: "Settings" }];
+{ id: "wallet", icon: Wallet, label: "My Wallet", path: "/dashboard/creator/wallet" },
+{ id: "analytics", icon: TrendingUp, label: "Analytics", path: "/dashboard/creator/analytics" },
+{ id: "settings", icon: Settings, label: "Settings", path: "/dashboard/creator/settings" }];
 
 
 const getTransactionIcon = (type: Transaction["type"]) => {

@@ -25,9 +25,12 @@ const CampaignDetail = lazy(() => import("@/pages/campaigns/CampaignDetail"));
 const BrandDashboard = lazy(() => import("@/pages/dashboard/BrandDashboard"));
 const CreatorDashboard = lazy(() => import("@/pages/dashboard/CreatorDashboard"));
 const CreatorWallet = lazy(() => import("@/pages/dashboard/CreatorWallet"));
+const CreatorAnalytics = lazy(() => import("@/pages/dashboard/CreatorAnalytics"));
+const CreatorSettings = lazy(() => import("@/pages/dashboard/CreatorSettings"));
 const CreateCampaign = lazy(() => import("@/pages/dashboard/CreateCampaign"));
 const BrandsLandingPage = lazy(() => import("@/pages/brands/Index"));
 const CreatorsLandingPage = lazy(() => import("@/pages/creators/Index"));
+const PublicProfile = lazy(() => import("@/pages/creator/PublicProfile"));
 const BrandOnboarding = lazy(() => import("@/pages/onboarding/BrandOnboarding"));
 const CreatorOnboarding = lazy(() => import("@/pages/onboarding/CreatorOnboarding"));
 const Welcome = lazy(() => import("@/pages/onboarding/Welcome"));
@@ -101,7 +104,12 @@ const App = () =>
                   <Route element={<ProtectedRoute allowedRoles={['creator']} />}>
                     <Route path="/dashboard/creator" element={<CreatorDashboard />} />
                     <Route path="/dashboard/creator/wallet" element={<CreatorWallet />} />
+                    <Route path="/dashboard/creator/analytics" element={<CreatorAnalytics />} />
+                    <Route path="/dashboard/creator/settings" element={<CreatorSettings />} />
                   </Route>
+
+                  {/* Public Creator Profile */}
+                  <Route path="/creator/:userId" element={<PublicProfile />} />
 
                   {/* 404 */}
                   <Route path="*" element={<NotFound />} />
