@@ -38,8 +38,8 @@ export const useVideoComments = ({
         OrderByField: "timestamp_seconds",
         IsAsc: true,
         Filters: [
-        { name: "submission_id", op: "Equal", value: submissionId }]
-
+          { name: "submission_id", op: "Equal", value: submissionId }
+        ]
       });
 
       if (error) {
@@ -75,7 +75,7 @@ export const useVideoComments = ({
     };
 
     // Optimistic update
-    setComments((prev) => [...prev, optimisticComment]);
+    setComments(prev => [...prev, optimisticComment]);
 
     try {
       const { error } = await window.ezsite.apis.tableCreate(FEEDBACK_TABLE_ID, {
@@ -88,7 +88,7 @@ export const useVideoComments = ({
 
       if (error) {
         // Revert on error
-        setComments((prev) => prev.filter((c) => c.id !== optimisticComment.id));
+        setComments(prev => prev.filter(c => c.id !== optimisticComment.id));
         throw error;
       }
 
@@ -104,12 +104,12 @@ export const useVideoComments = ({
 
   // Resolve comment with optimistic update
   const resolveComment = useCallback(async (commentId: string) => {
-    const comment = comments.find((c) => c.id === commentId);
+    const comment = comments.find(c => c.id === commentId);
     if (!comment) return;
 
     // Optimistic update
-    setComments((prev) =>
-    prev.map((c) => c.id === commentId ? { ...c, is_resolved: true } : c)
+    setComments(prev =>
+      prev.map(c => c.id === commentId ? { ...c, is_resolved: true } : c)
     );
 
     try {
@@ -120,8 +120,8 @@ export const useVideoComments = ({
 
       if (error) {
         // Revert on error
-        setComments((prev) =>
-        prev.map((c) => c.id === commentId ? { ...c, is_resolved: false } : c)
+        setComments(prev =>
+          prev.map(c => c.id === commentId ? { ...c, is_resolved: false } : c)
         );
         throw error;
       }
@@ -136,11 +136,11 @@ export const useVideoComments = ({
 
   // Delete comment with optimistic update
   const deleteComment = useCallback(async (commentId: string) => {
-    const comment = comments.find((c) => c.id === commentId);
+    const comment = comments.find(c => c.id === commentId);
     if (!comment) return;
 
     // Optimistic update
-    setComments((prev) => prev.filter((c) => c.id !== commentId));
+    setComments(prev => prev.filter(c => c.id !== commentId));
 
     try {
       const { error } = await window.ezsite.apis.tableDelete(FEEDBACK_TABLE_ID, {
@@ -149,7 +149,7 @@ export const useVideoComments = ({
 
       if (error) {
         // Revert on error
-        setComments((prev) => [...prev, comment]);
+        setComments(prev => [...prev, comment]);
         throw error;
       }
 

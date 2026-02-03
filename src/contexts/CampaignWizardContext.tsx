@@ -4,8 +4,8 @@ import {
   ProductDetails,
   SmartBrief,
   ScriptSelection,
-  BudgetTimeline } from
-"@/lib/campaign-wizard-schema";
+  BudgetTimeline,
+} from "@/lib/campaign-wizard-schema";
 
 interface CampaignWizardContextType {
   currentStep: number;
@@ -29,7 +29,7 @@ const initialProductDetails: ProductDetails = {
   title: "",
   productUrl: "",
   productImage: "",
-  category: ""
+  category: "",
 };
 
 const initialSmartBrief: SmartBrief = {
@@ -38,22 +38,22 @@ const initialSmartBrief: SmartBrief = {
   avoid: [],
   keyBenefits: [],
   cta: "",
-  tone: "professional"
+  tone: "professional",
 };
 
 const initialScript: ScriptSelection = {
   selectedScript: "",
-  isCustom: false
+  isCustom: false,
 };
 
 const initialBudgetTimeline: BudgetTimeline = {
   budget: 0,
   prizeBreakdown: "",
   startDate: "",
-  endDate: ""
+  endDate: "",
 };
 
-export const CampaignWizardProvider = ({ children }: {children: ReactNode;}) => {
+export const CampaignWizardProvider = ({ children }: { children: ReactNode }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [campaignType, setCampaignType] = useState<"contest" | "deal" | null>(null);
   const [productDetails, setProductDetails] = useState<ProductDetails>(initialProductDetails);
@@ -85,12 +85,12 @@ export const CampaignWizardProvider = ({ children }: {children: ReactNode;}) => 
         setScript,
         budgetTimeline,
         setBudgetTimeline,
-        resetWizard
-      }}>
-
+        resetWizard,
+      }}
+    >
       {children}
-    </CampaignWizardContext.Provider>);
-
+    </CampaignWizardContext.Provider>
+  );
 };
 
 export const useCampaignWizard = () => {

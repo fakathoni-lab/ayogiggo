@@ -97,9 +97,9 @@ export const useCreatorSubmissions = (userId?: string) => {
             OrderByField: "created_at",
             IsAsc: false,
             Filters: [
-            { name: "creator_id", op: "Equal", value: userId },
-            { name: "status", op: "Equal", value: "approved" }]
-
+              { name: "creator_id", op: "Equal", value: userId },
+              { name: "status", op: "Equal", value: "approved" }
+            ]
           }
         );
 

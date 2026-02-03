@@ -219,17 +219,17 @@ const CreateCampaign = () => {
       </main>
 
       {/* Payment Modal */}
-      {createdCampaign &&
-      <PaymentModal
-        isOpen={showPaymentModal}
-        onClose={() => setShowPaymentModal(false)}
-        campaign={createdCampaign}
-        onSuccess={() => {
-          setShowPaymentModal(false);
-          // Navigation handled by payment status page
-        }} />
-
-      }
+      {createdCampaign && (
+        <PaymentModal
+          isOpen={showPaymentModal}
+          onClose={() => setShowPaymentModal(false)}
+          campaign={createdCampaign}
+          onSuccess={() => {
+            setShowPaymentModal(false);
+            // Navigation handled by payment status page
+          }}
+        />
+      )}
     </div>);
 
 };

@@ -11,18 +11,18 @@ import {
   Trophy,
   Wallet,
   Settings,
-  TrendingUp } from
-"lucide-react";
+  TrendingUp
+} from "lucide-react";
 
 const navItems = [
-{ id: "dashboard", icon: LayoutDashboard, label: "Dashboard", path: "/dashboard/creator" },
-{ id: "discover", icon: Compass, label: "Discover Gigs" },
-{ id: "entries", icon: Video, label: "My Entries" },
-{ id: "leaderboard", icon: Trophy, label: "Leaderboard" },
-{ id: "wallet", icon: Wallet, label: "My Wallet", path: "/dashboard/creator/wallet" },
-{ id: "analytics", icon: TrendingUp, label: "Analytics", path: "/dashboard/creator/analytics" },
-{ id: "settings", icon: Settings, label: "Settings" }];
-
+  { id: "dashboard", icon: LayoutDashboard, label: "Dashboard", path: "/dashboard/creator" },
+  { id: "discover", icon: Compass, label: "Discover Gigs" },
+  { id: "entries", icon: Video, label: "My Entries" },
+  { id: "leaderboard", icon: Trophy, label: "Leaderboard" },
+  { id: "wallet", icon: Wallet, label: "My Wallet", path: "/dashboard/creator/wallet" },
+  { id: "analytics", icon: TrendingUp, label: "Analytics", path: "/dashboard/creator/analytics" },
+  { id: "settings", icon: Settings, label: "Settings" }
+];
 
 const CreatorAnalytics = () => {
   const [activeTab, setActiveTab] = useState("analytics");
@@ -35,14 +35,14 @@ const CreatorAnalytics = () => {
         activeTab={activeTab}
         onTabChange={setActiveTab}
         userName="Creator"
-        userInitial="C" />
-
+        userInitial="C"
+      />
 
       <main className="flex-1 overflow-auto">
         <DashboardHeader
           title="Creator Command Center 📊"
-          subtitle="Track your earnings, performance, and growth" />
-
+          subtitle="Track your earnings, performance, and growth"
+        />
 
         <div className="p-4 md:p-8 space-y-8">
           {/* Stats Cards */}
@@ -62,8 +62,8 @@ const CreatorAnalytics = () => {
           </div>
         </div>
       </main>
-    </div>);
-
+    </div>
+  );
 };
 
 export default CreatorAnalytics;

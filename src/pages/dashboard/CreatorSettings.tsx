@@ -23,18 +23,18 @@ import {
   User,
   Briefcase,
   Globe,
-  Upload } from
-"lucide-react";
+  Upload
+} from "lucide-react";
 
 const navItems = [
-{ id: "dashboard", icon: LayoutDashboard, label: "Dashboard", path: "/dashboard/creator" },
-{ id: "discover", icon: Compass, label: "Discover Gigs" },
-{ id: "entries", icon: Video, label: "My Entries" },
-{ id: "leaderboard", icon: Trophy, label: "Leaderboard" },
-{ id: "wallet", icon: Wallet, label: "My Wallet", path: "/dashboard/creator/wallet" },
-{ id: "analytics", icon: TrendingUp, label: "Analytics", path: "/dashboard/creator/analytics" },
-{ id: "settings", icon: Settings, label: "Settings", path: "/dashboard/creator/settings" }];
-
+  { id: "dashboard", icon: LayoutDashboard, label: "Dashboard", path: "/dashboard/creator" },
+  { id: "discover", icon: Compass, label: "Discover Gigs" },
+  { id: "entries", icon: Video, label: "My Entries" },
+  { id: "leaderboard", icon: Trophy, label: "Leaderboard" },
+  { id: "wallet", icon: Wallet, label: "My Wallet", path: "/dashboard/creator/wallet" },
+  { id: "analytics", icon: TrendingUp, label: "Analytics", path: "/dashboard/creator/analytics" },
+  { id: "settings", icon: Settings, label: "Settings", path: "/dashboard/creator/settings" }
+];
 
 // Zod validation schema
 const profileSchema = z.object({
@@ -92,14 +92,14 @@ const CreatorSettings = () => {
           activeTab={activeTab}
           onTabChange={setActiveTab}
           userName="Creator"
-          userInitial="C" />
-
+          userInitial="C"
+        />
         <main className="flex-1 overflow-auto p-8">
           <Skeleton className="h-12 w-64 mb-8" />
           <Skeleton className="h-96 w-full" />
         </main>
-      </div>);
-
+      </div>
+    );
   }
 
   return (
@@ -110,14 +110,14 @@ const CreatorSettings = () => {
         activeTab={activeTab}
         onTabChange={setActiveTab}
         userName="Creator"
-        userInitial="C" />
-
+        userInitial="C"
+      />
 
       <main className="flex-1 overflow-auto">
         <DashboardHeader
           title="Profile Settings ⚙️"
-          subtitle="Manage your professional profile and rates" />
-
+          subtitle="Manage your professional profile and rates"
+        />
 
         <div className="p-4 md:p-8 max-w-4xl">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -138,11 +138,11 @@ const CreatorSettings = () => {
                   <Input
                     id="portfolio_headline"
                     placeholder="e.g., Creative Video Producer & Content Strategist"
-                    {...register("portfolio_headline")} />
-
-                  {errors.portfolio_headline &&
-                  <p className="text-sm text-destructive">{errors.portfolio_headline.message}</p>
-                  }
+                    {...register("portfolio_headline")}
+                  />
+                  {errors.portfolio_headline && (
+                    <p className="text-sm text-destructive">{errors.portfolio_headline.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -151,11 +151,11 @@ const CreatorSettings = () => {
                     id="bio"
                     placeholder="Tell brands about yourself, your experience, and what makes you unique..."
                     rows={5}
-                    {...register("bio")} />
-
-                  {errors.bio &&
-                  <p className="text-sm text-destructive">{errors.bio.message}</p>
-                  }
+                    {...register("bio")}
+                  />
+                  {errors.bio && (
+                    <p className="text-sm text-destructive">{errors.bio.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -163,11 +163,11 @@ const CreatorSettings = () => {
                   <Input
                     id="location"
                     placeholder="e.g., Jakarta, Indonesia"
-                    {...register("location")} />
-
-                  {errors.location &&
-                  <p className="text-sm text-destructive">{errors.location.message}</p>
-                  }
+                    {...register("location")}
+                  />
+                  {errors.location && (
+                    <p className="text-sm text-destructive">{errors.location.message}</p>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -189,11 +189,11 @@ const CreatorSettings = () => {
                   <Input
                     id="skills"
                     placeholder="e.g., Video Editing, Content Strategy, UGC, Product Reviews"
-                    {...register("skills")} />
-
-                  {errors.skills &&
-                  <p className="text-sm text-destructive">{errors.skills.message}</p>
-                  }
+                    {...register("skills")}
+                  />
+                  {errors.skills && (
+                    <p className="text-sm text-destructive">{errors.skills.message}</p>
+                  )}
                   <p className="text-xs text-muted-foreground">
                     Separate skills with commas. These will be shown as tags on your profile.
                   </p>
@@ -205,11 +205,11 @@ const CreatorSettings = () => {
                     id="rate_per_video"
                     type="number"
                     placeholder="e.g., 1000000"
-                    {...register("rate_per_video", { valueAsNumber: true })} />
-
-                  {errors.rate_per_video &&
-                  <p className="text-sm text-destructive">{errors.rate_per_video.message}</p>
-                  }
+                    {...register("rate_per_video", { valueAsNumber: true })}
+                  />
+                  {errors.rate_per_video && (
+                    <p className="text-sm text-destructive">{errors.rate_per_video.message}</p>
+                  )}
                   <p className="text-xs text-muted-foreground">
                     Your standard rate for a single video production. This helps brands budget their campaigns.
                   </p>
@@ -236,12 +236,12 @@ const CreatorSettings = () => {
                     <Input
                       id="social_instagram"
                       placeholder="username"
-                      {...register("social_instagram")} />
-
+                      {...register("social_instagram")}
+                    />
                   </div>
-                  {errors.social_instagram &&
-                  <p className="text-sm text-destructive">{errors.social_instagram.message}</p>
-                  }
+                  {errors.social_instagram && (
+                    <p className="text-sm text-destructive">{errors.social_instagram.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -251,12 +251,12 @@ const CreatorSettings = () => {
                     <Input
                       id="social_tiktok"
                       placeholder="username"
-                      {...register("social_tiktok")} />
-
+                      {...register("social_tiktok")}
+                    />
                   </div>
-                  {errors.social_tiktok &&
-                  <p className="text-sm text-destructive">{errors.social_tiktok.message}</p>
-                  }
+                  {errors.social_tiktok && (
+                    <p className="text-sm text-destructive">{errors.social_tiktok.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -265,11 +265,11 @@ const CreatorSettings = () => {
                     id="social_youtube"
                     type="url"
                     placeholder="https://youtube.com/@channel"
-                    {...register("social_youtube")} />
-
-                  {errors.social_youtube &&
-                  <p className="text-sm text-destructive">{errors.social_youtube.message}</p>
-                  }
+                    {...register("social_youtube")}
+                  />
+                  {errors.social_youtube && (
+                    <p className="text-sm text-destructive">{errors.social_youtube.message}</p>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -279,16 +279,16 @@ const CreatorSettings = () => {
               <Button
                 type="submit"
                 variant="hero"
-                disabled={!isDirty || updateProfile.isPending}>
-
+                disabled={!isDirty || updateProfile.isPending}
+              >
                 {updateProfile.isPending ? "Saving..." : "Save Changes"}
               </Button>
             </div>
           </form>
         </div>
       </main>
-    </div>);
-
+    </div>
+  );
 };
 
 export default CreatorSettings;

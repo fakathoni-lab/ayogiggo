@@ -42,32 +42,32 @@ export const useCreatorProfile = () => {
         const profile = data?.List?.[0];
 
         // Return existing profile or default values
-        return profile ?
-        {
-          ID: profile.ID,
-          user_id: user.ID,
-          bio: profile.bio || "",
-          skills: profile.skills || "",
-          rate_per_video: Number(profile.rate_per_video) || 0,
-          avatar_url: profile.avatar_url || "",
-          portfolio_headline: profile.portfolio_headline || "",
-          location: profile.location || "",
-          social_instagram: profile.social_instagram || "",
-          social_tiktok: profile.social_tiktok || "",
-          social_youtube: profile.social_youtube || ""
-        } :
-        {
-          user_id: user.ID,
-          bio: "",
-          skills: "",
-          rate_per_video: 0,
-          avatar_url: "",
-          portfolio_headline: "",
-          location: "",
-          social_instagram: "",
-          social_tiktok: "",
-          social_youtube: ""
-        };
+        return profile
+          ? {
+              ID: profile.ID,
+              user_id: user.ID,
+              bio: profile.bio || "",
+              skills: profile.skills || "",
+              rate_per_video: Number(profile.rate_per_video) || 0,
+              avatar_url: profile.avatar_url || "",
+              portfolio_headline: profile.portfolio_headline || "",
+              location: profile.location || "",
+              social_instagram: profile.social_instagram || "",
+              social_tiktok: profile.social_tiktok || "",
+              social_youtube: profile.social_youtube || ""
+            }
+          : {
+              user_id: user.ID,
+              bio: "",
+              skills: "",
+              rate_per_video: 0,
+              avatar_url: "",
+              portfolio_headline: "",
+              location: "",
+              social_instagram: "",
+              social_tiktok: "",
+              social_youtube: ""
+            };
       } catch (error) {
         console.error("Profile fetch error:", error);
         return null;

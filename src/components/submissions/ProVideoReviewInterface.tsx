@@ -59,8 +59,8 @@ export const ProVideoReviewInterface = ({
           <Skeleton className="h-24 w-full" />
           <Skeleton className="h-24 w-full" />
         </div>
-      </div>);
-
+      </div>
+    );
   }
 
   return (
@@ -73,8 +73,8 @@ export const ProVideoReviewInterface = ({
           onTimeClick={handleTimelineClick}
           onCommentClick={handleCommentClick}
           showWatermark={showWatermark}
-          currentTime={seekToTime} />
-
+          currentTime={seekToTime}
+        />
       </div>
 
       {/* Comments Sidebar */}
@@ -87,9 +87,9 @@ export const ProVideoReviewInterface = ({
           onCommentClick={handleCommentClick}
           onAddComment={handleAddComment}
           onResolveComment={resolveComment}
-          onDeleteComment={deleteComment} />
-
+          onDeleteComment={deleteComment}
+        />
       </div>
-    </div>);
-
+    </div>
+  );
 };

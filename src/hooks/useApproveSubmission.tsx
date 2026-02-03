@@ -46,7 +46,7 @@ export const useApproveSubmission = () => {
         "approve_submission_and_release_escrow",
         {
           _submission_id: submissionId,
-          _brand_user_id: user.id
+          _brand_user_id: user.id,
         }
       );
 
@@ -68,15 +68,15 @@ export const useApproveSubmission = () => {
 
       // Show success toast with confetti-worthy message
       toast.success("Funds Released! 🎉", {
-        description: `$${data.amount_released.toFixed(2)} has been released to the creator's wallet.`
+        description: `$${data.amount_released.toFixed(2)} has been released to the creator's wallet.`,
       });
     },
     onError: (error: Error) => {
       // Show error toast
       toast.error("Approval Failed", {
-        description: error.message
+        description: error.message,
       });
-    }
+    },
   });
 };
 
@@ -95,7 +95,7 @@ export const useCanApproveSubmission = () => {
 
       const { data, error } = await supabase.rpc("can_approve_submission", {
         _submission_id: submissionId,
-        _brand_user_id: user.id
+        _brand_user_id: user.id,
       });
 
       if (error) {
@@ -109,6 +109,6 @@ export const useCanApproveSubmission = () => {
         creator_id?: string;
         campaign_title?: string;
       };
-    }
+    },
   });
 };

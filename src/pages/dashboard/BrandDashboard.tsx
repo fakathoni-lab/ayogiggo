@@ -333,17 +333,17 @@ const BrandDashboard = () => {
                             "Ended"}
                               </p>
                             </div>
-                            {gig.status === "draft" &&
-                        <Button
-                          variant="hero"
-                          size="sm"
-                          onClick={() => handleActivateCampaign(gig)}
-                          className="gap-2">
-
+                            {gig.status === "draft" && (
+                              <Button
+                                variant="hero"
+                                size="sm"
+                                onClick={() => handleActivateCampaign(gig)}
+                                className="gap-2"
+                              >
                                 <CreditCard className="w-4 h-4" />
                                 Activate
                               </Button>
-                        }
+                            )}
                           </div>
                         </div>);
 
@@ -357,20 +357,20 @@ const BrandDashboard = () => {
       </main>
 
       {/* Payment Modal */}
-      {campaignToActivate &&
-      <PaymentModal
-        isOpen={showPaymentModal}
-        onClose={() => {
-          setShowPaymentModal(false);
-          setCampaignToActivate(null);
-        }}
-        campaign={campaignToActivate}
-        onSuccess={() => {
-          setShowPaymentModal(false);
-          setCampaignToActivate(null);
-        }} />
-
-      }
+      {campaignToActivate && (
+        <PaymentModal
+          isOpen={showPaymentModal}
+          onClose={() => {
+            setShowPaymentModal(false);
+            setCampaignToActivate(null);
+          }}
+          campaign={campaignToActivate}
+          onSuccess={() => {
+            setShowPaymentModal(false);
+            setCampaignToActivate(null);
+          }}
+        />
+      )}
     </div>);
 
 };

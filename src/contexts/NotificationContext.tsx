@@ -24,7 +24,7 @@ interface NotificationContextType {
 
 const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
 
-export const NotificationProvider = ({ children }: {children: ReactNode;}) => {
+export const NotificationProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,16 +44,16 @@ export const NotificationProvider = ({ children }: {children: ReactNode;}) => {
       const response = await window.ezsite.apis.listTables({
         tableName: "notifications",
         filters: [
-        {
-          name: "user_id",
-          op: "Equal",
-          value: user.ID
-        }],
-
+          {
+            name: "user_id",
+            op: "Equal",
+            value: user.ID,
+          },
+        ],
         orderByField: "created_at",
         isAsc: false,
         pageNo: 1,
-        pageSize: 50
+        pageSize: 50,
       });
 
       if (response.error) {
@@ -97,7 +97,7 @@ export const NotificationProvider = ({ children }: {children: ReactNode;}) => {
       const toastConfig = {
         payment: { icon: "💰", duration: 5000 },
         campaign: { icon: "🎯", duration: 5000 },
-        system: { icon: "🔔", duration: 4000 }
+        system: { icon: "🔔", duration: 4000 },
       };
 
       const config = toastConfig[latestNotification.type];
@@ -105,7 +105,7 @@ export const NotificationProvider = ({ children }: {children: ReactNode;}) => {
       toast(latestNotification.title, {
         description: latestNotification.message,
         icon: config.icon,
-        duration: config.duration
+        duration: config.duration,
       });
     }
   }, [notifications]);
@@ -114,7 +114,7 @@ export const NotificationProvider = ({ children }: {children: ReactNode;}) => {
   const markAsRead = async (notificationId: number) => {
     // Optimistic update
     setNotifications((prev) =>
-    prev.map((n) => n.ID === notificationId ? { ...n, is_read: true } : n)
+      prev.map((n) => (n.ID === notificationId ? { ...n, is_read: true } : n))
     );
 
     try {
@@ -122,22 +122,22 @@ export const NotificationProvider = ({ children }: {children: ReactNode;}) => {
         tableName: "notifications",
         record: {
           ID: notificationId,
-          is_read: true
-        }
+          is_read: true,
+        },
       });
 
       if (response.error) {
         console.error("Failed to mark as read:", response.error);
         // Revert optimistic update on error
         setNotifications((prev) =>
-        prev.map((n) => n.ID === notificationId ? { ...n, is_read: false } : n)
+          prev.map((n) => (n.ID === notificationId ? { ...n, is_read: false } : n))
         );
       }
     } catch (error) {
       console.error("Mark as read error:", error);
       // Revert optimistic update
       setNotifications((prev) =>
-      prev.map((n) => n.ID === notificationId ? { ...n, is_read: false } : n)
+        prev.map((n) => (n.ID === notificationId ? { ...n, is_read: false } : n))
       );
     }
   };
@@ -149,12 +149,12 @@ export const NotificationProvider = ({ children }: {children: ReactNode;}) => {
         unreadCount,
         markAsRead,
         refreshNotifications: fetchNotifications,
-        isLoading
-      }}>
-
+        isLoading,
+      }}
+    >
       {children}
-    </NotificationContext.Provider>);
-
+    </NotificationContext.Provider>
+  );
 };
 
 export const useNotifications = (): NotificationContextType => {
