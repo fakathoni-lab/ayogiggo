@@ -46,12 +46,12 @@ const SubmissionReview = () => {
                 </div>
              </div>
              {/* Dummy Video Tag */}
-             <video 
-               src={submissionData.videoUrl} 
-               className="w-full h-full object-cover" 
-               controls 
-               poster="https://images.unsplash.com/photo-1535016120720-40c6874c3b1c?auto=format&fit=crop&w=800&q=80"
-             />
+             <video
+              src={submissionData.videoUrl}
+              className="w-full h-full object-cover"
+              controls
+              poster="https://images.unsplash.com/photo-1535016120720-40c6874c3b1c?auto=format&fit=crop&w=800&q=80" />
+
           </div>
 
           {/* Metadata & Actions */}
@@ -98,10 +98,10 @@ const SubmissionReview = () => {
               </div>
 
               {/* KOMPONEN UTAMA KITA */}
-              <ProjectApprovalCard 
-                 applicationId={submissionData.applicationId}
-                 amount="Rp 750.000"
-              />
+              <ProjectApprovalCard
+              applicationId={submissionData.applicationId}
+              amount="Rp 750.000" />
+
 
               {/* Safety Notice */}
               <p className="text-xs text-zinc-600 text-center px-4">
@@ -112,8 +112,8 @@ const SubmissionReview = () => {
         </div>
 
       </main>
-    </div>
-  );
+    </div>);
+
 };
 
 export default SubmissionReview;
