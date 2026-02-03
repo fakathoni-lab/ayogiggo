@@ -67,7 +67,7 @@ const EarningsChart = () => {
       }
       acc[key].earnings += item.amount;
       return acc;
-    }, {} as Record<string, { period: string; earnings: number }>);
+    }, {} as Record<string, {period: string;earnings: number;}>);
 
     return Object.values(aggregated);
   }, [rawData, timeRange]);
@@ -81,8 +81,8 @@ const EarningsChart = () => {
       <div className="space-y-4">
         <Skeleton className="h-8 w-48" />
         <Skeleton className="h-[350px] w-full" />
-      </div>
-    );
+      </div>);
+
   }
 
   if (!chartData || chartData.length === 0) {
@@ -90,8 +90,8 @@ const EarningsChart = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="flex flex-col items-center justify-center py-16 px-4 text-center"
-      >
+        className="flex flex-col items-center justify-center py-16 px-4 text-center">
+
         <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl flex items-center justify-center mb-6">
           <TrendingUp className="w-10 h-10 text-primary" />
         </div>
@@ -104,8 +104,8 @@ const EarningsChart = () => {
         <Button variant="hero" onClick={() => window.location.href = "/campaigns"}>
           Browse Campaigns
         </Button>
-      </motion.div>
-    );
+      </motion.div>);
+
   }
 
   return (
@@ -119,17 +119,17 @@ const EarningsChart = () => {
           </span>
         </div>
         <div className="flex gap-2">
-          {(["week", "month", "year"] as TimeRange[]).map((range) => (
-            <Button
-              key={range}
-              variant={timeRange === range ? "default" : "outline"}
-              size="sm"
-              onClick={() => setTimeRange(range)}
-              className="capitalize"
-            >
+          {(["week", "month", "year"] as TimeRange[]).map((range) =>
+          <Button
+            key={range}
+            variant={timeRange === range ? "default" : "outline"}
+            size="sm"
+            onClick={() => setTimeRange(range)}
+            className="capitalize">
+
               {range}
             </Button>
-          ))}
+          )}
         </div>
       </div>
 
@@ -149,15 +149,15 @@ const EarningsChart = () => {
               stroke="hsl(var(--muted-foreground))"
               fontSize={12}
               tickLine={false}
-              axisLine={false}
-            />
+              axisLine={false} />
+
             <YAxis
               stroke="hsl(var(--muted-foreground))"
               fontSize={12}
               tickLine={false}
               axisLine={false}
-              tickFormatter={(value) => formatCurrency(value)}
-            />
+              tickFormatter={(value) => formatCurrency(value)} />
+
             <Tooltip
               content={({ active, payload }) => {
                 if (!active || !payload || payload.length === 0) return null;
@@ -167,23 +167,23 @@ const EarningsChart = () => {
                     <p className="text-sm font-semibold text-foreground">
                       {formatCurrency(payload[0].value as number)}
                     </p>
-                  </div>
-                );
-              }}
-            />
+                  </div>);
+
+              }} />
+
             <Area
               type="monotone"
               dataKey="earnings"
               stroke="hsl(var(--primary))"
               strokeWidth={2}
               fill="url(#earningsGradient)"
-              animationDuration={1000}
-            />
+              animationDuration={1000} />
+
           </AreaChart>
         </ResponsiveContainer>
       </ChartContainer>
-    </div>
-  );
+    </div>);
+
 };
 
 export default EarningsChart;
