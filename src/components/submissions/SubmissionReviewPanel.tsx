@@ -11,11 +11,13 @@ import { useState } from "react";
 interface SubmissionReviewPanelProps {
   campaignId: string;
   campaignStatus: string;
+  campaignPrize?: number;
 }
 
 export const SubmissionReviewPanel = ({
   campaignId,
-  campaignStatus
+  campaignStatus,
+  campaignPrize = 0
 }: SubmissionReviewPanelProps) => {
   const { t } = useTranslation();
   const [showWinnerAlert, setShowWinnerAlert] = useState(false);
@@ -134,7 +136,8 @@ export const SubmissionReviewPanel = ({
             key={submission.id}
             submission={submission}
             onWinnerSelected={handleWinnerSelected}
-            isContestEnded={isContestEnded} />
+            isContestEnded={isContestEnded}
+            campaignPrize={campaignPrize} />
 
           )}
           </CardContent>
@@ -156,7 +159,8 @@ export const SubmissionReviewPanel = ({
             key={submission.id}
             submission={submission}
             onWinnerSelected={handleWinnerSelected}
-            isContestEnded={isContestEnded} />
+            isContestEnded={isContestEnded}
+            campaignPrize={campaignPrize} />
 
           )}
           </CardContent>

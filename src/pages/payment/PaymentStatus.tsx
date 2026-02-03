@@ -5,7 +5,7 @@ import { CheckCircle2, XCircle, Loader2, AlertCircle, ArrowRight } from "lucide-
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
-import { ConfettiCelebration } from "@/components/shared/ConfettiCelebration";
+import ConfettiCelebration from "@/components/shared/ConfettiCelebration";
 
 type PaymentStatus = "processing" | "success" | "error";
 
@@ -49,13 +49,13 @@ const PaymentStatus = () => {
         }
 
         // Query campaigns owned by this user that were recently activated
-        const { data: campaigns, error: campaignError } = await supabase.
-        from("campaigns").
-        select("id, title, status").
-        eq("brand_id", user.id).
-        eq("status", "live").
-        order("updated_at", { ascending: false }).
-        limit(1);
+        const { data: campaigns, error: campaignError } = await supabase
+          .from("campaigns")
+          .select("id, title, status")
+          .eq("brand_id", user.id)
+          .eq("status", "live")
+          .order("updated_at", { ascending: false })
+          .limit(1);
 
         if (campaignError) {
           console.error("Campaign query error:", campaignError);
@@ -114,28 +114,28 @@ const PaymentStatus = () => {
   useEffect(() => {
     if (status !== "processing") return;
 
-    const channel = supabase.
-    channel("campaign-status-changes").
-    on(
-      "postgres_changes",
-      {
-        event: "UPDATE",
-        schema: "public",
-        table: "campaigns",
-        filter: `status=eq.live`
-      },
-      (payload) => {
-        console.log("Realtime campaign update:", payload);
-        const updatedCampaign = payload.new as CampaignData;
+    const channel = supabase
+      .channel("campaign-status-changes")
+      .on(
+        "postgres_changes",
+        {
+          event: "UPDATE",
+          schema: "public",
+          table: "campaigns",
+          filter: `status=eq.live`,
+        },
+        (payload) => {
+          console.log("Realtime campaign update:", payload);
+          const updatedCampaign = payload.new as CampaignData;
 
-        if (updatedCampaign.status === "live") {
-          setCampaignData(updatedCampaign);
-          setStatus("success");
-          setShowConfetti(true);
+          if (updatedCampaign.status === "live") {
+            setCampaignData(updatedCampaign);
+            setStatus("success");
+            setShowConfetti(true);
+          }
         }
-      }
-    ).
-    subscribe();
+      )
+      .subscribe();
 
     return () => {
       supabase.removeChannel(channel);
@@ -150,32 +150,32 @@ const PaymentStatus = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-2xl">
-
+        className="w-full max-w-2xl"
+      >
         <Card className="relative overflow-hidden border-primary/20 bg-card/50 backdrop-blur-xl">
           {/* Animated background gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 animate-pulse" />
 
           <div className="relative p-8 sm:p-12">
-            {status === "processing" &&
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center space-y-6">
-
+            {status === "processing" && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center space-y-6"
+              >
                 {/* Processing Animation */}
                 <motion.div
-                animate={{
-                  scale: [1, 1.1, 1],
-                  rotate: [0, 180, 360]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="w-20 h-20 mx-auto gradient-primary rounded-2xl flex items-center justify-center">
-
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="w-20 h-20 mx-auto gradient-primary rounded-2xl flex items-center justify-center"
+                >
                   <Loader2 className="w-10 h-10 text-primary-foreground animate-spin" />
                 </motion.div>
 
@@ -191,42 +191,42 @@ const PaymentStatus = () => {
                 {/* Processing steps */}
                 <div className="space-y-3 max-w-md mx-auto text-left">
                   {[
-                "Verifying payment with Stripe",
-                "Crediting escrow account",
-                "Activating your campaign"].
-                map((step, index) =>
-                <motion.div
-                  key={step}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.3 }}
-                  className="flex items-center gap-3 text-sm text-muted-foreground">
-
+                    "Verifying payment with Stripe",
+                    "Crediting escrow account",
+                    "Activating your campaign",
+                  ].map((step, index) => (
+                    <motion.div
+                      key={step}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.3 }}
+                      className="flex items-center gap-3 text-sm text-muted-foreground"
+                    >
                       <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                       {step}
                     </motion.div>
-                )}
+                  ))}
                 </div>
               </motion.div>
-            }
+            )}
 
-            {status === "success" && campaignData &&
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center space-y-6">
-
+            {status === "success" && campaignData && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center space-y-6"
+              >
                 {/* Success Icon */}
                 <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 15
-                }}
-                className="w-20 h-20 mx-auto bg-success/20 rounded-full flex items-center justify-center">
-
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 15,
+                  }}
+                  className="w-20 h-20 mx-auto bg-success/20 rounded-full flex items-center justify-center"
+                >
                   <CheckCircle2 className="w-12 h-12 text-success" />
                 </motion.div>
 
@@ -241,11 +241,11 @@ const PaymentStatus = () => {
 
                 {/* Campaign Info */}
                 <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="bg-primary/5 rounded-2xl p-6 border border-primary/20">
-
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="bg-primary/5 rounded-2xl p-6 border border-primary/20"
+                >
                   <div className="flex items-center gap-3 justify-center">
                     <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center text-primary-foreground font-bold text-xl">
                       {campaignData.title.charAt(0)}
@@ -264,48 +264,48 @@ const PaymentStatus = () => {
 
                 {/* Action Buttons */}
                 <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="flex flex-col sm:flex-row gap-3 justify-center">
-
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="flex flex-col sm:flex-row gap-3 justify-center"
+                >
                   <Button
-                  variant="outline"
-                  onClick={() => navigate(`/campaigns/${campaignData.id}`)}
-                  className="gap-2">
-
+                    variant="outline"
+                    onClick={() => navigate(`/campaigns/${campaignData.id}`)}
+                    className="gap-2"
+                  >
                     View Campaign
                     <ArrowRight className="w-4 h-4" />
                   </Button>
                   <Button
-                  variant="hero"
-                  onClick={() => navigate("/dashboard/brand")}
-                  className="gap-2">
-
+                    variant="hero"
+                    onClick={() => navigate("/dashboard/brand")}
+                    className="gap-2"
+                  >
                     Go to Dashboard
                     <ArrowRight className="w-4 h-4" />
                   </Button>
                 </motion.div>
               </motion.div>
-            }
+            )}
 
-            {status === "error" &&
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center space-y-6">
-
+            {status === "error" && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center space-y-6"
+              >
                 {/* Error Icon */}
                 <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 15
-                }}
-                className="w-20 h-20 mx-auto bg-destructive/20 rounded-full flex items-center justify-center">
-
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 15,
+                  }}
+                  className="w-20 h-20 mx-auto bg-destructive/20 rounded-full flex items-center justify-center"
+                >
                   <XCircle className="w-12 h-12 text-destructive" />
                 </motion.div>
 
@@ -320,11 +320,11 @@ const PaymentStatus = () => {
 
                 {/* Error Info */}
                 <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="bg-yellow-500/10 rounded-2xl p-6 border border-yellow-500/20">
-
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="bg-yellow-500/10 rounded-2xl p-6 border border-yellow-500/20"
+                >
                   <div className="flex gap-3">
                     <AlertCircle className="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
                     <div className="text-left space-y-1">
@@ -341,32 +341,32 @@ const PaymentStatus = () => {
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <Button
-                  variant="outline"
-                  onClick={() => navigate("/dashboard/brand")}>
-
+                    variant="outline"
+                    onClick={() => navigate("/dashboard/brand")}
+                  >
                     Go to Dashboard
                   </Button>
                   <Button
-                  variant="hero"
-                  onClick={() => window.location.href = "mailto:support@giggo.com"}>
-
+                    variant="hero"
+                    onClick={() => window.location.href = "mailto:support@giggo.com"}
+                  >
                     Contact Support
                   </Button>
                 </div>
               </motion.div>
-            }
+            )}
           </div>
         </Card>
 
         {/* Session ID for debugging */}
-        {sessionId &&
-        <p className="text-center text-xs text-muted-foreground mt-4">
+        {sessionId && (
+          <p className="text-center text-xs text-muted-foreground mt-4">
             Session ID: {sessionId.slice(0, 20)}...
           </p>
-        }
+        )}
       </motion.div>
-    </div>);
-
+    </div>
+  );
 };
 
 export default PaymentStatus;

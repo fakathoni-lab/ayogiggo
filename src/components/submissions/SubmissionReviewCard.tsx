@@ -15,6 +15,7 @@ import {
   AlertDialogTitle } from
 "@/components/ui/alert-dialog";
 import { FeedbackForm } from "./FeedbackForm";
+import { ConfettiCelebration } from "@/components/shared/ConfettiCelebration";
 import {
   ExternalLink,
   Trophy,
@@ -22,9 +23,12 @@ import {
   X,
   RotateCcw,
   Loader2,
-  MessageSquare } from
+  MessageSquare,
+  DollarSign,
+  AlertCircle } from
 "lucide-react";
 import { useReviewSubmission, type SubmissionWithCreator } from "@/hooks/useSubmissions";
+import { useApproveSubmission } from "@/hooks/useApproveSubmission";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 
@@ -32,16 +36,20 @@ interface SubmissionReviewCardProps {
   submission: SubmissionWithCreator;
   onWinnerSelected?: () => void;
   isContestEnded?: boolean;
+  campaignPrize?: number; // Prize amount for the campaign
 }
 
 export const SubmissionReviewCard = ({
   submission,
   onWinnerSelected,
-  isContestEnded = false
+  isContestEnded = false,
+  campaignPrize = 0
 }: SubmissionReviewCardProps) => {
   const { t } = useTranslation();
   const [showWinnerConfirm, setShowWinnerConfirm] = useState(false);
+  const [showApprovalConfirm, setShowApprovalConfirm] = useState(false);
   const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
   const [feedback, setFeedback] = useState("");
 
   const handleFeedbackChange = useCallback((newFeedback: string) => {
@@ -49,6 +57,7 @@ export const SubmissionReviewCard = ({
   }, []);
 
   const reviewSubmission = useReviewSubmission();
+  const approveSubmission = useApproveSubmission();
 
   const creatorName = submission.profiles?.full_name ||
   submission.profiles?.username ||
@@ -56,11 +65,24 @@ export const SubmissionReviewCard = ({
   const creatorInitial = creatorName.charAt(0).toUpperCase();
   const creatorAvatar = submission.profiles?.avatar_url;
 
-  const handleApprove = () => {
-    reviewSubmission.mutate({
-      id: submission.id,
-      action: "approve"
-    });
+  const handleApproveClick = () => {
+    // Show confirmation modal before approving
+    setShowApprovalConfirm(true);
+  };
+
+  const handleConfirmApproval = () => {
+    // Call the server-side escrow release function
+    approveSubmission.mutate(
+      { submissionId: submission.id },
+      {
+        onSuccess: () => {
+          setShowApprovalConfirm(false);
+          setShowConfetti(true);
+          // Hide confetti after 5 seconds
+          setTimeout(() => setShowConfetti(false), 5000);
+        },
+      }
+    );
   };
 
   const handleDecline = () => {
@@ -108,9 +130,12 @@ export const SubmissionReviewCard = ({
   const isPending = submission.status === "submitted";
   const canReview = isPending || submission.status === "redo_requested";
   const maxRedoReached = submission.redo_count >= 3;
+  const isProcessing = approveSubmission.isPending || reviewSubmission.isPending;
 
   return (
     <>
+      {showConfetti && <ConfettiCelebration />}
+
       <Card className={cn(
         "transition-all",
         isWinner && "border-amber-500/50 bg-amber-500/5"
@@ -188,38 +213,41 @@ export const SubmissionReviewCard = ({
               <>
                   <Button
                   size="sm"
-                  variant="success"
-                  onClick={handleApprove}
-                  disabled={reviewSubmission.isPending}>
+                  variant="default"
+                  className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white shadow-lg"
+                  onClick={handleApproveClick}
+                  disabled={isProcessing}>
 
-                    {reviewSubmission.isPending ?
-                  <Loader2 className="w-4 h-4 animate-spin" /> :
+                    {approveSubmission.isPending ?
+                  <Loader2 className="w-4 h-4 animate-spin mr-1.5" /> :
 
-                  <Check className="w-4 h-4" />
+                  <DollarSign className="w-4 h-4 mr-1.5" />
                   }
-                    {t("submissions.review.approve")}
+                    Approve & Release Funds
                   </Button>
-                  
+
                   {!maxRedoReached &&
                 <Button
                   size="sm"
                   variant="outline"
+                  className="border-warning text-warning hover:bg-warning/10"
                   onClick={() => setShowFeedbackDialog(true)}
-                  disabled={reviewSubmission.isPending}>
+                  disabled={isProcessing}>
 
-                      <RotateCcw className="w-4 h-4" />
-                      {t("submissions.review.requestRedo")}
+                      <RotateCcw className="w-4 h-4 mr-1.5" />
+                      Request Revision
                     </Button>
                 }
-                  
+
                   <Button
                   size="sm"
-                  variant="destructive"
+                  variant="outline"
+                  className="border-destructive text-destructive hover:bg-destructive/10"
                   onClick={handleDecline}
-                  disabled={reviewSubmission.isPending}>
+                  disabled={isProcessing}>
 
-                    <X className="w-4 h-4" />
-                    {t("submissions.review.reject")}
+                    <X className="w-4 h-4 mr-1.5" />
+                    Decline
                   </Button>
                 </>
               }
@@ -240,6 +268,60 @@ export const SubmissionReviewCard = ({
           </div>
         </CardContent>
       </Card>
+
+      {/* Approval & Escrow Release Confirmation Dialog */}
+      <AlertDialog open={showApprovalConfirm} onOpenChange={setShowApprovalConfirm}>
+        <AlertDialogContent className="max-w-md">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-warning" />
+              Approve & Release Funds?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="space-y-3 pt-2">
+              <p className="text-sm">
+                You are about to approve this submission and release{" "}
+                <span className="font-semibold text-foreground">
+                  ${campaignPrize.toFixed(2)}
+                </span>{" "}
+                to the creator's wallet.
+              </p>
+              <div className="bg-warning/10 border border-warning/30 rounded-lg p-3">
+                <p className="text-xs font-medium text-warning-foreground">
+                  ⚠️ This action cannot be undone
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Funds will be moved from escrow to the creator's available balance immediately.
+                </p>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Make sure you've reviewed the submission thoroughly before proceeding.
+              </p>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={approveSubmission.isPending}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleConfirmApproval}
+              disabled={approveSubmission.isPending}
+              className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700">
+
+              {approveSubmission.isPending ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                  Processing...
+                </>
+              ) : (
+                <>
+                  <Check className="w-4 h-4 mr-2" />
+                  Approve & Release ${campaignPrize.toFixed(2)}
+                </>
+              )}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       {/* Winner Confirmation Dialog */}
       <AlertDialog open={showWinnerConfirm} onOpenChange={setShowWinnerConfirm}>

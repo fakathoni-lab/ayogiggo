@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -26,9 +27,37 @@ export interface Transaction {
   updated_at: string;
 }
 
-// Fetch user's wallet
+// Fetch user's wallet with real-time updates
 export const useWallet = () => {
   const { user } = useAuth();
+  const queryClient = useQueryClient();
+
+  // Set up real-time subscription for wallet changes
+  useEffect(() => {
+    if (!user?.id) return;
+
+    // Subscribe to wallet changes for this user
+    const channel = supabase
+      .channel(`wallet:${user.id}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "wallets",
+          filter: `user_id=eq.${user.id}`,
+        },
+        () => {
+          // Invalidate and refetch wallet data when changes occur
+          queryClient.invalidateQueries({ queryKey: ["wallet", user.id] });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user?.id, queryClient]);
 
   return useQuery({
     queryKey: ["wallet", user?.id],
@@ -36,21 +65,21 @@ export const useWallet = () => {
       if (!user) throw new Error("Not authenticated");
 
       // Try to get existing wallet
-      const { data: wallet, error } = await supabase.
-      from("wallets").
-      select("*").
-      eq("user_id", user.id).
-      maybeSingle();
+      const { data: wallet, error } = await supabase
+        .from("wallets")
+        .select("*")
+        .eq("user_id", user.id)
+        .maybeSingle();
 
       if (error) throw error;
 
       // If no wallet exists, create one
       if (!wallet) {
-        const { data: newWallet, error: createError } = await supabase.
-        from("wallets").
-        insert([{ user_id: user.id, balance: 0, pending_balance: 0 }]).
-        select().
-        single();
+        const { data: newWallet, error: createError } = await supabase
+          .from("wallets")
+          .insert([{ user_id: user.id, balance: 0, pending_balance: 0 }])
+          .select()
+          .single();
 
         if (createError) throw createError;
         return newWallet as Wallet;
@@ -58,7 +87,9 @@ export const useWallet = () => {
 
       return wallet as Wallet;
     },
-    enabled: !!user
+    enabled: !!user,
+    // Refetch on window focus to ensure data is always fresh
+    refetchOnWindowFocus: true,
   });
 };
 

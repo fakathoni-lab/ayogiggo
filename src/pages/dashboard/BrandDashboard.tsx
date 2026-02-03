@@ -191,7 +191,8 @@ const BrandDashboard = () => {
                       </div>
                       <SubmissionReviewPanel
                   campaignId={selectedCampaign.id}
-                  campaignStatus={selectedCampaign.status} />
+                  campaignStatus={selectedCampaign.status}
+                  campaignPrize={selectedCampaign.budget} />
 
                     </>
               }
