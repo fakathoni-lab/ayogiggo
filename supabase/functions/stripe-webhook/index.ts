@@ -17,7 +17,7 @@ if (!STRIPE_WEBHOOK_SIGNING_SECRET) {
 // Schema for Stripe Checkout Session metadata
 const CheckoutSessionMetadataSchema = z.object({
   brand_id: z.string().uuid(),
-  campaign_id: z.string().uuid(),
+  campaign_id: z.string().uuid()
 });
 
 // Schema for checkout.session.completed event
@@ -33,9 +33,9 @@ const CheckoutSessionCompletedSchema = z.object({
       currency: z.string(),
       payment_intent: z.string().nullable(),
       payment_status: z.enum(['paid', 'unpaid', 'no_payment_required']),
-      metadata: CheckoutSessionMetadataSchema,
-    }),
-  }),
+      metadata: CheckoutSessionMetadataSchema
+    })
+  })
 });
 
 type CheckoutSessionCompletedEvent = z.infer<typeof CheckoutSessionCompletedSchema>;
@@ -62,7 +62,7 @@ Deno.serve(async (req) => {
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     });
   }
 
@@ -75,13 +75,13 @@ Deno.serve(async (req) => {
       console.error('Missing stripe-signature header');
       return new Response(JSON.stringify({ error: 'Missing signature' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       });
     }
 
     const body = await req.text();
     const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY') || '', {
-      apiVersion: '2023-10-16',
+      apiVersion: '2023-10-16'
     });
 
     let event: Stripe.Event;
@@ -97,7 +97,7 @@ Deno.serve(async (req) => {
         JSON.stringify({ error: 'Invalid signature' }),
         {
           status: 400,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json' }
         }
       );
     }
@@ -113,7 +113,7 @@ Deno.serve(async (req) => {
         JSON.stringify({ received: true, ignored: true, type: event.type }),
         {
           status: 200,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json' }
         }
       );
     }
@@ -130,7 +130,7 @@ Deno.serve(async (req) => {
         JSON.stringify({ error: 'Invalid event payload', details: validationError }),
         {
           status: 400,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json' }
         }
       );
     }
@@ -144,7 +144,7 @@ Deno.serve(async (req) => {
         JSON.stringify({ received: true, payment_status: session.payment_status }),
         {
           status: 200,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json' }
         }
       );
     }
@@ -160,7 +160,7 @@ Deno.serve(async (req) => {
       brand_id,
       campaign_id,
       amount: amountPaid,
-      currency: session.currency,
+      currency: session.currency
     });
 
     // =============================================
@@ -188,8 +188,8 @@ Deno.serve(async (req) => {
         _metadata: {
           session_id: session.id,
           payment_intent: session.payment_intent,
-          currency: session.currency,
-        },
+          currency: session.currency
+        }
       }
     );
 
@@ -207,7 +207,7 @@ Deno.serve(async (req) => {
           }),
           {
             status: 200,
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json' }
           }
         );
       }
@@ -224,11 +224,11 @@ Deno.serve(async (req) => {
       JSON.stringify({
         received: true,
         processed: true,
-        result,
+        result
       }),
       {
         status: 200,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       }
     );
 
@@ -243,7 +243,7 @@ Deno.serve(async (req) => {
       }),
       {
         status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       }
     );
   }

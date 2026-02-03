@@ -14,7 +14,7 @@ const formatCurrency = (amount: number) => {
 };
 
 // Animated counter component
-const AnimatedCounter = ({ value, format }: { value: number; format?: (v: number) => string }) => {
+const AnimatedCounter = ({ value, format }: {value: number;format?: (v: number) => string;}) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -48,44 +48,44 @@ const StatsCards = () => {
   const { data: stats, isLoading } = useAnalyticsStats();
 
   const cards = [
-    {
-      id: "total_earned",
-      title: "Total Earned",
-      value: stats?.totalEarned || 0,
-      format: formatCurrency,
-      icon: Banknote,
-      iconBg: "bg-success/10",
-      iconColor: "text-success",
-      trendIcon: TrendingUp,
-      trendColor: "text-success"
-    },
-    {
-      id: "pending_escrow",
-      title: "Pending Escrow",
-      value: stats?.pendingEscrow || 0,
-      format: formatCurrency,
-      icon: Clock,
-      iconBg: "bg-warning/10",
-      iconColor: "text-warning"
-    },
-    {
-      id: "completed_jobs",
-      title: "Completed Jobs",
-      value: stats?.completedJobs || 0,
-      icon: CheckCircle,
-      iconBg: "bg-primary/10",
-      iconColor: "text-primary"
-    }
-  ];
+  {
+    id: "total_earned",
+    title: "Total Earned",
+    value: stats?.totalEarned || 0,
+    format: formatCurrency,
+    icon: Banknote,
+    iconBg: "bg-success/10",
+    iconColor: "text-success",
+    trendIcon: TrendingUp,
+    trendColor: "text-success"
+  },
+  {
+    id: "pending_escrow",
+    title: "Pending Escrow",
+    value: stats?.pendingEscrow || 0,
+    format: formatCurrency,
+    icon: Clock,
+    iconBg: "bg-warning/10",
+    iconColor: "text-warning"
+  },
+  {
+    id: "completed_jobs",
+    title: "Completed Jobs",
+    value: stats?.completedJobs || 0,
+    icon: CheckCircle,
+    iconBg: "bg-primary/10",
+    iconColor: "text-primary"
+  }];
+
 
   if (isLoading) {
     return (
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        {[1, 2, 3].map((i) => (
-          <Skeleton key={i} className="h-36 rounded-2xl" />
-        ))}
-      </div>
-    );
+        {[1, 2, 3].map((i) =>
+        <Skeleton key={i} className="h-36 rounded-2xl" />
+        )}
+      </div>);
+
   }
 
   return (
@@ -100,25 +100,25 @@ const StatsCards = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1, duration: 0.5 }}
-            className="bg-card rounded-2xl p-6 border border-border hover:border-primary/20 transition-all duration-300 group"
-          >
+            className="bg-card rounded-2xl p-6 border border-border hover:border-primary/20 transition-all duration-300 group">
+
             <div className="flex items-center justify-between mb-4">
               <div className={`w-12 h-12 ${card.iconBg} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                 <Icon className={`w-6 h-6 ${card.iconColor}`} />
               </div>
-              {TrendIcon && (
-                <TrendIcon className={`w-5 h-5 ${card.trendColor}`} />
-              )}
+              {TrendIcon &&
+              <TrendIcon className={`w-5 h-5 ${card.trendColor}`} />
+              }
             </div>
             <p className="text-sm text-muted-foreground mb-2">{card.title}</p>
             <p className="font-display text-2xl md:text-3xl font-bold text-foreground">
               <AnimatedCounter value={card.value} format={card.format} />
             </p>
-          </motion.div>
-        );
+          </motion.div>);
+
       })}
-    </div>
-  );
+    </div>);
+
 };
 
 export default StatsCards;

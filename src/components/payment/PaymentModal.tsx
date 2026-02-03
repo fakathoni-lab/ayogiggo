@@ -24,7 +24,7 @@ export const PaymentModal = ({ isOpen, onClose, campaign, onSuccess }: PaymentMo
   const [isProcessing, setIsProcessing] = useState(false);
 
   const creatorFee = campaign.budget;
-  const platformFee = (campaign.budget * PLATFORM_FEE_PERCENT) / 100;
+  const platformFee = campaign.budget * PLATFORM_FEE_PERCENT / 100;
   const totalAmount = creatorFee + platformFee;
 
   const handlePayment = async () => {
@@ -52,8 +52,8 @@ export const PaymentModal = ({ isOpen, onClose, campaign, onSuccess }: PaymentMo
           amount: totalAmount,
           currency: 'usd',
           success_url: successUrl,
-          cancel_url: cancelUrl,
-        },
+          cancel_url: cancelUrl
+        }
       });
 
       if (error) {
@@ -85,8 +85,8 @@ export const PaymentModal = ({ isOpen, onClose, campaign, onSuccess }: PaymentMo
             <motion.div
               initial={{ rotate: 0 }}
               animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            >
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}>
+
               <Sparkles className="w-6 h-6 text-primary" />
             </motion.div>
             Activate Your Gig
@@ -101,8 +101,8 @@ export const PaymentModal = ({ isOpen, onClose, campaign, onSuccess }: PaymentMo
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-card/50 backdrop-blur-sm rounded-2xl p-6 border border-primary/20 shadow-lg"
-          >
+            className="bg-card/50 backdrop-blur-sm rounded-2xl p-6 border border-primary/20 shadow-lg">
+
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
@@ -146,8 +146,8 @@ export const PaymentModal = ({ isOpen, onClose, campaign, onSuccess }: PaymentMo
                   className="font-display text-2xl font-bold gradient-text"
                   initial={{ scale: 0.9 }}
                   animate={{ scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
+                  transition={{ duration: 0.3 }}>
+
                   ${totalAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </motion.span>
               </div>
@@ -159,8 +159,8 @@ export const PaymentModal = ({ isOpen, onClose, campaign, onSuccess }: PaymentMo
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="bg-primary/5 rounded-xl p-4 border border-primary/20"
-          >
+            className="bg-primary/5 rounded-xl p-4 border border-primary/20">
+
             <div className="flex gap-3">
               <Shield className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
               <div className="space-y-1">
@@ -178,8 +178,8 @@ export const PaymentModal = ({ isOpen, onClose, campaign, onSuccess }: PaymentMo
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="bg-yellow-500/10 rounded-xl p-4 border border-yellow-500/20"
-          >
+            className="bg-yellow-500/10 rounded-xl p-4 border border-yellow-500/20">
+
             <div className="flex gap-3">
               <AlertCircle className="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
               <div className="space-y-1">
@@ -197,41 +197,41 @@ export const PaymentModal = ({ isOpen, onClose, campaign, onSuccess }: PaymentMo
               variant="outline"
               onClick={onClose}
               disabled={isProcessing}
-              className="flex-1"
-            >
+              className="flex-1">
+
               Cancel
             </Button>
             <Button
               variant="hero"
               onClick={handlePayment}
               disabled={isProcessing}
-              className="flex-1 relative overflow-hidden group"
-            >
+              className="flex-1 relative overflow-hidden group">
+
               <AnimatePresence mode="wait">
-                {isProcessing ? (
-                  <motion.span
-                    key="loading"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="flex items-center gap-2"
-                  >
+                {isProcessing ?
+                <motion.span
+                  key="loading"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="flex items-center gap-2">
+
                     <Loader2 className="w-4 h-4 animate-spin" />
                     Processing...
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="pay"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="flex items-center gap-2"
-                  >
+                  </motion.span> :
+
+                <motion.span
+                  key="pay"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="flex items-center gap-2">
+
                     <Lock className="w-4 h-4" />
                     Pay & Activate
                     <CreditCard className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </motion.span>
-                )}
+                }
               </AnimatePresence>
             </Button>
           </div>
@@ -243,6 +243,6 @@ export const PaymentModal = ({ isOpen, onClose, campaign, onSuccess }: PaymentMo
           </div>
         </div>
       </DialogContent>
-    </Dialog>
-  );
+    </Dialog>);
+
 };

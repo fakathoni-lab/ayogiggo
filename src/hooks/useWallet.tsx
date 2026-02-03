@@ -37,22 +37,22 @@ export const useWallet = () => {
     if (!user?.id) return;
 
     // Subscribe to wallet changes for this user
-    const channel = supabase
-      .channel(`wallet:${user.id}`)
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "wallets",
-          filter: `user_id=eq.${user.id}`,
-        },
-        () => {
-          // Invalidate and refetch wallet data when changes occur
-          queryClient.invalidateQueries({ queryKey: ["wallet", user.id] });
-        }
-      )
-      .subscribe();
+    const channel = supabase.
+    channel(`wallet:${user.id}`).
+    on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "wallets",
+        filter: `user_id=eq.${user.id}`
+      },
+      () => {
+        // Invalidate and refetch wallet data when changes occur
+        queryClient.invalidateQueries({ queryKey: ["wallet", user.id] });
+      }
+    ).
+    subscribe();
 
     return () => {
       supabase.removeChannel(channel);
@@ -65,21 +65,21 @@ export const useWallet = () => {
       if (!user) throw new Error("Not authenticated");
 
       // Try to get existing wallet
-      const { data: wallet, error } = await supabase
-        .from("wallets")
-        .select("*")
-        .eq("user_id", user.id)
-        .maybeSingle();
+      const { data: wallet, error } = await supabase.
+      from("wallets").
+      select("*").
+      eq("user_id", user.id).
+      maybeSingle();
 
       if (error) throw error;
 
       // If no wallet exists, create one
       if (!wallet) {
-        const { data: newWallet, error: createError } = await supabase
-          .from("wallets")
-          .insert([{ user_id: user.id, balance: 0, pending_balance: 0 }])
-          .select()
-          .single();
+        const { data: newWallet, error: createError } = await supabase.
+        from("wallets").
+        insert([{ user_id: user.id, balance: 0, pending_balance: 0 }]).
+        select().
+        single();
 
         if (createError) throw createError;
         return newWallet as Wallet;
@@ -89,7 +89,7 @@ export const useWallet = () => {
     },
     enabled: !!user,
     // Refetch on window focus to ensure data is always fresh
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: true
   });
 };
 

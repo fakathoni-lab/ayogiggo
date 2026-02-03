@@ -9,23 +9,23 @@ import { smartBriefSchema } from "@/lib/campaign-wizard-schema";
 import { useToast } from "@/hooks/use-toast";
 
 const ctaOptions = [
-  "Shop Now",
-  "Learn More",
-  "Get Started",
-  "Sign Up",
-  "Download",
-  "Try Free",
-  "Book Now",
-  "Join Waitlist",
-];
+"Shop Now",
+"Learn More",
+"Get Started",
+"Sign Up",
+"Download",
+"Try Free",
+"Book Now",
+"Join Waitlist"];
+
 
 const toneOptions = [
-  { value: "funny", label: "Funny", emoji: "😂" },
-  { value: "professional", label: "Professional", emoji: "💼" },
-  { value: "casual", label: "Casual", emoji: "😎" },
-  { value: "inspiring", label: "Inspiring", emoji: "✨" },
-  { value: "educational", label: "Educational", emoji: "📚" },
-];
+{ value: "funny", label: "Funny", emoji: "😂" },
+{ value: "professional", label: "Professional", emoji: "💼" },
+{ value: "casual", label: "Casual", emoji: "😎" },
+{ value: "inspiring", label: "Inspiring", emoji: "✨" },
+{ value: "educational", label: "Educational", emoji: "📚" }];
+
 
 export const StepSmartBrief = () => {
   const { smartBrief, setSmartBrief, setCurrentStep } = useCampaignWizard();
@@ -49,7 +49,7 @@ export const StepSmartBrief = () => {
       toast({
         title: "Validation Error",
         description: "Please select a call to action",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
@@ -62,7 +62,7 @@ export const StepSmartBrief = () => {
     if (newBenefit.trim() && smartBrief.keyBenefits.length < 5) {
       setSmartBrief({
         ...smartBrief,
-        keyBenefits: [...smartBrief.keyBenefits, newBenefit.trim()],
+        keyBenefits: [...smartBrief.keyBenefits, newBenefit.trim()]
       });
       setNewBenefit("");
     }
@@ -71,7 +71,7 @@ export const StepSmartBrief = () => {
   const removeBenefit = (index: number) => {
     setSmartBrief({
       ...smartBrief,
-      keyBenefits: smartBrief.keyBenefits.filter((_, i) => i !== index),
+      keyBenefits: smartBrief.keyBenefits.filter((_, i) => i !== index)
     });
   };
 
@@ -79,7 +79,7 @@ export const StepSmartBrief = () => {
     if (newMention.trim()) {
       setSmartBrief({
         ...smartBrief,
-        mustMention: [...smartBrief.mustMention, newMention.trim()],
+        mustMention: [...smartBrief.mustMention, newMention.trim()]
       });
       setNewMention("");
     }
@@ -88,7 +88,7 @@ export const StepSmartBrief = () => {
   const removeMention = (index: number) => {
     setSmartBrief({
       ...smartBrief,
-      mustMention: smartBrief.mustMention.filter((_, i) => i !== index),
+      mustMention: smartBrief.mustMention.filter((_, i) => i !== index)
     });
   };
 
@@ -96,7 +96,7 @@ export const StepSmartBrief = () => {
     if (newAvoid.trim()) {
       setSmartBrief({
         ...smartBrief,
-        avoid: [...smartBrief.avoid, newAvoid.trim()],
+        avoid: [...smartBrief.avoid, newAvoid.trim()]
       });
       setNewAvoid("");
     }
@@ -105,7 +105,7 @@ export const StepSmartBrief = () => {
   const removeAvoid = (index: number) => {
     setSmartBrief({
       ...smartBrief,
-      avoid: smartBrief.avoid.filter((_, i) => i !== index),
+      avoid: smartBrief.avoid.filter((_, i) => i !== index)
     });
   };
 
@@ -114,8 +114,8 @@ export const StepSmartBrief = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="max-w-2xl mx-auto"
-    >
+      className="max-w-2xl mx-auto">
+
       <div className="text-center mb-8">
         <h1 className="font-display text-3xl font-bold text-foreground mb-2">
           Smart Brief Builder
@@ -138,29 +138,29 @@ export const StepSmartBrief = () => {
               value={newBenefit}
               onChange={(e) => setNewBenefit(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addBenefit())}
-              disabled={smartBrief.keyBenefits.length >= 5}
-            />
+              disabled={smartBrief.keyBenefits.length >= 5} />
+
             <Button
               onClick={addBenefit}
-              disabled={!newBenefit.trim() || smartBrief.keyBenefits.length >= 5}
-            >
+              disabled={!newBenefit.trim() || smartBrief.keyBenefits.length >= 5}>
+
               <Plus className="w-4 h-4" />
             </Button>
           </div>
           <div className="flex flex-wrap gap-2">
-            {smartBrief.keyBenefits.map((benefit, idx) => (
-              <motion.span
-                key={idx}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="inline-flex items-center gap-1 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium"
-              >
+            {smartBrief.keyBenefits.map((benefit, idx) =>
+            <motion.span
+              key={idx}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="inline-flex items-center gap-1 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium">
+
                 {benefit}
                 <button onClick={() => removeBenefit(idx)} className="hover:text-primary/70">
                   <X className="w-3 h-3" />
                 </button>
               </motion.span>
-            ))}
+            )}
           </div>
         </div>
 
@@ -175,26 +175,26 @@ export const StepSmartBrief = () => {
               placeholder="e.g., Free shipping code"
               value={newMention}
               onChange={(e) => setNewMention(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addMention())}
-            />
+              onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addMention())} />
+
             <Button onClick={addMention} disabled={!newMention.trim()}>
               <Plus className="w-4 h-4" />
             </Button>
           </div>
           <div className="flex flex-wrap gap-2">
-            {smartBrief.mustMention.map((item, idx) => (
-              <motion.span
-                key={idx}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full text-sm font-medium"
-              >
+            {smartBrief.mustMention.map((item, idx) =>
+            <motion.span
+              key={idx}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full text-sm font-medium">
+
                 {item}
                 <button onClick={() => removeMention(idx)} className="hover:opacity-70">
                   <X className="w-3 h-3" />
                 </button>
               </motion.span>
-            ))}
+            )}
           </div>
         </div>
 
@@ -209,26 +209,26 @@ export const StepSmartBrief = () => {
               placeholder="e.g., Competitor names"
               value={newAvoid}
               onChange={(e) => setNewAvoid(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addAvoid())}
-            />
+              onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addAvoid())} />
+
             <Button onClick={addAvoid} disabled={!newAvoid.trim()}>
               <Plus className="w-4 h-4" />
             </Button>
           </div>
           <div className="flex flex-wrap gap-2">
-            {smartBrief.avoid.map((item, idx) => (
-              <motion.span
-                key={idx}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="inline-flex items-center gap-1 px-3 py-1.5 bg-destructive/10 text-destructive rounded-full text-sm font-medium"
-              >
+            {smartBrief.avoid.map((item, idx) =>
+            <motion.span
+              key={idx}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="inline-flex items-center gap-1 px-3 py-1.5 bg-destructive/10 text-destructive rounded-full text-sm font-medium">
+
                 {item}
                 <button onClick={() => removeAvoid(idx)} className="hover:opacity-70">
                   <X className="w-3 h-3" />
                 </button>
               </motion.span>
-            ))}
+            )}
           </div>
         </div>
 
@@ -236,20 +236,20 @@ export const StepSmartBrief = () => {
         <div>
           <Label>Call to Action *</Label>
           <div className="grid grid-cols-4 gap-2 mt-1.5">
-            {ctaOptions.map((cta) => (
-              <button
-                key={cta}
-                type="button"
-                onClick={() => setSmartBrief({ ...smartBrief, cta })}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                  smartBrief.cta === cta
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
-              >
+            {ctaOptions.map((cta) =>
+            <button
+              key={cta}
+              type="button"
+              onClick={() => setSmartBrief({ ...smartBrief, cta })}
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+              smartBrief.cta === cta ?
+              "bg-primary text-primary-foreground" :
+              "bg-muted text-muted-foreground hover:bg-muted/80"}`
+              }>
+
                 {cta}
               </button>
-            ))}
+            )}
           </div>
           {errors.cta && <p className="text-destructive text-sm mt-1">{errors.cta}</p>}
         </div>
@@ -258,26 +258,26 @@ export const StepSmartBrief = () => {
         <div>
           <Label>Content Tone</Label>
           <div className="grid grid-cols-5 gap-2 mt-1.5">
-            {toneOptions.map((tone) => (
-              <button
-                key={tone.value}
-                type="button"
-                onClick={() =>
-                  setSmartBrief({
-                    ...smartBrief,
-                    tone: tone.value as typeof smartBrief.tone,
-                  })
-                }
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                  smartBrief.tone === tone.value
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
-              >
+            {toneOptions.map((tone) =>
+            <button
+              key={tone.value}
+              type="button"
+              onClick={() =>
+              setSmartBrief({
+                ...smartBrief,
+                tone: tone.value as typeof smartBrief.tone
+              })
+              }
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+              smartBrief.tone === tone.value ?
+              "bg-primary text-primary-foreground" :
+              "bg-muted text-muted-foreground hover:bg-muted/80"}`
+              }>
+
                 <div className="text-lg mb-1">{tone.emoji}</div>
                 {tone.label}
               </button>
-            ))}
+            )}
           </div>
         </div>
 
@@ -292,6 +292,6 @@ export const StepSmartBrief = () => {
           </Button>
         </div>
       </div>
-    </motion.div>
-  );
+    </motion.div>);
+
 };

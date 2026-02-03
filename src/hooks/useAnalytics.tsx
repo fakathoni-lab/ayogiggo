@@ -48,9 +48,9 @@ export const useAnalyticsStats = () => {
             PageNo: 1,
             PageSize: 1,
             Filters: [
-              { name: "creator_id", op: "Equal", value: String(user.ID) },
-              { name: "status", op: "Equal", value: "approved" }
-            ]
+            { name: "creator_id", op: "Equal", value: String(user.ID) },
+            { name: "status", op: "Equal", value: "approved" }]
+
           }
         );
 
@@ -63,10 +63,10 @@ export const useAnalyticsStats = () => {
             PageNo: 1,
             PageSize: 1000, // Get all transactions for calculation
             Filters: [
-              { name: "wallet_id", op: "Equal", value: String(wallet?.ID || 0) },
-              { name: "type", op: "Equal", value: "earning" },
-              { name: "status", op: "Equal", value: "success" }
-            ]
+            { name: "wallet_id", op: "Equal", value: String(wallet?.ID || 0) },
+            { name: "type", op: "Equal", value: "earning" },
+            { name: "status", op: "Equal", value: "success" }]
+
           }
         );
 
@@ -131,10 +131,10 @@ export const useEarningsData = () => {
             OrderByField: "created_at",
             IsAsc: false,
             Filters: [
-              { name: "wallet_id", op: "Equal", value: String(wallet.ID) },
-              { name: "type", op: "Equal", value: "earning" },
-              { name: "status", op: "Equal", value: "success" }
-            ]
+            { name: "wallet_id", op: "Equal", value: String(wallet.ID) },
+            { name: "type", op: "Equal", value: "earning" },
+            { name: "status", op: "Equal", value: "success" }]
+
           }
         );
 

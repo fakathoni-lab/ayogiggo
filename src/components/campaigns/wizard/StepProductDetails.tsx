@@ -9,19 +9,19 @@ import { productDetailsSchema } from "@/lib/campaign-wizard-schema";
 import { useToast } from "@/hooks/use-toast";
 
 const categories = [
-  "Fashion",
-  "Beauty",
-  "Fitness",
-  "Tech",
-  "Food",
-  "Travel",
-  "Lifestyle",
-  "Gaming",
-  "Music",
-  "Sports",
-  "Education",
-  "Entertainment",
-];
+"Fashion",
+"Beauty",
+"Fitness",
+"Tech",
+"Food",
+"Travel",
+"Lifestyle",
+"Gaming",
+"Music",
+"Sports",
+"Education",
+"Entertainment"];
+
 
 export const StepProductDetails = () => {
   const { productDetails, setProductDetails, setCurrentStep } = useCampaignWizard();
@@ -42,7 +42,7 @@ export const StepProductDetails = () => {
       toast({
         title: "Validation Error",
         description: "Please fix the errors before continuing",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
@@ -65,8 +65,8 @@ export const StepProductDetails = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="max-w-2xl mx-auto"
-    >
+      className="max-w-2xl mx-auto">
+
       <div className="text-center mb-8">
         <h1 className="font-display text-3xl font-bold text-foreground mb-2">
           Product Details
@@ -84,12 +84,12 @@ export const StepProductDetails = () => {
             className="mt-1.5"
             value={productDetails.title}
             onChange={(e) =>
-              setProductDetails({ ...productDetails, title: e.target.value })
-            }
-          />
-          {errors.title && (
-            <p className="text-destructive text-sm mt-1">{errors.title}</p>
-          )}
+            setProductDetails({ ...productDetails, title: e.target.value })
+            } />
+
+          {errors.title &&
+          <p className="text-destructive text-sm mt-1">{errors.title}</p>
+          }
         </div>
 
         {/* Product URL */}
@@ -104,51 +104,51 @@ export const StepProductDetails = () => {
               className="pl-10"
               value={productDetails.productUrl}
               onChange={(e) =>
-                setProductDetails({ ...productDetails, productUrl: e.target.value })
-              }
-            />
+              setProductDetails({ ...productDetails, productUrl: e.target.value })
+              } />
+
           </div>
-          {errors.productUrl && (
-            <p className="text-destructive text-sm mt-1">{errors.productUrl}</p>
-          )}
+          {errors.productUrl &&
+          <p className="text-destructive text-sm mt-1">{errors.productUrl}</p>
+          }
         </div>
 
         {/* Product Image */}
         <div>
           <Label>Product Image</Label>
           <div className="mt-1.5">
-            {productDetails.productImage ? (
-              <div className="relative">
+            {productDetails.productImage ?
+            <div className="relative">
                 <img
-                  src={productDetails.productImage}
-                  alt="Product"
-                  className="w-full h-48 object-cover rounded-xl border border-border"
-                />
+                src={productDetails.productImage}
+                alt="Product"
+                className="w-full h-48 object-cover rounded-xl border border-border" />
+
                 <Button
-                  variant="destructive"
-                  size="sm"
-                  className="absolute top-2 right-2"
-                  onClick={() =>
-                    setProductDetails({ ...productDetails, productImage: "" })
-                  }
-                >
+                variant="destructive"
+                size="sm"
+                className="absolute top-2 right-2"
+                onClick={() =>
+                setProductDetails({ ...productDetails, productImage: "" })
+                }>
+
                   <X className="w-4 h-4" />
                 </Button>
-              </div>
-            ) : (
-              <label className="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary/50 transition-colors cursor-pointer block">
+              </div> :
+
+            <label className="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary/50 transition-colors cursor-pointer block">
                 <input
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={handleImageUpload}
-                />
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleImageUpload} />
+
                 <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
                 <p className="text-sm text-muted-foreground">
                   Click to upload product image
                 </p>
               </label>
-            )}
+            }
           </div>
         </div>
 
@@ -156,26 +156,26 @@ export const StepProductDetails = () => {
         <div>
           <Label>Category *</Label>
           <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 mt-1.5">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() =>
-                  setProductDetails({ ...productDetails, category: cat })
-                }
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                  productDetails.category === cat
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
-              >
+            {categories.map((cat) =>
+            <button
+              key={cat}
+              type="button"
+              onClick={() =>
+              setProductDetails({ ...productDetails, category: cat })
+              }
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+              productDetails.category === cat ?
+              "bg-primary text-primary-foreground" :
+              "bg-muted text-muted-foreground hover:bg-muted/80"}`
+              }>
+
                 {cat}
               </button>
-            ))}
+            )}
           </div>
-          {errors.category && (
-            <p className="text-destructive text-sm mt-1">{errors.category}</p>
-          )}
+          {errors.category &&
+          <p className="text-destructive text-sm mt-1">{errors.category}</p>
+          }
         </div>
 
         {/* Actions */}
@@ -189,6 +189,6 @@ export const StepProductDetails = () => {
           </Button>
         </div>
       </div>
-    </motion.div>
-  );
+    </motion.div>);
+
 };

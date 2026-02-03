@@ -7,7 +7,7 @@ import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 // =============================================
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type'
 };
 
 // =============================================
@@ -18,7 +18,7 @@ const CreateCheckoutSessionSchema = z.object({
   amount: z.number().positive(),
   currency: z.string().default('usd'),
   success_url: z.string().url(),
-  cancel_url: z.string().url(),
+  cancel_url: z.string().url()
 });
 
 type CreateCheckoutSessionRequest = z.infer<typeof CreateCheckoutSessionSchema>;
@@ -36,7 +36,7 @@ Deno.serve(async (req) => {
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
   }
 
@@ -48,7 +48,7 @@ Deno.serve(async (req) => {
     if (!authHeader) {
       return new Response(JSON.stringify({ error: 'Missing authorization header' }), {
         status: 401,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
 
@@ -56,7 +56,7 @@ Deno.serve(async (req) => {
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-      global: { headers: { Authorization: authHeader } },
+      global: { headers: { Authorization: authHeader } }
     });
 
     const { data: { user }, error: authError } = await supabase.auth.getUser(token);
@@ -65,7 +65,7 @@ Deno.serve(async (req) => {
       console.error('Authentication failed:', authError);
       return new Response(JSON.stringify({ error: 'Unauthorized' }), {
         status: 401,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
 
@@ -84,7 +84,7 @@ Deno.serve(async (req) => {
         JSON.stringify({ error: 'Invalid request body', details: validationError }),
         {
           status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         }
       );
     }
@@ -94,12 +94,12 @@ Deno.serve(async (req) => {
     // =============================================
     // STEP 3: VERIFY CAMPAIGN OWNERSHIP
     // =============================================
-    const { data: campaign, error: campaignError } = await supabase
-      .from('campaigns')
-      .select('id, brand_id, title, status')
-      .eq('id', campaign_id)
-      .eq('brand_id', user.id)
-      .single();
+    const { data: campaign, error: campaignError } = await supabase.
+    from('campaigns').
+    select('id, brand_id, title, status').
+    eq('id', campaign_id).
+    eq('brand_id', user.id).
+    single();
 
     if (campaignError || !campaign) {
       console.error('Campaign not found or unauthorized:', campaignError);
@@ -107,7 +107,7 @@ Deno.serve(async (req) => {
         JSON.stringify({ error: 'Campaign not found or you do not have permission' }),
         {
           status: 404,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         }
       );
     }
@@ -118,7 +118,7 @@ Deno.serve(async (req) => {
         JSON.stringify({ error: 'Campaign is not in draft status' }),
         {
           status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         }
       );
     }
@@ -134,31 +134,31 @@ Deno.serve(async (req) => {
     }
 
     const stripe = new Stripe(stripeSecretKey, {
-      apiVersion: '2023-10-16',
+      apiVersion: '2023-10-16'
     });
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
-        {
-          price_data: {
-            currency: currency.toLowerCase(),
-            product_data: {
-              name: `Campaign: ${campaign.title}`,
-              description: 'Campaign launch payment - Funds held in escrow',
-            },
-            unit_amount: Math.round(amount * 100), // Convert to cents
+      {
+        price_data: {
+          currency: currency.toLowerCase(),
+          product_data: {
+            name: `Campaign: ${campaign.title}`,
+            description: 'Campaign launch payment - Funds held in escrow'
           },
-          quantity: 1,
+          unit_amount: Math.round(amount * 100) // Convert to cents
         },
-      ],
+        quantity: 1
+      }],
+
       mode: 'payment',
       success_url,
       cancel_url,
       metadata: {
         brand_id: user.id,
-        campaign_id: campaign.id,
-      },
+        campaign_id: campaign.id
+      }
     });
 
     console.log('Stripe checkout session created:', session.id);
@@ -170,11 +170,11 @@ Deno.serve(async (req) => {
       JSON.stringify({
         url: session.url,
         session_id: session.id,
-        campaign_id: campaign.id,
+        campaign_id: campaign.id
       }),
       {
         status: 200,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       }
     );
 
@@ -188,7 +188,7 @@ Deno.serve(async (req) => {
       }),
       {
         status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       }
     );
   }

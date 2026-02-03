@@ -88,7 +88,7 @@ export const SubmissionReviewCard = ({
           setShowConfetti(true);
           // Hide confetti after 5 seconds
           setTimeout(() => setShowConfetti(false), 5000);
-        },
+        }
       }
     );
   };
@@ -202,22 +202,22 @@ export const SubmissionReviewCard = ({
               }
 
               {/* Video Review Toggle */}
-              {submission.video_url && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowVideoReview(!showVideoReview)}
-                  className="mb-3 border-cyan-500/30 text-cyan-500 hover:bg-cyan-500/10"
-                >
+              {submission.video_url &&
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowVideoReview(!showVideoReview)}
+                className="mb-3 border-cyan-500/30 text-cyan-500 hover:bg-cyan-500/10">
+
                   <Video className="w-4 h-4 mr-2" />
                   {showVideoReview ? "Hide" : "Review"} Video with Comments
-                  {showVideoReview ? (
-                    <ChevronUp className="w-4 h-4 ml-2" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 ml-2" />
-                  )}
+                  {showVideoReview ?
+                <ChevronUp className="w-4 h-4 ml-2" /> :
+
+                <ChevronDown className="w-4 h-4 ml-2" />
+                }
                 </Button>
-              )}
+              }
 
               {/* Content Link */}
               {submission.platform_url &&
@@ -296,26 +296,26 @@ export const SubmissionReviewCard = ({
 
         {/* Pro Video Review Interface - Expanded */}
         <AnimatePresence>
-          {showVideoReview && submission.video_url && user?.id && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden"
-            >
+          {showVideoReview && submission.video_url && user?.id &&
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden">
+
               <CardContent className="pt-0 pb-4">
                 <div className="border-t border-border pt-4">
                   <ProVideoReviewInterface
-                    submissionId={submission.id}
-                    videoUrl={submission.video_url}
-                    currentUserId={user.id}
-                    submissionStatus={submission.status}
-                  />
+                  submissionId={submission.id}
+                  videoUrl={submission.video_url}
+                  currentUserId={user.id}
+                  submissionStatus={submission.status} />
+
                 </div>
               </CardContent>
             </motion.div>
-          )}
+          }
         </AnimatePresence>
       </Card>
 
@@ -357,17 +357,17 @@ export const SubmissionReviewCard = ({
               disabled={approveSubmission.isPending}
               className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700">
 
-              {approveSubmission.isPending ? (
-                <>
+              {approveSubmission.isPending ?
+              <>
                   <Loader2 className="w-4 h-4 animate-spin mr-2" />
                   Processing...
-                </>
-              ) : (
-                <>
+                </> :
+
+              <>
                   <Check className="w-4 h-4 mr-2" />
                   Approve & Release ${campaignPrize.toFixed(2)}
                 </>
-              )}
+              }
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
