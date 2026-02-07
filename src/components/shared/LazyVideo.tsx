@@ -68,15 +68,15 @@ const LazyVideo = forwardRef<LazyVideoHandle, LazyVideoProps>(
 
 
 
+
+
           // Autoplay was prevented, ignore
         });}}, [shouldLoad, autoPlay]);const handleVideoLoaded = () => {setIsVideoLoaded(true);};return <div ref={containerRef} className={cn("relative", className)}>
         {/* Skeleton placeholder with fade-out transition */}
         <div className={cn("absolute inset-0 w-full h-full overflow-hidden transition-opacity duration-700 ease-out z-10", isVideoLoaded ? "opacity-0 pointer-events-none" : "opacity-100")}>
 
           {/* Poster image as background if available */}
-          {poster && <div className="absolute inset-0 w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${poster})` }} />
-
-        }
+          {poster && <div className="absolute inset-0 w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${poster})` }} />}
           {/* Skeleton shimmer overlay */}
           <div className="absolute inset-0 bg-muted/60 backdrop-blur-sm">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-background/20 to-transparent animate-[shimmer_2s_infinite] -translate-x-full" />
