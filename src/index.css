@@ -3,18 +3,17 @@
 @tailwind utilities;
 
 /* ═══════════════════════════════════════════════════════════════
-   GIGGO DESIGN SYSTEM v2.0
-   Dark SaaS / Hyper-Utilitarian
-   
+   GIGGO DESIGN SYSTEM v3.0
+   Cyberpunk/Linear Dark SaaS - Conversion-Optimized
+
    Rules:
-   ✅ Semantic tokens only
-   ✅ Dark mode is the only mode
-   ✅ No opacity-based text colors
-   ❌ No raw hex in components
-   ❌ No decorative gradients
+   ✅ Dark-themed with cyan/blue accents
+   ✅ Trust-centric visual identity
+   ✅ Micro-interactions & glass morphism
+   ✅ Optimistic UI patterns
    ═══════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 /* ───────────────────────────────────────────────────────────────
    CSS VARIABLES (for shadcn/ui compatibility)
@@ -22,18 +21,18 @@
 
 @layer base {
   :root {
-    /* Background - Slabscan Dark Premium */
-    --background: 222 52% 5%;      /* #0A0E1A */
-    --surface-1: 223 47% 8%;        /* #0D1221 */
-    --surface-2: 215 28% 12%;       /* #111827 */
-    --surface-3: 225 36% 16%;       /* #1A1F35 */
+    /* Background - GIGGO Dark Theme */
+    --background: 217 71% 8%;      /* #0A1628 Primary Dark */
+    --surface-1: 215 47% 12%;      /* #1A2332 Secondary Dark */
+    --surface-2: 215 28% 12%;      /* Cards */
+    --surface-3: 225 36% 16%;      /* Elevated surfaces */
 
-    /* Text */
-    --foreground: 0 0% 100%;
-    --muted-foreground: 214 32% 64%;
+    /* Text Hierarchy */
+    --foreground: 0 0% 100%;       /* #FFFFFF Primary text */
+    --muted-foreground: 215 16% 58%; /* #94A3B8 Secondary text */
 
     /* Cards/Popover */
-    --card: 223 47% 8%;
+    --card: 215 47% 12%;
     --card-foreground: 0 0% 100%;
     --popover: 215 28% 12%;
     --popover-foreground: 0 0% 100%;
@@ -43,23 +42,26 @@
     --secondary: 210 40% 93%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Accent - Emerald */
-    --primary: 142 71% 45%;         /* #10B981 */
+    /* Accent - Cyan (Primary Brand) */
+    --primary: 187 100% 50%;       /* #00D9FF Primary Cyan */
     --primary-foreground: 0 0% 100%;
-    --accent: 142 71% 45%;
+    --accent: 187 100% 50%;
     --accent-foreground: 0 0% 100%;
+
+    /* Success */
+    --success: 142 71% 45%;        /* #10B981 */
 
     /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     /* Border & Input */
-    --border: 0 0% 100% / 0.08;
-    --input: 0 0% 100% / 0.08;
-    --ring: 142 71% 45%;
+    --border: 0 0% 100% / 0.1;
+    --input: 0 0% 100% / 0.1;
+    --ring: 187 100% 50%;
 
     /* Radius */
-    --radius: 0.5rem;
+    --radius: 1rem;
   }
 }
 
@@ -79,18 +81,19 @@
   }
 
   body {
-    background-color: #0A0E1A;
-    color: #E2E8F0;
-    font-family: 'Inter', 'DM Sans', system-ui, -apple-system, sans-serif;
+    background-color: #0A1628;
+    color: #FFFFFF;
+    font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 
-  /* Headings - Slabscan Style */
+  /* Headings - GIGGO Style */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
     font-weight: 700;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
     color: #FFFFFF;
+    line-height: 1.2;
   }
 
   /* Body text defaults to text-body */
@@ -662,4 +665,154 @@
 
 .animate-fade-in {
   animation: fade-in 0.3s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GIGGO LANDING PAGE - CUSTOM UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer utilities {
+  /* Gradient Text - Cyan */
+  .gradient-text-cyan {
+    background: linear-gradient(135deg, #00D9FF 0%, #FFFFFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gradient backgrounds */
+  .gradient-glow-cyan {
+    background-image: radial-gradient(circle, rgba(0,217,255,0.3) 0%, transparent 70%);
+  }
+
+  .gradient-blue-dark {
+    background: linear-gradient(180deg, #0A1628 0%, #162B4D 100%);
+  }
+
+  /* Glass Morphism - Premium */
+  .glass-morphism {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Glow Effects - Cyan */
+  .glow-cyan {
+    box-shadow: 0 0 60px rgba(0, 217, 255, 0.4);
+  }
+
+  .glow-cyan-lg {
+    box-shadow: 0 0 120px rgba(0, 217, 255, 0.5);
+  }
+
+  /* Animated Dashboard Float */
+  @keyframes float-dashboard {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-float {
+    animation: float-dashboard 3s ease-in-out infinite;
+  }
+
+  /* Pulse Dot Animation */
+  @keyframes pulse-dot {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.2);
+    }
+  }
+
+  .animate-pulse-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  /* Scroll Reveal Animation */
+  @keyframes scroll-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-scroll-reveal {
+    animation: scroll-reveal 0.8s ease-out forwards;
+  }
+
+  /* Stats Counter Animation */
+  @keyframes count-up {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-count-up {
+    animation: count-up 0.6s ease-out forwards;
+  }
+
+  /* Logo Carousel Scroll */
+  @keyframes logo-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-250px * 5));
+    }
+  }
+
+  .animate-logo-scroll {
+    animation: logo-scroll 20s linear infinite;
+  }
+
+  /* Gradient Wave Background */
+  @keyframes wave-gradient {
+    0%, 100% {
+      transform: translateX(0) translateY(0);
+    }
+    25% {
+      transform: translateX(-5%) translateY(-2%);
+    }
+    50% {
+      transform: translateX(5%) translateY(2%);
+    }
+    75% {
+      transform: translateX(-3%) translateY(-1%);
+    }
+  }
+
+  .animate-wave {
+    animation: wave-gradient 10s ease-in-out infinite;
+  }
+
+  /* Pulsing CTA Glow */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 60px rgba(0, 217, 255, 0.6);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
 }

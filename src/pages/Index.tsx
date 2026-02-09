@@ -1,46 +1,71 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import {
-  Zap, Hourglass, Folder, Box, Scale, Play, Check,
-  ChevronRight, Search, BarChart3, Sparkles
+  Zap, Hourglass, Folder, Box, Scale, Check,
+  ChevronRight, Search, CheckCircle, ArrowRight,
+  Facebook, Twitter, Instagram, Youtube, TrendingUp
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#0B0F19]">
-      {/* Navbar - Floating Glass */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-[#0B0F19]/90 border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+    <div className="min-h-screen bg-[#0A1628]">
+      {/* 1. NAVIGATION BAR - Sticky with Blur */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "backdrop-blur-lg bg-[#0A1628]/90 border-b border-white/10 shadow-lg"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-[72px]">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/50">
-                <Zap className="w-5 h-5 text-white" />
+            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate("/")}>
+              <div className="w-10 h-10 bg-gradient-to-br from-[#00D9FF] to-[#0EA5E9] rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/50">
+                <Zap className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">GIGGO</span>
-            </Link>
-
-            {/* Center Links */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#solution" className="text-slate-300 hover:text-white transition-colors text-sm">Solusi</a>
-              <a href="#case-study" className="text-slate-300 hover:text-white transition-colors text-sm">Studi Kasus</a>
-              <a href="#pricing" className="text-slate-300 hover:text-white transition-colors text-sm">Harga</a>
-              <a href="#faq" className="text-slate-300 hover:text-white transition-colors text-sm">FAQ</a>
+              <span className="text-2xl font-bold text-white tracking-tight">GIGGO</span>
             </div>
 
-            {/* Right Buttons */}
+            {/* Center Menu */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#solusi" className="text-[#94A3B8] hover:text-white transition-colors text-[1rem] font-medium">
+                Solusi
+              </a>
+              <a href="#studi-kasus" className="text-[#94A3B8] hover:text-white transition-colors text-[1rem] font-medium">
+                Studi Kasus
+              </a>
+              <a href="#harga" className="text-[#94A3B8] hover:text-white transition-colors text-[1rem] font-medium">
+                Harga
+              </a>
+              <a href="#faq" className="text-[#94A3B8] hover:text-white transition-colors text-[1rem] font-medium">
+                FAQ
+              </a>
+            </div>
+
+            {/* Right Actions */}
             <div className="flex items-center space-x-3">
               <Button
                 variant="ghost"
-                className="text-slate-300 hover:text-white hover:bg-white/5"
+                className="hidden sm:flex text-white hover:bg-white/5 rounded-full px-6 font-semibold"
                 onClick={() => navigate("/auth")}
               >
                 Masuk
               </Button>
               <Button
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white rounded-full px-6 shadow-lg shadow-cyan-500/30"
+                className="bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white rounded-full px-4 sm:px-6 font-semibold shadow-lg shadow-cyan-500/30 transition-all hover:shadow-cyan-500/50"
                 onClick={() => navigate("/auth")}
               >
                 Buat Campaign Kreator
@@ -50,36 +75,40 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Hero Section - The Glowing Dashboard */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Cyan Radial Gradient Background */}
-        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none" />
+      {/* 2. HERO SECTION */}
+      <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex items-center">
+        {/* Background Glow - Radial Gradient from Bottom Center */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#00D9FF]/20 rounded-full blur-[150px] pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left - Text */}
-            <div className="space-y-8">
+        <div className="relative max-w-[1440px] mx-auto w-full">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Content */}
+            <div className="space-y-8 animate-scroll-reveal">
               {/* Live Badge */}
-              <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/5">
-                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-                <span className="text-sm text-cyan-400 font-medium">LIVE DATA: 1,250+ Active Creators</span>
+              <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-[#00D9FF]/30 bg-[#00D9FF]/5 backdrop-blur-sm">
+                <div className="w-2 h-2 bg-[#00D9FF] rounded-full animate-pulse-dot" />
+                <span className="text-sm text-[#00D9FF] font-semibold tracking-wide">
+                  LIVE DATA: 1,250+ Active Creators
+                </span>
               </div>
 
-              {/* H1 */}
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight">
-                Ubah Ratusan Pelanggan Menjadi Marketing Force Anda.
+              {/* Hero Title */}
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.2]">
+                Ubah Ratusan<br />
+                Pelanggan Menjadi<br />
+                <span className="gradient-text-cyan">Marketing Force Anda.</span>
               </h1>
 
-              {/* Subhead */}
-              <p className="text-xl text-slate-400 leading-relaxed">
-                Platform end-to-end untuk menjalankan UGC campaigns yang scalable. Tanpa spreadsheet, tanpa drama.
+              {/* Subtitle */}
+              <p className="text-xl text-[#94A3B8] leading-relaxed max-w-xl">
+                Ubah dari konvensional ke arah yang lebih cerdas. Giggo Membantu marketing force untuk mem-scale kanal Anda atas konten di Tiktok.
               </p>
 
-              {/* Buttons */}
-              <div className="flex flex-col sm:flex-row items-start gap-4">
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-6 text-lg rounded-full shadow-[0_0_30px_rgba(6,182,212,0.5)] group"
+                  className="bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white px-10 py-7 text-lg rounded-full shadow-[0_0_40px_rgba(0,217,255,0.4)] hover:shadow-[0_0_60px_rgba(0,217,255,0.6)] transition-all font-bold group"
                   onClick={() => navigate("/auth")}
                 >
                   Buat Campaign
@@ -88,47 +117,48 @@ const Index = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 px-8 py-6 text-lg rounded-full group"
+                  className="border-2 border-white/20 text-white hover:bg-white/5 hover:border-white/30 px-10 py-7 text-lg rounded-full backdrop-blur-sm transition-all font-bold"
+                  onClick={() => navigate("/auth")}
                 >
-                  <Play className="mr-2 w-5 h-5" />
                   Buat Campaign Kreator
                 </Button>
               </div>
             </div>
 
-            {/* Right - Visual Dashboard */}
-            <div className="relative">
-              {/* Glow Behind */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 to-blue-500/30 rounded-3xl blur-3xl" />
+            {/* Right - Dashboard Mockup */}
+            <div className="relative animate-float">
+              {/* Glow Effect Behind Dashboard */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00D9FF]/30 to-[#0EA5E9]/30 rounded-3xl blur-3xl glow-cyan" />
 
-              {/* Dashboard Mockup */}
-              <div className="relative bg-slate-900/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-2xl transform perspective-1000 rotate-y-5">
-                <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl overflow-hidden">
+              {/* Dashboard Card */}
+              <div className="relative glass-morphism rounded-3xl p-8 shadow-2xl border-2 border-white/10 transform perspective-1000">
+                <div className="aspect-video bg-gradient-to-br from-[#1A2332] to-[#0F1621] rounded-2xl overflow-hidden shadow-inner">
                   {/* Mockup Content */}
-                  <div className="p-6 space-y-4">
-                    {/* Header Bar */}
+                  <div className="p-8 space-y-6">
+                    {/* Header */}
                     <div className="flex items-center justify-between">
-                      <div className="h-3 bg-cyan-400/50 rounded w-32" />
-                      <div className="h-3 bg-slate-700 rounded w-20" />
+                      <div className="h-4 bg-gradient-to-r from-[#00D9FF] to-transparent rounded-full w-40" />
+                      <div className="h-4 bg-white/10 rounded-full w-24" />
                     </div>
 
-                    {/* Graph Lines */}
-                    <div className="space-y-3 pt-8">
-                      <div className="h-2 bg-gradient-to-r from-cyan-400/80 to-transparent rounded w-3/4" />
-                      <div className="h-2 bg-gradient-to-r from-cyan-400/60 to-transparent rounded w-1/2" />
-                      <div className="h-2 bg-gradient-to-r from-cyan-400/40 to-transparent rounded w-2/3" />
+                    {/* Graph Visualization */}
+                    <div className="space-y-4 pt-8">
+                      <div className="h-3 bg-gradient-to-r from-[#00D9FF]/80 to-transparent rounded-full w-3/4 shadow-lg shadow-cyan-500/20" />
+                      <div className="h-3 bg-gradient-to-r from-[#00D9FF]/60 to-transparent rounded-full w-1/2" />
+                      <div className="h-3 bg-gradient-to-r from-[#00D9FF]/40 to-transparent rounded-full w-2/3" />
                     </div>
 
-                    {/* Stats Grid */}
+                    {/* Stats Cards */}
                     <div className="grid grid-cols-2 gap-4 pt-8">
-                      <div className="bg-slate-800/50 rounded-lg p-3 border border-cyan-500/20">
-                        <div className="h-2 bg-cyan-400 rounded w-12 mb-2" />
-                        <div className="h-1 bg-slate-700 rounded w-full" />
-                      </div>
-                      <div className="bg-slate-800/50 rounded-lg p-3 border border-cyan-500/20">
-                        <div className="h-2 bg-cyan-400 rounded w-12 mb-2" />
-                        <div className="h-1 bg-slate-700 rounded w-full" />
-                      </div>
+                      {[1, 2].map((i) => (
+                        <div
+                          key={i}
+                          className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-[#00D9FF]/20"
+                        >
+                          <div className="h-3 bg-[#00D9FF] rounded-full w-16 mb-3" />
+                          <div className="h-2 bg-white/10 rounded-full w-full" />
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -138,62 +168,88 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Social Proof - Trust Bar */}
-      <section className="py-12 px-4 bg-white/5 border-y border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-center text-slate-500 text-sm mb-8 uppercase tracking-wider">Dipercaya oleh brand terkemuka</p>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center opacity-40">
-            {["Spotify", "Apple", "Nike", "Adidas", "Tesla"].map((brand, i) => (
-              <div
-                key={i}
-                className="text-slate-400 hover:text-slate-300 transition-colors font-bold text-lg cursor-pointer"
-              >
-                {brand}
-              </div>
-            ))}
+      {/* 3. SOCIAL PROOF BAR */}
+      <section className="py-16 px-4 bg-[#1A2332] border-y border-white/5">
+        <div className="max-w-[1440px] mx-auto">
+          <p className="text-center text-[#94A3B8] text-sm mb-10 uppercase tracking-widest font-semibold">
+            Dipercaya oleh Tim Marketing Berkapita Tinggi:
+          </p>
+
+          {/* Logo Carousel */}
+          <div className="relative overflow-hidden">
+            <div className="flex items-center space-x-16 animate-logo-scroll">
+              {["Spotify", "Apple", "Blibli", "Tokopedia", "Bukalapak", "Halodoc", "Spotify", "Apple", "Blibli", "Tokopedia"].map(
+                (brand, i) => (
+                  <div
+                    key={i}
+                    className="text-white/40 hover:text-white/100 transition-all duration-300 font-bold text-2xl whitespace-nowrap cursor-pointer grayscale hover:grayscale-0"
+                    style={{ minWidth: "200px", textAlign: "center" }}
+                  >
+                    {brand}
+                  </div>
+                )
+              )}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Problem Section - The 3 Cards */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white">
-              Sejujurnya: Influencer Marketing Manual Itu Tidak Skalabel.
+      {/* 4. PROBLEM STATEMENT SECTION */}
+      <section className="py-32 px-4 sm:px-6 lg:px-8 relative">
+        {/* Subtle Grid Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] opacity-30" />
+
+        <div className="relative max-w-[1440px] mx-auto">
+          <div className="text-center mb-20 space-y-6">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              Sejujurnya: Influencer Marketing<br />
+              Manual Itu Tidak Skalabel.
             </h2>
-            <p className="text-slate-400 text-lg">Kamu pasti familiar dengan masalah-masalah ini...</p>
+            <p className="text-xl text-[#94A3B8] max-w-3xl mx-auto">
+              Tiga masalah utama yang pasti kamu alami saat scaling creator campaigns manually...
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          {/* Problem Cards */}
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 icon: Hourglass,
-                title: "The Discovery Time-Sink",
-                desc: "15+ jam per minggu habis untuk scroll Instagram, stalk profile, DM yang nggak dibales. Manual screening yang nggak scalable."
+                title: "The Dino-Era Time-Sink",
+                desc: "Planning, diskusi, dan persetujuan untuk satu Campaign bisa memakan waktu 2-4 minggu. Manual, lama, dan tidak scalable.",
+                color: "#FF2FB3"
               },
               {
                 icon: Folder,
                 title: "The Operational Nightmare",
-                desc: "Spreadsheet chaos, email threads panjang, file attachment hilang, brief yang nggak jelas, revisi tanpa end."
+                desc: "Contract chaos and confusion. Managing 10+ creators = 10+ different terms, payments, dan tracking spreadsheets.",
+                color: "#FF2FB3"
               },
               {
                 icon: Box,
                 title: "The ROI Blackbox",
-                desc: "Budget habis tapi nggak tahu mana konten yang convert. Data scattered di berbagai platform, nggak ada single source of truth."
+                desc: "Sebagian besar brands tidak tahu data siapa spends bisa untuk hasil yang terpercaya. Hasilnya ya, ini tidak terukur lah..",
+                color: "#FF2FB3"
               }
             ].map((problem, i) => (
               <div
                 key={i}
-                className="group relative bg-slate-900/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-pink-500/30 transition-all duration-300"
+                className="group relative glass-morphism rounded-2xl p-8 hover:border-pink-500/30 transition-all duration-300 hover:transform hover:scale-105"
               >
+                {/* Hover Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-red-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative space-y-4">
-                  <div className="w-14 h-14 bg-pink-500/10 rounded-xl flex items-center justify-center ring-1 ring-pink-500/30 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
-                    <problem.icon className="w-7 h-7 text-pink-400" />
+
+                <div className="relative space-y-6">
+                  {/* Icon with Glow */}
+                  <div
+                    className="w-16 h-16 bg-pink-500/10 rounded-xl flex items-center justify-center ring-2 ring-pink-500/30 group-hover:ring-pink-500/50 transition-all"
+                    style={{ boxShadow: `0 0 30px ${problem.color}40` }}
+                  >
+                    <problem.icon className="w-8 h-8 text-pink-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-white">{problem.title}</h3>
-                  <p className="text-slate-400 leading-relaxed">{problem.desc}</p>
+
+                  <h3 className="text-2xl font-bold text-white">{problem.title}</h3>
+                  <p className="text-[#94A3B8] leading-relaxed text-lg">{problem.desc}</p>
                 </div>
               </div>
             ))}
@@ -201,110 +257,153 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Solution Section - Dark UI Preview */}
-      <section id="solution" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent">
-        <div className="max-w-7xl mx-auto space-y-24">
-          {/* Solution 1 - Smart Matching */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30">
-                <Search className="w-4 h-4 text-cyan-400" />
-                <span className="text-sm text-cyan-300 font-medium">AI-POWERED</span>
+      {/* 5. SOLUTION SECTION */}
+      <section id="solusi" className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0A1628] via-[#162B4D] to-[#0A1628]">
+        <div className="max-w-[1440px] mx-auto space-y-32">
+          {/* Solution Intro */}
+          <div className="text-center space-y-6 max-w-4xl mx-auto">
+            <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-[#00D9FF]/10 border border-[#00D9FF]/30">
+              <span className="text-sm text-[#00D9FF] font-bold tracking-widest">GIGGO:</span>
+            </div>
+            <h2 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
+              Sistem Operasi untuk<br />Creator Marketing Modern
+            </h2>
+            <p className="text-xl text-[#94A3B8] leading-relaxed">
+              GIGGO adalah sistem operasi untuk pelaksanaan kampanye marketing berdasarkan aktivitas creator di social media. Get Started Campaign dengan Creators and Affiliate System.
+            </p>
+          </div>
+
+          {/* Feature 1: Smart Matching */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-[#00D9FF]/10 border border-[#00D9FF]/30">
+                <Search className="w-4 h-4 text-[#00D9FF]" />
+                <span className="text-sm text-[#00D9FF] font-semibold">AI-POWERED</span>
               </div>
-              <h3 className="text-4xl font-bold text-white">
-                GIGGO: Sistem Operasi untuk UGC Campaigns
+
+              <h3 className="text-4xl lg:text-5xl font-bold text-white">
+                Smart Matching Engine
               </h3>
-              <p className="text-slate-400 text-lg leading-relaxed">
-                Smart Matching Engine yang filter 50,000+ database creator berdasarkan niche, audience demografi, engagement rate, & past performance.
-                Temukan perfect fit dalam hitungan detik.
+
+              <p className="text-xl text-[#94A3B8] leading-relaxed">
+                Creator search dilengkapi dengan algoritma dan machine learning untuk menemukan creators yang tepat dengan audiens yang align dengan target pasar campaign.
               </p>
-              <div className="space-y-3 pt-4">
-                {["AI-powered recommendations", "Real-time verification", "Historical performance data"].map((feat, i) => (
+
+              <div className="space-y-4 pt-4">
+                {[
+                  "AI-powered creator recommendations",
+                  "Real-time audience verification",
+                  "Historical performance analytics",
+                  "Automated matching score"
+                ].map((feat, i) => (
                   <div key={i} className="flex items-center space-x-3">
-                    <Check className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-                    <span className="text-slate-300">{feat}</span>
+                    <CheckCircle className="w-6 h-6 text-[#00D9FF] flex-shrink-0" />
+                    <span className="text-white text-lg">{feat}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* UI Preview Card - Smart Matching */}
+            {/* Mockup - Smart Matching */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur-2xl" />
-              <div className="relative bg-slate-900/40 backdrop-blur-md border border-white/10 rounded-2xl p-6">
-                <div className="space-y-4">
-                  <h4 className="text-white font-semibold">Smart Matching Engine</h4>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00D9FF]/20 to-[#0EA5E9]/20 rounded-3xl blur-3xl" />
+              <div className="relative glass-morphism rounded-3xl p-8 shadow-2xl">
+                <div className="space-y-6">
+                  <h4 className="text-white font-bold text-xl">Creator Discovery Dashboard</h4>
+
                   {/* Search Bar */}
-                  <div className="bg-slate-800/50 rounded-lg p-3 border border-cyan-500/20">
-                    <div className="flex items-center space-x-2">
-                      <Search className="w-4 h-4 text-cyan-400" />
-                      <div className="h-2 bg-slate-700 rounded flex-1" />
+                  <div className="bg-[#1A2332] rounded-xl p-4 border border-[#00D9FF]/20">
+                    <div className="flex items-center space-x-3">
+                      <Search className="w-5 h-5 text-[#00D9FF]" />
+                      <div className="h-3 bg-white/10 rounded-full flex-1" />
                     </div>
                   </div>
+
                   {/* Progress Bars */}
-                  <div className="space-y-3 pt-4">
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-xs text-slate-400">
-                        <span>Match Score</span>
-                        <span className="text-cyan-400">95%</span>
+                  <div className="space-y-4">
+                    {[
+                      { label: "Match Score", value: "95%" },
+                      { label: "Engagement Rate", value: "8.2%" }
+                    ].map((stat, i) => (
+                      <div key={i} className="space-y-2">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-[#94A3B8]">{stat.label}</span>
+                          <span className="text-[#00D9FF] font-bold">{stat.value}</span>
+                        </div>
+                        <div className="h-3 bg-[#1A2332] rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9]"
+                            style={{ width: stat.value }}
+                          />
+                        </div>
                       </div>
-                      <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-                        <div className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 w-[95%]" />
-                      </div>
-                    </div>
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-xs text-slate-400">
-                        <span>Engagement Rate</span>
-                        <span className="text-cyan-400">8.2%</span>
-                      </div>
-                      <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-                        <div className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 w-[82%]" />
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Solution 2 - Secure & Strategic */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* UI Preview Card - Content Approval */}
+          {/* Feature 2: Approval System */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Mockup - Content Approval */}
             <div className="relative group order-2 lg:order-1">
-              <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-cyan-500/20 rounded-2xl blur-2xl" />
-              <div className="relative bg-slate-900/40 backdrop-blur-md border border-white/10 rounded-2xl p-6">
-                <div className="space-y-4">
-                  <h4 className="text-white font-semibold">Approval Konten</h4>
-                  {/* Video Player Mockup */}
-                  <div className="aspect-video bg-slate-800 rounded-lg flex items-center justify-center border border-cyan-500/20">
-                    <Play className="w-12 h-12 text-cyan-400" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/20 to-[#00D9FF]/20 rounded-3xl blur-3xl" />
+              <div className="relative glass-morphism rounded-3xl p-8 shadow-2xl">
+                <div className="space-y-6">
+                  <h4 className="text-white font-bold text-xl">Content Approval System</h4>
+
+                  {/* Video Preview */}
+                  <div className="aspect-video bg-gradient-to-br from-[#1A2332] to-[#0F1621] rounded-2xl flex items-center justify-center border border-[#00D9FF]/20">
+                    <div className="text-center space-y-3">
+                      <div className="w-16 h-16 bg-[#00D9FF]/20 rounded-full flex items-center justify-center mx-auto">
+                        <div className="w-0 h-0 border-l-[12px] border-l-[#00D9FF] border-y-[8px] border-y-transparent ml-1" />
+                      </div>
+                      <p className="text-[#94A3B8] text-sm">Video Preview</p>
+                    </div>
                   </div>
-                  {/* Approve Button */}
-                  <Button className="w-full bg-gradient-to-r from-green-500 to-cyan-500 hover:from-green-600 hover:to-cyan-600 text-white">
-                    <Check className="w-4 h-4 mr-2" />
-                    Approve Content
-                  </Button>
+
+                  {/* Action Buttons */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <Button
+                      variant="outline"
+                      className="border-white/20 text-white hover:bg-white/5"
+                    >
+                      Request Revision
+                    </Button>
+                    <Button className="bg-gradient-to-r from-[#10B981] to-[#00D9FF] hover:from-[#0F9A73] hover:to-[#00C8EE] text-white">
+                      <Check className="w-4 h-4 mr-2" />
+                      Approve
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-6 order-1 lg:order-2">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30">
-                <Check className="w-4 h-4 text-green-400" />
-                <span className="text-sm text-green-300 font-medium">PROTECTED</span>
+            <div className="space-y-8 order-1 lg:order-2">
+              <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-[#10B981]/10 border border-[#10B981]/30">
+                <CheckCircle className="w-4 h-4 text-[#10B981]" />
+                <span className="text-sm text-[#10B981] font-semibold">PROTECTED</span>
               </div>
-              <h3 className="text-4xl font-bold text-white">
+
+              <h3 className="text-4xl lg:text-5xl font-bold text-white">
                 Secure & Strategic
               </h3>
-              <p className="text-slate-400 text-lg leading-relaxed">
-                Escrow payment protection, NDA-compliant brief system, & optional Spark Ads whitelisting.
-                Brand aman, creator happy, konten perform maksimal.
+
+              <p className="text-xl text-[#94A3B8] leading-relaxed">
+                GIGGO Built-in approval system untuk konten creators sebelum publishing, dan review performance real time disertakan juga.
               </p>
-              <div className="space-y-3 pt-4">
-                {["Escrow payment system", "Contract automation", "Spark Ads integration"].map((feat, i) => (
+
+              <div className="space-y-4 pt-4">
+                {[
+                  "Content preview before publish",
+                  "Approval workflow dengan timeline",
+                  "Revision tracking & history",
+                  "Real-time collaboration tools"
+                ].map((feat, i) => (
                   <div key={i} className="flex items-center space-x-3">
-                    <Check className="w-5 h-5 text-green-400 flex-shrink-0" />
-                    <span className="text-slate-300">{feat}</span>
+                    <CheckCircle className="w-6 h-6 text-[#10B981] flex-shrink-0" />
+                    <span className="text-white text-lg">{feat}</span>
                   </div>
                 ))}
               </div>
@@ -313,95 +412,127 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Case Study / Stats - The Big Numbers */}
-      <section id="case-study" className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative bg-slate-900/40 backdrop-blur-md border border-white/10 rounded-3xl p-8 lg:p-12 overflow-hidden">
+      {/* 6. PROOF SECTION (Stats + Testimonial) */}
+      <section id="studi-kasus" className="py-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto">
+          <div className="relative glass-morphism rounded-3xl p-12 lg:p-16 overflow-hidden border-2 border-white/10">
             {/* Background Glow */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#00D9FF]/10 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="relative grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left - Case Study Image */}
-              <div className="relative">
-                <div className="aspect-[3/4] bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl flex items-center justify-center border border-cyan-500/20">
-                  <div className="text-center space-y-4">
-                    <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg shadow-cyan-500/50">
-                      <Play className="w-10 h-10 text-white" />
+            <div className="relative space-y-16">
+              {/* Header */}
+              <div className="text-center space-y-4">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white">
+                  Bukti Nyata: Dari Brief Menjadi Pertumbuhan Bisnis
+                </h2>
+                <p className="text-xl text-[#94A3B8]">
+                  Campaign performance metrics dari salah satu brand yang menggunakan GIGGO
+                </p>
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { num: "320", label: "Konten UGC", icon: TrendingUp },
+                  { num: "Rp 156", label: "CPE", icon: TrendingUp },
+                  { num: "5.2 Juta", label: "Views", icon: TrendingUp },
+                  { num: "+25%", label: "Sales Uplift", icon: TrendingUp }
+                ].map((stat, i) => (
+                  <div
+                    key={i}
+                    className="bg-[#1A2332]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 space-y-3 hover:border-[#00D9FF]/30 transition-all animate-count-up"
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  >
+                    <stat.icon className="w-8 h-8 text-[#00D9FF]" />
+                    <div className="text-5xl font-bold gradient-text-cyan">{stat.num}</div>
+                    <div className="text-white font-semibold text-lg">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Testimonial */}
+              <div className="bg-[#1A2332]/30 backdrop-blur-sm border border-white/10 rounded-2xl p-8 lg:p-10">
+                <div className="flex flex-col lg:flex-row gap-8 items-start">
+                  {/* Avatar */}
+                  <div className="flex-shrink-0">
+                    <div className="w-20 h-20 bg-gradient-to-br from-[#00D9FF] to-[#0EA5E9] rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-cyan-500/30">
+                      AR
                     </div>
-                    <p className="text-slate-400">Case Study Video</p>
+                  </div>
+
+                  {/* Quote */}
+                  <div className="space-y-4 flex-1">
+                    <div className="text-6xl text-[#00D9FF]/20 font-serif leading-none">"</div>
+                    <blockquote className="text-xl text-white leading-relaxed">
+                      GIGGO memberi kami akses ke ratusan nano-creators yang sangat terjangkau dan berhasil menurunkan Customer Acquisition Cost kami sebesar 40%. Sebelum GIGGO, kami hanya bisa mengelola max. 5 creator per campaign.
+                    </blockquote>
+                    <cite className="text-[#94A3B8] not-italic">
+                      <div className="font-semibold text-white">— Aisyah Rahmadita</div>
+                      <div>Marketing Manager, BRAND X</div>
+                    </cite>
                   </div>
                 </div>
               </div>
-
-              {/* Right - Stats Grid */}
-              <div className="grid grid-cols-2 gap-6">
-                {[
-                  { num: "320", label: "Konten UGC", sub: "Per campaign" },
-                  { num: "Rp 156", label: "CPE", sub: "Cost per engagement" },
-                  { num: "5.2 Juta", label: "Views", sub: "Total reach" },
-                  { num: "+25%", label: "Sales Uplift", sub: "Vs. control group" }
-                ].map((stat, i) => (
-                  <div key={i} className="bg-slate-800/30 backdrop-blur-sm border border-white/5 rounded-2xl p-6 space-y-2">
-                    <div className="text-4xl font-bold text-cyan-400">{stat.num}</div>
-                    <div className="text-white font-semibold">{stat.label}</div>
-                    <div className="text-slate-500 text-sm">{stat.sub}</div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing Preview - Center Focus */}
-      <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8">
+      {/* 7. PRICING MODEL SECTION */}
+      <section id="harga" className="py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white">
-              Model Harga yang Masuk Akal & Transparan.
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white">
+              Model Harga yang Masuk Akal<br />& Transparan.
             </h2>
-            <p className="text-slate-400 text-lg">No hidden fees. No surprises. Just results.</p>
+            <p className="text-xl text-[#94A3B8]">
+              No subscription fees. No hidden costs. Bayar hanya untuk campaign yang aktif.
+            </p>
           </div>
 
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all" />
-            <div className="relative bg-slate-900/40 backdrop-blur-md border-2 border-cyan-500/30 rounded-3xl p-10 shadow-2xl">
-              <div className="text-center space-y-6">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#00D9FF]/20 to-[#0EA5E9]/20 rounded-3xl blur-3xl group-hover:blur-[120px] transition-all" />
+
+            <div className="relative glass-morphism rounded-3xl p-12 border-2 border-[#00D9FF]/30 shadow-2xl">
+              <div className="text-center space-y-8">
                 {/* Icon */}
                 <div className="flex justify-center">
-                  <div className="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center ring-1 ring-cyan-500/30">
-                    <Scale className="w-8 h-8 text-cyan-400" />
+                  <div
+                    className="w-20 h-20 bg-[#00D9FF]/10 rounded-2xl flex items-center justify-center ring-2 ring-[#00D9FF]/30"
+                    style={{ boxShadow: "0 0 40px rgba(0, 217, 255, 0.3)" }}
+                  >
+                    <Scale className="w-10 h-10 text-[#00D9FF]" />
                   </div>
                 </div>
 
-                <h3 className="text-3xl font-bold text-white">Pay-As-You-Go</h3>
+                <h3 className="text-4xl font-bold text-white">Pay-As-You-Go</h3>
 
-                <div className="text-5xl font-bold text-white">
-                  Gratis
-                  <span className="text-lg text-slate-400 font-normal block mt-2">untuk posting campaign</span>
-                </div>
-
-                <div className="space-y-4 pt-6">
+                <div className="space-y-6 pt-4">
                   {[
-                    "Posting campaign GRATIS, unlimited",
-                    "Budget & budget fleksibel sesuai kebutuhan",
-                    "Checklist performance tracking real-time",
-                    "Competitive support & onboarding"
+                    "Balance di dashboard",
+                    "Checklist campaign brief",
+                    "Competitive support"
                   ].map((feature, i) => (
-                    <div key={i} className="flex items-start space-x-3">
-                      <Check className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-slate-300 text-left">{feature}</span>
+                    <div key={i} className="flex items-center space-x-4">
+                      <div className="w-6 h-6 bg-[#00D9FF] rounded-full flex items-center justify-center flex-shrink-0">
+                        <Check className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-white text-lg text-left">{feature}</span>
                     </div>
                   ))}
                 </div>
 
+                <p className="text-[#94A3B8] text-lg pt-4 border-t border-white/10">
+                  No subscription fees. No hidden costs. Bayar hanya untuk campaign yang aktif.
+                </p>
+
                 <Button
                   size="lg"
-                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white py-6 text-lg mt-8 rounded-full shadow-[0_0_30px_rgba(6,182,212,0.4)] group"
+                  className="w-full bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white py-7 text-lg mt-8 rounded-full shadow-[0_0_40px_rgba(0,217,255,0.4)] hover:shadow-[0_0_60px_rgba(0,217,255,0.6)] transition-all font-bold group"
                   onClick={() => navigate("/auth")}
                 >
                   Mulai Sekarang - Gratis
-                  <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
             </div>
@@ -409,90 +540,127 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer CTA - The Horizon Glow */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Bottom Glow Effect */}
-        <div className="absolute inset-x-0 bottom-0 h-96 bg-gradient-to-t from-blue-600/30 via-cyan-500/20 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-blue-500/40 to-transparent" />
+      {/* 8. FINAL CTA SECTION */}
+      <section className="py-40 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Animated Gradient Waves Background */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0EA5E9]/40 via-[#00D9FF]/20 to-transparent animate-wave" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0EA5E9]/30 to-transparent" />
 
-        <div className="relative max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+        <div className="relative max-w-4xl mx-auto text-center space-y-10">
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight">
             Jangan Biarkan Kompetitor Anda<br />Memonopoli Feed.
           </h2>
 
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-            Ribuan brand sudah scale UGC strategy mereka dengan GIGGO. Giliran kamu sekarang.
+          <p className="text-2xl text-[#94A3B8] max-w-3xl mx-auto leading-relaxed">
+            Dengan Gigtech setiap transaksi present, memimpin secara mudah pula.
           </p>
 
           <Button
             size="lg"
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-12 py-8 text-xl rounded-full shadow-[0_0_50px_rgba(6,182,212,0.6)] group"
+            className="bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white px-12 py-8 text-2xl rounded-full shadow-[0_0_60px_rgba(0,217,255,0.6)] animate-pulse-glow font-bold group"
             onClick={() => navigate("/auth")}
           >
             BUAT CAMPAIGN PERTAMA (GRATIS POSTING)
-            <ChevronRight className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform" />
+            <ArrowRight className="ml-3 w-7 h-7 group-hover:translate-x-2 transition-transform" />
           </Button>
 
-          <p className="text-sm text-slate-500 pt-4">
-            Setup dalam 5 menit • No credit card required
+          <p className="text-sm text-[#94A3B8] pt-6">
+            *No credit card required. Campaign review gratis dari tim kami.
           </p>
         </div>
       </section>
 
-      {/* Footer Link */}
-      <footer id="faq" className="border-t border-white/10 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+      {/* 9. FOOTER */}
+      <footer id="faq" className="border-t border-white/10 py-16 px-4 sm:px-6 lg:px-8 bg-[#0F1621]">
+        <div className="max-w-[1440px] mx-auto">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            {/* Brand Column */}
             <div className="space-y-4">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/50">
-                  <Zap className="w-5 h-5 text-white" />
+                <div className="w-10 h-10 bg-gradient-to-br from-[#00D9FF] to-[#0EA5E9] rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/50">
+                  <Zap className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-xl font-bold text-white">GIGGO</span>
+                <span className="text-2xl font-bold text-white">GIGGO</span>
               </div>
-              <p className="text-slate-400 text-sm">
-                World-class creator marketplace for scaling UGC campaigns.
+              <p className="text-[#94A3B8] text-sm leading-relaxed">
+                World-class creator marketplace untuk scaling UGC campaigns dengan smart automation.
               </p>
             </div>
 
+            {/* Agency Partners */}
             <div>
-              <h4 className="font-semibold text-white mb-4">Platform</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#solution" className="text-slate-400 hover:text-slate-300 transition-colors">Solusi</a></li>
-                <li><a href="#pricing" className="text-slate-400 hover:text-slate-300 transition-colors">Harga</a></li>
-                <li><a href="#case-study" className="text-slate-400 hover:text-slate-300 transition-colors">Case Study</a></li>
+              <h4 className="font-bold text-white mb-4 text-lg">Agency Partners</h4>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <a href="#" className="text-[#94A3B8] hover:text-white transition-colors">
+                    Partnership Program
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-[#94A3B8] hover:text-white transition-colors">
+                    Case Studies
+                  </a>
+                </li>
               </ul>
             </div>
 
+            {/* API Documentation */}
             <div>
-              <h4 className="font-semibold text-white mb-4">Resources</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-slate-400 hover:text-slate-300 transition-colors">Agency Partners</a></li>
-                <li><a href="#" className="text-slate-400 hover:text-slate-300 transition-colors">API</a></li>
-                <li><a href="#" className="text-slate-400 hover:text-slate-300 transition-colors">Documentation</a></li>
+              <h4 className="font-bold text-white mb-4 text-lg">API Documentation</h4>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <a href="#" className="text-[#94A3B8] hover:text-white transition-colors">
+                    Developer Docs
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-[#94A3B8] hover:text-white transition-colors">
+                    API Reference
+                  </a>
+                </li>
               </ul>
             </div>
 
+            {/* Brand Guidelines */}
             <div>
-              <h4 className="font-semibold text-white mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm">
-                <li><Link to="/privacy" className="text-slate-400 hover:text-slate-300 transition-colors">Privacy Policy</Link></li>
-                <li><Link to="/terms" className="text-slate-400 hover:text-slate-300 transition-colors">Terms of Service</Link></li>
+              <h4 className="font-bold text-white mb-4 text-lg">Brand Guidelines</h4>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <a href="#" className="text-[#94A3B8] hover:text-white transition-colors">
+                    Media Kit
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-[#94A3B8] hover:text-white transition-colors">
+                    Brand Assets
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
 
+          {/* Footer Bottom */}
           <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <p className="text-slate-500 text-sm">
-              © 2026 GIGGO. All rights reserved.
+            <p className="text-[#94A3B8] text-sm">
+              Copyright © 2025 GIGGO. All Rights Reserved
             </p>
+
+            {/* Social Icons */}
             <div className="flex items-center space-x-6">
-              <a href="#" className="text-slate-400 hover:text-slate-300 transition-colors">
-                <BarChart3 className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-slate-400 hover:text-slate-300 transition-colors">
-                <Sparkles className="w-5 h-5" />
-              </a>
+              {[
+                { icon: Facebook, href: "#" },
+                { icon: Twitter, href: "#" },
+                { icon: Instagram, href: "#" },
+                { icon: Youtube, href: "#" }
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href={social.href}
+                  className="w-10 h-10 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                >
+                  <social.icon className="w-5 h-5 text-[#94A3B8] hover:text-white transition-colors" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
