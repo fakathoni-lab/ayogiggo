@@ -8,23 +8,23 @@ interface Stat {
 
 const SlabscanStats = () => {
   const stats: Stat[] = [
-    { value: 500, suffix: "+", label: "Kreator Aktif" },
-    { value: 1200, suffix: "+", label: "Kampanye Selesai" },
-    { value: 15, suffix: "M+", label: "Total Dibayarkan" },
-    { value: 98, suffix: "%", label: "Tingkat Kepuasan" },
-  ];
+  { value: 500, suffix: "+", label: "Kreator Aktif" },
+  { value: 1200, suffix: "+", label: "Kampanye Selesai" },
+  { value: 15, suffix: "M+", label: "Total Dibayarkan" },
+  { value: 98, suffix: "%", label: "Tingkat Kepuasan" }];
+
 
   return (
     <section className="py-24 bg-bg-primary">
       <div className="container-slabscan">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-          {stats.map((stat, index) => (
-            <StatCounter key={index} stat={stat} index={index} />
-          ))}
+          {stats.map((stat, index) =>
+          <StatCounter key={index} stat={stat} index={index} />
+          )}
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 interface StatCounterProps {
@@ -80,8 +80,8 @@ const StatCounter = ({ stat, index }: StatCounterProps) => {
     <div
       ref={ref}
       className="text-center space-y-2 animate-fade-up"
-      style={{ animationDelay: `${index * 0.1}s` }}
-    >
+      style={{ animationDelay: `${index * 0.1}s` }}>
+
       <div className="text-4xl md:text-5xl font-bold text-white">
         {count}
         {stat.suffix}
@@ -89,8 +89,8 @@ const StatCounter = ({ stat, index }: StatCounterProps) => {
       <div className="text-sm md:text-base text-text-muted font-medium">
         {stat.label}
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default SlabscanStats;

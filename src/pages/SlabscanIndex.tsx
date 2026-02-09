@@ -30,8 +30,8 @@ const SlabscanIndex = () => {
       </main>
 
       <SlabscanFooter />
-    </div>
-  );
+    </div>);
+
 };
 
 export default SlabscanIndex;

@@ -17,27 +17,27 @@ import {
   BarChart3,
   Package,
   Video,
-  DollarSign,
-} from "lucide-react";
+  DollarSign } from
+"lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Animation Variants
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
-  },
+    transition: { staggerChildren: 0.15 }
+  }
 };
 
 const staggerItem = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 
 export default function BrandLandingV2() {
@@ -56,8 +56,8 @@ export default function BrandLandingV2() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="text-center max-w-5xl mx-auto"
-          >
+            className="text-center max-w-5xl mx-auto">
+
             {/* Live Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 mb-8">
               <span className="relative flex h-2 w-2">
@@ -89,16 +89,16 @@ export default function BrandLandingV2() {
               <Link to="/auth?mode=register&role=brand">
                 <Button
                   size="lg"
-                  className="h-14 px-8 text-base font-semibold rounded-lg bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_40px_rgba(59,130,246,0.5)] hover:shadow-[0_0_60px_rgba(59,130,246,0.7)] transition-all"
-                >
+                  className="h-14 px-8 text-base font-semibold rounded-lg bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_40px_rgba(59,130,246,0.5)] hover:shadow-[0_0_60px_rgba(59,130,246,0.7)] transition-all">
+
                   Mulai Skalakan Campaign →
                 </Button>
               </Link>
               <Button
                 variant="outline"
                 size="lg"
-                className="h-14 px-8 text-base font-semibold rounded-lg border-2 border-white/20 text-white hover:bg-white/5 backdrop-blur-sm"
-              >
+                className="h-14 px-8 text-base font-semibold rounded-lg border-2 border-white/20 text-white hover:bg-white/5 backdrop-blur-sm">
+
                 <Play className="mr-2 h-5 w-5" />
                 Lihat Cara Kerjanya
               </Button>
@@ -109,8 +109,8 @@ export default function BrandLandingV2() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative max-w-6xl mx-auto"
-            >
+              className="relative max-w-6xl mx-auto">
+
               {/* Main Dashboard Card */}
               <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-[0_20px_100px_rgba(59,130,246,0.3)]">
                 {/* Top Bar */}
@@ -156,9 +156,9 @@ export default function BrandLandingV2() {
 
                 {/* ROI Chart Placeholder */}
                 <div className="h-40 bg-slate-800/30 rounded-xl border border-white/5 flex items-end gap-2 p-4">
-                  {[40, 65, 45, 80, 70, 90, 95, 100].map((height, i) => (
-                    <div key={i} className="flex-1 bg-gradient-to-t from-blue-600 to-cyan-500 rounded-t opacity-80" style={{ height: `${height}%` }} />
-                  ))}
+                  {[40, 65, 45, 80, 70, 90, 95, 100].map((height, i) =>
+                  <div key={i} className="flex-1 bg-gradient-to-t from-blue-600 to-cyan-500 rounded-t opacity-80" style={{ height: `${height}%` }} />
+                  )}
                 </div>
               </div>
 
@@ -177,14 +177,14 @@ export default function BrandLandingV2() {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-12 opacity-40 grayscale hover:opacity-60 transition-all">
             {["TOKOPEDIA", "SHOPEE", "BLIBLI", "BUKALAPAK", "ZALORA"].map(
-              (brand) => (
-                <div
-                  key={brand}
-                  className="text-2xl font-bold text-white tracking-wider"
-                >
+              (brand) =>
+              <div
+                key={brand}
+                className="text-2xl font-bold text-white tracking-wider">
+
                   {brand}
                 </div>
-              )
+
             )}
           </div>
         </div>
@@ -198,8 +198,8 @@ export default function BrandLandingV2() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="text-center mb-16 max-w-3xl mx-auto"
-          >
+            className="text-center mb-16 max-w-3xl mx-auto">
+
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Influencer Marketing Manual Itu Tidak Skalabel
             </h2>
@@ -214,13 +214,13 @@ export default function BrandLandingV2() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto"
-          >
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
             {/* Card 1 */}
             <motion.div
               variants={staggerItem}
-              className="group relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-red-500/50 transition-all"
-            >
+              className="group relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-red-500/50 transition-all">
+
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative">
                 <div className="w-14 h-14 rounded-xl bg-red-500/10 flex items-center justify-center mb-4">
@@ -239,8 +239,8 @@ export default function BrandLandingV2() {
             {/* Card 2 */}
             <motion.div
               variants={staggerItem}
-              className="group relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-amber-500/50 transition-all"
-            >
+              className="group relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-amber-500/50 transition-all">
+
               <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative">
                 <div className="w-14 h-14 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4">
@@ -259,8 +259,8 @@ export default function BrandLandingV2() {
             {/* Card 3 */}
             <motion.div
               variants={staggerItem}
-              className="group relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-red-500/50 transition-all"
-            >
+              className="group relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-red-500/50 transition-all">
+
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative">
                 <div className="w-14 h-14 rounded-xl bg-red-500/10 flex items-center justify-center mb-4">
@@ -287,8 +287,8 @@ export default function BrandLandingV2() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="text-center mb-20"
-          >
+            className="text-center mb-20">
+
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Sistem Operasi untuk Creator Marketing Modern
             </h2>
@@ -300,8 +300,8 @@ export default function BrandLandingV2() {
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+              transition={{ duration: 0.6 }}>
+
               <div className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold mb-4">
                 SMART MATCHING
               </div>
@@ -319,22 +319,22 @@ export default function BrandLandingV2() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6"
-            >
+              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+
               <div className="flex items-center gap-3 mb-4">
                 <Target className="w-6 h-6 text-cyan-400" />
                 <span className="text-white font-semibold">Creator Match Score</span>
               </div>
               <div className="space-y-3">
                 {[
-                  { name: "Sarah Chen", score: 96, niche: "Fashion" },
-                  { name: "Mike Torres", score: 94, niche: "Tech" },
-                  { name: "Aisha Patel", score: 92, niche: "Beauty" },
-                ].map((creator, i) => (
-                  <div
-                    key={i}
-                    className="bg-slate-800/50 border border-white/5 rounded-lg p-4 flex items-center justify-between"
-                  >
+                { name: "Sarah Chen", score: 96, niche: "Fashion" },
+                { name: "Mike Torres", score: 94, niche: "Tech" },
+                { name: "Aisha Patel", score: 92, niche: "Beauty" }].
+                map((creator, i) =>
+                <div
+                  key={i}
+                  className="bg-slate-800/50 border border-white/5 rounded-lg p-4 flex items-center justify-between">
+
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500" />
                       <div>
@@ -353,7 +353,7 @@ export default function BrandLandingV2() {
                       <CheckCircle2 className="w-5 h-5 text-green-400" />
                     </div>
                   </div>
-                ))}
+                )}
               </div>
             </motion.div>
           </div>
@@ -365,8 +365,8 @@ export default function BrandLandingV2() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 order-2 lg:order-1"
-            >
+              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 order-2 lg:order-1">
+
               <div className="flex items-center gap-3 mb-6">
                 <Workflow className="w-6 h-6 text-purple-400" />
                 <span className="text-white font-semibold">
@@ -374,33 +374,33 @@ export default function BrandLandingV2() {
                 </span>
               </div>
               <div className="relative">
-                {["Brief", "Ship", "Create", "Approve"].map((step, i) => (
-                  <div key={i} className="flex items-center gap-4 mb-4 last:mb-0">
+                {["Brief", "Ship", "Create", "Approve"].map((step, i) =>
+                <div key={i} className="flex items-center gap-4 mb-4 last:mb-0">
                     <div
-                      className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        i < 3
-                          ? "bg-green-500/20 text-green-400"
-                          : "bg-purple-500/20 text-purple-400"
-                      }`}
-                    >
-                      {i < 3 ? (
-                        <CheckCircle2 className="w-5 h-5" />
-                      ) : (
-                        <span className="font-bold text-sm">{i + 1}</span>
-                      )}
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                    i < 3 ?
+                    "bg-green-500/20 text-green-400" :
+                    "bg-purple-500/20 text-purple-400"}`
+                    }>
+
+                      {i < 3 ?
+                    <CheckCircle2 className="w-5 h-5" /> :
+
+                    <span className="font-bold text-sm">{i + 1}</span>
+                    }
                     </div>
                     <div className="flex-1">
                       <div
-                        className={`h-2 rounded-full ${
-                          i < 3 ? "bg-green-500/30" : "bg-slate-700"
-                        }`}
-                      />
+                      className={`h-2 rounded-full ${
+                      i < 3 ? "bg-green-500/30" : "bg-slate-700"}`
+                      } />
+
                     </div>
                     <span className="text-white font-medium text-sm w-20">
                       {step}
                     </span>
                   </div>
-                ))}
+                )}
               </div>
             </motion.div>
 
@@ -409,8 +409,8 @@ export default function BrandLandingV2() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="order-1 lg:order-2"
-            >
+              className="order-1 lg:order-2">
+
               <div className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold mb-4">
                 AUTOMATED WORKFLOW
               </div>
@@ -430,8 +430,8 @@ export default function BrandLandingV2() {
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+              transition={{ duration: 0.6 }}>
+
               <div className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold mb-4">
                 SECURE & STRATEGIC
               </div>
@@ -449,8 +449,8 @@ export default function BrandLandingV2() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6"
-            >
+              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+
               <div className="aspect-video bg-slate-800/50 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
                 <Video className="w-16 h-16 text-slate-600" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
@@ -463,8 +463,8 @@ export default function BrandLandingV2() {
                 </Button>
                 <Button
                   variant="outline"
-                  className="border-red-500/50 text-red-400 hover:bg-red-500/10"
-                >
+                  className="border-red-500/50 text-red-400 hover:bg-red-500/10">
+
                   Revise
                 </Button>
               </div>
@@ -481,8 +481,8 @@ export default function BrandLandingV2() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="max-w-5xl mx-auto"
-          >
+            className="max-w-5xl mx-auto">
+
             <div className="relative bg-white/5 backdrop-blur-xl border border-cyan-500/30 rounded-3xl p-12 overflow-hidden">
               {/* Glow Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-transparent" />
@@ -531,8 +531,8 @@ export default function BrandLandingV2() {
                     <img
                       src="https://i.pravatar.cc/80?img=25"
                       alt="Testimonial"
-                      className="w-14 h-14 rounded-full"
-                    />
+                      className="w-14 h-14 rounded-full" />
+
                     <div>
                       <p className="text-white font-semibold">
                         Jessica Hartono
@@ -562,8 +562,8 @@ export default function BrandLandingV2() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Model Harga Transparan
             </h2>
@@ -577,8 +577,8 @@ export default function BrandLandingV2() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="max-w-xl mx-auto"
-          >
+            className="max-w-xl mx-auto">
+
             <div className="relative bg-white/5 backdrop-blur-xl border border-blue-500/30 rounded-3xl p-10 shadow-[0_0_60px_rgba(59,130,246,0.2)]">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                 <span className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm font-bold shadow-lg">
@@ -597,16 +597,16 @@ export default function BrandLandingV2() {
 
               <div className="space-y-4 mb-8">
                 {[
-                  "Gratis Posting Brief Campaign",
-                  "Anda Tentukan Budget Sendiri (Mulai Rp 50rb)",
-                  "Service Fee Transparan (15%)",
-                  "Jaminan Uang Kembali (Escrow)",
-                ].map((feature, i) => (
-                  <div key={i} className="flex items-start gap-3">
+                "Gratis Posting Brief Campaign",
+                "Anda Tentukan Budget Sendiri (Mulai Rp 50rb)",
+                "Service Fee Transparan (15%)",
+                "Jaminan Uang Kembali (Escrow)"].
+                map((feature, i) =>
+                <div key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
                     <span className="text-slate-200">{feature}</span>
                   </div>
-                ))}
+                )}
               </div>
 
               <Link to="/auth?mode=register&role=brand">
@@ -633,8 +633,8 @@ export default function BrandLandingV2() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
-            className="text-center max-w-4xl mx-auto"
-          >
+            className="text-center max-w-4xl mx-auto">
+
             <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Jangan Biarkan Kompetitor Memonopoli Feed.
             </h2>
@@ -645,8 +645,8 @@ export default function BrandLandingV2() {
             <Link to="/auth?mode=register&role=brand">
               <Button
                 size="lg"
-                className="h-16 px-12 text-lg font-bold rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white shadow-[0_0_60px_rgba(59,130,246,0.6)] hover:shadow-[0_0_80px_rgba(59,130,246,0.8)] transition-all transform hover:scale-105"
-              >
+                className="h-16 px-12 text-lg font-bold rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white shadow-[0_0_60px_rgba(59,130,246,0.6)] hover:shadow-[0_0_80px_rgba(59,130,246,0.8)] transition-all transform hover:scale-105">
+
                 BUAT CAMPAIGN PERTAMA (GRATIS) →
               </Button>
             </Link>
@@ -679,6 +679,6 @@ export default function BrandLandingV2() {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>);
+
 }

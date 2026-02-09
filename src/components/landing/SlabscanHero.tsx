@@ -8,8 +8,8 @@ const SlabscanHero = () => {
       <div className="absolute inset-0 bg-glow-emerald-lg opacity-40 pointer-events-none" />
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-radial-emerald-lg pointer-events-none"
-        style={{ filter: "blur(80px)" }}
-      />
+        style={{ filter: "blur(80px)" }} />
+
 
       {/* Content */}
       <div className="container-slabscan relative z-10">
@@ -36,8 +36,8 @@ const SlabscanHero = () => {
           {/* Subtitle */}
           <p
             className="text-lg md:text-xl text-text-body max-w-2xl mx-auto animate-fade-up"
-            style={{ animationDelay: "0.2s" }}
-          >
+            style={{ animationDelay: "0.2s" }}>
+
             Platform marketplace pertama di Indonesia yang menghubungkan kreator
             dengan brand untuk kolaborasi berbayar. Dapatkan penghasilan dari
             konten Anda hari ini.
@@ -46,8 +46,8 @@ const SlabscanHero = () => {
           {/* CTA Buttons */}
           <div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up"
-            style={{ animationDelay: "0.3s" }}
-          >
+            style={{ animationDelay: "0.3s" }}>
+
             <Link to="/auth" className="btn-slabscan-primary">
               Daftar Sekarang →
             </Link>
@@ -59,8 +59,8 @@ const SlabscanHero = () => {
           {/* Trust Row */}
           <div
             className="flex flex-wrap items-center justify-center gap-6 pt-8 animate-fade-up"
-            style={{ animationDelay: "0.4s" }}
-          >
+            style={{ animationDelay: "0.4s" }}>
+
             <div className="flex items-center gap-2 text-text-muted text-sm">
               <CheckCircle2 className="w-5 h-5 text-brand-emerald" />
               <span>Tanpa minimum followers</span>
@@ -78,8 +78,8 @@ const SlabscanHero = () => {
           {/* Visual Mockups */}
           <div
             className="relative pt-16 animate-fade-up"
-            style={{ animationDelay: "0.5s" }}
-          >
+            style={{ animationDelay: "0.5s" }}>
+
             <div className="relative mx-auto max-w-4xl">
               {/* Main Desktop Mockup */}
               <div className="relative z-10 glass-card p-4 glow-emerald animate-float">
@@ -87,8 +87,8 @@ const SlabscanHero = () => {
                   <img
                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop"
                     alt="GIGGO Dashboard"
-                    className="w-full h-full object-cover"
-                  />
+                    className="w-full h-full object-cover" />
+
                 </div>
               </div>
 
@@ -98,8 +98,8 @@ const SlabscanHero = () => {
                   <img
                     src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=800&fit=crop"
                     alt="GIGGO Mobile"
-                    className="w-full h-full object-cover"
-                  />
+                    className="w-full h-full object-cover" />
+
                 </div>
               </div>
 
@@ -108,16 +108,16 @@ const SlabscanHero = () => {
                   <img
                     src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=800&fit=crop"
                     alt="GIGGO Mobile 2"
-                    className="w-full h-full object-cover"
-                  />
+                    className="w-full h-full object-cover" />
+
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default SlabscanHero;

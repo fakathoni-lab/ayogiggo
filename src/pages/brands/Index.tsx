@@ -44,16 +44,16 @@ const staggerItem = {
 
 // Dashboard mockup data
 const dashboardMetrics = [
-  { label: "Active Campaigns", value: "147", trend: "+23%", color: "text-blue-400" },
-  { label: "Content Pieces", value: "8.2K", trend: "+156%", color: "text-green-400" },
-  { label: "Avg. Match Score", value: "94%", trend: "+12%", color: "text-purple-400" },
-];
+{ label: "Active Campaigns", value: "147", trend: "+23%", color: "text-blue-400" },
+{ label: "Content Pieces", value: "8.2K", trend: "+156%", color: "text-green-400" },
+{ label: "Avg. Match Score", value: "94%", trend: "+12%", color: "text-purple-400" }];
+
 
 const recentApplications = [
-  { creator: "Sarah Chen", followers: "245K", matchScore: 96, niche: "Fashion" },
-  { creator: "Mike Torres", followers: "180K", matchScore: 94, niche: "Tech" },
-  { creator: "Aisha Patel", followers: "320K", matchScore: 92, niche: "Beauty" },
-];
+{ creator: "Sarah Chen", followers: "245K", matchScore: 96, niche: "Fashion" },
+{ creator: "Mike Torres", followers: "180K", matchScore: 94, niche: "Tech" },
+{ creator: "Aisha Patel", followers: "320K", matchScore: 92, niche: "Beauty" }];
+
 
 
 const BrandsLandingPage = () => {
@@ -141,20 +141,20 @@ const BrandsLandingPage = () => {
 
                 {/* Metrics Grid */}
                 <div className="grid grid-cols-3 gap-3 mb-6">
-                  {dashboardMetrics.map((metric, i) => (
-                    <div key={i} className="bg-slate-800/50 border border-white/5 rounded-xl p-3">
+                  {dashboardMetrics.map((metric, i) =>
+                  <div key={i} className="bg-slate-800/50 border border-white/5 rounded-xl p-3">
                       <p className="text-slate-400 text-xs mb-1">{metric.label}</p>
                       <p className={`text-2xl font-bold font-display ${metric.color}`}>{metric.value}</p>
                       <p className="text-green-400 text-xs mt-1">{metric.trend}</p>
                     </div>
-                  ))}
+                  )}
                 </div>
 
                 {/* Applications List */}
                 <div className="space-y-2">
                   <p className="text-slate-400 text-xs font-medium mb-3">Recent Applications</p>
-                  {recentApplications.map((app, i) => (
-                    <div key={i} className="bg-slate-800/30 border border-white/5 rounded-lg p-3 flex items-center justify-between hover:bg-slate-800/50 transition-colors">
+                  {recentApplications.map((app, i) =>
+                  <div key={i} className="bg-slate-800/30 border border-white/5 rounded-lg p-3 flex items-center justify-between hover:bg-slate-800/50 transition-colors">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500" />
                         <div>
@@ -169,7 +169,7 @@ const BrandsLandingPage = () => {
                         </div>
                       </div>
                     </div>
-                  ))}
+                  )}
                 </div>
 
                 {/* Floating stat card */}
@@ -597,8 +597,8 @@ const BrandsLandingPage = () => {
                   <img
                     src="https://i.pravatar.cc/80?img=32"
                     alt="Sarah"
-                    className="w-12 h-12 rounded-full"
-                  />
+                    className="w-12 h-12 rounded-full" />
+
                   <div>
                     <p className="text-white font-semibold text-sm">Sarah Mitchell</p>
                     <p className="text-slate-400 text-xs">CMO, FashionTech Co</p>
@@ -614,8 +614,8 @@ const BrandsLandingPage = () => {
                   <img
                     src="https://i.pravatar.cc/80?img=33"
                     alt="James"
-                    className="w-12 h-12 rounded-full"
-                  />
+                    className="w-12 h-12 rounded-full" />
+
                   <div>
                     <p className="text-white font-semibold text-sm">James Chen</p>
                     <p className="text-slate-400 text-xs">Founder, HealthPlus</p>

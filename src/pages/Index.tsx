@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import {
   Zap, Hourglass, Folder, Box, Scale, Check,
   ChevronRight, Search, CheckCircle, ArrowRight,
-  Facebook, Twitter, Instagram, Youtube, TrendingUp
-} from "lucide-react";
+  Facebook, Twitter, Instagram, Youtube, TrendingUp } from
+"lucide-react";
 import { Button } from "@/components/ui/button";
 import ExitIntentModal from "@/components/landing/ExitIntentModal";
 import SocialProofToast from "@/components/landing/SocialProofToast";
@@ -21,7 +21,7 @@ const Index = () => {
 
       // Update active section for navigation
       const sections = ["solusi", "studi-kasus", "harga"];
-      const currentSection = sections.find(section => {
+      const currentSection = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -48,11 +48,11 @@ const Index = () => {
       {/* 1. NAVIGATION BAR - Sticky with Blur */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "backdrop-blur-lg bg-[#0A1628]/90 border-b border-white/10 shadow-lg"
-            : "bg-transparent"
-        }`}
-      >
+        scrolled ?
+        "backdrop-blur-lg bg-[#0A1628]/90 border-b border-white/10 shadow-lg" :
+        "bg-transparent"}`
+        }>
+
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-[72px]">
             {/* Logo */}
@@ -68,31 +68,31 @@ const Index = () => {
               <a
                 href="#solusi"
                 className={`link-underline text-[1rem] font-medium transition-colors ${
-                  activeSection === "solusi" ? "text-white" : "text-[#94A3B8] hover:text-white"
-                }`}
-              >
+                activeSection === "solusi" ? "text-white" : "text-[#94A3B8] hover:text-white"}`
+                }>
+
                 Solusi
               </a>
               <a
                 href="#studi-kasus"
                 className={`link-underline text-[1rem] font-medium transition-colors ${
-                  activeSection === "studi-kasus" ? "text-white" : "text-[#94A3B8] hover:text-white"
-                }`}
-              >
+                activeSection === "studi-kasus" ? "text-white" : "text-[#94A3B8] hover:text-white"}`
+                }>
+
                 Studi Kasus
               </a>
               <a
                 href="#harga"
                 className={`link-underline text-[1rem] font-medium transition-colors ${
-                  activeSection === "harga" ? "text-white" : "text-[#94A3B8] hover:text-white"
-                }`}
-              >
+                activeSection === "harga" ? "text-white" : "text-[#94A3B8] hover:text-white"}`
+                }>
+
                 Harga
               </a>
               <a
                 href="#faq"
-                className="link-underline text-[#94A3B8] hover:text-white transition-colors text-[1rem] font-medium"
-              >
+                className="link-underline text-[#94A3B8] hover:text-white transition-colors text-[1rem] font-medium">
+
                 FAQ
               </a>
             </div>
@@ -102,14 +102,14 @@ const Index = () => {
               <Button
                 variant="ghost"
                 className="hidden sm:flex text-white hover:bg-white/5 rounded-full px-6 font-semibold transition-all hover:scale-105"
-                onClick={() => navigate("/auth")}
-              >
+                onClick={() => navigate("/auth")}>
+
                 Masuk
               </Button>
               <Button
                 className="btn-ripple bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white rounded-full px-4 sm:px-6 font-semibold shadow-lg shadow-cyan-500/30 transition-all hover:shadow-cyan-500/50 hover:scale-105"
-                onClick={() => navigate("/auth")}
-              >
+                onClick={() => navigate("/auth")}>
+
                 Buat Campaign Kreator
               </Button>
             </div>
@@ -157,8 +157,8 @@ const Index = () => {
                 <Button
                   size="lg"
                   className="btn-ripple bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white px-10 py-7 text-lg rounded-full shadow-[0_0_40px_rgba(0,217,255,0.4)] hover:shadow-[0_0_60px_rgba(0,217,255,0.6)] transition-all font-bold group hover:-translate-y-1"
-                  onClick={() => navigate("/auth")}
-                >
+                  onClick={() => navigate("/auth")}>
+
                   Buat Campaign
                   <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -166,8 +166,8 @@ const Index = () => {
                   size="lg"
                   variant="outline"
                   className="btn-ripple border-2 border-white/20 text-white hover:bg-white/5 hover:border-white/30 px-10 py-7 text-lg rounded-full backdrop-blur-sm transition-all font-bold hover:scale-105"
-                  onClick={() => navigate("/auth")}
-                >
+                  onClick={() => navigate("/auth")}>
+
                   Buat Campaign Kreator
                 </Button>
               </div>
@@ -180,33 +180,62 @@ const Index = () => {
 
               {/* Dashboard Card */}
               <div className="relative glass-morphism rounded-3xl p-8 shadow-2xl border-2 border-white/10 hover:border-[#00D9FF]/30 transition-all duration-500" style={{ transform: "rotateY(-5deg) rotateX(5deg)" }}>
-                <div className="aspect-video bg-gradient-to-br from-[#1A2332] to-[#0F1621] rounded-2xl overflow-hidden shadow-inner">
-                  {/* Mockup Content */}
-                  <div className="p-8 space-y-6">
-                    {/* Header */}
-                    <div className="flex items-center justify-between">
-                      <div className="h-4 bg-gradient-to-r from-[#00D9FF] to-transparent rounded-full w-40" />
-                      <div className="h-4 bg-white/10 rounded-full w-24" />
+                <div className="aspect-video bg-gradient-to-br from-[#1A2332] to-[#0F1621] rounded-2xl overflow-hidden shadow-inner relative">
+                  {/* High-Quality Dashboard Mockup */}
+                  <div className="absolute inset-0 p-6 flex flex-col">
+                    {/* Dashboard Header with metrics */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="space-y-1">
+                        <div className="text-xs text-[#94A3B8] uppercase tracking-wider font-semibold">Campaign Performance</div>
+                        <div className="text-xl font-bold text-white">Active Creators</div>
+                      </div>
+                      <div className="flex items-center space-x-2 bg-[#00D9FF]/10 backdrop-blur-sm px-4 py-2 rounded-full border border-[#00D9FF]/30">
+                        <div className="w-2 h-2 bg-[#00D9FF] rounded-full animate-pulse"></div>
+                        <span className="text-xs text-[#00D9FF] font-semibold">LIVE</span>
+                      </div>
                     </div>
 
-                    {/* Graph Visualization */}
-                    <div className="space-y-4 pt-8">
-                      <div className="h-3 bg-gradient-to-r from-[#00D9FF]/80 to-transparent rounded-full w-3/4 shadow-lg shadow-cyan-500/20" />
-                      <div className="h-3 bg-gradient-to-r from-[#00D9FF]/60 to-transparent rounded-full w-1/2" />
-                      <div className="h-3 bg-gradient-to-r from-[#00D9FF]/40 to-transparent rounded-full w-2/3" />
+                    {/* Chart Area with Realistic Graph */}
+                    <div className="flex-1 relative mb-6">
+                      <div className="absolute inset-0 flex items-end justify-between px-2 pb-2">
+                        {[65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88, 68].map((height, i) =>
+                        <div key={i} className="flex-1 mx-0.5 flex flex-col justify-end">
+                            <div
+                            className="w-full bg-gradient-to-t from-[#00D9FF] to-[#0EA5E9] rounded-t-sm opacity-80 hover:opacity-100 transition-all cursor-pointer hover:scale-105"
+                            style={{
+                              height: `${height}%`,
+                              boxShadow: '0 -2px 10px rgba(0, 217, 255, 0.3)',
+                              animation: `slide-up 0.6s ease-out ${i * 0.05}s both`
+                            }} />
+
+                          </div>
+                        )}
+                      </div>
+                      {/* Grid lines */}
+                      <div className="absolute inset-0 flex flex-col justify-between opacity-10">
+                        {[...Array(4)].map((_, i) =>
+                        <div key={i} className="w-full h-px bg-white" />
+                        )}
+                      </div>
                     </div>
 
-                    {/* Stats Cards */}
-                    <div className="grid grid-cols-2 gap-4 pt-8">
-                      {[1, 2].map((i) => (
-                        <div
-                          key={i}
-                          className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-[#00D9FF]/20"
-                        >
-                          <div className="h-3 bg-[#00D9FF] rounded-full w-16 mb-3" />
-                          <div className="h-2 bg-white/10 rounded-full w-full" />
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-3 gap-3">
+                      {[
+                      { label: "Total Reach", value: "2.4M", trend: "+12%" },
+                      { label: "Engagement", value: "8.2%", trend: "+3.1%" },
+                      { label: "Conversions", value: "1,247", trend: "+25%" }].
+                      map((stat, i) =>
+                      <div
+                        key={i}
+                        className="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-[#00D9FF]/20 hover:border-[#00D9FF]/40 transition-all">
+                          <div className="text-[10px] text-[#94A3B8] uppercase tracking-wider mb-1">{stat.label}</div>
+                          <div className="flex items-end justify-between">
+                            <div className="text-lg font-bold text-white">{stat.value}</div>
+                            <div className="text-xs text-[#10B981] font-semibold">{stat.trend}</div>
+                          </div>
                         </div>
-                      ))}
+                      )}
                     </div>
                   </div>
                 </div>
@@ -227,15 +256,15 @@ const Index = () => {
           <div className="relative overflow-hidden">
             <div className="flex items-center space-x-16 animate-logo-scroll">
               {["Spotify", "Apple", "Blibli", "Tokopedia", "Bukalapak", "Halodoc", "Spotify", "Apple", "Blibli", "Tokopedia"].map(
-                (brand, i) => (
-                  <div
-                    key={i}
-                    className="text-white/40 hover:text-white/100 transition-all duration-300 font-bold text-2xl whitespace-nowrap cursor-pointer grayscale hover:grayscale-0 hover:scale-110"
-                    style={{ minWidth: "200px", textAlign: "center" }}
-                  >
+                (brand, i) =>
+                <div
+                  key={i}
+                  className="text-white/40 hover:text-white/100 transition-all duration-300 font-bold text-2xl whitespace-nowrap cursor-pointer grayscale hover:grayscale-0 hover:scale-110"
+                  style={{ minWidth: "200px", textAlign: "center" }}>
+
                     {brand}
                   </div>
-                )
+
               )}
             </div>
           </div>
@@ -261,38 +290,38 @@ const Index = () => {
           {/* Problem Cards */}
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              {
-                icon: Hourglass,
-                title: "The Dino-Era Time-Sink",
-                desc: "Planning, diskusi, dan persetujuan untuk satu Campaign bisa memakan waktu 2-4 minggu. Manual, lama, dan tidak scalable.",
-                color: "#FF2FB3"
-              },
-              {
-                icon: Folder,
-                title: "The Operational Nightmare",
-                desc: "Contract chaos and confusion. Managing 10+ creators = 10+ different terms, payments, dan tracking spreadsheets.",
-                color: "#FF2FB3"
-              },
-              {
-                icon: Box,
-                title: "The ROI Blackbox",
-                desc: "Sebagian besar brands tidak tahu data siapa spends bisa untuk hasil yang terpercaya. Hasilnya ya, ini tidak terukur lah..",
-                color: "#FF2FB3"
-              }
-            ].map((problem, i) => (
-              <div
-                key={i}
-                className="group relative glass-morphism rounded-2xl p-8 hover:border-pink-500/30 transition-all duration-300 card-tilt"
-              >
+            {
+              icon: Hourglass,
+              title: "The Dino-Era Time-Sink",
+              desc: "Planning, diskusi, dan persetujuan untuk satu Campaign bisa memakan waktu 2-4 minggu. Manual, lama, dan tidak scalable.",
+              color: "#FF2FB3"
+            },
+            {
+              icon: Folder,
+              title: "The Operational Nightmare",
+              desc: "Contract chaos and confusion. Managing 10+ creators = 10+ different terms, payments, dan tracking spreadsheets.",
+              color: "#FF2FB3"
+            },
+            {
+              icon: Box,
+              title: "The ROI Blackbox",
+              desc: "Sebagian besar brands tidak tahu data siapa spends bisa untuk hasil yang terpercaya. Hasilnya ya, ini tidak terukur lah..",
+              color: "#FF2FB3"
+            }].
+            map((problem, i) =>
+            <div
+              key={i}
+              className="group relative glass-morphism rounded-2xl p-8 hover:border-pink-500/30 transition-all duration-300 card-tilt">
+
                 {/* Hover Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-red-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="relative space-y-6">
                   {/* Icon with Glow */}
                   <div
-                    className="w-16 h-16 bg-pink-500/10 rounded-xl flex items-center justify-center ring-2 ring-pink-500/30 group-hover:ring-pink-500/50 transition-all"
-                    style={{ boxShadow: `0 0 30px ${problem.color}40` }}
-                  >
+                  className="w-16 h-16 bg-pink-500/10 rounded-xl flex items-center justify-center ring-2 ring-pink-500/30 group-hover:ring-pink-500/50 transition-all"
+                  style={{ boxShadow: `0 0 30px ${problem.color}40` }}>
+
                     <problem.icon className="w-8 h-8 text-pink-400" />
                   </div>
 
@@ -300,7 +329,7 @@ const Index = () => {
                   <p className="text-[#94A3B8] leading-relaxed text-lg">{problem.desc}</p>
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -339,16 +368,16 @@ const Index = () => {
 
               <div className="space-y-4 pt-4">
                 {[
-                  "AI-powered creator recommendations",
-                  "Real-time audience verification",
-                  "Historical performance analytics",
-                  "Automated matching score"
-                ].map((feat, i) => (
-                  <div key={i} className="flex items-center space-x-3">
+                "AI-powered creator recommendations",
+                "Real-time audience verification",
+                "Historical performance analytics",
+                "Automated matching score"].
+                map((feat, i) =>
+                <div key={i} className="flex items-center space-x-3">
                     <CheckCircle className="w-6 h-6 text-[#00D9FF] flex-shrink-0" />
                     <span className="text-white text-lg">{feat}</span>
                   </div>
-                ))}
+                )}
               </div>
             </div>
 
@@ -370,22 +399,22 @@ const Index = () => {
                   {/* Progress Bars */}
                   <div className="space-y-4">
                     {[
-                      { label: "Match Score", value: "95%" },
-                      { label: "Engagement Rate", value: "8.2%" }
-                    ].map((stat, i) => (
-                      <div key={i} className="space-y-2">
+                    { label: "Match Score", value: "95%" },
+                    { label: "Engagement Rate", value: "8.2%" }].
+                    map((stat, i) =>
+                    <div key={i} className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span className="text-[#94A3B8]">{stat.label}</span>
                           <span className="text-[#00D9FF] font-bold">{stat.value}</span>
                         </div>
                         <div className="h-3 bg-[#1A2332] rounded-full overflow-hidden">
                           <div
-                            className="h-full bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9]"
-                            style={{ width: stat.value }}
-                          />
+                          className="h-full bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9]"
+                          style={{ width: stat.value }} />
+
                         </div>
                       </div>
-                    ))}
+                    )}
                   </div>
                 </div>
               </div>
@@ -415,8 +444,8 @@ const Index = () => {
                   <div className="grid grid-cols-2 gap-3">
                     <Button
                       variant="outline"
-                      className="border-white/20 text-white hover:bg-white/5"
-                    >
+                      className="border-white/20 text-white hover:bg-white/5">
+
                       Request Revision
                     </Button>
                     <Button className="bg-gradient-to-r from-[#10B981] to-[#00D9FF] hover:from-[#0F9A73] hover:to-[#00C8EE] text-white">
@@ -444,16 +473,16 @@ const Index = () => {
 
               <div className="space-y-4 pt-4">
                 {[
-                  "Content preview before publish",
-                  "Approval workflow dengan timeline",
-                  "Revision tracking & history",
-                  "Real-time collaboration tools"
-                ].map((feat, i) => (
-                  <div key={i} className="flex items-center space-x-3">
+                "Content preview before publish",
+                "Approval workflow dengan timeline",
+                "Revision tracking & history",
+                "Real-time collaboration tools"].
+                map((feat, i) =>
+                <div key={i} className="flex items-center space-x-3">
                     <CheckCircle className="w-6 h-6 text-[#10B981] flex-shrink-0" />
                     <span className="text-white text-lg">{feat}</span>
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </div>
@@ -481,21 +510,21 @@ const Index = () => {
               {/* Stats Grid */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                  { num: "320", label: "Konten UGC", icon: TrendingUp },
-                  { num: "Rp 156", label: "CPE", icon: TrendingUp },
-                  { num: "5.2 Juta", label: "Views", icon: TrendingUp },
-                  { num: "+25%", label: "Sales Uplift", icon: TrendingUp }
-                ].map((stat, i) => (
-                  <div
-                    key={i}
-                    className="bg-[#1A2332]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 space-y-3 hover:border-[#00D9FF]/30 transition-all animate-count-up hover:scale-105"
-                    style={{ animationDelay: `${i * 0.1}s` }}
-                  >
+                { num: "320", label: "Konten UGC", icon: TrendingUp },
+                { num: "Rp 156", label: "CPE", icon: TrendingUp },
+                { num: "5.2 Juta", label: "Views", icon: TrendingUp },
+                { num: "+25%", label: "Sales Uplift", icon: TrendingUp }].
+                map((stat, i) =>
+                <div
+                  key={i}
+                  className="bg-[#1A2332]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 space-y-3 hover:border-[#00D9FF]/30 transition-all animate-count-up hover:scale-105"
+                  style={{ animationDelay: `${i * 0.1}s` }}>
+
                     <stat.icon className="w-8 h-8 text-[#00D9FF]" />
                     <div className="text-5xl font-bold animate-gradient-text">{stat.num}</div>
                     <div className="text-white font-semibold text-lg">{stat.label}</div>
                   </div>
-                ))}
+                )}
               </div>
 
               {/* Testimonial */}
@@ -547,8 +576,8 @@ const Index = () => {
                 <div className="flex justify-center">
                   <div
                     className="w-20 h-20 bg-[#00D9FF]/10 rounded-2xl flex items-center justify-center ring-2 ring-[#00D9FF]/30"
-                    style={{ boxShadow: "0 0 40px rgba(0, 217, 255, 0.3)" }}
-                  >
+                    style={{ boxShadow: "0 0 40px rgba(0, 217, 255, 0.3)" }}>
+
                     <Scale className="w-10 h-10 text-[#00D9FF]" />
                   </div>
                 </div>
@@ -557,17 +586,17 @@ const Index = () => {
 
                 <div className="space-y-6 pt-4">
                   {[
-                    "Balance di dashboard",
-                    "Checklist campaign brief",
-                    "Competitive support"
-                  ].map((feature, i) => (
-                    <div key={i} className="flex items-center space-x-4">
+                  "Balance di dashboard",
+                  "Checklist campaign brief",
+                  "Competitive support"].
+                  map((feature, i) =>
+                  <div key={i} className="flex items-center space-x-4">
                       <div className="w-6 h-6 bg-[#00D9FF] rounded-full flex items-center justify-center flex-shrink-0">
                         <Check className="w-4 h-4 text-white" />
                       </div>
                       <span className="text-white text-lg text-left">{feature}</span>
                     </div>
-                  ))}
+                  )}
                 </div>
 
                 <p className="text-[#94A3B8] text-lg pt-4 border-t border-white/10">
@@ -577,8 +606,8 @@ const Index = () => {
                 <Button
                   size="lg"
                   className="btn-ripple w-full bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white py-7 text-lg mt-8 rounded-full shadow-[0_0_40px_rgba(0,217,255,0.4)] hover:shadow-[0_0_60px_rgba(0,217,255,0.6)] transition-all font-bold group hover:-translate-y-1"
-                  onClick={() => navigate("/auth")}
-                >
+                  onClick={() => navigate("/auth")}>
+
                   Mulai Sekarang - Gratis
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -606,8 +635,8 @@ const Index = () => {
           <Button
             size="lg"
             className="btn-ripple bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white px-12 py-8 text-2xl rounded-full shadow-[0_0_60px_rgba(0,217,255,0.6)] animate-pulse-glow font-bold group hover:scale-105"
-            onClick={() => navigate("/auth")}
-          >
+            onClick={() => navigate("/auth")}>
+
             BUAT CAMPAIGN PERTAMA (GRATIS POSTING)
             <ArrowRight className="ml-3 w-7 h-7 group-hover:translate-x-2 transition-transform" />
           </Button>
@@ -696,25 +725,25 @@ const Index = () => {
             {/* Social Icons */}
             <div className="flex items-center space-x-6">
               {[
-                { icon: Facebook, href: "#" },
-                { icon: Twitter, href: "#" },
-                { icon: Instagram, href: "#" },
-                { icon: Youtube, href: "#" }
-              ].map((social, i) => (
-                <a
-                  key={i}
-                  href={social.href}
-                  className="w-10 h-10 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                >
+              { icon: Facebook, href: "#" },
+              { icon: Twitter, href: "#" },
+              { icon: Instagram, href: "#" },
+              { icon: Youtube, href: "#" }].
+              map((social, i) =>
+              <a
+                key={i}
+                href={social.href}
+                className="w-10 h-10 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center transition-all hover:scale-110">
+
                   <social.icon className="w-5 h-5 text-[#94A3B8] hover:text-white transition-colors" />
                 </a>
-              ))}
+              )}
             </div>
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Index;

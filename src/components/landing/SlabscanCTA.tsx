@@ -9,10 +9,10 @@ const SlabscanCTA = () => {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(16, 185, 129, 0.5) 0%, transparent 70%)",
-          filter: "blur(120px)",
-        }}
-      />
+          "radial-gradient(ellipse at center, rgba(16, 185, 129, 0.5) 0%, transparent 70%)",
+          filter: "blur(120px)"
+        }} />
+
 
       <div className="container-slabscan relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-12">
@@ -32,8 +32,8 @@ const SlabscanCTA = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/auth"
-              className="btn-slabscan-primary text-lg px-12 py-4 shadow-glow-emerald-lg"
-            >
+              className="btn-slabscan-primary text-lg px-12 py-4 shadow-glow-emerald-lg">
+
               Daftar Sekarang - Gratis! →
             </Link>
           </div>
@@ -67,19 +67,19 @@ const SlabscanCTA = () => {
             </p>
             <div className="flex items-center justify-center -space-x-3">
               {[
-                "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
-                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
-                "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
-                "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop",
-                "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
-              ].map((avatar, index) => (
-                <img
-                  key={index}
-                  src={avatar}
-                  alt={`Creator ${index + 1}`}
-                  className="w-12 h-12 rounded-full border-2 border-bg-primary object-cover"
-                />
-              ))}
+              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+              "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+              "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
+              "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop",
+              "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"].
+              map((avatar, index) =>
+              <img
+                key={index}
+                src={avatar}
+                alt={`Creator ${index + 1}`}
+                className="w-12 h-12 rounded-full border-2 border-bg-primary object-cover" />
+
+              )}
               <div className="w-12 h-12 rounded-full bg-brand-emerald/20 border-2 border-bg-primary flex items-center justify-center">
                 <span className="text-brand-emerald text-xs font-bold">
                   +495
@@ -89,8 +89,8 @@ const SlabscanCTA = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default SlabscanCTA;

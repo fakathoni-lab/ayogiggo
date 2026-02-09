@@ -2,31 +2,31 @@ import { UserPlus, Search, Video, Wallet } from "lucide-react";
 
 const SlabscanHowItWorks = () => {
   const steps = [
-    {
-      number: 1,
-      title: "Daftar & Verifikasi",
-      description: "Buat akun dan lengkapi profil kreator Anda dalam 5 menit",
-      icon: UserPlus,
-    },
-    {
-      number: 2,
-      title: "Pilih Kampanye",
-      description: "Browse dan apply ke kampanye yang sesuai dengan niche Anda",
-      icon: Search,
-    },
-    {
-      number: 3,
-      title: "Buat Konten",
-      description: "Upload konten sesuai brief dan tunggu approval dari brand",
-      icon: Video,
-    },
-    {
-      number: 4,
-      title: "Terima Pembayaran",
-      description: "Dapatkan bayaran langsung ke rekening Anda dalam 24 jam",
-      icon: Wallet,
-    },
-  ];
+  {
+    number: 1,
+    title: "Daftar & Verifikasi",
+    description: "Buat akun dan lengkapi profil kreator Anda dalam 5 menit",
+    icon: UserPlus
+  },
+  {
+    number: 2,
+    title: "Pilih Kampanye",
+    description: "Browse dan apply ke kampanye yang sesuai dengan niche Anda",
+    icon: Search
+  },
+  {
+    number: 3,
+    title: "Buat Konten",
+    description: "Upload konten sesuai brief dan tunggu approval dari brand",
+    icon: Video
+  },
+  {
+    number: 4,
+    title: "Terima Pembayaran",
+    description: "Dapatkan bayaran langsung ke rekening Anda dalam 24 jam",
+    icon: Wallet
+  }];
+
 
   return (
     <section id="cara-kerja" className="py-24 bg-bg-secondary">
@@ -58,8 +58,8 @@ const SlabscanHowItWorks = () => {
                 <div
                   key={index}
                   className="relative animate-fade-up"
-                  style={{ animationDelay: `${index * 0.15}s` }}
-                >
+                  style={{ animationDelay: `${index * 0.15}s` }}>
+
                   {/* Icon Circle */}
                   <div className="flex justify-center mb-6 -mt-20">
                     <div className="relative">
@@ -82,8 +82,8 @@ const SlabscanHowItWorks = () => {
                       {step.description}
                     </p>
                   </div>
-                </div>
-              );
+                </div>);
+
             })}
           </div>
         </div>
@@ -96,12 +96,12 @@ const SlabscanHowItWorks = () => {
               <div
                 key={index}
                 className="relative flex gap-6 animate-fade-up"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
+                style={{ animationDelay: `${index * 0.15}s` }}>
+
                 {/* Vertical Line */}
-                {index < steps.length - 1 && (
-                  <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-gradient-to-b from-brand-emerald to-brand-cyan opacity-30" />
-                )}
+                {index < steps.length - 1 &&
+                <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-gradient-to-b from-brand-emerald to-brand-cyan opacity-30" />
+                }
 
                 {/* Icon Circle */}
                 <div className="relative shrink-0">
@@ -121,13 +121,13 @@ const SlabscanHowItWorks = () => {
                     {step.description}
                   </p>
                 </div>
-              </div>
-            );
+              </div>);
+
           })}
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default SlabscanHowItWorks;

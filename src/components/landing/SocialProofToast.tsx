@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
 const notifications = [
-  { name: "Rina S.", action: "membuat campaign baru" },
-  { name: "Budi P.", action: "mendapatkan 50+ aplikasi kreator" },
-  { name: "Maya K.", action: "membuat campaign baru" },
-  { name: "Andi W.", action: "mendapatkan 30+ aplikasi kreator" },
-  { name: "Lisa T.", action: "membuat campaign baru" }
-];
+{ name: "Rina S.", action: "membuat campaign baru" },
+{ name: "Budi P.", action: "mendapatkan 50+ aplikasi kreator" },
+{ name: "Maya K.", action: "membuat campaign baru" },
+{ name: "Andi W.", action: "mendapatkan 30+ aplikasi kreator" },
+{ name: "Lisa T.", action: "membuat campaign baru" }];
+
 
 const SocialProofToast = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -43,13 +43,13 @@ const SocialProofToast = () => {
 
   return (
     <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ opacity: 0, x: -100, scale: 0.8 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          exit={{ opacity: 0, x: -100, scale: 0.8 }}
-          className="fixed bottom-8 left-8 z-40 hidden lg:block"
-        >
+      {isVisible &&
+      <motion.div
+        initial={{ opacity: 0, x: -100, scale: 0.8 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        exit={{ opacity: 0, x: -100, scale: 0.8 }}
+        className="fixed bottom-8 left-8 z-40 hidden lg:block">
+
           <div className="glass-morphism rounded-2xl p-4 border border-white/10 shadow-2xl max-w-sm">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-[#00D9FF]/20 rounded-full flex items-center justify-center flex-shrink-0">
@@ -66,9 +66,9 @@ const SocialProofToast = () => {
             </div>
           </div>
         </motion.div>
-      )}
-    </AnimatePresence>
-  );
+      }
+    </AnimatePresence>);
+
 };
 
 export default SocialProofToast;

@@ -4,37 +4,37 @@ import { Instagram, Youtube, Twitter, Mail } from "lucide-react";
 const SlabscanFooter = () => {
   const footerLinks = {
     Platform: [
-      { label: "Untuk Kreator", href: "/creators" },
-      { label: "Untuk Brand", href: "/brands" },
-      { label: "Browse Kampanye", href: "/campaigns" },
-      { label: "Cara Kerja", href: "/#cara-kerja" },
-    ],
+    { label: "Untuk Kreator", href: "/creators" },
+    { label: "Untuk Brand", href: "/brands" },
+    { label: "Browse Kampanye", href: "/campaigns" },
+    { label: "Cara Kerja", href: "/#cara-kerja" }],
+
     Resources: [
-      { label: "Blog", href: "#" },
-      { label: "Help Center", href: "#" },
-      { label: "API Documentation", href: "#" },
-      { label: "Status", href: "#" },
-    ],
+    { label: "Blog", href: "#" },
+    { label: "Help Center", href: "#" },
+    { label: "API Documentation", href: "#" },
+    { label: "Status", href: "#" }],
+
     Company: [
-      { label: "Tentang Kami", href: "#" },
-      { label: "Karir", href: "#" },
-      { label: "Press Kit", href: "#" },
-      { label: "Kontak", href: "#" },
-    ],
+    { label: "Tentang Kami", href: "#" },
+    { label: "Karir", href: "#" },
+    { label: "Press Kit", href: "#" },
+    { label: "Kontak", href: "#" }],
+
     Legal: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Cookie Policy", href: "#" },
-      { label: "DMCA", href: "#" },
-    ],
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Cookie Policy", href: "#" },
+    { label: "DMCA", href: "#" }]
+
   };
 
   const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Youtube, href: "#", label: "YouTube" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Mail, href: "mailto:hello@giggo.com", label: "Email" },
-  ];
+  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Youtube, href: "#", label: "YouTube" },
+  { icon: Twitter, href: "#", label: "Twitter" },
+  { icon: Mail, href: "mailto:hello@giggo.com", label: "Email" }];
+
 
   return (
     <footer className="bg-bg-primary border-t border-white/5">
@@ -61,16 +61,16 @@ const SlabscanFooter = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Platform</h3>
             <ul className="space-y-3">
-              {footerLinks.Platform.map((link, index) => (
-                <li key={index}>
+              {footerLinks.Platform.map((link, index) =>
+              <li key={index}>
                   <Link
-                    to={link.href}
-                    className="text-text-subtle hover:text-white text-sm transition-colors"
-                  >
+                  to={link.href}
+                  className="text-text-subtle hover:text-white text-sm transition-colors">
+
                     {link.label}
                   </Link>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
 
@@ -78,16 +78,16 @@ const SlabscanFooter = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Resources</h3>
             <ul className="space-y-3">
-              {footerLinks.Resources.map((link, index) => (
-                <li key={index}>
+              {footerLinks.Resources.map((link, index) =>
+              <li key={index}>
                   <a
-                    href={link.href}
-                    className="text-text-subtle hover:text-white text-sm transition-colors"
-                  >
+                  href={link.href}
+                  className="text-text-subtle hover:text-white text-sm transition-colors">
+
                     {link.label}
                   </a>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
 
@@ -95,16 +95,16 @@ const SlabscanFooter = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Company</h3>
             <ul className="space-y-3">
-              {footerLinks.Company.map((link, index) => (
-                <li key={index}>
+              {footerLinks.Company.map((link, index) =>
+              <li key={index}>
                   <a
-                    href={link.href}
-                    className="text-text-subtle hover:text-white text-sm transition-colors"
-                  >
+                  href={link.href}
+                  className="text-text-subtle hover:text-white text-sm transition-colors">
+
                     {link.label}
                   </a>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
 
@@ -112,16 +112,16 @@ const SlabscanFooter = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Legal</h3>
             <ul className="space-y-3">
-              {footerLinks.Legal.map((link, index) => (
-                <li key={index}>
+              {footerLinks.Legal.map((link, index) =>
+              <li key={index}>
                   <Link
-                    to={link.href}
-                    className="text-text-subtle hover:text-white text-sm transition-colors"
-                  >
+                  to={link.href}
+                  className="text-text-subtle hover:text-white text-sm transition-colors">
+
                     {link.label}
                   </Link>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
         </div>
@@ -142,17 +142,17 @@ const SlabscanFooter = () => {
                   key={index}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-text-subtle hover:text-brand-emerald transition-all"
-                >
+                  className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-text-subtle hover:text-brand-emerald transition-all">
+
                   <Icon className="w-5 h-5" />
-                </a>
-              );
+                </a>);
+
             })}
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
+
 };
 
 export default SlabscanFooter;

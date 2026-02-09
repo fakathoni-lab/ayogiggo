@@ -18,8 +18,8 @@ import {
   DollarSign,
   Zap,
   Clock,
-  CheckCircle,
-} from "lucide-react";
+  CheckCircle } from
+"lucide-react";
 
 // Animation variants
 const fadeUp = {
@@ -27,8 +27,8 @@ const fadeUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
-  },
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
+  }
 };
 
 const staggerContainer = {
@@ -37,9 +37,9 @@ const staggerContainer = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.1,
-    },
-  },
+      delayChildren: 0.1
+    }
+  }
 };
 
 const staggerItem = {
@@ -47,169 +47,169 @@ const staggerItem = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5 },
-  },
+    transition: { duration: 0.5 }
+  }
 };
 
 // Social proof ticker data
 const tickerItems = [
-  { icon: "🎉", text: "Nisa A. dapat Rp 2.500.000 dari Challenge Skincare" },
-  { icon: "💰", text: "Raka P. withdraw Rp 1.200.000 ke GoPay" },
-  { icon: "✨", text: "52 gig aktif minggu ini" },
-  { icon: "🔥", text: "Maya S. menang kontes Fashion OOTD" },
-  { icon: "💸", text: "Total Rp 150jt+ sudah dibayarkan" },
-];
+{ icon: "🎉", text: "Nisa A. dapat Rp 2.500.000 dari Challenge Skincare" },
+{ icon: "💰", text: "Raka P. withdraw Rp 1.200.000 ke GoPay" },
+{ icon: "✨", text: "52 gig aktif minggu ini" },
+{ icon: "🔥", text: "Maya S. menang kontes Fashion OOTD" },
+{ icon: "💸", text: "Total Rp 150jt+ sudah dibayarkan" }];
+
 
 // Stats data
 const stats = [
-  { value: "Rp 250jt+", label: "Total Dibayarkan" },
-  { value: "500+", label: "Kreator Aktif" },
-  { value: "50+", label: "Brand Partner" },
-  { value: "1200+", label: "Gig Selesai" },
-];
+{ value: "Rp 250jt+", label: "Total Dibayarkan" },
+{ value: "500+", label: "Kreator Aktif" },
+{ value: "50+", label: "Brand Partner" },
+{ value: "1200+", label: "Gig Selesai" }];
+
 
 // Pain points vs solution
 const painPoints = [
-  { before: "DM brand satu-satu", after: "Browse 50+ gig aktif" },
-  { before: "Nego rate yang melelahkan", after: "Harga sudah fixed & fair" },
-  { before: "Sering di-ghosting", after: "Escrow 100% aman" },
-  { before: "Payment nunggak berminggu", after: "Withdraw instan" },
-  { before: "Butuh 10K+ followers", after: "Mulai dari 1K followers" },
-];
+{ before: "DM brand satu-satu", after: "Browse 50+ gig aktif" },
+{ before: "Nego rate yang melelahkan", after: "Harga sudah fixed & fair" },
+{ before: "Sering di-ghosting", after: "Escrow 100% aman" },
+{ before: "Payment nunggak berminggu", after: "Withdraw instan" },
+{ before: "Butuh 10K+ followers", after: "Mulai dari 1K followers" }];
+
 
 // Features
 const features = [
-  {
-    eyebrow: "DISCOVER",
-    title: "Temukan Gig yang Cocok dengan Niche-mu",
-    description:
-      "Browse ratusan campaign dari brand ternama. Filter by kategori, platform, dan budget. Apply sekali klik.",
-    benefits: [
-      "Fashion & Beauty",
-      "Tech & Gaming",
-      "Food & Lifestyle",
-      "Dan banyak lagi",
-    ],
-  },
-  {
-    eyebrow: "PROTECTED",
-    title: "Pembayaran 100% Dijamin",
-    description:
-      "Dana brand sudah di-hold sebelum kamu mulai. Tidak ada ghosting. Tidak ada drama payment.",
-    benefits: [
-      "Brand deposit dulu",
-      "Kamu submit konten",
-      "Approved = uang masuk",
-    ],
-  },
-  {
-    eyebrow: "FREEDOM",
-    title: "Tarik Kapan Saja, Kemana Saja",
-    description:
-      "Saldo langsung masuk setelah approved. Withdraw ke 10+ bank dan e-wallet. Tanpa minimum, tanpa ribet.",
-    benefits: [
-      "Proses 1-3 hari kerja",
-      "E-wallet instan",
-      "Tanpa minimum withdraw",
-    ],
-  },
-];
+{
+  eyebrow: "DISCOVER",
+  title: "Temukan Gig yang Cocok dengan Niche-mu",
+  description:
+  "Browse ratusan campaign dari brand ternama. Filter by kategori, platform, dan budget. Apply sekali klik.",
+  benefits: [
+  "Fashion & Beauty",
+  "Tech & Gaming",
+  "Food & Lifestyle",
+  "Dan banyak lagi"]
+
+},
+{
+  eyebrow: "PROTECTED",
+  title: "Pembayaran 100% Dijamin",
+  description:
+  "Dana brand sudah di-hold sebelum kamu mulai. Tidak ada ghosting. Tidak ada drama payment.",
+  benefits: [
+  "Brand deposit dulu",
+  "Kamu submit konten",
+  "Approved = uang masuk"]
+
+},
+{
+  eyebrow: "FREEDOM",
+  title: "Tarik Kapan Saja, Kemana Saja",
+  description:
+  "Saldo langsung masuk setelah approved. Withdraw ke 10+ bank dan e-wallet. Tanpa minimum, tanpa ribet.",
+  benefits: [
+  "Proses 1-3 hari kerja",
+  "E-wallet instan",
+  "Tanpa minimum withdraw"]
+
+}];
+
 
 // How it works steps
 const workflowSteps = [
-  {
-    number: "1",
-    title: "DAFTAR",
-    description: "Buat akun gratis dalam 2 menit. Connect sosmed.",
-    time: "~2 menit",
-  },
-  {
-    number: "2",
-    title: "BROWSE",
-    description: "Temukan gig yang cocok dengan niche kontenmu.",
-    time: "Unlimited",
-  },
-  {
-    number: "3",
-    title: "SUBMIT",
-    description: "Upload konten ke platformmu, submit link ke GIGGO.",
-    time: "~5 menit",
-  },
-  {
-    number: "4",
-    title: "CUAN!",
-    description: "Approved = saldo masuk. Withdraw kapan saja!",
-    time: "Instan",
-  },
-];
+{
+  number: "1",
+  title: "DAFTAR",
+  description: "Buat akun gratis dalam 2 menit. Connect sosmed.",
+  time: "~2 menit"
+},
+{
+  number: "2",
+  title: "BROWSE",
+  description: "Temukan gig yang cocok dengan niche kontenmu.",
+  time: "Unlimited"
+},
+{
+  number: "3",
+  title: "SUBMIT",
+  description: "Upload konten ke platformmu, submit link ke GIGGO.",
+  time: "~5 menit"
+},
+{
+  number: "4",
+  title: "CUAN!",
+  description: "Approved = saldo masuk. Withdraw kapan saja!",
+  time: "Instan"
+}];
+
 
 // Testimonials
 const testimonials = [
-  {
-    quote:
-      "Dari cuma 3K followers, sekarang udah dapat 5 brand deal di GIGGO. Totalnya udah Rp 8 juta lebih!",
-    name: "Nisa Amelia",
-    handle: "@nisaamelia",
-    category: "Beauty",
-    followers: "12K",
-    earned: "Rp 8.500.000",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
-  },
-  {
-    quote:
-      "Yang bikin tenang itu escrow-nya. Gak perlu takut gak dibayar.",
-    name: "Raka Pratama",
-    handle: "@rakatech",
-    category: "Tech",
-    followers: "45K",
-    earned: "Rp 15.200.000",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
-  },
-  {
-    quote:
-      "Paling suka karena bisa withdraw ke GoPay langsung. Gak pake ribet.",
-    name: "Maya Sari",
-    handle: "@mayacooks",
-    category: "Food",
-    followers: "8K",
-    earned: "Rp 4.800.000",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop",
-  },
-];
+{
+  quote:
+  "Dari cuma 3K followers, sekarang udah dapat 5 brand deal di GIGGO. Totalnya udah Rp 8 juta lebih!",
+  name: "Nisa Amelia",
+  handle: "@nisaamelia",
+  category: "Beauty",
+  followers: "12K",
+  earned: "Rp 8.500.000",
+  avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop"
+},
+{
+  quote:
+  "Yang bikin tenang itu escrow-nya. Gak perlu takut gak dibayar.",
+  name: "Raka Pratama",
+  handle: "@rakatech",
+  category: "Tech",
+  followers: "45K",
+  earned: "Rp 15.200.000",
+  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+},
+{
+  quote:
+  "Paling suka karena bisa withdraw ke GoPay langsung. Gak pake ribet.",
+  name: "Maya Sari",
+  handle: "@mayacooks",
+  category: "Food",
+  followers: "8K",
+  earned: "Rp 4.800.000",
+  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop"
+}];
+
 
 // FAQ data
 const faqItems = [
-  {
-    question: "Apakah benar-benar gratis untuk kreator?",
-    answer:
-      "100% gratis, selamanya. Tidak ada biaya pendaftaran, biaya per submission, atau potongan dari penghasilan kamu. GIGGO menghasilkan dari fee yang dibayar brand, bukan dari kreator.",
-  },
-  {
-    question: "Minimum followers berapa untuk bisa ikut?",
-    answer:
-      "Tidak ada minimum followers! Kami percaya kreativitas lebih penting daripada jumlah followers. Bahkan kreator dengan 1.000 followers pun sudah bisa ikut dan mendapat brand deal di GIGGO.",
-  },
-  {
-    question: "Bagaimana sistem pembayarannya?",
-    answer:
-      "Escrow system. Brand deposit dana ke GIGGO sebelum gig dimulai. Setelah kontenmu di-approve, uang langsung masuk ke saldo GIGGO-mu. Tidak ada risiko ghosting atau payment nunggak.",
-  },
-  {
-    question: "Platform apa saja yang didukung?",
-    answer:
-      "TikTok, Instagram (Feed, Reels, Story), YouTube (Video & Shorts), dan Twitter/X. Platform lain akan segera ditambahkan.",
-  },
-  {
-    question: "Berapa lama proses withdraw?",
-    answer:
-      "1-3 hari kerja untuk transfer ke rekening bank. Untuk e-wallet (GoPay, OVO, DANA, ShopeePay), prosesnya instan atau maksimal 24 jam.",
-  },
-  {
-    question: "Apa yang terjadi jika konten saya ditolak?",
-    answer:
-      "Jika ditolak, kamu akan dapat feedback dari brand. Untuk beberapa gig, kamu bisa submit ulang dengan perbaikan. Dana tetap aman di escrow sampai ada keputusan final.",
-  },
-];
+{
+  question: "Apakah benar-benar gratis untuk kreator?",
+  answer:
+  "100% gratis, selamanya. Tidak ada biaya pendaftaran, biaya per submission, atau potongan dari penghasilan kamu. GIGGO menghasilkan dari fee yang dibayar brand, bukan dari kreator."
+},
+{
+  question: "Minimum followers berapa untuk bisa ikut?",
+  answer:
+  "Tidak ada minimum followers! Kami percaya kreativitas lebih penting daripada jumlah followers. Bahkan kreator dengan 1.000 followers pun sudah bisa ikut dan mendapat brand deal di GIGGO."
+},
+{
+  question: "Bagaimana sistem pembayarannya?",
+  answer:
+  "Escrow system. Brand deposit dana ke GIGGO sebelum gig dimulai. Setelah kontenmu di-approve, uang langsung masuk ke saldo GIGGO-mu. Tidak ada risiko ghosting atau payment nunggak."
+},
+{
+  question: "Platform apa saja yang didukung?",
+  answer:
+  "TikTok, Instagram (Feed, Reels, Story), YouTube (Video & Shorts), dan Twitter/X. Platform lain akan segera ditambahkan."
+},
+{
+  question: "Berapa lama proses withdraw?",
+  answer:
+  "1-3 hari kerja untuk transfer ke rekening bank. Untuk e-wallet (GoPay, OVO, DANA, ShopeePay), prosesnya instan atau maksimal 24 jam."
+},
+{
+  question: "Apa yang terjadi jika konten saya ditolak?",
+  answer:
+  "Jika ditolak, kamu akan dapat feedback dari brand. Untuk beberapa gig, kamu bisa submit ulang dengan perbaikan. Dana tetap aman di escrow sampai ada keputusan final."
+}];
+
 
 const CreatorsLandingPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -230,11 +230,11 @@ const CreatorsLandingPage = () => {
       {/* ==================== NAVBAR ==================== */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          navbarScrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-white/5"
-            : "bg-transparent"
-        }`}
-      >
+        navbarScrolled ?
+        "bg-background/80 backdrop-blur-xl border-b border-white/5" :
+        "bg-transparent"}`
+        }>
+
         <div className="container-custom">
           <div className="flex items-center justify-between h-18 py-4">
             {/* Logo */}
@@ -246,26 +246,26 @@ const CreatorsLandingPage = () => {
             <div className="hidden md:flex items-center gap-8">
               <a
                 href="#fitur"
-                className="text-sm text-muted hover:text-primary transition-colors"
-              >
+                className="text-sm text-muted hover:text-primary transition-colors">
+
                 Fitur
               </a>
               <a
                 href="#cara-kerja"
-                className="text-sm text-muted hover:text-primary transition-colors"
-              >
+                className="text-sm text-muted hover:text-primary transition-colors">
+
                 Cara Kerja
               </a>
               <a
                 href="#testimoni"
-                className="text-sm text-muted hover:text-primary transition-colors"
-              >
+                className="text-sm text-muted hover:text-primary transition-colors">
+
                 Testimoni
               </a>
               <a
                 href="#faq"
-                className="text-sm text-muted hover:text-primary transition-colors"
-              >
+                className="text-sm text-muted hover:text-primary transition-colors">
+
                 FAQ
               </a>
             </div>
@@ -288,47 +288,47 @@ const CreatorsLandingPage = () => {
             {/* Mobile Menu Button */}
             <button
               className="md:hidden text-white"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+
+              {mobileMenuOpen ?
+              <X className="w-6 h-6" /> :
+
+              <Menu className="w-6 h-6" />
+              }
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-surface-2 border-t border-white/5">
+        {mobileMenuOpen &&
+        <div className="md:hidden bg-surface-2 border-t border-white/5">
             <div className="container-custom py-6 space-y-4">
               <a
-                href="#fitur"
-                className="block text-muted hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
+              href="#fitur"
+              className="block text-muted hover:text-primary transition-colors"
+              onClick={() => setMobileMenuOpen(false)}>
+
                 Fitur
               </a>
               <a
-                href="#cara-kerja"
-                className="block text-muted hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
+              href="#cara-kerja"
+              className="block text-muted hover:text-primary transition-colors"
+              onClick={() => setMobileMenuOpen(false)}>
+
                 Cara Kerja
               </a>
               <a
-                href="#testimoni"
-                className="block text-muted hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
+              href="#testimoni"
+              className="block text-muted hover:text-primary transition-colors"
+              onClick={() => setMobileMenuOpen(false)}>
+
                 Testimoni
               </a>
               <a
-                href="#faq"
-                className="block text-muted hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
+              href="#faq"
+              className="block text-muted hover:text-primary transition-colors"
+              onClick={() => setMobileMenuOpen(false)}>
+
                 FAQ
               </a>
               <div className="pt-4 space-y-3">
@@ -346,7 +346,7 @@ const CreatorsLandingPage = () => {
               </div>
             </div>
           </div>
-        )}
+        }
       </nav>
 
       {/* ==================== SECTION 1: HERO ==================== */}
@@ -355,9 +355,9 @@ const CreatorsLandingPage = () => {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: `radial-gradient(ellipse 80% 50% at 50% 100%, rgba(16, 185, 129, 0.15) 0%, transparent 60%)`,
-          }}
-        />
+            background: `radial-gradient(ellipse 80% 50% at 50% 100%, rgba(16, 185, 129, 0.15) 0%, transparent 60%)`
+          }} />
+
 
         <div className="container-custom relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -366,8 +366,8 @@ const CreatorsLandingPage = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 glass-pill rounded-full text-sm text-brand-emerald mb-8"
-            >
+              className="inline-flex items-center gap-2 px-4 py-2 glass-pill rounded-full text-sm text-brand-emerald mb-8">
+
               <Sparkles className="w-4 h-4" />
               500+ Kreator Sudah Bergabung
             </motion.div>
@@ -377,8 +377,8 @@ const CreatorsLandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white mb-6"
-            >
+              className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white mb-6">
+
               GIGGO
             </motion.h1>
 
@@ -386,8 +386,8 @@ const CreatorsLandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6"
-            >
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+
               Dapat Bayaran dari
               <br />
               Konten yang <span className="text-gradient">Kamu Cintai</span>
@@ -398,8 +398,8 @@ const CreatorsLandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-lg md:text-xl text-muted max-w-2xl mx-auto mb-10"
-            >
+              className="text-lg md:text-xl text-muted max-w-2xl mx-auto mb-10">
+
               Platform gig berbayar untuk content creator Indonesia.
               <br />
               Temukan brand deal, submit konten, dapat cuan. Gratis selamanya.
@@ -410,8 +410,8 @@ const CreatorsLandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
-            >
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+
               <Link to="/auth?mode=register&role=creator">
                 <button className="btn-primary glow-emerald inline-flex items-center gap-2 px-8 py-4 text-lg">
                   Daftar Sekarang — Gratis
@@ -430,8 +430,8 @@ const CreatorsLandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted"
-            >
+              className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted">
+
               <span className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-brand-emerald" />
                 Tanpa minimum followers
@@ -451,8 +451,8 @@ const CreatorsLandingPage = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-16 relative"
-            >
+              className="mt-16 relative">
+
               <div className="glass-card rounded-3xl p-8 max-w-3xl mx-auto glow-emerald">
                 <div className="bg-surface-2 rounded-2xl h-96 flex items-center justify-center">
                   <p className="text-muted">Dashboard Mockup</p>
@@ -466,15 +466,15 @@ const CreatorsLandingPage = () => {
       {/* ==================== SECTION 2: SOCIAL PROOF TICKER ==================== */}
       <section className="relative overflow-hidden border-y border-white/5 bg-surface-1 py-4">
         <div className="flex animate-ticker">
-          {[...tickerItems, ...tickerItems].map((item, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 mx-4 px-4 py-2 glass-pill rounded-full text-sm text-secondary inline-flex items-center gap-2"
-            >
+          {[...tickerItems, ...tickerItems].map((item, index) =>
+          <div
+            key={index}
+            className="flex-shrink-0 mx-4 px-4 py-2 glass-pill rounded-full text-sm text-secondary inline-flex items-center gap-2">
+
               <span>{item.icon}</span>
               <span>{item.text}</span>
             </div>
-          ))}
+          )}
         </div>
       </section>
 
@@ -482,21 +482,21 @@ const CreatorsLandingPage = () => {
       <section className="py-16 bg-background">
         <div className="container-custom">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="text-center"
-              >
+            {stats.map((stat, index) =>
+            <motion.div
+              key={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="text-center">
+
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2">
                   {stat.value}
                 </div>
                 <div className="text-sm text-muted">{stat.label}</div>
               </motion.div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -509,8 +509,8 @@ const CreatorsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <p className="text-sm uppercase tracking-widest text-brand-emerald mb-4">
               KENAPA KREATOR PILIH GIGGO
             </p>
@@ -528,18 +528,18 @@ const CreatorsLandingPage = () => {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="glass-card rounded-2xl p-8 border-red-500/20"
-            >
+              className="glass-card rounded-2xl p-8 border-red-500/20">
+
               <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                 😫 TANPA GIGGO
               </h3>
               <div className="space-y-4">
-                {painPoints.map((point, index) => (
-                  <div key={index} className="flex items-start gap-3">
+                {painPoints.map((point, index) =>
+                <div key={index} className="flex items-start gap-3">
                     <X className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                     <span className="text-muted">{point.before}</span>
                   </div>
-                ))}
+                )}
               </div>
             </motion.div>
 
@@ -549,18 +549,18 @@ const CreatorsLandingPage = () => {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="glass-card rounded-2xl p-8 border-brand-emerald/30 glow-emerald"
-            >
+              className="glass-card rounded-2xl p-8 border-brand-emerald/30 glow-emerald">
+
               <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                 😊 DENGAN GIGGO
               </h3>
               <div className="space-y-4">
-                {painPoints.map((point, index) => (
-                  <div key={index} className="flex items-start gap-3">
+                {painPoints.map((point, index) =>
+                <div key={index} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" />
                     <span className="text-secondary">{point.after}</span>
                   </div>
-                ))}
+                )}
               </div>
             </motion.div>
           </div>
@@ -575,8 +575,8 @@ const CreatorsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <p className="text-sm uppercase tracking-widest text-brand-emerald mb-4">
               FITUR UTAMA
             </p>
@@ -588,23 +588,23 @@ const CreatorsLandingPage = () => {
           </motion.div>
 
           <div className="space-y-24">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className={`grid md:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? "md:flex-row-reverse" : ""
-                }`}
-              >
+            {features.map((feature, index) =>
+            <motion.div
+              key={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className={`grid md:grid-cols-2 gap-12 items-center ${
+              index % 2 === 1 ? "md:flex-row-reverse" : ""}`
+              }>
+
                 {/* Visual */}
                 <div
-                  className={`${
-                    index % 2 === 1 ? "md:order-2" : ""
-                  }`}
-                >
+                className={`${
+                index % 2 === 1 ? "md:order-2" : ""}`
+                }>
+
                   <div className="glass-card rounded-2xl p-8 glow-emerald">
                     <div className="bg-surface-2 rounded-xl h-80 flex items-center justify-center">
                       <p className="text-muted">Feature Visual</p>
@@ -622,16 +622,16 @@ const CreatorsLandingPage = () => {
                   </h3>
                   <p className="text-lg text-muted mb-6">{feature.description}</p>
                   <ul className="space-y-3">
-                    {feature.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-center gap-3">
+                    {feature.benefits.map((benefit, i) =>
+                  <li key={i} className="flex items-center gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-brand-emerald" />
                         <span className="text-secondary">{benefit}</span>
                       </li>
-                    ))}
+                  )}
                   </ul>
                 </div>
               </motion.div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -644,8 +644,8 @@ const CreatorsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <p className="text-sm uppercase tracking-widest text-brand-emerald mb-4">
               CARA KERJA
             </p>
@@ -655,24 +655,24 @@ const CreatorsLandingPage = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {workflowSteps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={staggerItem}
-                className="text-center"
-              >
+            {workflowSteps.map((step, index) =>
+            <motion.div
+              key={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerItem}
+              className="text-center">
+
                 <div className="relative mb-6">
                   <div className="w-20 h-20 rounded-2xl bg-brand-emerald/10 flex items-center justify-center mx-auto">
                     <span className="text-3xl font-bold text-gradient">
                       {step.number}
                     </span>
                   </div>
-                  {index < workflowSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-brand-emerald/50 to-transparent" />
-                  )}
+                  {index < workflowSteps.length - 1 &&
+                <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-brand-emerald/50 to-transparent" />
+                }
                 </div>
                 <h4 className="text-xl font-bold text-white mb-2">
                   {step.title}
@@ -682,7 +682,7 @@ const CreatorsLandingPage = () => {
                   {step.time}
                 </span>
               </motion.div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -695,8 +695,8 @@ const CreatorsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <p className="text-sm uppercase tracking-widest text-brand-emerald mb-4">
               KATA MEREKA
             </p>
@@ -706,21 +706,21 @@ const CreatorsLandingPage = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={staggerItem}
-                className="glass-card rounded-2xl p-6"
-              >
+            {testimonials.map((testimonial, index) =>
+            <motion.div
+              key={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerItem}
+              className="glass-card rounded-2xl p-6">
+
                 <div className="aspect-square rounded-xl mb-6 overflow-hidden">
                   <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover"
-                  />
+                  src={testimonial.avatar}
+                  alt={testimonial.name}
+                  className="w-full h-full object-cover" />
+
                 </div>
 
                 <p className="text-lg text-white italic mb-6">
@@ -730,10 +730,10 @@ const CreatorsLandingPage = () => {
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 rounded-full overflow-hidden">
                     <img
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                    />
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    className="w-full h-full object-cover" />
+
                   </div>
                   <div>
                     <div className="font-bold text-white">
@@ -758,7 +758,7 @@ const CreatorsLandingPage = () => {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -771,8 +771,8 @@ const CreatorsLandingPage = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-center mb-16"
-          >
+            className="text-center mb-16">
+
             <p className="text-sm uppercase tracking-widest text-brand-emerald mb-4">
               FAQ
             </p>
@@ -782,37 +782,37 @@ const CreatorsLandingPage = () => {
           </motion.div>
 
           <div className="max-w-3xl mx-auto space-y-4">
-            {faqItems.map((item, index) => (
-              <motion.div
-                key={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={staggerItem}
-                className="glass-card rounded-xl overflow-hidden"
-              >
+            {faqItems.map((item, index) =>
+            <motion.div
+              key={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerItem}
+              className="glass-card rounded-xl overflow-hidden">
+
                 <button
-                  onClick={() =>
-                    setOpenFaqIndex(openFaqIndex === index ? null : index)
-                  }
-                  className="w-full px-6 py-5 flex items-center justify-between text-left"
-                >
+                onClick={() =>
+                setOpenFaqIndex(openFaqIndex === index ? null : index)
+                }
+                className="w-full px-6 py-5 flex items-center justify-between text-left">
+
                   <span className="text-lg font-semibold text-white">
                     {item.question}
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 text-brand-emerald transition-transform ${
-                      openFaqIndex === index ? "rotate-180" : ""
-                    }`}
-                  />
+                  className={`w-5 h-5 text-brand-emerald transition-transform ${
+                  openFaqIndex === index ? "rotate-180" : ""}`
+                  } />
+
                 </button>
-                {openFaqIndex === index && (
-                  <div className="px-6 pb-5">
+                {openFaqIndex === index &&
+              <div className="px-6 pb-5">
                     <p className="text-muted leading-relaxed">{item.answer}</p>
                   </div>
-                )}
+              }
               </motion.div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -827,9 +827,9 @@ const CreatorsLandingPage = () => {
             variants={fadeUp}
             className="relative overflow-hidden rounded-3xl p-12 md:p-20 text-center"
             style={{
-              background: `radial-gradient(ellipse at center, rgba(16, 185, 129, 0.15) 0%, transparent 70%)`,
-            }}
-          >
+              background: `radial-gradient(ellipse at center, rgba(16, 185, 129, 0.15) 0%, transparent 70%)`
+            }}>
+
             <div className="glass-card rounded-3xl p-12 md:p-16 glow-emerald">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                 SIAP DAPAT GIG PERTAMAMU?
@@ -860,8 +860,8 @@ const CreatorsLandingPage = () => {
                 Sudah punya akun?{" "}
                 <Link
                   to="/auth?mode=login"
-                  className="text-brand-emerald hover:underline"
-                >
+                  className="text-brand-emerald hover:underline">
+
                   Masuk di sini
                 </Link>
               </p>
@@ -969,8 +969,8 @@ const CreatorsLandingPage = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>);
+
 };
 
 export default CreatorsLandingPage;
