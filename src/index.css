@@ -22,41 +22,41 @@
 
 @layer base {
   :root {
-    /* Background */
-    --background: 0 0% 0%;
-    --surface-1: 0 0% 4%;
-    --surface-2: 0 0% 7%;
-    --surface-3: 0 0% 9%;
+    /* Background - Slabscan Dark Premium */
+    --background: 222 52% 5%;      /* #0A0E1A */
+    --surface-1: 223 47% 8%;        /* #0D1221 */
+    --surface-2: 215 28% 12%;       /* #111827 */
+    --surface-3: 225 36% 16%;       /* #1A1F35 */
 
     /* Text */
     --foreground: 0 0% 100%;
-    --muted-foreground: 240 4% 46%;
+    --muted-foreground: 214 32% 64%;
 
     /* Cards/Popover */
-    --card: 0 0% 4%;
+    --card: 223 47% 8%;
     --card-foreground: 0 0% 100%;
-    --popover: 0 0% 7%;
+    --popover: 215 28% 12%;
     --popover-foreground: 0 0% 100%;
 
     /* Muted/Secondary */
-    --muted: 0 0% 7%;
-    --secondary: 0 0% 7%;
+    --muted: 215 28% 12%;
+    --secondary: 210 40% 93%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Accent */
-    --primary: 199 89% 60%;
-    --primary-foreground: 0 0% 0%;
-    --accent: 199 89% 60%;
-    --accent-foreground: 0 0% 0%;
+    /* Accent - Emerald */
+    --primary: 142 71% 45%;         /* #10B981 */
+    --primary-foreground: 0 0% 100%;
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
 
     /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     /* Border & Input */
-    --border: 0 0% 12%;
-    --input: 0 0% 12%;
-    --ring: 199 89% 60%;
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.08;
+    --ring: 142 71% 45%;
 
     /* Radius */
     --radius: 0.5rem;
@@ -79,9 +79,9 @@
   }
 
   body {
-    background-color: #000000;
+    background-color: #0A0E1A;
     color: #FFFFFF;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', 'DM Sans', system-ui, -apple-system, sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 
@@ -266,6 +266,104 @@
   .bg-surface-1 { background-color: #0B0B0B; }
   .bg-surface-2 { background-color: #111111; }
   .bg-surface-3 { background-color: #161616; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SLABSCAN CREATOR LANDING - EMERALD THEME
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Glass morphism card */
+@layer components {
+  .glass-card {
+    background: linear-gradient(
+      135deg,
+      rgba(17, 24, 39, 0.8) 0%,
+      rgba(10, 14, 26, 0.9) 100%
+    );
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-pill {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Glow effects */
+  .glow-emerald {
+    box-shadow: 0 0 60px rgba(16, 185, 129, 0.4);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 60px rgba(59, 130, 246, 0.4);
+  }
+
+  .glow-white {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, #10B981 0%, #22D3EE 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    color: #FFFFFF;
+    font-weight: 600;
+    border-radius: 9999px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+    transition: all 200ms ease-out;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    font-weight: 600;
+    border-radius: 9999px;
+    transition: all 200ms ease-out;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Container utility */
+  .container-custom {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-custom {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════

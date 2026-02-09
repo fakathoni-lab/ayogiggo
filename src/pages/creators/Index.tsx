@@ -1,460 +1,976 @@
-import { useTranslation } from "react-i18next";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
-  UserPlus,
-  Search,
-  Video,
+  Check,
+  Sparkles,
+  Shield,
   Wallet,
-  Play,
-  Star,
   TrendingUp,
+  ChevronDown,
+  Star,
+  Instagram,
+  Youtube,
+  Twitter,
+  X,
+  Menu,
   DollarSign,
   Zap,
-  Shield,
-  Clock } from
-"lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+  Clock,
+  CheckCircle,
+} from "lucide-react";
 
 // Animation variants
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
 };
 
 const staggerItem = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
 };
 
-// Sample success stories
-const successStories = [
-{
-  id: 1,
-  name: "Sarah Chen",
-  handle: "@sarahcreates",
-  avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
-  earned: "$12,500",
-  gigs: 24,
-  quote: "Giggo changed my life. I went from 0 brand deals to working with Nike and Adidas.",
-  niche: "Fashion"
-},
-{
-  id: 2,
-  name: "Marcus Johnson",
-  handle: "@marcusfitness",
-  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
-  earned: "$8,200",
-  gigs: 18,
-  quote: "The best platform for fitness creators. Weekly payouts and amazing brand opportunities.",
-  niche: "Fitness"
-},
-{
-  id: 3,
-  name: "Ayu Putri",
-  handle: "@ayubeauty",
-  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
-  earned: "$15,800",
-  gigs: 32,
-  quote: "I quit my job to do this full-time. Giggo makes it so easy to find paid gigs.",
-  niche: "Beauty"
-}];
+// Social proof ticker data
+const tickerItems = [
+  { icon: "🎉", text: "Nisa A. dapat Rp 2.500.000 dari Challenge Skincare" },
+  { icon: "💰", text: "Raka P. withdraw Rp 1.200.000 ke GoPay" },
+  { icon: "✨", text: "52 gig aktif minggu ini" },
+  { icon: "🔥", text: "Maya S. menang kontes Fashion OOTD" },
+  { icon: "💸", text: "Total Rp 150jt+ sudah dibayarkan" },
+];
 
+// Stats data
+const stats = [
+  { value: "Rp 250jt+", label: "Total Dibayarkan" },
+  { value: "500+", label: "Kreator Aktif" },
+  { value: "50+", label: "Brand Partner" },
+  { value: "1200+", label: "Gig Selesai" },
+];
 
-// Sample portfolio videos
-const portfolioVideos = [
-{ id: 1, thumbnail: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=533&fit=crop", creator: "Maya", views: "2.4M" },
-{ id: 2, thumbnail: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&h=533&fit=crop", creator: "Jake", views: "1.8M" },
-{ id: 3, thumbnail: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&h=533&fit=crop", creator: "Luna", views: "3.1M" },
-{ id: 4, thumbnail: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=533&fit=crop", creator: "Zara", views: "890K" },
-{ id: 5, thumbnail: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=533&fit=crop", creator: "Leo", views: "1.2M" },
-{ id: 6, thumbnail: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&h=533&fit=crop", creator: "Bella", views: "2.7M" },
-{ id: 7, thumbnail: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=300&h=533&fit=crop", creator: "Nina", views: "1.5M" },
-{ id: 8, thumbnail: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=300&h=533&fit=crop", creator: "Alex", views: "980K" }];
+// Pain points vs solution
+const painPoints = [
+  { before: "DM brand satu-satu", after: "Browse 50+ gig aktif" },
+  { before: "Nego rate yang melelahkan", after: "Harga sudah fixed & fair" },
+  { before: "Sering di-ghosting", after: "Escrow 100% aman" },
+  { before: "Payment nunggak berminggu", after: "Withdraw instan" },
+  { before: "Butuh 10K+ followers", after: "Mulai dari 1K followers" },
+];
 
+// Features
+const features = [
+  {
+    eyebrow: "DISCOVER",
+    title: "Temukan Gig yang Cocok dengan Niche-mu",
+    description:
+      "Browse ratusan campaign dari brand ternama. Filter by kategori, platform, dan budget. Apply sekali klik.",
+    benefits: [
+      "Fashion & Beauty",
+      "Tech & Gaming",
+      "Food & Lifestyle",
+      "Dan banyak lagi",
+    ],
+  },
+  {
+    eyebrow: "PROTECTED",
+    title: "Pembayaran 100% Dijamin",
+    description:
+      "Dana brand sudah di-hold sebelum kamu mulai. Tidak ada ghosting. Tidak ada drama payment.",
+    benefits: [
+      "Brand deposit dulu",
+      "Kamu submit konten",
+      "Approved = uang masuk",
+    ],
+  },
+  {
+    eyebrow: "FREEDOM",
+    title: "Tarik Kapan Saja, Kemana Saja",
+    description:
+      "Saldo langsung masuk setelah approved. Withdraw ke 10+ bank dan e-wallet. Tanpa minimum, tanpa ribet.",
+    benefits: [
+      "Proses 1-3 hari kerja",
+      "E-wallet instan",
+      "Tanpa minimum withdraw",
+    ],
+  },
+];
+
+// How it works steps
+const workflowSteps = [
+  {
+    number: "1",
+    title: "DAFTAR",
+    description: "Buat akun gratis dalam 2 menit. Connect sosmed.",
+    time: "~2 menit",
+  },
+  {
+    number: "2",
+    title: "BROWSE",
+    description: "Temukan gig yang cocok dengan niche kontenmu.",
+    time: "Unlimited",
+  },
+  {
+    number: "3",
+    title: "SUBMIT",
+    description: "Upload konten ke platformmu, submit link ke GIGGO.",
+    time: "~5 menit",
+  },
+  {
+    number: "4",
+    title: "CUAN!",
+    description: "Approved = saldo masuk. Withdraw kapan saja!",
+    time: "Instan",
+  },
+];
+
+// Testimonials
+const testimonials = [
+  {
+    quote:
+      "Dari cuma 3K followers, sekarang udah dapat 5 brand deal di GIGGO. Totalnya udah Rp 8 juta lebih!",
+    name: "Nisa Amelia",
+    handle: "@nisaamelia",
+    category: "Beauty",
+    followers: "12K",
+    earned: "Rp 8.500.000",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+  },
+  {
+    quote:
+      "Yang bikin tenang itu escrow-nya. Gak perlu takut gak dibayar.",
+    name: "Raka Pratama",
+    handle: "@rakatech",
+    category: "Tech",
+    followers: "45K",
+    earned: "Rp 15.200.000",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+  },
+  {
+    quote:
+      "Paling suka karena bisa withdraw ke GoPay langsung. Gak pake ribet.",
+    name: "Maya Sari",
+    handle: "@mayacooks",
+    category: "Food",
+    followers: "8K",
+    earned: "Rp 4.800.000",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop",
+  },
+];
+
+// FAQ data
+const faqItems = [
+  {
+    question: "Apakah benar-benar gratis untuk kreator?",
+    answer:
+      "100% gratis, selamanya. Tidak ada biaya pendaftaran, biaya per submission, atau potongan dari penghasilan kamu. GIGGO menghasilkan dari fee yang dibayar brand, bukan dari kreator.",
+  },
+  {
+    question: "Minimum followers berapa untuk bisa ikut?",
+    answer:
+      "Tidak ada minimum followers! Kami percaya kreativitas lebih penting daripada jumlah followers. Bahkan kreator dengan 1.000 followers pun sudah bisa ikut dan mendapat brand deal di GIGGO.",
+  },
+  {
+    question: "Bagaimana sistem pembayarannya?",
+    answer:
+      "Escrow system. Brand deposit dana ke GIGGO sebelum gig dimulai. Setelah kontenmu di-approve, uang langsung masuk ke saldo GIGGO-mu. Tidak ada risiko ghosting atau payment nunggak.",
+  },
+  {
+    question: "Platform apa saja yang didukung?",
+    answer:
+      "TikTok, Instagram (Feed, Reels, Story), YouTube (Video & Shorts), dan Twitter/X. Platform lain akan segera ditambahkan.",
+  },
+  {
+    question: "Berapa lama proses withdraw?",
+    answer:
+      "1-3 hari kerja untuk transfer ke rekening bank. Untuk e-wallet (GoPay, OVO, DANA, ShopeePay), prosesnya instan atau maksimal 24 jam.",
+  },
+  {
+    question: "Apa yang terjadi jika konten saya ditolak?",
+    answer:
+      "Jika ditolak, kamu akan dapat feedback dari brand. Untuk beberapa gig, kamu bisa submit ulang dengan perbaikan. Dana tetap aman di escrow sampai ada keputusan final.",
+  },
+];
 
 const CreatorsLandingPage = () => {
-  const { t } = useTranslation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [navbarScrolled, setNavbarScrolled] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(1);
+  const { scrollY } = useScroll();
 
-  const workflowSteps = [
-  { icon: UserPlus, titleKey: "creatorsPage.workflow.step1.title", descKey: "creatorsPage.workflow.step1.description" },
-  { icon: Search, titleKey: "creatorsPage.workflow.step2.title", descKey: "creatorsPage.workflow.step2.description" },
-  { icon: Video, titleKey: "creatorsPage.workflow.step3.title", descKey: "creatorsPage.workflow.step3.description" },
-  { icon: Wallet, titleKey: "creatorsPage.workflow.step4.title", descKey: "creatorsPage.workflow.step4.description" }];
-
-
-  const benefits = [
-  { icon: DollarSign, titleKey: "creatorsPage.benefits.earnings.title", descKey: "creatorsPage.benefits.earnings.description" },
-  { icon: Zap, titleKey: "creatorsPage.benefits.fast.title", descKey: "creatorsPage.benefits.fast.description" },
-  { icon: Shield, titleKey: "creatorsPage.benefits.secure.title", descKey: "creatorsPage.benefits.secure.description" },
-  { icon: Clock, titleKey: "creatorsPage.benefits.flexible.title", descKey: "creatorsPage.benefits.flexible.description" }];
-
+  useEffect(() => {
+    const handleScroll = () => {
+      setNavbarScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
+      {/* ==================== NAVBAR ==================== */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          navbarScrolled
+            ? "bg-background/80 backdrop-blur-xl border-b border-white/5"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="container-custom">
+          <div className="flex items-center justify-between h-18 py-4">
+            {/* Logo */}
+            <Link to="/" className="flex items-center">
+              <span className="text-2xl font-bold text-white">GIGGO</span>
+            </Link>
+
+            {/* Desktop Nav Links */}
+            <div className="hidden md:flex items-center gap-8">
+              <a
+                href="#fitur"
+                className="text-sm text-muted hover:text-primary transition-colors"
+              >
+                Fitur
+              </a>
+              <a
+                href="#cara-kerja"
+                className="text-sm text-muted hover:text-primary transition-colors"
+              >
+                Cara Kerja
+              </a>
+              <a
+                href="#testimoni"
+                className="text-sm text-muted hover:text-primary transition-colors"
+              >
+                Testimoni
+              </a>
+              <a
+                href="#faq"
+                className="text-sm text-muted hover:text-primary transition-colors"
+              >
+                FAQ
+              </a>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="hidden md:flex items-center gap-3">
+              <Link to="/auth?mode=login">
+                <button className="px-5 py-2.5 text-sm font-medium text-secondary hover:text-white transition-colors">
+                  Masuk
+                </button>
+              </Link>
+              <Link to="/auth?mode=register&role=creator">
+                <button className="btn-primary inline-flex items-center gap-2 px-6 py-2.5 text-sm">
+                  Daftar Gratis
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-white"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-surface-2 border-t border-white/5">
+            <div className="container-custom py-6 space-y-4">
+              <a
+                href="#fitur"
+                className="block text-muted hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Fitur
+              </a>
+              <a
+                href="#cara-kerja"
+                className="block text-muted hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Cara Kerja
+              </a>
+              <a
+                href="#testimoni"
+                className="block text-muted hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Testimoni
+              </a>
+              <a
+                href="#faq"
+                className="block text-muted hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                FAQ
+              </a>
+              <div className="pt-4 space-y-3">
+                <Link to="/auth?mode=login" className="block">
+                  <button className="w-full px-5 py-3 text-sm font-medium text-secondary border border-white/10 rounded-lg">
+                    Masuk
+                  </button>
+                </Link>
+                <Link to="/auth?mode=register&role=creator" className="block">
+                  <button className="btn-primary w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-sm">
+                    Daftar Gratis
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
+
       {/* ==================== SECTION 1: HERO ==================== */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-background pt-24 pb-16">
-        {/* Ambient Glow Orbs */}
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/30 rounded-full blur-[120px] animate-pulse-slow pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-accent/20 rounded-full blur-[120px] animate-pulse-slow pointer-events-none" style={{ animationDelay: '2s' }} />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Copy */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
+        {/* Background Glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `radial-gradient(ellipse 80% 50% at 50% 100%, rgba(16, 185, 129, 0.15) 0%, transparent 60%)`,
+          }}
+        />
+
+        <div className="container-custom relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Floating Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 glass-pill rounded-full text-sm text-brand-emerald mb-8"
+            >
+              <Sparkles className="w-4 h-4" />
+              500+ Kreator Sudah Bergabung
+            </motion.div>
+
+            {/* Main Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white mb-6"
+            >
+              GIGGO
+            </motion.h1>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6"
+            >
+              Dapat Bayaran dari
+              <br />
+              Konten yang <span className="text-gradient">Kamu Cintai</span>
+            </motion.h2>
+
+            {/* Subheadline */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-lg md:text-xl text-muted max-w-2xl mx-auto mb-10"
+            >
+              Platform gig berbayar untuk content creator Indonesia.
+              <br />
+              Temukan brand deal, submit konten, dapat cuan. Gratis selamanya.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
+            >
+              <Link to="/auth?mode=register&role=creator">
+                <button className="btn-primary glow-emerald inline-flex items-center gap-2 px-8 py-4 text-lg">
+                  Daftar Sekarang — Gratis
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </Link>
+              <a href="#cara-kerja">
+                <button className="btn-secondary inline-flex items-center gap-2 px-8 py-4 text-lg">
+                  Lihat Cara Kerja
+                </button>
+              </a>
+            </motion.div>
+
+            {/* Trust Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted"
+            >
+              <span className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-brand-emerald" />
+                Tanpa minimum followers
+              </span>
+              <span className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-brand-emerald" />
+                Pembayaran dijamin
+              </span>
+              <span className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-brand-emerald" />
+                Withdraw instan
+              </span>
+            </motion.div>
+
+            {/* Mockup Placeholder */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mt-16 relative"
+            >
+              <div className="glass-card rounded-3xl p-8 max-w-3xl mx-auto glow-emerald">
+                <div className="bg-surface-2 rounded-2xl h-96 flex items-center justify-center">
+                  <p className="text-muted">Dashboard Mockup</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== SECTION 2: SOCIAL PROOF TICKER ==================== */}
+      <section className="relative overflow-hidden border-y border-white/5 bg-surface-1 py-4">
+        <div className="flex animate-ticker">
+          {[...tickerItems, ...tickerItems].map((item, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 mx-4 px-4 py-2 glass-pill rounded-full text-sm text-secondary inline-flex items-center gap-2"
+            >
+              <span>{item.icon}</span>
+              <span>{item.text}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ==================== SECTION 3: STATS COUNTER ==================== */}
+      <section className="py-16 bg-background">
+        <div className="container-custom">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="text-center"
+              >
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-muted">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== SECTION 4: PAIN POINTS VS SOLUTION ==================== */}
+      <section className="py-24 bg-surface-1">
+        <div className="container-custom">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-center mb-16"
+          >
+            <p className="text-sm uppercase tracking-widest text-brand-emerald mb-4">
+              KENAPA KREATOR PILIH GIGGO
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+              Capek Hunting Brand Deal?
+              <br />
+              Kami Paham Rasanya.
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Before */}
             <motion.div
               initial="hidden"
-              animate="visible"
-              variants={fadeUp}>
-
-              <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm font-medium">
-                {t('creatorsPage.hero.badge')}
-              </Badge>
-              
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl mb-6 leading-[1.05]">
-                {t('creatorsPage.hero.title')}{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                  {t('creatorsPage.hero.titleHighlight')}
-                </span>
-              </h1>
-              
-              <p className="text-xl text-muted-foreground max-w-xl mb-8">
-                {t('creatorsPage.hero.subtitle')}
-              </p>
-
-              {/* Stats Row */}
-              <div className="flex flex-wrap gap-8 mb-10">
-                <div>
-                  <div className="text-3xl font-bold text-foreground">$2.5M+</div>
-                  <div className="text-sm text-muted-foreground">{t('creatorsPage.hero.stats.paidOut')}</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-foreground">12,500+</div>
-                  <div className="text-sm text-muted-foreground">{t('creatorsPage.hero.stats.creators')}</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-foreground">$850</div>
-                  <div className="text-sm text-muted-foreground">{t('creatorsPage.hero.stats.avgEarning')}</div>
-                </div>
-              </div>
-              
-              <div className="flex flex-wrap gap-4">
-                <Link to="/auth?mode=register&role=creator">
-                  <Button size="xl" variant="hero" className="h-14 px-8 text-lg">
-                    {t('creatorsPage.hero.cta')}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link to="/campaigns">
-                  <Button size="xl" variant="outline" className="h-14 px-8 text-lg">
-                    {t('creatorsPage.hero.ctaSecondary')}
-                  </Button>
-                </Link>
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="glass-card rounded-2xl p-8 border-red-500/20"
+            >
+              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                😫 TANPA GIGGO
+              </h3>
+              <div className="space-y-4">
+                {painPoints.map((point, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <X className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-muted">{point.before}</span>
+                  </div>
+                ))}
               </div>
             </motion.div>
 
-            {/* Right: Floating Earnings Card */}
+            {/* After */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="hidden lg:block">
-
-              <div className="relative">
-                {/* Main Card */}
-                <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-8 relative">
-                  <div className="text-sm text-muted-foreground mb-2">{t('creatorsPage.hero.earningsCard.title')}</div>
-                  <div className="text-5xl font-bold text-foreground mb-6">$4,250</div>
-                  
-                  {/* Mini Chart */}
-                  <div className="flex items-end gap-2 h-24 mb-6">
-                    {[40, 65, 45, 80, 60, 90, 75, 95, 85, 100, 90, 110].map((height, i) =>
-                    <div
-                      key={i}
-                      className="flex-1 bg-gradient-to-t from-primary/50 to-primary rounded-t-sm"
-                      style={{ height: `${height}%` }} />
-
-                    )}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="glass-card rounded-2xl p-8 border-brand-emerald/30 glow-emerald"
+            >
+              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                😊 DENGAN GIGGO
+              </h3>
+              <div className="space-y-4">
+                {painPoints.map((point, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" />
+                    <span className="text-secondary">{point.after}</span>
                   </div>
-                  
-                  <div className="flex items-center gap-2 text-green-500">
-                    <TrendingUp className="w-4 h-4" />
-                    <span className="text-sm font-medium">+32% {t('creatorsPage.hero.earningsCard.growth')}</span>
-                  </div>
-                </div>
-
-                {/* Floating Badge 1 */}
-                <div className="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-float">
-                  +$500 Today
-                </div>
-
-                {/* Floating Badge 2 */}
-                <div className="absolute -bottom-4 -left-4 bg-white/10 backdrop-blur-lg border border-white/20 px-4 py-3 rounded-2xl shadow-lg animate-float" style={{ animationDelay: '1s' }}>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                      <Star className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">{t('creatorsPage.hero.earningsCard.topCreator')}</div>
-                      <div className="text-sm font-bold">Sarah Chen</div>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ==================== SECTION 2: BENEFITS GRID ==================== */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
+      {/* ==================== SECTION 5: FEATURES ==================== */}
+      <section id="fitur" className="py-24 bg-background">
+        <div className="container-custom">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             variants={fadeUp}
-            className="text-center mb-16">
-
-            <h2 className="font-display text-4xl md:text-5xl mb-4">
-              {t('creatorsPage.benefits.title')}{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                {t('creatorsPage.benefits.titleHighlight')}
-              </span>
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              {t('creatorsPage.benefits.subtitle')}
+            className="text-center mb-16"
+          >
+            <p className="text-sm uppercase tracking-widest text-brand-emerald mb-4">
+              FITUR UTAMA
             </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              Semua yang Kamu Butuhkan
+              <br />
+              untuk Dapat Cuan dari Konten
+            </h2>
           </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            {benefits.map((benefit, index) =>
-            <motion.div
-              key={index}
-              variants={staggerItem}
-              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all text-center">
-
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto">
-                  <benefit.icon className="w-7 h-7 text-primary" />
+          <div className="space-y-24">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className={`grid md:grid-cols-2 gap-12 items-center ${
+                  index % 2 === 1 ? "md:flex-row-reverse" : ""
+                }`}
+              >
+                {/* Visual */}
+                <div
+                  className={`${
+                    index % 2 === 1 ? "md:order-2" : ""
+                  }`}
+                >
+                  <div className="glass-card rounded-2xl p-8 glow-emerald">
+                    <div className="bg-surface-2 rounded-xl h-80 flex items-center justify-center">
+                      <p className="text-muted">Feature Visual</p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2">{t(benefit.titleKey)}</h3>
-                <p className="text-sm text-muted-foreground">{t(benefit.descKey)}</p>
+
+                {/* Content */}
+                <div className={`${index % 2 === 1 ? "md:order-1" : ""}`}>
+                  <p className="text-xs uppercase tracking-widest text-brand-emerald mb-4">
+                    {feature.eyebrow}
+                  </p>
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    {feature.title}
+                  </h3>
+                  <p className="text-lg text-muted mb-6">{feature.description}</p>
+                  <ul className="space-y-3">
+                    {feature.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-brand-emerald" />
+                        <span className="text-secondary">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </motion.div>
-            )}
-          </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ==================== SECTION 3: SUCCESS STORIES ==================== */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+      {/* ==================== SECTION 6: HOW IT WORKS ==================== */}
+      <section id="cara-kerja" className="py-24 bg-surface-1">
+        <div className="container-custom">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             variants={fadeUp}
-            className="text-center mb-16">
-
-            <h2 className="font-display text-4xl md:text-5xl mb-4">
-              {t('creatorsPage.stories.title')}{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                {t('creatorsPage.stories.titleHighlight')}
-              </span>
+            className="text-center mb-16"
+          >
+            <p className="text-sm uppercase tracking-widest text-brand-emerald mb-4">
+              CARA KERJA
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              4 Langkah Menuju Cuan
             </h2>
-            <p className="text-muted-foreground text-lg">{t('creatorsPage.stories.subtitle')}</p>
           </motion.div>
 
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {workflowSteps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerItem}
+                className="text-center"
+              >
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 rounded-2xl bg-brand-emerald/10 flex items-center justify-center mx-auto">
+                    <span className="text-3xl font-bold text-gradient">
+                      {step.number}
+                    </span>
+                  </div>
+                  {index < workflowSteps.length - 1 && (
+                    <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-brand-emerald/50 to-transparent" />
+                  )}
+                </div>
+                <h4 className="text-xl font-bold text-white mb-2">
+                  {step.title}
+                </h4>
+                <p className="text-sm text-muted mb-3">{step.description}</p>
+                <span className="inline-block px-3 py-1 rounded-full bg-brand-emerald/10 text-xs text-brand-emerald">
+                  {step.time}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== SECTION 7: TESTIMONIALS ==================== */}
+      <section id="testimoni" className="py-24 bg-background">
+        <div className="container-custom">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-center mb-16"
+          >
+            <p className="text-sm uppercase tracking-widest text-brand-emerald mb-4">
+              KATA MEREKA
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              Kreator yang Sudah Buktiin
+            </h2>
+          </motion.div>
 
-            {successStories.map((story) =>
-            <motion.div
-              key={story.id}
-              variants={staggerItem}
-              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all">
-
-                <div className="flex items-center gap-4 mb-6">
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerItem}
+                className="glass-card rounded-2xl p-6"
+              >
+                <div className="aspect-square rounded-xl mb-6 overflow-hidden">
                   <img
-                  src={story.avatar}
-                  alt={story.name}
-                  className="w-14 h-14 rounded-full object-cover border-2 border-primary/30" />
-
-                  <div>
-                    <div className="font-bold text-foreground">{story.name}</div>
-                    <div className="text-sm text-muted-foreground">{story.handle}</div>
-                  </div>
-                  <Badge variant="secondary" className="ml-auto">{story.niche}</Badge>
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                
-                <p className="text-muted-foreground mb-6 italic">"{story.quote}"</p>
-                
-                <div className="flex items-center justify-between pt-4 border-t border-white/10">
+
+                <p className="text-lg text-white italic mb-6">
+                  "{testimonial.quote}"
+                </p>
+
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full overflow-hidden">
+                    <img
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div>
-                    <div className="text-2xl font-bold text-primary">{story.earned}</div>
-                    <div className="text-xs text-muted-foreground">{t('creatorsPage.stories.earned')}</div>
+                    <div className="font-bold text-white">
+                      {testimonial.name}
+                    </div>
+                    <div className="text-sm text-muted">
+                      {testimonial.handle}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                  <div>
+                    <div className="text-sm text-muted">
+                      {testimonial.category} • {testimonial.followers}
+                    </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-foreground">{story.gigs}</div>
-                    <div className="text-xs text-muted-foreground">{t('creatorsPage.stories.gigs')}</div>
+                    <div className="text-lg font-bold text-brand-emerald">
+                      {testimonial.earned}
+                    </div>
                   </div>
                 </div>
               </motion.div>
-            )}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ==================== SECTION 4: VIDEO PORTFOLIO MARQUEE ==================== */}
-      <section className="py-24 bg-muted/30 overflow-hidden">
-        <div className="container mx-auto px-4 mb-12 text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}>
-
-            <h2 className="font-display text-4xl md:text-5xl mb-4">
-              {t('creatorsPage.portfolio.title')}{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                {t('creatorsPage.portfolio.titleHighlight')}
-              </span>
-            </h2>
-            <p className="text-muted-foreground text-lg">{t('creatorsPage.portfolio.subtitle')}</p>
-          </motion.div>
-        </div>
-
-        {/* Marquee Container */}
-        <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-muted/80 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-muted/80 to-transparent z-10 pointer-events-none" />
-          
-          <div className="flex animate-scroll gap-6">
-            {[...portfolioVideos, ...portfolioVideos].map((video, i) =>
-            <div
-              key={i}
-              className="flex-shrink-0 w-[180px] md:w-[200px] aspect-[9/16] rounded-2xl overflow-hidden bg-muted relative group cursor-pointer">
-
-                <img
-                src={video.thumbnail}
-                alt={video.creator}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                      <Play className="w-5 h-5 text-white fill-white" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-white text-sm font-medium">{video.creator}</div>
-                      <div className="text-white/70 text-xs">{video.views} views</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ==================== SECTION 5: HOW TO GET STARTED ==================== */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+      {/* ==================== SECTION 8: FAQ ==================== */}
+      <section id="faq" className="py-24 bg-surface-1">
+        <div className="container-custom">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             variants={fadeUp}
-            className="text-center mb-16">
-
-            <h2 className="font-display text-4xl md:text-5xl mb-4">
-              {t('creatorsPage.workflow.title')}{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                {t('creatorsPage.workflow.titleHighlight')}
-              </span>
+            className="text-center mb-16"
+          >
+            <p className="text-sm uppercase tracking-widest text-brand-emerald mb-4">
+              FAQ
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              Pertanyaan yang Sering Muncul
             </h2>
           </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto">
-
-            {workflowSteps.map((step, index) =>
-            <motion.div key={index} variants={staggerItem} className="flex items-center">
-                <div className="text-center">
-                  <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto relative">
-                    <step.icon className="w-10 h-10 text-primary" />
-                    <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center">
-                      {index + 1}
-                    </div>
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faqItems.map((item, index) => (
+              <motion.div
+                key={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerItem}
+                className="glass-card rounded-xl overflow-hidden"
+              >
+                <button
+                  onClick={() =>
+                    setOpenFaqIndex(openFaqIndex === index ? null : index)
+                  }
+                  className="w-full px-6 py-5 flex items-center justify-between text-left"
+                >
+                  <span className="text-lg font-semibold text-white">
+                    {item.question}
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-brand-emerald transition-transform ${
+                      openFaqIndex === index ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {openFaqIndex === index && (
+                  <div className="px-6 pb-5">
+                    <p className="text-muted leading-relaxed">{item.answer}</p>
                   </div>
-                  <h4 className="font-bold text-lg mb-1">{t(step.titleKey)}</h4>
-                  <p className="text-sm text-muted-foreground max-w-[150px]">{t(step.descKey)}</p>
-                </div>
-                
-                {index < workflowSteps.length - 1 &&
-              <div className="hidden md:block w-16 h-0.5 bg-border mx-4 flex-shrink-0" />
-              }
+                )}
               </motion.div>
-            )}
-          </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ==================== SECTION 6: FINAL CTA ==================== */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
+      {/* ==================== SECTION 9: FINAL CTA ==================== */}
+      <section className="py-24 bg-background">
+        <div className="container-custom">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}>
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="relative overflow-hidden rounded-3xl p-12 md:p-20 text-center"
+            style={{
+              background: `radial-gradient(ellipse at center, rgba(16, 185, 129, 0.15) 0%, transparent 70%)`,
+            }}
+          >
+            <div className="glass-card rounded-3xl p-12 md:p-16 glow-emerald">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                SIAP DAPAT GIG PERTAMAMU?
+              </h2>
+              <p className="text-lg md:text-xl text-secondary mb-10 max-w-2xl mx-auto">
+                Join 500+ kreator yang sudah
+                <br />
+                menghasilkan di GIGGO
+              </p>
 
-            <div className="gradient-primary rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
-              
-              <div className="relative z-10">
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-6">
-                  {t('creatorsPage.cta.title')}
-                </h2>
-                <p className="text-white/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-                  {t('creatorsPage.cta.subtitle')}
-                </p>
-                <Link to="/auth?mode=register&role=creator">
-                  <Button size="xl" className="bg-white text-primary hover:bg-white/90 rounded-full h-14 px-10 text-lg font-bold bg-black text-white">
-                    {t('creatorsPage.cta.button')}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
+              <Link to="/auth?mode=register&role=creator">
+                <button className="btn-primary glow-emerald inline-flex items-center gap-2 px-10 py-4 text-lg mb-8">
+                  Daftar Sekarang — Gratis
+                </button>
+              </Link>
+
+              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted mb-6">
+                <span className="flex items-center gap-2">
+                  🔒 Data Aman
+                </span>
+                <span className="flex items-center gap-2">
+                  💰 Escrow Protected
+                </span>
+                <span className="flex items-center gap-2">⭐ 4.9 Rating</span>
               </div>
+
+              <p className="text-muted">
+                Sudah punya akun?{" "}
+                <Link
+                  to="/auth?mode=login"
+                  className="text-brand-emerald hover:underline"
+                >
+                  Masuk di sini
+                </Link>
+              </p>
             </div>
           </motion.div>
         </div>
       </section>
-    </div>);
 
+      {/* ==================== FOOTER ==================== */}
+      <footer className="bg-surface-2 border-t border-white/5 py-12">
+        <div className="container-custom">
+          <div className="grid md:grid-cols-5 gap-8 mb-12">
+            {/* Brand */}
+            <div className="md:col-span-2">
+              <h3 className="text-2xl font-bold text-white mb-3">GIGGO</h3>
+              <p className="text-muted text-sm max-w-xs">
+                Platform gig untuk
+                <br />
+                kreator Indonesia
+              </p>
+              <div className="flex items-center gap-4 mt-6">
+                <a href="#" className="text-muted hover:text-brand-emerald transition-colors">
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a href="#" className="text-muted hover:text-brand-emerald transition-colors">
+                  <Youtube className="w-5 h-5" />
+                </a>
+                <a href="#" className="text-muted hover:text-brand-emerald transition-colors">
+                  <Twitter className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Links */}
+            <div>
+              <h4 className="text-xs uppercase tracking-wide text-white font-semibold mb-4">
+                Platform
+              </h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link to="/campaigns" className="text-muted hover:text-white transition-colors">
+                    Cari Gig
+                  </Link>
+                </li>
+                <li>
+                  <a href="#cara-kerja" className="text-muted hover:text-white transition-colors">
+                    Cara Kerja
+                  </a>
+                </li>
+                <li>
+                  <a href="#faq" className="text-muted hover:text-white transition-colors">
+                    FAQ
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-xs uppercase tracking-wide text-white font-semibold mb-4">
+                Company
+              </h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link to="/brands" className="text-muted hover:text-white transition-colors">
+                    Untuk Brand
+                  </Link>
+                </li>
+                <li>
+                  <a href="#" className="text-muted hover:text-white transition-colors">
+                    Tentang
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-muted hover:text-white transition-colors">
+                    Kontak
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-xs uppercase tracking-wide text-white font-semibold mb-4">
+                Legal
+              </h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link to="/terms" className="text-muted hover:text-white transition-colors">
+                    Syarat & Ketentuan
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/privacy" className="text-muted hover:text-white transition-colors">
+                    Kebijakan Privasi
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-muted">
+              © 2025 GIGGO. All rights reserved.
+            </p>
+            <p className="text-sm text-muted">Jakarta, Indonesia 🇮🇩</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
 };
 
 export default CreatorsLandingPage;

@@ -23,40 +23,49 @@ const config: Config = {
 
       colors: {
         /* ═══════════════════════════════════════════════════════
-           GIGGO SEMANTIC COLOR TOKENS
-           Dark SaaS / Hyper-Utilitarian
+           GIGGO SLABSCAN EMERALD THEME
+           Dark Premium / Creator-Focused
            ═══════════════════════════════════════════════════════ */
 
         /* ─────────────────────────────────────────────────────
            BACKGROUND (Surface Hierarchy)
            ───────────────────────────────────────────────────── */
-        background: "#000000",
-        "surface-1": "#0B0B0B",
-        "surface-2": "#111111",
-        "surface-3": "#161616",
+        background: "#0A0E1A",
+        "surface-1": "#0D1221",
+        "surface-2": "#111827",
+        "surface-3": "#1A1F35",
 
         /* ─────────────────────────────────────────────────────
            TEXT HIERARCHY (No opacity allowed)
            ───────────────────────────────────────────────────── */
         "primary": "#FFFFFF",
-        "secondary": "#A1A1AA",
-        "muted": "#71717A",
-        "disabled": "#52525B",
+        "secondary": "#E2E8F0",
+        "muted": "#94A3B8",
+        "disabled": "#64748B",
 
         /* ─────────────────────────────────────────────────────
            BORDER & DIVIDER
            ───────────────────────────────────────────────────── */
-        "default": "#1F1F1F",
-        "subtle": "#27272A",
-        "active": "#3F3F46",
+        "default": "rgba(255, 255, 255, 0.08)",
+        "subtle": "rgba(255, 255, 255, 0.05)",
+        "active": "rgba(255, 255, 255, 0.15)",
 
         /* ─────────────────────────────────────────────────────
-           ACCENT (Electric Cyan)
+           BRAND COLORS (Emerald Primary)
+           ───────────────────────────────────────────────────── */
+        brand: {
+          emerald: "#10B981",
+          blue: "#3B82F6",
+          cyan: "#22D3EE",
+        },
+
+        /* ─────────────────────────────────────────────────────
+           ACCENT (Electric Cyan → Emerald)
            ───────────────────────────────────────────────────── */
         accent: {
-          primary: "#38BDF8",
-          hover: "#7DD3FC",
-          active: "#0284C7"
+          primary: "#10B981",
+          hover: "#059669",
+          active: "#047857"
         },
 
         /* ─────────────────────────────────────────────────────
@@ -70,10 +79,10 @@ const config: Config = {
            STATUS COLORS (System Use Only)
            ───────────────────────────────────────────────────── */
         status: {
-          success: "#22C55E",
+          success: "#10B981",
           error: "#EF4444",
           warning: "#F59E0B",
-          info: "#38BDF8"
+          info: "#3B82F6"
         },
 
         /* ─────────────────────────────────────────────────────
@@ -81,24 +90,24 @@ const config: Config = {
            ───────────────────────────────────────────────────── */
         foreground: "#FFFFFF",
         card: {
-          DEFAULT: "#0B0B0B",
+          DEFAULT: "#0D1221",
           foreground: "#FFFFFF"
         },
         popover: {
-          DEFAULT: "#111111",
+          DEFAULT: "#111827",
           foreground: "#FFFFFF"
         },
-        "muted-foreground": "#71717A",
-        "secondary-foreground": "#A1A1AA",
-        "primary-foreground": "#000000",
-        "accent-foreground": "#000000",
+        "muted-foreground": "#94A3B8",
+        "secondary-foreground": "#E2E8F0",
+        "primary-foreground": "#FFFFFF",
+        "accent-foreground": "#FFFFFF",
         destructive: {
           DEFAULT: "#EF4444",
           foreground: "#FFFFFF"
         },
-        border: "#1F1F1F",
-        input: "#1F1F1F",
-        ring: "#38BDF8"
+        border: "rgba(255, 255, 255, 0.08)",
+        input: "rgba(255, 255, 255, 0.08)",
+        ring: "#10B981"
       },
 
       /* ─────────────────────────────────────────────────────
@@ -143,11 +152,31 @@ const config: Config = {
         "fade-in": {
           "0%": { opacity: "0", transform: "translateY(4px)" },
           "100%": { opacity: "1", transform: "translateY(0)" }
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" }
+        },
+        "glow-pulse": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.6" }
+        },
+        "ticker": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" }
+        },
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" }
         }
       },
 
       animation: {
-        "fade-in": "fade-in 200ms ease-out"
+        "fade-in": "fade-in 200ms ease-out",
+        "float": "float 6s ease-in-out infinite",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "ticker": "ticker 30s linear infinite",
+        "fade-up": "fade-up 0.6s ease-out forwards"
       }
     }
   },
