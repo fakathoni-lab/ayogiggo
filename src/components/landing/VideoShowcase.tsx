@@ -24,14 +24,14 @@ const VideoShowcase = () => {
 
 
   const videos = [
-  { id: 1, creator: "Sarah M.", handle: "@sarahcreates", category: "fashion", views: "2.3M", thumbnail: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=500&fit=crop" },
-  { id: 2, creator: "Jake L.", handle: "@jakefitness", category: "fitness", views: "1.8M", thumbnail: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=500&fit=crop" },
-  { id: 3, creator: "Emma K.", handle: "@emmastyle", category: "beauty", views: "3.1M", thumbnail: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=300&h=500&fit=crop" },
-  { id: 4, creator: "Mike T.", handle: "@miketech", category: "tech", views: "890K", thumbnail: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=300&h=500&fit=crop" },
-  { id: 5, creator: "Lisa R.", handle: "@lisaeats", category: "food", views: "1.2M", thumbnail: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&h=500&fit=crop" },
-  { id: 6, creator: "Tom W.", handle: "@tomtravels", category: "lifestyle", views: "2.7M", thumbnail: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=300&h=500&fit=crop" },
-  { id: 7, creator: "Nina P.", handle: "@ninalife", category: "lifestyle", views: "1.5M", thumbnail: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&h=500&fit=crop" },
-  { id: 8, creator: "Alex C.", handle: "@alexfashion", category: "fashion", views: "980K", thumbnail: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=300&h=500&fit=crop" }];
+  { id: 1, creator: "Sarah M.", handle: "@sarahcreates", category: "fashion", views: "2.3M", thumbnail: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=1000&fit=crop&q=90" },
+  { id: 2, creator: "Jake L.", handle: "@jakefitness", category: "fitness", views: "1.8M", thumbnail: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=1000&fit=crop&q=90" },
+  { id: 3, creator: "Emma K.", handle: "@emmastyle", category: "beauty", views: "3.1M", thumbnail: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&h=1000&fit=crop&q=90" },
+  { id: 4, creator: "Mike T.", handle: "@miketech", category: "tech", views: "890K", thumbnail: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=600&h=1000&fit=crop&q=90" },
+  { id: 5, creator: "Lisa R.", handle: "@lisaeats", category: "food", views: "1.2M", thumbnail: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=1000&fit=crop&q=90" },
+  { id: 6, creator: "Tom W.", handle: "@tomtravels", category: "lifestyle", views: "2.7M", thumbnail: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=1000&fit=crop&q=90" },
+  { id: 7, creator: "Nina P.", handle: "@ninalife", category: "lifestyle", views: "1.5M", thumbnail: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=600&h=1000&fit=crop&q=90" },
+  { id: 8, creator: "Alex C.", handle: "@alexfashion", category: "fashion", views: "980K", thumbnail: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&h=1000&fit=crop&q=90" }];
 
 
   const filteredVideos = activeCategory === "all" ?
@@ -90,6 +90,7 @@ const VideoShowcase = () => {
                   src={video.thumbnail}
                   alt={`${video.creator}'s video`}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
 
                   

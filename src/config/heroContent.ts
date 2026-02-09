@@ -98,7 +98,7 @@ export const heroContentConfig: HeroContentConfig = {
 export const heroVideoCards = {
   fashion: {
     videoSrc: "https://cdn.coverr.co/videos/coverr-fashion-photoshoot-model-5348/1080p.mp4",
-    poster: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80",
+    poster: "https://images.unsplash.com/photo-1638741631188-a42a58d5499c?w=1200&q=90&fit=crop",
     title: "Zara Summer Campaign",
     price: "$1,200",
     type: "Video Reel",
@@ -106,6 +106,7 @@ export const heroVideoCards = {
   },
   fitness: {
     videoSrc: "https://cdn.coverr.co/videos/coverr-man-doing-crossfit-exercises-5120/1080p.mp4",
+    poster: "https://images.unsplash.com/photo-1764664281863-f736f2d942bd?w=1200&q=90&fit=crop",
     title: "Gymshark Challenge",
     price: "$850"
   }
