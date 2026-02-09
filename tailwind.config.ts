@@ -200,7 +200,8 @@ const config: Config = {
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
         "ticker": "ticker 30s linear infinite",
         "fade-up": "fade-up 0.6s ease-out forwards",
-        "count-up": "fade-in 0.4s ease-out"
+        "count-up": "fade-in 0.4s ease-out",
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite"
       },
 
       /* ─────────────────────────────────────────────────────
