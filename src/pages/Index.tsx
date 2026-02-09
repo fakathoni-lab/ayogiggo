@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
-  Zap, Hourglass, Folder, Box, Scale, Check,
+  Zap, Hourglass, Files, HelpCircle, Scale, Check,
   ChevronRight, Search, CheckCircle, ArrowRight,
-  Facebook, Twitter, Instagram, Youtube, TrendingUp } from
-"lucide-react";
+  Facebook, Twitter, Instagram, Youtube, TrendingUp,
+  Users, BarChart3, Bell, Settings, Home, Layers
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ExitIntentModal from "@/components/landing/ExitIntentModal";
 import SocialProofToast from "@/components/landing/SocialProofToast";
@@ -128,6 +129,11 @@ const Index = () => {
           <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#0EA5E9]/20 rounded-full blur-[100px] animate-rotate-gradient" style={{ animationDelay: "10s" }} />
         </div>
 
+        {/* Decorative Orbs - Large Glowing Spheres */}
+        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl -z-10 animate-pulse" style={{ animationDuration: '4s' }} />
+        <div className="absolute top-40 right-20 w-72 h-72 bg-cyan-500/15 rounded-full blur-3xl -z-10 animate-pulse" style={{ animationDuration: '6s' }} />
+        <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-indigo-600/15 rounded-full blur-3xl -z-10 animate-pulse" style={{ animationDuration: '5s' }} />
+
         <div className="relative max-w-[1440px] mx-auto w-full">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
@@ -144,7 +150,16 @@ const Index = () => {
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.2]">
                 Ubah Ratusan<br />
                 Pelanggan Menjadi<br />
-                <span className="animate-gradient-text">Marketing Force Anda.</span>
+                <span
+                  className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 animate-gradient-text"
+                  style={{
+                    backgroundSize: '200% auto',
+                    textShadow: '0 0 40px rgba(0, 217, 255, 0.5)',
+                    filter: 'drop-shadow(0 0 20px rgba(0, 217, 255, 0.3))'
+                  }}
+                >
+                  Marketing Force Anda.
+                </span>
               </h1>
 
               {/* Subtitle */}
@@ -173,72 +188,146 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Right - Dashboard Mockup */}
-            <div className="relative animate-float" style={{ perspective: "1000px" }}>
-              {/* Glow Effect Behind Dashboard */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#00D9FF]/30 to-[#0EA5E9]/30 rounded-3xl blur-3xl glow-cyan" />
+            {/* Right - Premium CSS-Drawn Dashboard Mockup */}
+            <div className="relative animate-float" style={{ perspective: "1200px" }}>
+              {/* Multiple Orb Glow Effects */}
+              <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl -z-10 animate-pulse" />
+              <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-cyan-500/15 rounded-full blur-3xl -z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00D9FF]/30 to-[#0EA5E9]/30 rounded-3xl blur-3xl" />
 
-              {/* Dashboard Card */}
-              <div className="bg-no-repeat bg-center bg-cover bg-[url(https://cdn.ezsite.ai/AutoDev/91934/477be035-0191-4f4d-adea-7487a914d30e.webp)] relative glass-morphism rounded-3xl p-8 shadow-2xl border-2 border-white/10 hover:border-[#00D9FF]/30 transition-all duration-500" style={{ transform: "rotateY(-5deg) rotateX(5deg)" }}>
-                <div className="aspect-video bg-gradient-to-br from-[#1A2332] to-[#0F1621] rounded-2xl overflow-hidden shadow-inner relative">
-                  {/* High-Quality Dashboard Mockup */}
-                  <div className="absolute inset-0 p-6 flex flex-col">
-                    {/* Dashboard Header with metrics */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="space-y-1">
-                        <div className="text-xs text-[#94A3B8] uppercase tracking-wider font-semibold">Campaign Performance</div>
-                        <div className="text-xl font-bold text-white">Active Creators</div>
-                      </div>
-                      <div className="flex items-center space-x-2 bg-[#00D9FF]/10 backdrop-blur-sm px-4 py-2 rounded-full border border-[#00D9FF]/30">
-                        <div className="w-2 h-2 bg-[#00D9FF] rounded-full animate-pulse"></div>
-                        <span className="text-xs text-[#00D9FF] font-semibold">LIVE</span>
-                      </div>
+              {/* Main Dashboard Container with 3D Transform */}
+              <div
+                className="relative rounded-xl border border-white/10 bg-slate-900/80 backdrop-blur-md shadow-2xl shadow-cyan-500/20 overflow-hidden"
+                style={{ transform: "rotateY(-8deg) rotateX(8deg)" }}
+              >
+                {/* Dashboard Layout */}
+                <div className="flex h-[400px] lg:h-[450px]">
+
+                  {/* Sidebar Kiri */}
+                  <div className="w-[60px] lg:w-[70px] bg-slate-900/90 border-r border-white/10 flex flex-col items-center py-4 space-y-4">
+                    {/* Logo */}
+                    <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center mb-4 shadow-lg shadow-cyan-500/30">
+                      <Zap className="w-5 h-5 text-white" />
                     </div>
 
-                    {/* Chart Area with Realistic Graph */}
-                    <div className="flex-1 relative mb-6">
-                      <div className="absolute inset-0 flex items-end justify-between px-2 pb-2">
-                        {[65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88, 68].map((height, i) =>
-                        <div key={i} className="flex-1 mx-0.5 flex flex-col justify-end">
-                            <div
-                            className="w-full bg-gradient-to-t from-[#00D9FF] to-[#0EA5E9] rounded-t-sm opacity-80 hover:opacity-100 transition-all cursor-pointer hover:scale-105"
-                            style={{
-                              height: `${height}%`,
-                              boxShadow: '0 -2px 10px rgba(0, 217, 255, 0.3)',
-                              animation: `slide-up 0.6s ease-out ${i * 0.05}s both`
-                            }} />
-
-                          </div>
-                        )}
-                      </div>
-                      {/* Grid lines */}
-                      <div className="absolute inset-0 flex flex-col justify-between opacity-10">
-                        {[...Array(4)].map((_, i) =>
-                        <div key={i} className="w-full h-px bg-white" />
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Stats Grid */}
-                    <div className="grid grid-cols-3 gap-3">
-                      {[
-                      { label: "Total Reach", value: "2.4M", trend: "+12%" },
-                      { label: "Engagement", value: "8.2%", trend: "+3.1%" },
-                      { label: "Conversions", value: "1,247", trend: "+25%" }].
-                      map((stat, i) =>
+                    {/* Menu Icons */}
+                    {[
+                      { icon: Home, active: true },
+                      { icon: Users, active: false },
+                      { icon: BarChart3, active: false },
+                      { icon: Layers, active: false },
+                      { icon: Settings, active: false }
+                    ].map((item, i) => (
                       <div
                         key={i}
-                        className="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-[#00D9FF]/20 hover:border-[#00D9FF]/40 transition-all">
-                          <div className="text-[10px] text-[#94A3B8] uppercase tracking-wider mb-1">{stat.label}</div>
-                          <div className="flex items-end justify-between">
-                            <div className="text-lg font-bold text-white">{stat.value}</div>
-                            <div className="text-xs text-[#10B981] font-semibold">{stat.trend}</div>
+                        className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all cursor-pointer ${
+                          item.active
+                            ? 'bg-cyan-500/20 text-cyan-400 shadow-lg shadow-cyan-500/20'
+                            : 'text-slate-500 hover:text-white hover:bg-white/5'
+                        }`}
+                      >
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Main Content Area */}
+                  <div className="flex-1 flex flex-col">
+
+                    {/* Header Atas */}
+                    <div className="h-14 border-b border-white/10 flex items-center justify-between px-4 lg:px-6 bg-slate-900/50">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-white font-semibold text-sm lg:text-base">Campaign Dashboard</span>
+                        <div className="flex items-center space-x-2 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/30">
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
+                          <span className="text-xs text-cyan-400 font-semibold">LIVE</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Bell className="w-5 h-5 text-slate-400 cursor-pointer hover:text-white transition-colors" />
+                        <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full" />
+                      </div>
+                    </div>
+
+                    {/* Dashboard Content */}
+                    <div className="flex-1 p-4 lg:p-6 space-y-4 overflow-hidden">
+
+                      {/* Stats Cards Row */}
+                      <div className="grid grid-cols-3 gap-3">
+                        {[
+                          { label: "Total Reach", value: "2.4M", trend: "+12%", color: "cyan" },
+                          { label: "Engagement", value: "8.2%", trend: "+3.1%", color: "blue" },
+                          { label: "Conversions", value: "1,247", trend: "+25%", color: "green" }
+                        ].map((stat, i) => (
+                          <div
+                            key={i}
+                            className="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10 hover:border-cyan-500/30 transition-all"
+                          >
+                            <div className="text-[10px] text-slate-400 uppercase tracking-wider mb-1">{stat.label}</div>
+                            <div className="flex items-end justify-between">
+                              <div className="text-lg lg:text-xl font-bold text-white">{stat.value}</div>
+                              <div className="text-xs text-emerald-400 font-semibold">{stat.trend}</div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Chart Area - Bar Graph */}
+                      <div className="flex-1 bg-white/5 rounded-xl p-4 border border-white/10">
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-sm text-white font-semibold">Creator Performance</span>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-3 h-3 bg-gradient-to-t from-cyan-500 to-blue-500 rounded-sm" />
+                            <span className="text-xs text-slate-400">This Week</span>
                           </div>
                         </div>
-                      )}
+
+                        {/* Bar Chart */}
+                        <div className="flex items-end justify-between h-28 lg:h-32 px-2">
+                          {[65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88, 68].map((height, i) => (
+                            <div key={i} className="flex-1 mx-0.5 flex flex-col items-center">
+                              <div
+                                className="w-full bg-gradient-to-t from-cyan-500 to-blue-500 rounded-t-sm hover:from-cyan-400 hover:to-blue-400 transition-all cursor-pointer"
+                                style={{
+                                  height: `${height}%`,
+                                  boxShadow: '0 -4px 12px rgba(0, 217, 255, 0.3)',
+                                  animation: `slide-up 0.6s ease-out ${i * 0.05}s both`
+                                }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* X-axis labels */}
+                        <div className="flex justify-between mt-2 px-2">
+                          {['Jan', '', 'Mar', '', 'May', '', 'Jul', '', 'Sep', '', 'Nov', ''].map((label, i) => (
+                            <span key={i} className="text-[9px] text-slate-500 flex-1 text-center">{label}</span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Data List - Skeleton Style */}
+                      <div className="space-y-2">
+                        {[80, 65, 50].map((width, i) => (
+                          <div key={i} className="flex items-center space-x-3 p-2 bg-white/5 rounded-lg border border-white/5">
+                            <div className="w-8 h-8 bg-gradient-to-br from-cyan-500/30 to-blue-500/30 rounded-full" />
+                            <div className="flex-1 space-y-1">
+                              <div className="h-2 bg-white/10 rounded-full" style={{ width: `${width}%` }} />
+                              <div className="h-1.5 bg-white/5 rounded-full" style={{ width: `${width - 20}%` }} />
+                            </div>
+                            <div className="text-xs text-emerald-400 font-semibold">+{12 + i * 5}%</div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Floating Badge */}
+              <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2 rounded-full shadow-lg shadow-cyan-500/40 flex items-center space-x-2">
+                <TrendingUp className="w-4 h-4 text-white" />
+                <span className="text-white text-sm font-bold">+340% ROI</span>
               </div>
             </div>
           </div>
@@ -294,40 +383,76 @@ const Index = () => {
               icon: Hourglass,
               title: "The Dino-Era Time-Sink",
               desc: "Planning, diskusi, dan persetujuan untuk satu Campaign bisa memakan waktu 2-4 minggu. Manual, lama, dan tidak scalable.",
-              color: "#FF2FB3"
+              color: "#F87171",
+              iconColor: "text-red-400",
+              bgColor: "bg-red-500/10",
+              ringColor: "ring-red-500/30",
+              hoverRing: "group-hover:ring-red-400/60",
+              glowColor: "rgba(248, 113, 113, 0.4)"
             },
             {
-              icon: Folder,
+              icon: Files,
               title: "The Operational Nightmare",
               desc: "Contract chaos and confusion. Managing 10+ creators = 10+ different terms, payments, dan tracking spreadsheets.",
-              color: "#FF2FB3"
+              color: "#FB923C",
+              iconColor: "text-orange-400",
+              bgColor: "bg-orange-500/10",
+              ringColor: "ring-orange-500/30",
+              hoverRing: "group-hover:ring-orange-400/60",
+              glowColor: "rgba(251, 146, 60, 0.4)"
             },
             {
-              icon: Box,
+              icon: HelpCircle,
               title: "The ROI Blackbox",
               desc: "Sebagian besar brands tidak tahu data siapa spends bisa untuk hasil yang terpercaya. Hasilnya ya, ini tidak terukur lah..",
-              color: "#FF2FB3"
+              color: "#F472B6",
+              iconColor: "text-pink-400",
+              bgColor: "bg-pink-500/10",
+              ringColor: "ring-pink-500/30",
+              hoverRing: "group-hover:ring-pink-400/60",
+              glowColor: "rgba(244, 114, 182, 0.4)"
             }].
             map((problem, i) =>
             <div
               key={i}
-              className="group relative glass-morphism rounded-2xl p-8 hover:border-pink-500/30 transition-all duration-300 card-tilt">
+              className="group relative glass-morphism rounded-2xl p-8 hover:border-white/20 transition-all duration-500 card-tilt hover:-translate-y-2">
 
-                {/* Hover Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-red-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Hover Glow Background */}
+                <div
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: `radial-gradient(circle at 30% 30%, ${problem.color}15, transparent 70%)`
+                  }}
+                />
 
                 <div className="relative space-y-6">
-                  {/* Icon with Glow */}
+                  {/* Icon with Neon Glow Effect */}
                   <div
-                  className="w-16 h-16 bg-pink-500/10 rounded-xl flex items-center justify-center ring-2 ring-pink-500/30 group-hover:ring-pink-500/50 transition-all"
-                  style={{ boxShadow: `0 0 30px ${problem.color}40` }}>
-
-                    <problem.icon className="w-8 h-8 text-pink-400" />
+                    className={`w-16 h-16 ${problem.bgColor} rounded-xl flex items-center justify-center ring-2 ${problem.ringColor} ${problem.hoverRing} transition-all duration-300`}
+                    style={{
+                      boxShadow: `0 0 30px ${problem.glowColor}, 0 0 60px ${problem.glowColor}`,
+                      filter: 'drop-shadow(0 0 10px ' + problem.glowColor + ')'
+                    }}
+                  >
+                    <problem.icon
+                      className={`w-8 h-8 ${problem.iconColor}`}
+                      style={{
+                        filter: `drop-shadow(0 0 8px ${problem.color})`
+                      }}
+                    />
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white">{problem.title}</h3>
-                  <p className="text-[#94A3B8] leading-relaxed text-lg">{problem.desc}</p>
+                  <h3 className="text-2xl font-bold text-white group-hover:text-white/90 transition-colors">{problem.title}</h3>
+                  <p className="text-[#94A3B8] leading-relaxed text-lg group-hover:text-slate-300 transition-colors">{problem.desc}</p>
                 </div>
+
+                {/* Corner Accent */}
+                <div
+                  className="absolute top-0 right-0 w-20 h-20 opacity-20 group-hover:opacity-40 transition-opacity"
+                  style={{
+                    background: `radial-gradient(circle at 100% 0%, ${problem.color}, transparent 70%)`
+                  }}
+                />
               </div>
             )}
           </div>
