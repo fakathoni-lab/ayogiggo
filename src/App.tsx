@@ -30,6 +30,7 @@ const CreatorAnalytics = lazy(() => import("@/pages/dashboard/CreatorAnalytics")
 const CreatorSettings = lazy(() => import("@/pages/dashboard/CreatorSettings"));
 const CreateCampaign = lazy(() => import("@/pages/dashboard/CreateCampaignWizard"));
 const BrandsLandingPage = lazy(() => import("@/pages/brands/Index"));
+const BrandLandingV2 = lazy(() => import("@/pages/brands/BrandLandingV2"));
 const CreatorsLandingPage = lazy(() => import("@/pages/creators/Index"));
 const PublicProfile = lazy(() => import("@/pages/creator/PublicProfile"));
 const BrandOnboarding = lazy(() => import("@/pages/onboarding/BrandOnboarding"));
@@ -78,6 +79,7 @@ const App = () =>
                   <Route element={<IndexLayout />}>
                     <Route path="/" element={<Index />} />
                     <Route path="/brands" element={<BrandsLandingPage />} />
+                    <Route path="/brands-v2" element={<BrandLandingV2 />} />
                     <Route path="/creators" element={<CreatorsLandingPage />} />
                     <Route path="/campaigns" element={<BrowseCampaigns />} />
                     <Route path="/campaigns/:id" element={<CampaignDetail />} />
