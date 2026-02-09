@@ -19,6 +19,10 @@ import Index from "@/pages/Index";
 import SlabscanIndex from "@/pages/SlabscanIndex";
 import Auth from "@/pages/Auth";
 import NotFound from "@/pages/NotFound";
+import Login from "@/pages/auth/Login";
+import Register from "@/pages/auth/Register";
+import OnAuthSuccess from "@/pages/auth/OnAuthSuccess";
+import ResetPassword from "@/pages/auth/ResetPassword";
 
 // Lazy-loaded pages (non-critical)
 const BrowseCampaigns = lazy(() => import("@/pages/campaigns/BrowseCampaigns"));
@@ -87,6 +91,10 @@ const App = () =>
 
                   {/* Auth Routes (plain) */}
                   <Route path="/auth" element={<Auth />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/onauthsuccess" element={<OnAuthSuccess />} />
+                  <Route path="/resetpassword" element={<ResetPassword />} />
                   
                   {/* Legal Pages */}
                   <Route path="/privacy" element={<Privacy />} />

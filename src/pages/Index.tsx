@@ -102,13 +102,13 @@ const Index = () => {
               <Button
                 variant="ghost"
                 className="hidden sm:flex text-white hover:bg-white/5 rounded-full px-6 font-semibold transition-all hover:scale-105"
-                onClick={() => navigate("/auth")}>
+                onClick={() => navigate("/login")}>
 
                 Masuk
               </Button>
               <Button
                 className="btn-ripple bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white rounded-full px-4 sm:px-6 font-semibold shadow-lg shadow-cyan-500/30 transition-all hover:shadow-cyan-500/50 hover:scale-105"
-                onClick={() => navigate("/auth")}>
+                onClick={() => navigate("/register")}>
 
                 Buat Campaign Kreator
               </Button>
