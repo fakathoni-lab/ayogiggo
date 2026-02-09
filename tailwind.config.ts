@@ -18,19 +18,24 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
-        display: ["Space Grotesk", "system-ui", "sans-serif"]
+        display: ["Space Grotesk", "system-ui", "sans-serif"],
+        heading: ["Space Grotesk", "Inter", "system-ui", "sans-serif"],
+        body: ["Inter", "DM Sans", "system-ui", "sans-serif"]
       },
 
       colors: {
         /* ═══════════════════════════════════════════════════════
-           GIGGO SLABSCAN EMERALD THEME
+           GIGGO SLABSCAN EMERALD THEME - ENHANCED
            Dark Premium / Creator-Focused
            ═══════════════════════════════════════════════════════ */
 
         /* ─────────────────────────────────────────────────────
-           BACKGROUND (Surface Hierarchy)
+           BACKGROUND (Surface Hierarchy - Slabscan)
            ───────────────────────────────────────────────────── */
         background: "#0A0E1A",
+        "bg-primary": "#0A0E1A",
+        "bg-secondary": "#0D1221",
+        "bg-tertiary": "#111827",
         "surface-1": "#0D1221",
         "surface-2": "#111827",
         "surface-3": "#1A1F35",
@@ -38,14 +43,19 @@ const config: Config = {
         /* ─────────────────────────────────────────────────────
            TEXT HIERARCHY (No opacity allowed)
            ───────────────────────────────────────────────────── */
+        "text-primary": "#FFFFFF",
+        "text-body": "#E2E8F0",
+        "text-muted": "#94A3B8",
+        "text-subtle": "#64748B",
         "primary": "#FFFFFF",
         "secondary": "#E2E8F0",
         "muted": "#94A3B8",
         "disabled": "#64748B",
 
         /* ─────────────────────────────────────────────────────
-           BORDER & DIVIDER
+           BORDER & DIVIDER (Slabscan specific)
            ───────────────────────────────────────────────────── */
+        "border-light": "rgba(255, 255, 255, 0.08)",
         "default": "rgba(255, 255, 255, 0.08)",
         "subtle": "rgba(255, 255, 255, 0.05)",
         "active": "rgba(255, 255, 255, 0.15)",
@@ -60,12 +70,21 @@ const config: Config = {
         },
 
         /* ─────────────────────────────────────────────────────
-           ACCENT (Electric Cyan → Emerald)
+           ACCENT (Electric Emerald)
            ───────────────────────────────────────────────────── */
         accent: {
           primary: "#10B981",
           hover: "#059669",
           active: "#047857"
+        },
+
+        /* ─────────────────────────────────────────────────────
+           GLOW EFFECTS (RGBA for shadows)
+           ───────────────────────────────────────────────────── */
+        glow: {
+          emerald: "rgba(16, 185, 129, 0.4)",
+          blue: "rgba(59, 130, 246, 0.4)",
+          cyan: "rgba(34, 211, 238, 0.4)",
         },
 
         /* ─────────────────────────────────────────────────────
@@ -122,11 +141,15 @@ const config: Config = {
       },
 
       /* ─────────────────────────────────────────────────────
-         BOX SHADOW (Minimal, functional only)
+         BOX SHADOW (Slabscan Glows + Functional)
          ───────────────────────────────────────────────────── */
       boxShadow: {
         elevated: "0 4px 12px -2px rgba(0,0,0,0.5)",
-        "elevated-lg": "0 8px 24px -4px rgba(0,0,0,0.6)"
+        "elevated-lg": "0 8px 24px -4px rgba(0,0,0,0.6)",
+        "glow-emerald": "0 0 40px rgba(16, 185, 129, 0.3)",
+        "glow-emerald-lg": "0 0 60px rgba(16, 185, 129, 0.4)",
+        "glow-blue": "0 0 40px rgba(59, 130, 246, 0.3)",
+        "glow-cyan": "0 0 40px rgba(34, 211, 238, 0.3)"
       },
 
       /* ─────────────────────────────────────────────────────
@@ -176,7 +199,18 @@ const config: Config = {
         "float": "float 6s ease-in-out infinite",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
         "ticker": "ticker 30s linear infinite",
-        "fade-up": "fade-up 0.6s ease-out forwards"
+        "fade-up": "fade-up 0.6s ease-out forwards",
+        "count-up": "fade-in 0.4s ease-out"
+      },
+
+      /* ─────────────────────────────────────────────────────
+         BACKGROUND IMAGE (Gradients for Slabscan)
+         ───────────────────────────────────────────────────── */
+      backgroundImage: {
+        "gradient-text-emerald": "linear-gradient(to right, #10B981, #22D3EE)",
+        "gradient-primary": "linear-gradient(to right, #10B981, #059669)",
+        "gradient-radial-emerald": "radial-gradient(ellipse at center, rgba(16, 185, 129, 0.25) 0%, transparent 70%)",
+        "gradient-radial-emerald-lg": "radial-gradient(ellipse at center, rgba(16, 185, 129, 0.35) 0%, transparent 70%)"
       }
     }
   },

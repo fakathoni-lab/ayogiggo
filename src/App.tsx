@@ -16,6 +16,7 @@ import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 // Eager-loaded pages (critical path)
 import Index from "@/pages/Index";
+import SlabscanIndex from "@/pages/SlabscanIndex";
 import Auth from "@/pages/Auth";
 import NotFound from "@/pages/NotFound";
 
@@ -70,6 +71,9 @@ const App = () =>
               <NotificationProvider>
                 <Suspense fallback={<LoadingFallback />}>
                 <Routes>
+                  {/* Slabscan Landing Page - Standalone */}
+                  <Route path="/slabscan" element={<SlabscanIndex />} />
+
                   {/* Public Routes (with Navbar & Footer) */}
                   <Route element={<IndexLayout />}>
                     <Route path="/" element={<Index />} />
