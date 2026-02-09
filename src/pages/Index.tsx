@@ -179,7 +179,7 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-[#00D9FF]/30 to-[#0EA5E9]/30 rounded-3xl blur-3xl glow-cyan" />
 
               {/* Dashboard Card */}
-              <div className="relative glass-morphism rounded-3xl p-8 shadow-2xl border-2 border-white/10 hover:border-[#00D9FF]/30 transition-all duration-500" style={{ transform: "rotateY(-5deg) rotateX(5deg)" }}>
+              <div className="bg-no-repeat bg-center bg-cover bg-[url(https://cdn.ezsite.ai/AutoDev/91934/477be035-0191-4f4d-adea-7487a914d30e.webp)] relative glass-morphism rounded-3xl p-8 shadow-2xl border-2 border-white/10 hover:border-[#00D9FF]/30 transition-all duration-500" style={{ transform: "rotateY(-5deg) rotateX(5deg)" }}>
                 <div className="aspect-video bg-gradient-to-br from-[#1A2332] to-[#0F1621] rounded-2xl overflow-hidden shadow-inner relative">
                   {/* High-Quality Dashboard Mockup */}
                   <div className="absolute inset-0 p-6 flex flex-col">
