@@ -78,6 +78,8 @@ const LazyVideo = forwardRef<LazyVideoHandle, LazyVideoProps>(
 
 
 
+
+
           // Autoplay was prevented, ignore
         });}}, [shouldLoad, autoPlay]);const handleVideoLoaded = () => {setIsVideoLoaded(true);};return <div ref={containerRef} className={cn("relative", className)}>
         {/* Skeleton placeholder with fade-out transition */}
@@ -96,9 +98,7 @@ const LazyVideo = forwardRef<LazyVideoHandle, LazyVideoProps>(
           </div>
         </div>
         
-        {shouldLoad && <video ref={videoRef} src={src} poster={poster}
-        autoPlay={autoPlay}
-        muted={muted}
+        {shouldLoad && <video ref={videoRef} src={src} poster={poster} autoPlay={autoPlay} muted={muted}
         loop={loop}
         playsInline={playsInline}
         onLoadedData={handleVideoLoaded}
