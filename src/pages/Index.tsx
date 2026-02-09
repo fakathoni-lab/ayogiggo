@@ -6,21 +6,45 @@ import {
   Facebook, Twitter, Instagram, Youtube, TrendingUp
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ExitIntentModal from "@/components/landing/ExitIntentModal";
+import SocialProofToast from "@/components/landing/SocialProofToast";
+import MobileStickyCTA from "@/components/landing/MobileStickyCTA";
 
 const Index = () => {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      // Update active section for navigation
+      const sections = ["solusi", "studi-kasus", "harga"];
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      setActiveSection(currentSection || "");
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0A1628]">
+    <div className="min-h-screen bg-[#0A1628] overflow-x-hidden">
+      {/* Exit Intent Modal */}
+      <ExitIntentModal />
+
+      {/* Social Proof Notifications */}
+      <SocialProofToast />
+
+      {/* Mobile Sticky CTA */}
+      <MobileStickyCTA />
       {/* 1. NAVIGATION BAR - Sticky with Blur */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -41,16 +65,34 @@ const Index = () => {
 
             {/* Center Menu */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#solusi" className="text-[#94A3B8] hover:text-white transition-colors text-[1rem] font-medium">
+              <a
+                href="#solusi"
+                className={`link-underline text-[1rem] font-medium transition-colors ${
+                  activeSection === "solusi" ? "text-white" : "text-[#94A3B8] hover:text-white"
+                }`}
+              >
                 Solusi
               </a>
-              <a href="#studi-kasus" className="text-[#94A3B8] hover:text-white transition-colors text-[1rem] font-medium">
+              <a
+                href="#studi-kasus"
+                className={`link-underline text-[1rem] font-medium transition-colors ${
+                  activeSection === "studi-kasus" ? "text-white" : "text-[#94A3B8] hover:text-white"
+                }`}
+              >
                 Studi Kasus
               </a>
-              <a href="#harga" className="text-[#94A3B8] hover:text-white transition-colors text-[1rem] font-medium">
+              <a
+                href="#harga"
+                className={`link-underline text-[1rem] font-medium transition-colors ${
+                  activeSection === "harga" ? "text-white" : "text-[#94A3B8] hover:text-white"
+                }`}
+              >
                 Harga
               </a>
-              <a href="#faq" className="text-[#94A3B8] hover:text-white transition-colors text-[1rem] font-medium">
+              <a
+                href="#faq"
+                className="link-underline text-[#94A3B8] hover:text-white transition-colors text-[1rem] font-medium"
+              >
                 FAQ
               </a>
             </div>
@@ -59,13 +101,13 @@ const Index = () => {
             <div className="flex items-center space-x-3">
               <Button
                 variant="ghost"
-                className="hidden sm:flex text-white hover:bg-white/5 rounded-full px-6 font-semibold"
+                className="hidden sm:flex text-white hover:bg-white/5 rounded-full px-6 font-semibold transition-all hover:scale-105"
                 onClick={() => navigate("/auth")}
               >
                 Masuk
               </Button>
               <Button
-                className="bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white rounded-full px-4 sm:px-6 font-semibold shadow-lg shadow-cyan-500/30 transition-all hover:shadow-cyan-500/50"
+                className="btn-ripple bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white rounded-full px-4 sm:px-6 font-semibold shadow-lg shadow-cyan-500/30 transition-all hover:shadow-cyan-500/50 hover:scale-105"
                 onClick={() => navigate("/auth")}
               >
                 Buat Campaign Kreator
@@ -78,7 +120,13 @@ const Index = () => {
       {/* 2. HERO SECTION */}
       <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex items-center">
         {/* Background Glow - Radial Gradient from Bottom Center */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#00D9FF]/20 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#00D9FF]/20 rounded-full blur-[150px] pointer-events-none animate-pulse-slow" />
+
+        {/* Animated Gradient Mesh */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-[#00D9FF]/20 rounded-full blur-[120px] animate-rotate-gradient" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#0EA5E9]/20 rounded-full blur-[100px] animate-rotate-gradient" style={{ animationDelay: "10s" }} />
+        </div>
 
         <div className="relative max-w-[1440px] mx-auto w-full">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -96,7 +144,7 @@ const Index = () => {
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.2]">
                 Ubah Ratusan<br />
                 Pelanggan Menjadi<br />
-                <span className="gradient-text-cyan">Marketing Force Anda.</span>
+                <span className="animate-gradient-text">Marketing Force Anda.</span>
               </h1>
 
               {/* Subtitle */}
@@ -108,7 +156,7 @@ const Index = () => {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white px-10 py-7 text-lg rounded-full shadow-[0_0_40px_rgba(0,217,255,0.4)] hover:shadow-[0_0_60px_rgba(0,217,255,0.6)] transition-all font-bold group"
+                  className="btn-ripple bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white px-10 py-7 text-lg rounded-full shadow-[0_0_40px_rgba(0,217,255,0.4)] hover:shadow-[0_0_60px_rgba(0,217,255,0.6)] transition-all font-bold group hover:-translate-y-1"
                   onClick={() => navigate("/auth")}
                 >
                   Buat Campaign
@@ -117,7 +165,7 @@ const Index = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white/20 text-white hover:bg-white/5 hover:border-white/30 px-10 py-7 text-lg rounded-full backdrop-blur-sm transition-all font-bold"
+                  className="btn-ripple border-2 border-white/20 text-white hover:bg-white/5 hover:border-white/30 px-10 py-7 text-lg rounded-full backdrop-blur-sm transition-all font-bold hover:scale-105"
                   onClick={() => navigate("/auth")}
                 >
                   Buat Campaign Kreator
@@ -126,12 +174,12 @@ const Index = () => {
             </div>
 
             {/* Right - Dashboard Mockup */}
-            <div className="relative animate-float">
+            <div className="relative animate-float" style={{ perspective: "1000px" }}>
               {/* Glow Effect Behind Dashboard */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#00D9FF]/30 to-[#0EA5E9]/30 rounded-3xl blur-3xl glow-cyan" />
 
               {/* Dashboard Card */}
-              <div className="relative glass-morphism rounded-3xl p-8 shadow-2xl border-2 border-white/10 transform perspective-1000">
+              <div className="relative glass-morphism rounded-3xl p-8 shadow-2xl border-2 border-white/10 hover:border-[#00D9FF]/30 transition-all duration-500" style={{ transform: "rotateY(-5deg) rotateX(5deg)" }}>
                 <div className="aspect-video bg-gradient-to-br from-[#1A2332] to-[#0F1621] rounded-2xl overflow-hidden shadow-inner">
                   {/* Mockup Content */}
                   <div className="p-8 space-y-6">
@@ -182,7 +230,7 @@ const Index = () => {
                 (brand, i) => (
                   <div
                     key={i}
-                    className="text-white/40 hover:text-white/100 transition-all duration-300 font-bold text-2xl whitespace-nowrap cursor-pointer grayscale hover:grayscale-0"
+                    className="text-white/40 hover:text-white/100 transition-all duration-300 font-bold text-2xl whitespace-nowrap cursor-pointer grayscale hover:grayscale-0 hover:scale-110"
                     style={{ minWidth: "200px", textAlign: "center" }}
                   >
                     {brand}
@@ -234,10 +282,10 @@ const Index = () => {
             ].map((problem, i) => (
               <div
                 key={i}
-                className="group relative glass-morphism rounded-2xl p-8 hover:border-pink-500/30 transition-all duration-300 hover:transform hover:scale-105"
+                className="group relative glass-morphism rounded-2xl p-8 hover:border-pink-500/30 transition-all duration-300 card-tilt"
               >
                 {/* Hover Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-red-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-red-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="relative space-y-6">
                   {/* Icon with Glow */}
@@ -306,8 +354,8 @@ const Index = () => {
 
             {/* Mockup - Smart Matching */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#00D9FF]/20 to-[#0EA5E9]/20 rounded-3xl blur-3xl" />
-              <div className="relative glass-morphism rounded-3xl p-8 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00D9FF]/20 to-[#0EA5E9]/20 rounded-3xl blur-3xl group-hover:blur-[120px] transition-all duration-500" />
+              <div className="relative glass-morphism rounded-3xl p-8 shadow-2xl group-hover:border-[#00D9FF]/30 transition-all duration-500">
                 <div className="space-y-6">
                   <h4 className="text-white font-bold text-xl">Creator Discovery Dashboard</h4>
 
@@ -348,8 +396,8 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Mockup - Content Approval */}
             <div className="relative group order-2 lg:order-1">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/20 to-[#00D9FF]/20 rounded-3xl blur-3xl" />
-              <div className="relative glass-morphism rounded-3xl p-8 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/20 to-[#00D9FF]/20 rounded-3xl blur-3xl group-hover:blur-[120px] transition-all duration-500" />
+              <div className="relative glass-morphism rounded-3xl p-8 shadow-2xl group-hover:border-[#10B981]/30 transition-all duration-500">
                 <div className="space-y-6">
                   <h4 className="text-white font-bold text-xl">Content Approval System</h4>
 
@@ -440,11 +488,11 @@ const Index = () => {
                 ].map((stat, i) => (
                   <div
                     key={i}
-                    className="bg-[#1A2332]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 space-y-3 hover:border-[#00D9FF]/30 transition-all animate-count-up"
+                    className="bg-[#1A2332]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 space-y-3 hover:border-[#00D9FF]/30 transition-all animate-count-up hover:scale-105"
                     style={{ animationDelay: `${i * 0.1}s` }}
                   >
                     <stat.icon className="w-8 h-8 text-[#00D9FF]" />
-                    <div className="text-5xl font-bold gradient-text-cyan">{stat.num}</div>
+                    <div className="text-5xl font-bold animate-gradient-text">{stat.num}</div>
                     <div className="text-white font-semibold text-lg">{stat.label}</div>
                   </div>
                 ))}
@@ -491,9 +539,9 @@ const Index = () => {
           </div>
 
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#00D9FF]/20 to-[#0EA5E9]/20 rounded-3xl blur-3xl group-hover:blur-[120px] transition-all" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#00D9FF]/20 to-[#0EA5E9]/20 rounded-3xl blur-3xl group-hover:blur-[120px] transition-all duration-500" />
 
-            <div className="relative glass-morphism rounded-3xl p-12 border-2 border-[#00D9FF]/30 shadow-2xl">
+            <div className="relative glass-morphism rounded-3xl p-12 border-2 border-[#00D9FF]/30 shadow-2xl hover:shadow-[0_0_80px_rgba(0,217,255,0.4)] transition-all duration-500">
               <div className="text-center space-y-8">
                 {/* Icon */}
                 <div className="flex justify-center">
@@ -528,7 +576,7 @@ const Index = () => {
 
                 <Button
                   size="lg"
-                  className="w-full bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white py-7 text-lg mt-8 rounded-full shadow-[0_0_40px_rgba(0,217,255,0.4)] hover:shadow-[0_0_60px_rgba(0,217,255,0.6)] transition-all font-bold group"
+                  className="btn-ripple w-full bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white py-7 text-lg mt-8 rounded-full shadow-[0_0_40px_rgba(0,217,255,0.4)] hover:shadow-[0_0_60px_rgba(0,217,255,0.6)] transition-all font-bold group hover:-translate-y-1"
                   onClick={() => navigate("/auth")}
                 >
                   Mulai Sekarang - Gratis
@@ -557,7 +605,7 @@ const Index = () => {
 
           <Button
             size="lg"
-            className="bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white px-12 py-8 text-2xl rounded-full shadow-[0_0_60px_rgba(0,217,255,0.6)] animate-pulse-glow font-bold group"
+            className="btn-ripple bg-gradient-to-r from-[#00D9FF] to-[#0EA5E9] hover:from-[#00C8EE] hover:to-[#0D94D8] text-white px-12 py-8 text-2xl rounded-full shadow-[0_0_60px_rgba(0,217,255,0.6)] animate-pulse-glow font-bold group hover:scale-105"
             onClick={() => navigate("/auth")}
           >
             BUAT CAMPAIGN PERTAMA (GRATIS POSTING)
