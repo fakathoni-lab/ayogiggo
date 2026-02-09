@@ -128,8 +128,8 @@ export default function ResetPassword() {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-slate-900/80 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-8 max-w-md w-full text-center"
-        >
+          className="bg-slate-900/80 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-8 max-w-md w-full text-center">
+
           <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6">
             <KeyRound className="w-8 h-8 text-white" />
           </div>
@@ -141,8 +141,8 @@ export default function ResetPassword() {
             Redirecting to login in {countdown} seconds...
           </div>
         </motion.div>
-      </div>
-    );
+      </div>);
+
   }
 
   if (step === 'reset') {
@@ -151,8 +151,8 @@ export default function ResetPassword() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-slate-900/80 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-8 max-w-md w-full"
-        >
+          className="bg-slate-900/80 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-8 max-w-md w-full">
+
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Lock className="w-8 h-8 text-white" />
@@ -176,13 +176,13 @@ export default function ResetPassword() {
                   className="w-full bg-slate-800/50 border border-slate-700 rounded-lg pl-11 pr-12 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
                   placeholder="Min. 8 characters"
                   minLength={8}
-                  required
-                />
+                  required />
+
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
-                >
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
+
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
@@ -199,13 +199,13 @@ export default function ResetPassword() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   className="w-full bg-slate-800/50 border border-slate-700 rounded-lg pl-11 pr-12 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
                   placeholder="Re-enter password"
-                  required
-                />
+                  required />
+
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
-                >
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
+
                   {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
@@ -215,8 +215,8 @@ export default function ResetPassword() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            >
+              className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+
               {isLoading ? 'Resetting Password...' : 'Reset Password'}
             </button>
           </form>
@@ -227,8 +227,8 @@ export default function ResetPassword() {
             </a>
           </div>
         </motion.div>
-      </div>
-    );
+      </div>);
+
   }
 
   return (
@@ -236,8 +236,8 @@ export default function ResetPassword() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-slate-900/80 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-8 max-w-md w-full"
-      >
+        className="bg-slate-900/80 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-8 max-w-md w-full">
+
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <KeyRound className="w-8 h-8 text-white" />
@@ -260,8 +260,8 @@ export default function ResetPassword() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-slate-800/50 border border-slate-700 rounded-lg pl-11 pr-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
                 placeholder="john@example.com"
-                required
-              />
+                required />
+
             </div>
           </div>
 
@@ -269,8 +269,8 @@ export default function ResetPassword() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          >
+            className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+
             {isLoading ? 'Sending...' : 'Send Reset Link'}
           </button>
         </form>
@@ -281,6 +281,6 @@ export default function ResetPassword() {
           </a>
         </div>
       </motion.div>
-    </div>
-  );
+    </div>);
+
 }

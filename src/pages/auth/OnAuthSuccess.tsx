@@ -25,14 +25,14 @@ export default function OnAuthSuccess() {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-slate-900/80 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-8 max-w-md w-full text-center"
-      >
+        className="bg-slate-900/80 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-8 max-w-md w-full text-center">
+
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: 'spring' }}
-          className="w-20 h-20 bg-gradient-to-br from-green-400 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6"
-        >
+          className="w-20 h-20 bg-gradient-to-br from-green-400 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6">
+
           <CheckCircle className="w-12 h-12 text-white" />
         </motion.div>
 
@@ -47,19 +47,19 @@ export default function OnAuthSuccess() {
             key={countdown}
             initial={{ scale: 1.2, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
-          >
+            className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+
             {countdown}
           </motion.div>
         </div>
 
         <button
           onClick={() => window.location.href = '/login'}
-          className="text-cyan-400 hover:text-cyan-300 font-medium underline"
-        >
+          className="text-cyan-400 hover:text-cyan-300 font-medium underline">
+
           Go to login now
         </button>
       </motion.div>
-    </div>
-  );
+    </div>);
+
 }

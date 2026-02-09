@@ -18,8 +18,8 @@ const HeroCyberpunk = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden hero-cyberpunk-bg">
       {/* ═══════════════════════════════════════════════════════════
-                                                               BACKGROUND VISUAL ELEMENTS
-                                                               ═══════════════════════════════════════════════════════════ */}
+                                                                 BACKGROUND VISUAL ELEMENTS
+                                                                 ═══════════════════════════════════════════════════════════ */}
       
       {/* Cyan glow orb - left */}
       <div className="absolute top-[20%] left-[-5%] w-[400px] h-[400px] glow-orb-cyan pointer-events-none" />
@@ -31,8 +31,8 @@ const HeroCyberpunk = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-[#00E5FF]/5 to-transparent pointer-events-none" />
 
       {/* ═══════════════════════════════════════════════════════════
-                                                               NETWORK LINES - Abstract Data Architecture
-                                                               ═══════════════════════════════════════════════════════════ */}
+                                                                 NETWORK LINES - Abstract Data Architecture
+                                                                 ═══════════════════════════════════════════════════════════ */}
       
       {/* Horizontal cyan lines - left side */}
       <div className="absolute left-0 top-[25%] w-[35%] h-px glow-line-cyan animate-network-pulse opacity-40" />
@@ -66,8 +66,8 @@ const HeroCyberpunk = () => {
 
 
       {/* ═══════════════════════════════════════════════════════════
-                                                               MAIN CONTENT
-                                                               ═══════════════════════════════════════════════════════════ */}
+                                                                 MAIN CONTENT
+                                                                 ═══════════════════════════════════════════════════════════ */}
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 lg:py-0">
         <div className="max-w-3xl">
@@ -155,8 +155,8 @@ const HeroCyberpunk = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════
-                                                               DECORATIVE GLASS CARD - Right side (Desktop only)
-                                                               ═══════════════════════════════════════════════════════════ */}
+                                                                 DECORATIVE GLASS CARD - Right side (Desktop only)
+                                                                 ═══════════════════════════════════════════════════════════ */}
       
       <motion.div
         className="hidden lg:block absolute right-[8%] top-1/2 -translate-y-1/2 w-[340px]"
