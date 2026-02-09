@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import {
   Zap, Play, Users, TrendingUp, ChevronRight, ArrowRight,
   Clock, FileX, HelpCircle, Sparkles, Target, Shield,
-  Check, BarChart3, Facebook, Twitter, Instagram, Linkedin
-} from "lucide-react";
+  Check, BarChart3, Facebook, Twitter, Instagram, Linkedin } from
+"lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
@@ -31,8 +31,8 @@ const Index = () => {
         style={{
           backgroundImage: `linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)`,
           backgroundSize: '24px 24px'
-        }}
-      />
+        }} />
+
 
       {/* Giant Glowing Orb - Top Center */}
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none z-0" />
@@ -42,17 +42,17 @@ const Index = () => {
 
       {/* === NAVIGATION === */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "backdrop-blur-xl bg-black/80 border-b border-white/10"
-          : "bg-transparent"
-      }`}>
+      scrolled ?
+      "backdrop-blur-xl bg-black/80 border-b border-white/10" :
+      "bg-transparent"}`
+      }>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div
               className="flex items-center space-x-3 cursor-pointer group"
-              onClick={() => navigate("/")}
-            >
+              onClick={() => navigate("/")}>
+
               <div className="w-10 h-10 bg-gradient-to-br from-white to-white/80 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.3)] group-hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all">
                 <Zap className="w-5 h-5 text-black" strokeWidth={2.5} />
               </div>
@@ -61,15 +61,15 @@ const Index = () => {
 
             {/* Center Links */}
             <div className="hidden md:flex items-center space-x-10">
-              {["Produk", "Fitur", "Harga", "Blog"].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-sm text-white/60 hover:text-white transition-colors duration-300 tracking-wide"
-                >
+              {["Produk", "Fitur", "Harga", "Blog"].map((item) =>
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-sm text-white/60 hover:text-white transition-colors duration-300 tracking-wide">
+
                   {item}
                 </a>
-              ))}
+              )}
             </div>
 
             {/* Right Actions */}
@@ -77,14 +77,14 @@ const Index = () => {
               <Button
                 variant="ghost"
                 className="hidden sm:flex text-white/80 hover:text-white hover:bg-white/5 rounded-full px-6 font-medium transition-all"
-                onClick={() => navigate("/login")}
-              >
+                onClick={() => navigate("/login")}>
+
                 Masuk
               </Button>
               <Button
                 className="bg-white text-black hover:bg-slate-200 rounded-full px-6 font-semibold shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all"
-                onClick={() => navigate("/register")}
-              >
+                onClick={() => navigate("/register")}>
+
                 Mulai Gratis
               </Button>
             </div>
@@ -125,8 +125,8 @@ const Index = () => {
               <Button
                 size="lg"
                 className="bg-white text-black hover:bg-slate-200 px-10 py-7 text-lg rounded-full font-semibold shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:shadow-[0_0_50px_rgba(255,255,255,0.5)] transition-all group"
-                onClick={() => navigate("/register")}
-              >
+                onClick={() => navigate("/register")}>
+
                 Buat Campaign Pertama
                 <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -134,8 +134,8 @@ const Index = () => {
                 size="lg"
                 variant="outline"
                 className="border border-white/20 text-white hover:bg-white/5 hover:border-white/30 px-10 py-7 text-lg rounded-full font-medium backdrop-blur-sm transition-all"
-                onClick={() => navigate("/login")}
-              >
+                onClick={() => navigate("/login")}>
+
                 Lihat Demo
               </Button>
             </div>
@@ -182,19 +182,19 @@ const Index = () => {
               {/* Avatar Stack */}
               <div className="flex -space-x-3 mb-3">
                 {[
-                  "bg-gradient-to-br from-pink-400 to-rose-500",
-                  "bg-gradient-to-br from-blue-400 to-cyan-500",
-                  "bg-gradient-to-br from-purple-400 to-violet-500",
-                  "bg-gradient-to-br from-amber-400 to-orange-500",
-                  "bg-gradient-to-br from-emerald-400 to-teal-500"
-                ].map((gradient, i) => (
-                  <div
-                    key={i}
-                    className={`w-9 h-9 ${gradient} rounded-full border-2 border-slate-900 flex items-center justify-center text-[10px] font-bold text-white`}
-                  >
+                "bg-gradient-to-br from-pink-400 to-rose-500",
+                "bg-gradient-to-br from-blue-400 to-cyan-500",
+                "bg-gradient-to-br from-purple-400 to-violet-500",
+                "bg-gradient-to-br from-amber-400 to-orange-500",
+                "bg-gradient-to-br from-emerald-400 to-teal-500"].
+                map((gradient, i) =>
+                <div
+                  key={i}
+                  className={`w-9 h-9 ${gradient} rounded-full border-2 border-slate-900 flex items-center justify-center text-[10px] font-bold text-white`}>
+
                     {["AR", "BK", "CL", "DM", "EV"][i]}
                   </div>
-                ))}
+                )}
               </div>
 
               <div className="flex items-center space-x-2">
@@ -212,16 +212,16 @@ const Index = () => {
 
               {/* Bar Graph */}
               <div className="flex items-end justify-between h-16 px-1">
-                {[40, 65, 45, 80, 60].map((height, i) => (
-                  <div
-                    key={i}
-                    className="w-4 bg-gradient-to-t from-cyan-500 to-blue-400 rounded-t-sm hover:from-cyan-400 hover:to-blue-300 transition-all cursor-pointer"
-                    style={{
-                      height: `${height}%`,
-                      boxShadow: '0 0 10px rgba(6, 182, 212, 0.4)'
-                    }}
-                  />
-                ))}
+                {[40, 65, 45, 80, 60].map((height, i) =>
+                <div
+                  key={i}
+                  className="w-4 bg-gradient-to-t from-cyan-500 to-blue-400 rounded-t-sm hover:from-cyan-400 hover:to-blue-300 transition-all cursor-pointer"
+                  style={{
+                    height: `${height}%`,
+                    boxShadow: '0 0 10px rgba(6, 182, 212, 0.4)'
+                  }} />
+
+                )}
               </div>
 
               <div className="flex items-center space-x-2 mt-3">
@@ -248,14 +248,14 @@ const Index = () => {
 
             {/* Scrolling Content */}
             <div className="flex animate-logo-scroll">
-              {[...brands, ...brands, ...brands].map((brand, i) => (
-                <div
-                  key={i}
-                  className="flex-shrink-0 mx-12 text-2xl font-bold text-white/30 hover:text-white/80 transition-all duration-300 cursor-pointer tracking-wide"
-                >
+              {[...brands, ...brands, ...brands].map((brand, i) =>
+              <div
+                key={i}
+                className="flex-shrink-0 mx-12 text-2xl font-bold text-white/30 hover:text-white/80 transition-all duration-300 cursor-pointer tracking-wide">
+
                   {brand}
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
@@ -279,29 +279,29 @@ const Index = () => {
           {/* Problem Cards - Spotlight Effect */}
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              {
-                icon: Clock,
-                title: "Time-Sink Manual",
-                desc: "Planning, negosiasi, dan approval untuk satu campaign bisa memakan 2-4 minggu. Tidak scalable.",
-                gradient: "from-red-500/20 to-orange-500/10"
-              },
-              {
-                icon: FileX,
-                title: "Operational Chaos",
-                desc: "Managing 20+ creators = 20+ kontrak berbeda, payment schedules, dan tracking spreadsheets.",
-                gradient: "from-amber-500/20 to-yellow-500/10"
-              },
-              {
-                icon: HelpCircle,
-                title: "ROI Blackbox",
-                desc: "Tidak ada visibility data real-time. Budget habis tapi impact tidak terukur jelas.",
-                gradient: "from-purple-500/20 to-pink-500/10"
-              }
-            ].map((problem, i) => (
-              <div
-                key={i}
-                className="group relative overflow-hidden rounded-xl border border-white/10 bg-slate-900/40 p-8 hover:border-white/20 hover:bg-white/5 transition-all duration-300"
-              >
+            {
+              icon: Clock,
+              title: "Time-Sink Manual",
+              desc: "Planning, negosiasi, dan approval untuk satu campaign bisa memakan 2-4 minggu. Tidak scalable.",
+              gradient: "from-red-500/20 to-orange-500/10"
+            },
+            {
+              icon: FileX,
+              title: "Operational Chaos",
+              desc: "Managing 20+ creators = 20+ kontrak berbeda, payment schedules, dan tracking spreadsheets.",
+              gradient: "from-amber-500/20 to-yellow-500/10"
+            },
+            {
+              icon: HelpCircle,
+              title: "ROI Blackbox",
+              desc: "Tidak ada visibility data real-time. Budget habis tapi impact tidak terukur jelas.",
+              gradient: "from-purple-500/20 to-pink-500/10"
+            }].
+            map((problem, i) =>
+            <div
+              key={i}
+              className="group relative overflow-hidden rounded-xl border border-white/10 bg-slate-900/40 p-8 hover:border-white/20 hover:bg-white/5 transition-all duration-300">
+
                 {/* Hover Gradient Effect */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${problem.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
@@ -319,7 +319,7 @@ const Index = () => {
                   </p>
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -347,29 +347,29 @@ const Index = () => {
           {/* Solution Cards */}
           <div className="grid lg:grid-cols-3 gap-6">
             {[
-              {
-                icon: Target,
-                title: "Smart Matching",
-                desc: "AI-powered creator discovery. Temukan creators dengan audience yang tepat dalam hitungan detik.",
-                accentColor: "cyan"
-              },
-              {
-                icon: BarChart3,
-                title: "Real-time Analytics",
-                desc: "Dashboard lengkap dengan metrics yang actionable. Track ROI setiap rupiah yang dikeluarkan.",
-                accentColor: "blue"
-              },
-              {
-                icon: Shield,
-                title: "Secure Workflow",
-                desc: "Escrow payment, content approval, dan contract automation. Semua aman dan terdokumentasi.",
-                accentColor: "purple"
-              }
-            ].map((solution, i) => (
-              <div
-                key={i}
-                className="group relative overflow-hidden rounded-xl border border-white/10 bg-slate-900/40 p-8 hover:border-white/20 hover:bg-white/5 transition-all duration-300"
-              >
+            {
+              icon: Target,
+              title: "Smart Matching",
+              desc: "AI-powered creator discovery. Temukan creators dengan audience yang tepat dalam hitungan detik.",
+              accentColor: "cyan"
+            },
+            {
+              icon: BarChart3,
+              title: "Real-time Analytics",
+              desc: "Dashboard lengkap dengan metrics yang actionable. Track ROI setiap rupiah yang dikeluarkan.",
+              accentColor: "blue"
+            },
+            {
+              icon: Shield,
+              title: "Secure Workflow",
+              desc: "Escrow payment, content approval, dan contract automation. Semua aman dan terdokumentasi.",
+              accentColor: "purple"
+            }].
+            map((solution, i) =>
+            <div
+              key={i}
+              className="group relative overflow-hidden rounded-xl border border-white/10 bg-slate-900/40 p-8 hover:border-white/20 hover:bg-white/5 transition-all duration-300">
+
                 <div className="space-y-6">
                   {/* Icon with glow */}
                   <div className={`w-14 h-14 bg-${solution.accentColor}-500/10 rounded-xl flex items-center justify-center border border-${solution.accentColor}-500/20 shadow-[0_0_30px_rgba(6,182,212,0.2)]`}>
@@ -385,15 +385,15 @@ const Index = () => {
 
                   {/* Learn More Link */}
                   <a
-                    href="#"
-                    className="inline-flex items-center text-sm text-cyan-400 hover:text-cyan-300 transition-colors group/link"
-                  >
+                  href="#"
+                  className="inline-flex items-center text-sm text-cyan-400 hover:text-cyan-300 transition-colors group/link">
+
                     Pelajari lebih lanjut
                     <ArrowRight className="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                   </a>
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -403,12 +403,12 @@ const Index = () => {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { value: "340%", label: "Avg. ROI" },
-              { value: "2.4M+", label: "Creator Reach" },
-              { value: "500+", label: "Brands Active" },
-              { value: "Rp 8.2B", label: "GMV Processed" }
-            ].map((stat, i) => (
-              <div key={i} className="text-center space-y-2">
+            { value: "340%", label: "Avg. ROI" },
+            { value: "2.4M+", label: "Creator Reach" },
+            { value: "500+", label: "Brands Active" },
+            { value: "Rp 8.2B", label: "GMV Processed" }].
+            map((stat, i) =>
+            <div key={i} className="text-center space-y-2">
                 <div className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60">
                   {stat.value}
                 </div>
@@ -416,7 +416,7 @@ const Index = () => {
                   {stat.label}
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -447,25 +447,25 @@ const Index = () => {
 
                 <div className="space-y-6">
                   {[
-                    "Balance top-up fleksibel",
-                    "Dashboard analytics lengkap",
-                    "Priority support 24/7",
-                    "Content approval workflow"
-                  ].map((feature, i) => (
-                    <div key={i} className="flex items-center space-x-4">
+                  "Balance top-up fleksibel",
+                  "Dashboard analytics lengkap",
+                  "Priority support 24/7",
+                  "Content approval workflow"].
+                  map((feature, i) =>
+                  <div key={i} className="flex items-center space-x-4">
                       <div className="w-6 h-6 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
                         <Check className="w-4 h-4 text-cyan-400" />
                       </div>
                       <span className="text-white/80 text-lg">{feature}</span>
                     </div>
-                  ))}
+                  )}
                 </div>
 
                 <Button
                   size="lg"
                   className="w-full bg-white text-black hover:bg-slate-200 py-7 text-lg rounded-full font-semibold shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:shadow-[0_0_50px_rgba(255,255,255,0.5)] transition-all group"
-                  onClick={() => navigate("/register")}
-                >
+                  onClick={() => navigate("/register")}>
+
                   Mulai Sekarang — Gratis
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -498,8 +498,8 @@ const Index = () => {
           <Button
             size="lg"
             className="bg-white text-black hover:bg-slate-200 px-12 py-8 text-xl rounded-full font-semibold shadow-[0_0_40px_rgba(255,255,255,0.4)] hover:shadow-[0_0_60px_rgba(255,255,255,0.6)] transition-all group"
-            onClick={() => navigate("/register")}
-          >
+            onClick={() => navigate("/register")}>
+
             BUAT CAMPAIGN PERTAMA
             <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform" />
           </Button>
@@ -532,23 +532,23 @@ const Index = () => {
 
             {/* Links */}
             {[
-              { title: "Produk", links: ["Features", "Pricing", "API"] },
-              { title: "Resources", links: ["Documentation", "Blog", "Case Studies"] },
-              { title: "Company", links: ["About", "Careers", "Contact"] }
-            ].map((col, i) => (
-              <div key={i}>
+            { title: "Produk", links: ["Features", "Pricing", "API"] },
+            { title: "Resources", links: ["Documentation", "Blog", "Case Studies"] },
+            { title: "Company", links: ["About", "Careers", "Contact"] }].
+            map((col, i) =>
+            <div key={i}>
                 <h4 className="font-semibold text-white mb-6 text-sm uppercase tracking-wider">{col.title}</h4>
                 <ul className="space-y-4">
-                  {col.links.map((link) => (
-                    <li key={link}>
+                  {col.links.map((link) =>
+                <li key={link}>
                       <a href="#" className="text-sm text-white/40 hover:text-white transition-colors">
                         {link}
                       </a>
                     </li>
-                  ))}
+                )}
                 </ul>
               </div>
-            ))}
+            )}
           </div>
 
           {/* Bottom Bar */}
@@ -559,15 +559,15 @@ const Index = () => {
 
             {/* Social Icons */}
             <div className="flex items-center space-x-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-10 h-10 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                >
+              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) =>
+              <a
+                key={i}
+                href="#"
+                className="w-10 h-10 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center transition-all hover:scale-110">
+
                   <Icon className="w-4 h-4 text-white/40 hover:text-white transition-colors" strokeWidth={1.5} />
                 </a>
-              ))}
+              )}
             </div>
           </div>
         </div>
@@ -588,8 +588,8 @@ const Index = () => {
           animation-play-state: paused;
         }
       `}</style>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Index;
