@@ -180,3 +180,95 @@ export const useBrandHiredApplications = () => {
     enabled: !!user?.id,
   });
 };
+
+// Update shipping information (courier and tracking number)
+export const useUpdateShipping = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      applicationId,
+      courierName,
+      trackingNumber,
+    }: {
+      applicationId: string;
+      courierName: string;
+      trackingNumber: string;
+    }) => {
+      const { data, error } = await db.update(
+        TABLES.APPLICATIONS,
+        {
+          courier_name: courierName,
+          tracking_number: trackingNumber,
+          shipping_status: "shipped",
+        },
+        { ID: parseInt(applicationId) }
+      );
+
+      if (error) {
+        console.error("Error updating shipping:", error);
+        throw new Error(error);
+      }
+
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["brand-hired-applications"] });
+      toast({
+        title: "Shipping Updated! 📦",
+        description: "The shipping information has been saved.",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Update Failed",
+        description: error.message || "Could not update shipping information.",
+        variant: "destructive",
+      });
+    },
+  });
+};
+
+// Update shipping status only
+export const useUpdateShippingStatus = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      applicationId,
+      shippingStatus,
+    }: {
+      applicationId: string;
+      shippingStatus: ShippingStatus;
+    }) => {
+      const { data, error } = await db.update(
+        TABLES.APPLICATIONS,
+        {
+          shipping_status: shippingStatus,
+        },
+        { ID: parseInt(applicationId) }
+      );
+
+      if (error) {
+        console.error("Error updating shipping status:", error);
+        throw new Error(error);
+      }
+
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["brand-hired-applications"] });
+      toast({
+        title: "Status Updated! ✅",
+        description: "The shipping status has been updated.",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Update Failed",
+        description: error.message || "Could not update shipping status.",
+        variant: "destructive",
+      });
+    },
+  });
+};
