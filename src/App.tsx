@@ -7,8 +7,9 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { RoleProvider } from "@/contexts/RoleContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";
 import ErrorBoundary from "@/components/shared/ErrorBoundary";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { Loader2 } from "lucide-react";
+import { ensureTablesExist } from "@/lib/db/init";
 
 // Layouts
 import IndexLayout from "@/components/layouts/IndexLayout";
@@ -64,18 +65,24 @@ const queryClient = new QueryClient({
   }
 });
 
-const App = () =>
-<ErrorBoundary>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AuthProvider>
-            <RoleProvider>
-              <NotificationProvider>
-                <Suspense fallback={<LoadingFallback />}>
-                <Routes>
+const App = () => {
+  // Initialize database tables on app load
+  useEffect(() => {
+    ensureTablesExist();
+  }, []);
+
+  return (
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <AuthProvider>
+              <RoleProvider>
+                <NotificationProvider>
+                  <Suspense fallback={<LoadingFallback />}>
+                  <Routes>
                   {/* Slabscan Landing Page - Standalone */}
                   <Route path="/slabscan" element={<SlabscanIndex />} />
 
@@ -127,15 +134,17 @@ const App = () =>
 
                   {/* 404 */}
                   <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Suspense>
-              </NotificationProvider>
-            </RoleProvider>
-          </AuthProvider>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </ErrorBoundary>;
+                  </Routes>
+                </Suspense>
+                </NotificationProvider>
+              </RoleProvider>
+            </AuthProvider>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
+  );
+};
 
 
 export default App;

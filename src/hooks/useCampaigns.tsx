@@ -1,7 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/db/client";
+import { TABLES } from "@/lib/db/schema";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 // --- ENUMS & CONSTANTS ---
 export enum CampaignType {
@@ -67,14 +69,15 @@ export interface CampaignFilters {
   sortBy?: SortOption;
 }
 
-// Hook for PUBLIC campaign listings - uses secure view
+// Hook for PUBLIC campaign listings - only shows live campaigns
 export const usePublicCampaigns = (filters?: CampaignFilters) => {
   return useQuery({
     queryKey: ["public-campaigns", filters],
     queryFn: async (): Promise<PublicCampaign[]> => {
-      let query = supabase.
-      from("public_campaigns").
-      select("*");
+      let query = db.from(TABLES.CAMPAIGNS).select("*");
+
+      // Only show live campaigns to public
+      query = query.eq("status", "live");
 
       // Filter: Category
       if (filters?.category && filters.category !== "all") {
@@ -101,7 +104,7 @@ export const usePublicCampaigns = (filters?: CampaignFilters) => {
         case SortOption.FOR_YOU:
         case SortOption.TRENDING:
         default:
-          query = query.order("created_at", { ascending: false });
+          query = query.order("ID", { ascending: false });
           break;
       }
 
@@ -109,35 +112,57 @@ export const usePublicCampaigns = (filters?: CampaignFilters) => {
 
       if (error) {
         console.error("Error fetching public campaigns:", error);
-        throw error;
+        throw new Error(error);
       }
 
-      return data as unknown as PublicCampaign[] || [];
+      return (data || []).map(campaign => ({
+        ...campaign,
+        id: String(campaign.ID),
+        type: campaign.type as CampaignType,
+        status: campaign.status as CampaignStatus,
+        brand_name: campaign.company_name || "Brand",
+        brand_logo: campaign.company_logo || null,
+      })) as PublicCampaign[];
     }
   });
 };
 
 // Hook for BRAND OWNER campaigns - uses full table
 export const useBrandCampaigns = () => {
+  const { user } = useAuth();
+
   return useQuery({
-    queryKey: ["brand-campaigns"],
+    queryKey: ["brand-campaigns", user?.id],
     queryFn: async (): Promise<Campaign[]> => {
-      const { data, error } = await supabase.
-      from("campaigns").
+      if (!user?.id) {
+        return [];
+      }
+
+      const { data, error } = await db.
+      from(TABLES.CAMPAIGNS).
       select("*").
-      order("created_at", { ascending: false });
+      eq("brand_id", user.id).
+      order("ID", { ascending: false });
 
       if (error) {
         console.error("Error fetching brand campaigns:", error);
-        throw error;
+        throw new Error(error);
       }
 
       return (data || []).map((campaign) => ({
         ...campaign,
+        id: String(campaign.ID),
+        type: campaign.type as CampaignType,
+        status: campaign.status as CampaignStatus,
         brand_name: null,
-        brand_logo: null
-      })) as unknown as Campaign[];
-    }
+        brand_logo: null,
+        prize_breakdown: campaign.prize_breakdown ? JSON.parse(campaign.prize_breakdown) : null,
+        required_hashtags: campaign.required_hashtags ? campaign.required_hashtags.split(',') : null,
+        platform_requirements: campaign.platform_requirements ? campaign.platform_requirements.split(',') : null,
+        rules: campaign.rules ? [campaign.rules] : null,
+      })) as Campaign[];
+    },
+    enabled: !!user?.id
   });
 };
 
@@ -148,18 +173,28 @@ export const usePublicCampaign = (id: string | undefined) => {
     queryFn: async (): Promise<PublicCampaign | null> => {
       if (!id) return null;
 
-      const { data, error } = await supabase.
-      from("public_campaigns").
+      const { data, error } = await db.
+      from(TABLES.CAMPAIGNS).
       select("*").
-      eq("id", id).
+      eq("ID", id).
+      eq("status", "live").
       maybeSingle();
 
       if (error) {
         console.error("Error fetching public campaign:", error);
-        throw error;
+        throw new Error(error);
       }
 
-      return data as unknown as PublicCampaign | null;
+      if (!data) return null;
+
+      return {
+        ...data,
+        id: String(data.ID),
+        type: data.type as CampaignType,
+        status: data.status as CampaignStatus,
+        brand_name: data.company_name || "Brand",
+        brand_logo: data.company_logo || null,
+      } as PublicCampaign;
     },
     enabled: !!id
   });
@@ -167,31 +202,41 @@ export const usePublicCampaign = (id: string | undefined) => {
 
 // Hook for BRAND OWNER single campaign
 export const useBrandCampaign = (id: string | undefined) => {
+  const { user } = useAuth();
+
   return useQuery({
     queryKey: ["brand-campaign", id],
     queryFn: async (): Promise<Campaign | null> => {
-      if (!id) return null;
+      if (!id || !user?.id) return null;
 
-      const { data, error } = await supabase.
-      from("campaigns").
+      const { data, error } = await db.
+      from(TABLES.CAMPAIGNS).
       select("*").
-      eq("id", id).
+      eq("ID", id).
+      eq("brand_id", user.id).
       maybeSingle();
 
       if (error) {
         console.error("Error fetching brand campaign:", error);
-        throw error;
+        throw new Error(error);
       }
 
       if (!data) return null;
 
       return {
         ...data,
+        id: String(data.ID),
+        type: data.type as CampaignType,
+        status: data.status as CampaignStatus,
         brand_name: null,
-        brand_logo: null
-      } as unknown as Campaign;
+        brand_logo: null,
+        prize_breakdown: data.prize_breakdown ? JSON.parse(data.prize_breakdown) : null,
+        required_hashtags: data.required_hashtags ? data.required_hashtags.split(',') : null,
+        platform_requirements: data.platform_requirements ? data.platform_requirements.split(',') : null,
+        rules: data.rules ? [data.rules] : null,
+      } as Campaign;
     },
-    enabled: !!id
+    enabled: !!(id && user?.id)
   });
 };
 
@@ -217,47 +262,53 @@ export interface CreateCampaignInput {
 export const useCreateCampaign = () => {
   const queryClient = useQueryClient();
   const { toast } = useToast();
+  const { user } = useAuth();
 
   return useMutation({
     mutationFn: async (input: CreateCampaignInput): Promise<Campaign> => {
-      const { data: { user } } = await supabase.auth.getUser();
-
-      if (!user) {
+      if (!user?.id) {
         throw new Error("You must be logged in to create a campaign");
       }
 
-      const { data, error } = await supabase.
-      from("campaigns").
-      insert([{
+      const campaignData = {
         brand_id: user.id,
         title: input.title,
         description: input.description,
         brief: input.brief || null,
         category: input.category,
-        type: input.type as "contest" | "deal",
+        type: input.type,
         budget: input.budget,
-        prize_breakdown: input.prize_breakdown || [],
+        prize_breakdown: input.prize_breakdown ? JSON.stringify(input.prize_breakdown) : null,
         start_date: input.start_date,
         end_date: input.end_date,
-        required_hashtags: input.required_hashtags || [],
-        platform_requirements: input.platform_requirements || [],
-        rules: input.rules || [],
+        required_hashtags: input.required_hashtags?.join(',') || null,
+        platform_requirements: input.platform_requirements?.join(',') || null,
+        rules: input.rules?.join('\n') || null,
         cover_image: input.cover_image || null,
-        status: (input.status || CampaignStatus.DRAFT) as "draft" | "live" | "judging" | "completed" | "cancelled"
-      }]).
-      select().
-      single();
+        status: input.status || CampaignStatus.DRAFT,
+        submission_count: 0,
+        view_count: 0,
+      };
+
+      const { data, error } = await db.insert(TABLES.CAMPAIGNS, campaignData);
 
       if (error) {
         console.error("Error creating campaign:", error);
-        throw error;
+        throw new Error(error);
       }
 
       return {
         ...data,
+        id: String(data.ID),
+        type: data.type as CampaignType,
+        status: data.status as CampaignStatus,
         brand_name: null,
-        brand_logo: null
-      } as unknown as Campaign;
+        brand_logo: null,
+        prize_breakdown: data.prize_breakdown ? JSON.parse(data.prize_breakdown) : null,
+        required_hashtags: data.required_hashtags ? data.required_hashtags.split(',') : null,
+        platform_requirements: data.platform_requirements ? data.platform_requirements.split(',') : null,
+        rules: data.rules ? [data.rules] : null,
+      } as Campaign;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["brand-campaigns"] });
@@ -265,7 +316,6 @@ export const useCreateCampaign = () => {
         title: "Gig Created! 🎉",
         description: "Your gig has been saved. Complete payment to activate."
       });
-      // Note: Navigation is handled by the caller (CreateCampaign page)
     },
     onError: (error: Error) => {
       toast({
