@@ -1,73 +1,138 @@
-# Welcome to your Lovable project
+# HourlyUGC Clone - Pixel-Perfect Reverse Engineering
 
-## Project info
+A professional pixel-perfect clone of hourlyugc.com built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
 
-## How can I edit this code?
+- **Pixel-Perfect Design**: Visually identical to the original website
+- **Smooth Animations**: Framer Motion powered scroll animations and interactions
+- **Fully Responsive**: Mobile-first design with responsive breakpoints
+- **Modern Stack**: Built with Next.js 14 App Router and TypeScript
+- **Performance Optimized**: Lighthouse score 90+ target
+- **SEO Ready**: Complete meta tags and semantic HTML
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Font**: Inter (Google Fonts)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Project Structure
 
-Changes made via Lovable will be committed automatically to this repo.
+```
+hourlyugc-clone/
+├── app/
+│   ├── layout.tsx           # Root layout with metadata
+│   ├── page.tsx             # Main page combining all sections
+│   └── globals.css          # Global styles and Tailwind imports
+├── components/
+│   ├── Navbar.tsx           # Fixed navbar with blur backdrop
+│   ├── HeroSection.tsx      # Hero with creator previews
+│   ├── EarningsSection.tsx  # Stats with circular badges
+│   ├── HowItWorksSection.tsx # 4-step process layout
+│   ├── TestimonialsSection.tsx # Creator cards
+│   ├── FAQSection.tsx       # Accordion FAQ
+│   ├── CTASection.tsx       # Dark emerald CTA banner
+│   └── Footer.tsx           # Footer with links
+├── tailwind.config.ts       # Tailwind configuration with custom theme
+├── tsconfig.json           # TypeScript configuration
+├── next.config.js          # Next.js configuration
+├── postcss.config.js       # PostCSS configuration
+└── package.json            # Dependencies and scripts
+```
 
-**Use your preferred IDE**
+## Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. Install dependencies:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+npm install
+```
 
-Follow these steps:
+2. Run the development server:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Build
 
-**Use GitHub Codespaces**
+Build the production version:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run build
+```
 
-## What technologies are used for this project?
+Start the production server:
 
-This project is built with:
+```bash
+npm start
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Design System
 
-## How can I deploy this project?
+### Colors
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+- **Primary**: #10b981 (Emerald)
+- **Gradients**: Emerald tones from 50 to 900
 
-## Can I connect a custom domain to my Lovable project?
+### Typography
 
-Yes, you can!
+- **Font Family**: Inter (from Google Fonts)
+- **Weights**: 300, 400, 500, 600, 700, 800, 900
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Components
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+All components follow the original design specifications:
+
+1. **Navbar**: Sticky with backdrop blur effect on scroll
+2. **Hero Section**: Large heading with creator preview cards
+3. **Earnings Section**: Circular stat badges with phone mockup
+4. **How It Works**: 4-step process with interactive phone display
+5. **Testimonials**: Creator cards with hover effects
+6. **FAQ Section**: Accordion with smooth animations
+7. **CTA Section**: Dark emerald gradient with phone mockup
+8. **Footer**: Multi-column layout with social links
+
+## Mock Data
+
+This project uses placeholder images from Unsplash for creator profiles and visual elements. In a production environment, replace these with actual content:
+
+- Creator profile images
+- Testimonial data
+- FAQ content
+- Brand logos
+
+## Performance Optimizations
+
+- Image optimization via Next.js Image component
+- Lazy loading for off-screen content
+- Framer Motion viewport detection for scroll animations
+- Minimized bundle size with tree-shaking
+- CSS optimization via Tailwind's JIT compiler
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Responsive Breakpoints
+
+- Mobile: < 640px
+- Tablet: 640px - 1024px
+- Desktop: > 1024px
+
+## Notes
+
+This is a reverse-engineered clone for educational and demonstration purposes. The visual design closely matches the original hourlyugc.com website. All interactive elements, animations, and responsive behaviors have been meticulously recreated.
+
+## License
+
+This project is for educational purposes only.
