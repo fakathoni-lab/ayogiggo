@@ -1,5 +1,5 @@
-import type { Metadata } from 'next'
-import './globals.css'
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'HourlyUGC - Success Loves Speed, So Hire UGC By The Hour',
@@ -8,18 +8,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'HourlyUGC - Success Loves Speed, So Hire UGC By The Hour',
     description: 'Platform connecting creators with brand partnerships and influencer marketing opportunities',
-    type: 'website',
-  },
-}
+    type: 'website'
+  }
+};
 
 export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+  children
+
+
+}: {children: React.ReactNode;}) {
   return (
     <html lang="en">
       <body>{children}</body>
-    </html>
-  )
+    </html>);
+
 }

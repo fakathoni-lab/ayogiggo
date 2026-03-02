@@ -1,40 +1,40 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { Users, DollarSign, CheckCircle, RefreshCw } from 'lucide-react'
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Users, DollarSign, CheckCircle, RefreshCw } from 'lucide-react';
 
 export default function EarningsSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const stats = [
-    {
-      icon: Users,
-      number: '2,000+',
-      label: 'Brands and agencies',
-      position: 'top-left',
-    },
-    {
-      icon: DollarSign,
-      number: '$25-35+',
-      label: '/hour',
-      position: 'bottom-left',
-    },
-    {
-      icon: CheckCircle,
-      number: 'Inclusive',
-      label: 'no experience required',
-      position: 'bottom-right',
-    },
-    {
-      icon: RefreshCw,
-      number: 'Consistent work',
-      label: 'Get instant access to new brands each week',
-      position: 'top-right',
-    },
-  ]
+  {
+    icon: Users,
+    number: '2,000+',
+    label: 'Brands and agencies',
+    position: 'top-left'
+  },
+  {
+    icon: DollarSign,
+    number: '$25-35+',
+    label: '/hour',
+    position: 'bottom-left'
+  },
+  {
+    icon: CheckCircle,
+    number: 'Inclusive',
+    label: 'no experience required',
+    position: 'bottom-right'
+  },
+  {
+    icon: RefreshCw,
+    number: 'Consistent work',
+    label: 'Get instant access to new brands each week',
+    position: 'top-right'
+  }];
+
 
   return (
     <section ref={ref} className="py-20 md:py-32 bg-gradient-to-b from-white to-primary-50/30">
@@ -44,16 +44,16 @@ export default function EarningsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-primary font-semibold text-lg mb-2"
-          >
+            className="text-primary font-semibold text-lg mb-2">
+
             For Creators
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-bold text-gray-900"
-          >
+            className="text-4xl md:text-5xl font-bold text-gray-900">
+
             Earning has never
             <br />
             been <span className="text-primary">easier</span>
@@ -66,8 +66,8 @@ export default function EarningsSection() {
               initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-6"
-            >
+              className="space-y-6">
+
               <div className="relative w-56 h-56 mx-auto md:mx-0 bg-gradient-to-br from-primary-600 to-primary-800 rounded-full flex items-center justify-center shadow-2xl">
                 <div className="absolute inset-0 bg-primary-500/20 rounded-full animate-ping"></div>
                 <div className="relative z-10 text-center text-white">
@@ -91,8 +91,8 @@ export default function EarningsSection() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative"
-            >
+              className="relative">
+
               <div className="absolute -inset-4 bg-gradient-to-r from-primary-200 to-primary-300 rounded-full blur-3xl opacity-30"></div>
               <div className="relative w-64 h-96 mx-auto bg-gradient-to-br from-primary-500 to-primary-700 rounded-[3rem] shadow-2xl overflow-hidden transform rotate-6 hover:rotate-0 transition-transform duration-500">
                 <div className="absolute top-0 left-0 right-0 h-8 bg-black/20 flex items-center justify-center">
@@ -114,8 +114,8 @@ export default function EarningsSection() {
               initial={{ opacity: 0, x: 50 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 mt-8"
-            >
+              className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+
               <div className="relative w-56 h-56 mx-auto bg-gradient-to-br from-primary-600 to-primary-800 rounded-full flex items-center justify-center shadow-2xl">
                 <div className="relative z-10 text-center text-white">
                   <CheckCircle className="w-12 h-12 mx-auto mb-2" />
@@ -138,8 +138,8 @@ export default function EarningsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-center mt-12"
-          >
+            className="text-center mt-12">
+
             <p className="text-gray-600 mb-6 text-lg">
               Just Create Videos For Brands And Get Paid Hourly
             </p>
@@ -149,19 +149,19 @@ export default function EarningsSection() {
                 className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+                viewBox="0 0 24 24">
+
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
+                  d="M9 5l7 7-7 7" />
+
               </svg>
             </button>
           </motion.div>
         </div>
       </div>
-    </section>
-  )
+    </section>);
+
 }

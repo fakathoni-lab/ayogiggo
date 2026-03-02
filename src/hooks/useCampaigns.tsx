@@ -115,13 +115,13 @@ export const usePublicCampaigns = (filters?: CampaignFilters) => {
         throw new Error(error);
       }
 
-      return (data || []).map(campaign => ({
+      return (data || []).map((campaign) => ({
         ...campaign,
         id: String(campaign.ID),
         type: campaign.type as CampaignType,
         status: campaign.status as CampaignStatus,
         brand_name: campaign.company_name || "Brand",
-        brand_logo: campaign.company_logo || null,
+        brand_logo: campaign.company_logo || null
       })) as PublicCampaign[];
     }
   });
@@ -159,7 +159,7 @@ export const useBrandCampaigns = () => {
         prize_breakdown: campaign.prize_breakdown ? JSON.parse(campaign.prize_breakdown) : null,
         required_hashtags: campaign.required_hashtags ? campaign.required_hashtags.split(',') : null,
         platform_requirements: campaign.platform_requirements ? campaign.platform_requirements.split(',') : null,
-        rules: campaign.rules ? [campaign.rules] : null,
+        rules: campaign.rules ? [campaign.rules] : null
       })) as Campaign[];
     },
     enabled: !!user?.id
@@ -193,7 +193,7 @@ export const usePublicCampaign = (id: string | undefined) => {
         type: data.type as CampaignType,
         status: data.status as CampaignStatus,
         brand_name: data.company_name || "Brand",
-        brand_logo: data.company_logo || null,
+        brand_logo: data.company_logo || null
       } as PublicCampaign;
     },
     enabled: !!id
@@ -233,7 +233,7 @@ export const useBrandCampaign = (id: string | undefined) => {
         prize_breakdown: data.prize_breakdown ? JSON.parse(data.prize_breakdown) : null,
         required_hashtags: data.required_hashtags ? data.required_hashtags.split(',') : null,
         platform_requirements: data.platform_requirements ? data.platform_requirements.split(',') : null,
-        rules: data.rules ? [data.rules] : null,
+        rules: data.rules ? [data.rules] : null
       } as Campaign;
     },
     enabled: !!(id && user?.id)
@@ -287,7 +287,7 @@ export const useCreateCampaign = () => {
         cover_image: input.cover_image || null,
         status: input.status || CampaignStatus.DRAFT,
         submission_count: 0,
-        view_count: 0,
+        view_count: 0
       };
 
       const { data, error } = await db.insert(TABLES.CAMPAIGNS, campaignData);
@@ -307,7 +307,7 @@ export const useCreateCampaign = () => {
         prize_breakdown: data.prize_breakdown ? JSON.parse(data.prize_breakdown) : null,
         required_hashtags: data.required_hashtags ? data.required_hashtags.split(',') : null,
         platform_requirements: data.platform_requirements ? data.platform_requirements.split(',') : null,
-        rules: data.rules ? [data.rules] : null,
+        rules: data.rules ? [data.rules] : null
       } as Campaign;
     },
     onSuccess: () => {

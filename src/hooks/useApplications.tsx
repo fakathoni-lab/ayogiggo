@@ -34,11 +34,11 @@ export const useCreatorApplications = () => {
     queryFn: async () => {
       if (!user?.id) return [];
 
-      const { data: applications, error } = await db
-        .from(TABLES.APPLICATIONS)
-        .select("*")
-        .eq("creator_id", user.id)
-        .order("ID", { ascending: false });
+      const { data: applications, error } = await db.
+      from(TABLES.APPLICATIONS).
+      select("*").
+      eq("creator_id", user.id).
+      order("ID", { ascending: false });
 
       if (error) {
         console.error("Error fetching creator applications:", error);
@@ -54,14 +54,14 @@ export const useCreatorApplications = () => {
 
       // Fetch campaigns
       const campaignsPromises = campaignIds.map((id) =>
-        db.from(TABLES.CAMPAIGNS).select("*").eq("ID", id).single()
+      db.from(TABLES.CAMPAIGNS).select("*").eq("ID", id).single()
       );
 
       const campaignsResults = await Promise.all(campaignsPromises);
       const campaignMap = new Map(
-        campaignsResults
-          .filter((r) => !r.error && r.data)
-          .map((r) => [String(r.data.ID), { title: r.data.title, end_date: r.data.end_date }])
+        campaignsResults.
+        filter((r) => !r.error && r.data).
+        map((r) => [String(r.data.ID), { title: r.data.title, end_date: r.data.end_date }])
       );
 
       return (applications || []).map((app: any) => ({
@@ -72,10 +72,10 @@ export const useCreatorApplications = () => {
         cover_letter: app.cover_letter,
         portfolio_url: app.portfolio_url,
         created_at: app.CreatedTime,
-        campaigns: campaignMap.get(String(app.campaign_id)) || null,
+        campaigns: campaignMap.get(String(app.campaign_id)) || null
       })) as Application[];
     },
-    enabled: !!user?.id,
+    enabled: !!user?.id
   });
 };
 
@@ -88,12 +88,12 @@ export const useCreateApplication = () => {
     mutationFn: async ({
       campaignId,
       coverLetter,
-      portfolioUrl,
-    }: {
-      campaignId: string;
-      coverLetter?: string;
-      portfolioUrl?: string;
-    }) => {
+      portfolioUrl
+
+
+
+
+    }: {campaignId: string;coverLetter?: string;portfolioUrl?: string;}) => {
       if (!user?.id) {
         throw new Error("You must be logged in to apply");
       }
@@ -103,7 +103,7 @@ export const useCreateApplication = () => {
         creator_id: user.id,
         status: "applied",
         cover_letter: coverLetter || null,
-        portfolio_url: portfolioUrl || null,
+        portfolio_url: portfolioUrl || null
       };
 
       const { data, error } = await db.insert(TABLES.APPLICATIONS, applicationData);
@@ -119,16 +119,16 @@ export const useCreateApplication = () => {
       queryClient.invalidateQueries({ queryKey: ["creator-applications", user?.id] });
       toast({
         title: "Application Submitted! 🎉",
-        description: "Your application has been sent to the brand.",
+        description: "Your application has been sent to the brand."
       });
     },
     onError: (error: Error) => {
       toast({
         title: "Failed to apply",
         description: error.message || "Something went wrong. Please try again.",
-        variant: "destructive",
+        variant: "destructive"
       });
-    },
+    }
   });
 };
 
@@ -142,10 +142,10 @@ export const useBrandHiredApplications = () => {
       if (!user?.id) return [];
 
       // First get brand's campaigns
-      const { data: campaigns, error: campaignError } = await db
-        .from(TABLES.CAMPAIGNS)
-        .select("*")
-        .eq("brand_id", user.id);
+      const { data: campaigns, error: campaignError } = await db.
+      from(TABLES.CAMPAIGNS).
+      select("*").
+      eq("brand_id", user.id);
 
       if (campaignError) {
         console.error("Error fetching brand campaigns:", campaignError);
@@ -158,11 +158,11 @@ export const useBrandHiredApplications = () => {
 
       // Fetch applications for those campaigns with 'hired' status
       const applicationsPromises = campaignIds.map((id) =>
-        db.from(TABLES.APPLICATIONS).select("*").eq("campaign_id", id).eq("status", "hired")
+      db.from(TABLES.APPLICATIONS).select("*").eq("campaign_id", id).eq("status", "hired")
       );
 
       const applicationsResults = await Promise.all(applicationsPromises);
-      const allApplications = applicationsResults.flatMap((r) => (r.error ? [] : r.data || []));
+      const allApplications = applicationsResults.flatMap((r) => r.error ? [] : r.data || []);
 
       if (allApplications.length === 0) return [];
 
@@ -174,10 +174,10 @@ export const useBrandHiredApplications = () => {
         creator_id: app.creator_id,
         status: app.status as ApplicationStatus,
         created_at: app.CreatedTime,
-        campaigns: campaignMap.get(app.campaign_id) || null,
+        campaigns: campaignMap.get(app.campaign_id) || null
       })) as Application[];
     },
-    enabled: !!user?.id,
+    enabled: !!user?.id
   });
 };
 
@@ -189,18 +189,18 @@ export const useUpdateShipping = () => {
     mutationFn: async ({
       applicationId,
       courierName,
-      trackingNumber,
-    }: {
-      applicationId: string;
-      courierName: string;
-      trackingNumber: string;
-    }) => {
+      trackingNumber
+
+
+
+
+    }: {applicationId: string;courierName: string;trackingNumber: string;}) => {
       const { data, error } = await db.update(
         TABLES.APPLICATIONS,
         {
           courier_name: courierName,
           tracking_number: trackingNumber,
-          shipping_status: "shipped",
+          shipping_status: "shipped"
         },
         { ID: parseInt(applicationId) }
       );
@@ -216,16 +216,16 @@ export const useUpdateShipping = () => {
       queryClient.invalidateQueries({ queryKey: ["brand-hired-applications"] });
       toast({
         title: "Shipping Updated! 📦",
-        description: "The shipping information has been saved.",
+        description: "The shipping information has been saved."
       });
     },
     onError: (error: Error) => {
       toast({
         title: "Update Failed",
         description: error.message || "Could not update shipping information.",
-        variant: "destructive",
+        variant: "destructive"
       });
-    },
+    }
   });
 };
 
@@ -236,15 +236,15 @@ export const useUpdateShippingStatus = () => {
   return useMutation({
     mutationFn: async ({
       applicationId,
-      shippingStatus,
-    }: {
-      applicationId: string;
-      shippingStatus: ShippingStatus;
-    }) => {
+      shippingStatus
+
+
+
+    }: {applicationId: string;shippingStatus: ShippingStatus;}) => {
       const { data, error } = await db.update(
         TABLES.APPLICATIONS,
         {
-          shipping_status: shippingStatus,
+          shipping_status: shippingStatus
         },
         { ID: parseInt(applicationId) }
       );
@@ -260,15 +260,15 @@ export const useUpdateShippingStatus = () => {
       queryClient.invalidateQueries({ queryKey: ["brand-hired-applications"] });
       toast({
         title: "Status Updated! ✅",
-        description: "The shipping status has been updated.",
+        description: "The shipping status has been updated."
       });
     },
     onError: (error: Error) => {
       toast({
         title: "Update Failed",
         description: error.message || "Could not update shipping status.",
-        variant: "destructive",
+        variant: "destructive"
       });
-    },
+    }
   });
 };

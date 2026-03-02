@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { Apple, Play } from 'lucide-react'
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Apple, Play } from 'lucide-react';
 
 export default function CTASection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
     <section ref={ref} className="py-20 md:py-32 relative overflow-hidden">
@@ -21,8 +21,8 @@ export default function CTASection() {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-white"
-          >
+            className="text-white">
+
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Start Earning From Your
               <br />
@@ -57,21 +57,21 @@ export default function CTASection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white hover:bg-gray-100 text-primary px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 hover:shadow-xl hover:scale-105 inline-flex items-center space-x-2"
-            >
+              className="bg-white hover:bg-gray-100 text-primary px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 hover:shadow-xl hover:scale-105 inline-flex items-center space-x-2">
+
               <span>Get Started Free</span>
               <svg
                 className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+                viewBox="0 0 24 24">
+
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
+                  d="M9 5l7 7-7 7" />
+
               </svg>
             </motion.button>
           </motion.div>
@@ -80,8 +80,8 @@ export default function CTASection() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
-          >
+            className="relative">
+
             <div className="absolute -inset-8 bg-white/10 rounded-full blur-3xl"></div>
             <div className="relative w-72 h-[580px] mx-auto bg-gray-900 rounded-[3rem] shadow-2xl overflow-hidden border-8 border-gray-800 transform rotate-6 hover:rotate-0 transition-transform duration-500">
               <div className="absolute top-0 left-0 right-0 h-8 bg-black flex items-center justify-center">
@@ -119,6 +119,6 @@ export default function CTASection() {
           </motion.div>
         </div>
       </div>
-    </section>
-  )
+    </section>);
+
 }

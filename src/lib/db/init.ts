@@ -6,29 +6,29 @@ import {
   walletsTableSchema,
   transactionsTableSchema,
   brandProfilesTableSchema,
-  creatorProfilesTableSchema,
-} from './schema';
+  creatorProfilesTableSchema } from
+'./schema';
 
 declare global {
   interface Window {
     ezsite: {
       apis: {
-        CreateOrUpdateTable: (schema: any) => Promise<{ error?: string }>;
-        GetTableList: () => Promise<{ data?: any[]; error?: string }>;
+        CreateOrUpdateTable: (schema: any) => Promise<{error?: string;}>;
+        GetTableList: () => Promise<{data?: any[];error?: string;}>;
       };
     };
   }
 }
 
 const tableSchemas = [
-  campaignsTableSchema,
-  applicationsTableSchema,
-  submissionsTableSchema,
-  walletsTableSchema,
-  transactionsTableSchema,
-  brandProfilesTableSchema,
-  creatorProfilesTableSchema,
-];
+campaignsTableSchema,
+applicationsTableSchema,
+submissionsTableSchema,
+walletsTableSchema,
+transactionsTableSchema,
+brandProfilesTableSchema,
+creatorProfilesTableSchema];
+
 
 export async function initializeTables() {
   console.log('🗄️ Initializing database tables...');

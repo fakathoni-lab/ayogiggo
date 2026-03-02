@@ -5,12 +5,12 @@ declare global {
   interface Window {
     ezsite: {
       apis: {
-        tablePage: (tableId: string, params: any) => Promise<{ data?: any; error?: string }>;
-        tableCreate: (tableId: string, data: any) => Promise<{ error?: string }>;
-        tableUpdate: (tableId: string, data: any) => Promise<{ error?: string }>;
-        tableDelete: (tableId: string, data: any) => Promise<{ error?: string }>;
-        GetTableList: () => Promise<{ data?: any[]; error?: string }>;
-        getTableDefinition: (name: string) => Promise<{ data?: any; error?: string }>;
+        tablePage: (tableId: string, params: any) => Promise<{data?: any;error?: string;}>;
+        tableCreate: (tableId: string, data: any) => Promise<{error?: string;}>;
+        tableUpdate: (tableId: string, data: any) => Promise<{error?: string;}>;
+        tableDelete: (tableId: string, data: any) => Promise<{error?: string;}>;
+        GetTableList: () => Promise<{data?: any[];error?: string;}>;
+        getTableDefinition: (name: string) => Promise<{data?: any;error?: string;}>;
       };
     };
   }
@@ -102,7 +102,7 @@ export class QueryBuilder {
     // Parse OR condition like "title.ilike.%term%,description.ilike.%term%"
     const parts = condition.split(',');
 
-    parts.forEach(part => {
+    parts.forEach((part) => {
       const match = part.match(/(\w+)\.ilike\.%(.+)%/);
       if (match) {
         const [, field, value] = match;
@@ -113,7 +113,7 @@ export class QueryBuilder {
     return this;
   }
 
-  order(field: string, options?: { ascending?: boolean }) {
+  order(field: string, options?: {ascending?: boolean;}) {
     this.orderField = field;
     this.orderAsc = options?.ascending ?? false;
     return this;
@@ -151,7 +151,7 @@ export class QueryBuilder {
         PageSize: this.limitValue,
         OrderByField: this.orderField,
         IsAsc: this.orderAsc,
-        Filters: this.filters,
+        Filters: this.filters
       });
 
       if (error) {
@@ -238,7 +238,7 @@ export const db = {
     } catch (err: any) {
       return { data: null, error: err.message };
     }
-  },
+  }
 };
 
 // Export auth helper for compatibility with existing code

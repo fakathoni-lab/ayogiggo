@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Apple, Play, Instagram, Twitter, Linkedin, Facebook } from 'lucide-react'
+import { Apple, Play, Instagram, Twitter, Linkedin, Facebook } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -35,32 +35,32 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
-                >
+                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm">
+
                   Home
                 </a>
               </li>
               <li>
                 <a
                   href="#about"
-                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
-                >
+                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm">
+
                   About Us
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
-                >
+                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm">
+
                   Pricing
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
-                >
+                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm">
+
                   FAQ
                 </a>
               </li>
@@ -73,32 +73,32 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
-                >
+                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm">
+
                   Instagram
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
-                >
+                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm">
+
                   Twitter
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
-                >
+                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm">
+
                   LinkedIn
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
-                >
+                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm">
+
                   Facebook
                 </a>
               </li>
@@ -111,24 +111,24 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
-                >
+                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm">
+
                   Terms of Service
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
-                >
+                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm">
+
                   Privacy Policy
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm"
-                >
+                  className="text-gray-600 hover:text-primary transition-colors duration-200 text-sm">
+
                   Cookie Policy
                 </a>
               </li>
@@ -145,32 +145,32 @@ export default function Footer() {
             <div className="flex items-center space-x-4">
               <a
                 href="#"
-                className="text-gray-600 hover:text-primary transition-colors duration-200"
-              >
+                className="text-gray-600 hover:text-primary transition-colors duration-200">
+
                 <Instagram className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="text-gray-600 hover:text-primary transition-colors duration-200"
-              >
+                className="text-gray-600 hover:text-primary transition-colors duration-200">
+
                 <Twitter className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="text-gray-600 hover:text-primary transition-colors duration-200"
-              >
+                className="text-gray-600 hover:text-primary transition-colors duration-200">
+
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="text-gray-600 hover:text-primary transition-colors duration-200"
-              >
+                className="text-gray-600 hover:text-primary transition-colors duration-200">
+
                 <Facebook className="w-5 h-5" />
               </a>
             </div>
           </div>
         </div>
       </div>
-    </footer>
-  )
+    </footer>);
+
 }
